@@ -43,11 +43,20 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin "$BASE_SHA"
           git worktree add --detach ../base "$BASE_SHA"
-          # Build the base sources with this branch's Makefile, so base commits
-          # that predate the tooling can still be built.
+          # Build the base with its OWN toolchain, so a PR that changes the
+          # Dockerfile (TeX Live, fonts) is compared against the old layout.
+          # Unchanged Dockerfiles hit the layer cache and cost nothing.
+          if [ -f ../base/Dockerfile ]; then
+            docker build -t at-the-last-throw-tex:base ../base
+            image=at-the-last-throw-tex:base
+          else
+            echo "::notice::Base predates the Dockerfile; building it with this PR's image."
+            image=at-the-last-throw-tex:tl2024
+          fi
+          if [ -f ../base/Makefile ]; then makefile=/work/Makefile; else makefile=/tooling/Makefile; fi
           docker run --rm -u "$(id -u):$(id -g)" \
             -v "$PWD/../base":/work -v "$PWD/Makefile":/tooling/Makefile:ro -w /work \
-            at-the-last-throw-tex:tl2024 make -f /tooling/Makefile all
+            "$image" make -f "$makefile" all
           mkdir -p baseline && cp ../base/build/manual*.pdf baseline/
 
       - name: Download latest release as baseline

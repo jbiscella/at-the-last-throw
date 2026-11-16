@@ -30,6 +30,15 @@ DOCKER_RUN = docker run --rm -u $$(id -u):$$(id -g) -v "$(CURDIR)":/work -w /wor
 SHARED := rpgmanual.sty rpgcover.sty illustrated-panel.sty $(wildcard assets/*)
 PDFS   := $(EDITIONS:%=$(BUILD)/%.pdf)
 
+# Toolchain fingerprint: the XeTeX version and the FreeSerif files fontconfig sees.
+# PDFs depend on a stamp named after it, so switching between the local toolchain
+# and the container (or upgrading either) rebuilds instead of reusing stale output.
+TOOLCHAIN_ID := $(shell { xelatex --version 2>/dev/null | head -n 1; fc-list FreeSerif file 2>/dev/null | sort; } | cksum | cut -d ' ' -f 1)
+STAMP        := $(BUILD)/.toolchain-$(TOOLCHAIN_ID)
+
+# A failed XeLaTeX pass must not leave a PDF behind that a retry would accept.
+.DELETE_ON_ERROR:
+
 .PHONY: all en it fr uk docker docker-image docker-shell docker-check check baselines \
         deps update-baselines clean
 
@@ -40,7 +49,10 @@ it: $(BUILD)/manual-it.pdf
 fr: $(BUILD)/manual-fr.pdf
 uk: $(BUILD)/manual-uk.pdf
 
-$(BUILD)/%.pdf: %.tex $(SHARED) | $(BUILD)
+$(STAMP): | $(BUILD)
+	@rm -f $(BUILD)/.toolchain-*; touch $@
+
+$(BUILD)/%.pdf: %.tex $(SHARED) $(STAMP) | $(BUILD)
 	@echo "== $< (pass 1)"; $(XELATEX) $< >/dev/null || { tail -n 30 $(BUILD)/$*.log; exit 1; }
 	@echo "== $< (pass 2)"; $(XELATEX) $< >/dev/null || { tail -n 30 $(BUILD)/$*.log; exit 1; }
 	@grep -c 'Overfull' $(BUILD)/$*.log | xargs -I{} echo "   $*: {} overfull box warning(s), $$(pdfinfo $@ | awk '/^Pages:/{print $$2}') pages"
@@ -51,9 +63,10 @@ $(BUILD):
 docker-image:
 	docker build -t $(IMAGE) .
 
-# Runs as the calling user so build/ is not owned by root.
+# Runs as the calling user so build/ is not owned by root. Always recompiles (-B):
+# a rebuilt image can change the layout without changing the XeTeX version.
 docker: docker-image | $(BUILD)
-	$(DOCKER_RUN) $(IMAGE) make all
+	$(DOCKER_RUN) $(IMAGE) make -B all
 
 docker-shell: docker-image
 	$(DOCKER_RUN) -it $(IMAGE) bash
