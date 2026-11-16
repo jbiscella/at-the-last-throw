@@ -1,0 +1,100 @@
+name: Build editions
+
+# Pull requests: build the change AND its base branch in the pinned container,
+# then pixel-compare them, so the check shows exactly what the PR changes.
+# Add the label "expected-layout-change" to a PR whose differences are intended.
+#
+# Pushing a tag v*: build and attach the four PDFs to a GitHub Release.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # only used by the release step on tag pushes
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build image (TeX Live 2024, pinned)
+        run: make docker-image
+
+      - name: Build editions
+        run: make docker
+
+      - name: Build base branch as baseline
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$BASE_SHA"
+          git worktree add --detach ../base "$BASE_SHA"
+          # Build the base sources with this branch's Makefile, so base commits
+          # that predate the tooling can still be built.
+          docker run --rm -u "$(id -u):$(id -g)" \
+            -v "$PWD/../base":/work -v "$PWD/Makefile":/tooling/Makefile:ro -w /work \
+            at-the-last-throw-tex:tl2024 make -f /tooling/Makefile all
+          mkdir -p baseline && cp ../base/build/manual*.pdf baseline/
+
+      - name: Download latest release as baseline
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: make baselines || echo "No release to compare against yet."
+
+      - name: Compare with baseline
+        id: check
+        # Blocking only on pull requests without the "expected-layout-change" label.
+        continue-on-error: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'expected-layout-change') }}
+        run: |
+          set -o pipefail
+          {
+            echo '### Layout comparison (72 dpi)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          status=0
+          make docker-check DIFF_DIR=build/diff 2>&1 | grep -v '^Fontconfig' | tee build/check.txt || status=$?
+          { grep -E 'pages? |page count|missing' build/check.txt || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ]; then
+            echo 'Changed pages are in the **diff-images** artifact (changes in red).' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$status"
+
+      - name: Upload PDFs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: build/manual*.pdf
+          if-no-files-found: ignore
+
+      - name: Upload diff images
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diff-images
+          path: build/diff/
+          if-no-files-found: ignore
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" build/manual.pdf build/manual-it.pdf \
+            build/manual-fr.pdf build/manual-uk.pdf \
+            --verify-tag --title "$GITHUB_REF_NAME" --generate-notes

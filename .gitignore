@@ -1,0 +1,20 @@
+# Build output (make)
+/build/
+
+# LaTeX byproducts if compiled in place
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+
+# Reference PDFs: downloaded with `make baselines`, never committed
+/baseline/
+/manual*.pdf
+
+# Delivery archives and ad-hoc backups (history lives in git)
+*.zip
+*-backup.tex
