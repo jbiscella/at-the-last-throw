@@ -129,5 +129,8 @@ but not their chapter, table and word counts.
 
 ## License
 
-Content (rules text, translations, artwork, PDFs) is licensed under [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
-Code (`.sty` files, build tooling, CI) is licensed under [0BSD](LICENSES/0BSD.txt). See [LICENSE.md](LICENSE.md).
+Content (rules text, translations, artwork, PDFs) is licensed under [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt).
+Adaptations, including new translations, must use the same license.
+Code (`.sty` files, build tooling, CI) is licensed under [0BSD](LICENSES/0BSD.txt).
+The embedded fonts (FreeSerif, Cinzel Decorative, IM Fell English, Computer Modern) all allow commercial use and
+PDF embedding. See [LICENSE.md](LICENSE.md) for details.
