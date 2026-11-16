@@ -1,0 +1,677 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{rpgcover}
+\usepackage{illustrated-panel}
+\RPGSetRunningTitle{At the Last Throw}
+\RPGSetCoverWordSpace{.78em}
+\hypersetup{pdftitle={At the Last Throw — LaTeX edition},pdfauthor={Jacopo Biscella}}
+\begin{document}
+\RPGStartFrontMatter
+\RPGFrontCover{AT THE LAST THROW}{CHOICE, FATE, CONSEQUENCE}{Jacopo Biscella}{assets/last-throw-crosshatch-redrawn.png}
+\RPGStartContents
+\RPGContents
+\RPGStartMainMatter
+\RPGChapter{The Die}
+
+Whenever a Protagonist attempts an action whose outcome is uncertain, they roll six-sided dice (d6). How many dice and how the result is read depends on their level in the relevant Attribute.
+
+
+\section*{Levels and Rolls}
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Level} & \rpghead{Roll} & \rpghead{Meaning} \\ \hline
+Untrained & 2d6, keep the lowest & Out of your depth \\ \hline
+Competent & 1d6 & Functional ability \\ \hline
+Expert & 2d6, keep the highest & Trained, master of the craft \\ \hline
+\end{rpgtable}
+
+A relevant \textbf{Skill} improves the roll by one tier. A \textbf{situational penalty} (wounds, darkness, exhaustion) worsens it by one. They cancel each other out.
+
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Situation} & \rpghead{Effective Roll} \\ \hline
+Untrained + penalty & Poor: 3d6, keep the lowest \\ \hline
+Untrained & 2d6, keep the lowest \\ \hline
+Untrained + skill / Competent & 1d6 \\ \hline
+Competent + skill / Expert & 2d6, keep the highest \\ \hline
+Expert + skill & Exceptional: 3d6, keep the highest \\ \hline
+\end{rpgtable}
+
+\section*{Target Number}
+
+The die result is compared against a \textbf{Target Number (TN)}: the minimum value to succeed. The Narrator sets the TN based on the action's difficulty.
+
+
+\begin{rpgtable}{Y|Y}
+\rpghead{TN} & \rpghead{Difficulty} \\ \hline
+3 & Simple \\ \hline
+4 & Standard \\ \hline
+5 & Hard \\ \hline
+6 & Extreme \\ \hline
+Critical & Miraculous — requires double 6 \\ \hline
+\end{rpgtable}
+
+The Narrator freely interprets the degree of success or failure: a 6 against TN 4 is brilliant; a 4 against TN 4 is barely scraping through.
+
+
+\section*{The Critical}
+
+If the roll shows \textbf{two or more 6s}, it is a \textbf{Critical}: an extraordinary result. A Critical requires at least two dice, meaning it is only possible at Expert level or higher.
+
+
+Certain actions — smashing an iron gate barehanded, breaking an ancient enchantment, performing a miracle — \textbf{explicitly require a Critical}. Actions requiring a Critical may only be attempted by those possessing a relevant Skill.
+
+
+\textbf{Exhaustion Rule}: a failed Critical action cannot be reattempted until circumstances change significantly — adequate rest, a new approach, external help, or a shift in the situation. The Narrator judges what constitutes sufficient change.
+
+
+\section*{Probability at a Glance}
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Level} & \rpghead{Prob. ≥4} & \rpghead{Prob. 6} & \rpghead{Critical} \\ \hline
+Poor (3d6↓) & \textasciitilde{}12\% & \textasciitilde{}0.5\% & — \\ \hline
+Untrained (2d6↓) & \textasciitilde{}25\% & \textasciitilde{}3\% & — \\ \hline
+Competent (1d6) & \textasciitilde{}50\% & \textasciitilde{}17\% & — \\ \hline
+Expert (2d6↑) & \textasciitilde{}75\% & \textasciitilde{}31\% & \textasciitilde{}2.8\% \\ \hline
+Exceptional (3d6↑) & \textasciitilde{}87\% & \textasciitilde{}42\% & \textasciitilde{}7\% \\ \hline
+\end{rpgtable}
+
+\RPGChapter{Creating A Protagonist}
+
+Each Protagonist is defined by a \textbf{Race}, a \textbf{Class}, four \textbf{Attributes}, a set of \textbf{Skills}, a \textbf{Trait}, a \textbf{Burden}, and their \textbf{Hit Points}.
+
+
+The player has \textbf{10 points} to distribute among Hit Points, Attributes, and Skills. The Class determines costs, limits, and options.
+
+
+\section*{Attribute Costs}
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Level} & \rpghead{Primary Attr.} & \rpghead{Non-Primary} \\ \hline
+Untrained → Competent & 1 point & 2 points \\ \hline
+Competent → Expert & 2 points & 4 points \\ \hline
+Expert → Exceptional & 4 points & 8 points \\ \hline
+\end{rpgtable}
+
+Each Hit Point costs \textbf{1 point}. Each Skill or Grimoire costs \textbf{1 point}.
+
+
+The \textbf{racial bonus} grants a 1-point discount on purchasing Competent in the racial family's attribute (free if it matches the class's primary attribute). The discount applies only to that step.
+
+
+\section*{Trait}
+
+A phrase describing the character's core nature. No mechanical effect — narrative fuel for the Narrator and a guide for the player.
+
+
+\textit{"I leave no one behind" · "Power is taken, not asked for" · "I prefer an uncomfortable truth to a kind} \textit{lie"}
+
+
+\section*{Burden}
+
+A weight the character carries: a regret, a debt, a secret, a curse. The Narrator uses it to create dilemmas.
+
+
+\textit{"I killed an innocent during the war" · "I owe my life to someone I hate" · "Someone wears my face"}
+
+
+\RPGChapter{Attributes And Skills}
+
+Each character has four Attributes, all starting at Untrained. The player improves them by spending points.
+
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Attribute} & \rpghead{Governs} \\ \hline
+Strength & Raw power, endurance, melee combat \\ \hline
+Dexterity & Agility, reflexes, stealth, aim, dodging \\ \hline
+Lore & Reasoning, culture, knowledge, social influence \\ \hline
+Wonder & Connection to the supernatural, miracles \\ \hline
+\end{rpgtable}
+
+A relevant Skill improves the roll by one tier. Any skill may be purchased if the character has at least Competent in the associated Attribute. The Attribute cost acts as a natural filter.
+
+
+\section*{Strength Skills}
+
+\textbf{Heavy Weapons} — two-handed weapons, axes, warhammers.
+
+
+\textbf{Shields} — active defence with a shield, also as a weapon.
+
+
+\textbf{Wrestling} — unarmed combat, grapples, pins.
+
+
+\textbf{Demolish} — destroying objects, doors, walls, barricades.
+
+
+\textbf{Endurance} — withstanding pain, fatigue, poisons, extreme conditions.
+
+
+\section*{Dexterity Skills}
+
+\textbf{Stealth} — moving without being detected.
+
+
+\textbf{Acrobatics} — balance, jumps, complex movements.
+
+
+\textbf{Lockpicking} — opening locks and mechanisms.
+
+
+\textbf{Traps} — finding and disarming traps and dangerous mechanisms.
+
+
+\textbf{Aim} — hitting distant targets with accuracy.
+
+
+\textbf{Pickpocketing} — taking objects without being noticed.
+
+
+\textbf{Riding} — controlling a mount in movement and combat.
+
+
+\textbf{Survival} — navigating by instinct, hunting, tracking, making camp.
+
+
+\section*{Lore Skills}
+
+\textbf{Diplomacy} — negotiation, compromise, dealing between parties.
+
+
+\textbf{Rhetoric} — persuading, inspiring, haranguing, public speaking.
+
+
+\textbf{Deception} — manipulation and lies.
+
+
+\textbf{Intimidation} — social and psychological pressure.
+
+
+\textbf{Commerce} — economic negotiation, appraisal.
+
+
+\textbf{Medicine} — diagnosis, treatment, stabilisation.
+
+
+\textbf{Languages} — linguistic knowledge, ancient texts, communication.
+
+
+\textbf{History} — past events, symbols, context.
+
+
+\textbf{Law} — laws, contracts, bureaucracy.
+
+
+\textbf{Etiquette} — navigating courts, knowing customs.
+
+
+\textbf{Craftsmanship} — creating, repairing, appraising objects.
+
+
+\textbf{Orientation} — maps, stars, planning routes.
+
+
+\textbf{Herbalism} — natural remedies, plant-based potions, salves.
+
+
+\textbf{Tactics} — military strategy, coordination, planning.
+
+
+\section*{Wonder Skills}
+
+\textbf{Channelling} — focusing and releasing elemental energy.
+
+
+\textbf{Rituals} — ceremonial magic, evocations, consecrations, pacts.
+
+
+\textbf{Alchemy} — transmuting substances, creating elixirs, alchemical fire.
+
+
+\textbf{Occultism} — necromancy, demons, curses, forbidden knowledge.
+
+
+\textbf{Arcane Perception} — sensing magic, divination, seeing beyond the veil.
+
+
+Wonder skills also support casting Grimoires: each Grimoire requires a specific Wonder skill. Beyond skills, the Mystic has access to \textbf{Grimoires}, covered in their own chapter.
+
+
+\RPGChapter{Classes}
+
+Each Protagonist belongs to one of four Classes. The Class determines the primary attribute, the Hit Point range, and the available skills.
+
+
+\begin{rpgtable}{Y|Y|Y|Y|Y}
+\rpghead{Class} & \rpghead{Primary} & \rpghead{HP Min} & \rpghead{HP Max} & \rpghead{Skills} \\ \hline
+Fighter & Strength & 4 & 7 & 5 (Strength) \\ \hline
+Adventurer & Dexterity & 3 & 5 & 8 (Dexterity) \\ \hline
+Scholar & Lore & 2 & 5 & 14 (Lore) \\ \hline
+Mystic & Wonder & 2 & 4 & 5 (Wonder) + Grimoires \\ \hline
+\end{rpgtable}
+
+\section*{Fighter}
+
+The group's tank. No frills, plenty of Hit Points, exclusive access to heavy armour and devastating weapons. The skill list is short but unnecessary: their strength is staying standing and hitting hard.
+
+
+\section*{Adventurer}
+
+Versatile and adaptable. Medium HP, wide choice of skills. Solves problems with physical ingenuity: picks locks, hides, strikes with precision, evades traps.
+
+
+\section*{Scholar}
+
+Knowledge is power. The longest skill list in the game allows building as a medic, diplomat, strategist, merchant, or trickster. In combat, supports the group with Medicine, Tactics, Intimidation, and Rhetoric.
+
+
+\section*{Mystic}
+
+Fragile but capable of the impossible. Few Hit Points, offset by access to Grimoires — spells no other class can use. Every Grimoire is a gamble: failed magic strikes the Mystic and their group.
+
+
+\section*{Creation Examples}
+
+\textbf{\textit{Dwarf Fighter}}\textit{ — Str Competent: 0 (racial) }→\textit{ Str Expert: +2. 6 HP: 6. 2 skills: 2. Total: 10.}
+
+
+\textbf{\textit{Elf Adventurer}}\textit{ — Dex Competent: 0 (racial) }→\textit{ Dex Expert: +2. 4 HP: 4. 4 skills: 4. Total: 10.}
+
+
+\textbf{\textit{Human Scholar}}\textit{ — Lor Competent: 0 (racial) }→\textit{ Lor Expert: +2. 3 HP: 3. 5 skills: 5. Total: 10.}
+
+
+\textbf{\textit{Fairy Mystic}}\textit{ — Won Competent: 0 (racial) }→\textit{ Won Expert: +2. 2 HP: 2. 3 skills: 3. 3 grimoires: 3. Total:} \textit{10.}
+
+
+\RPGEngravedPanel{Creation Example — Kael, Elf Adventurer}{assets/panel-08-engraved.png}{{Luca picks an Elf (Race of Dexterity) Adventurer. Dexterity starts} {at Competent for free thanks to the racial bonus. He has 10 points.}\par\smallskip {Dexterity Expert: 2 pts (primary). 4 HP: 4 pts. Skills — Stealth,} {Lockpicking, Traps, Aim: 4 pts. Total: 10.}\par\smallskip {Trait: "No door I cannot open."} {Burden: "I stole something I should never have touched."}}
+
+\RPGChapter{Races}
+
+Races are grouped into four families, each linked to an Attribute. The race grants a \textbf{1-point discount} on purchasing Competent in the family's attribute. The examples are suggestions: the Narrator and players choose which exist in their world or invent new ones.
+
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Family} & \rpghead{Attribute} & \rpghead{Examples} \\ \hline
+Races of Strength & Strength & Dwarves, Orcs, Minotaurs, etc. \\ \hline
+Races of Dexterity & Dexterity & Elves, Halflings, Goblins, etc. \\ \hline
+Races of Lore & Lore & Humans, Changelings, Sirens, etc. \\ \hline
+Races of Wonder & Wonder & Fairies, Leprechauns, Demons, Angels, etc. \\ \hline
+\end{rpgtable}
+
+The only mechanical rule is the family: it determines which Attribute receives the discount. A Dwarf Mystic starts with cheaper Strength but pays full price for Wonder.
+
+
+\RPGEngravedPanel{A Dwarf Mystic?}{assets/panel-09-engraved.png}{{Grunthar is a Dwarf with the wrong calling. Stocky,} {bearded, with blacksmith's hands — but he feels magic in} {iron. His race gives him Strength Competent for free, but} {his heart is in Wonder. It costs dearly: 2 points for} {Competent, 4 for Expert. But when he channels fire through} {his hammer, nobody laughs.}}
+
+\RPGChapter{Combat}
+
+No rigid turns, no initiative, no grid. Combat is a structured conversation.
+
+
+\section*{The Flow}
+
+\textbf{1.} The Narrator describes the situation and asks: \textit{"What do you do?"}
+
+
+\textbf{2.} Each Protagonist declares their action.
+
+
+\textbf{3.} Roll the relevant Attribute against the TN set by the Narrator.
+
+
+\textbf{4.} The Narrator describes the consequences and the world reacts.
+
+
+\textbf{5.} Repeat until the conflict resolves — through victory, flight, surrender, or death.
+
+
+There is no initiative or fixed order. The Narrator gives the floor based on the logic of the scene: who is closest, who is in immediate danger, who declared the most urgent action. In chaotic situations, everyone declares together and it resolves in the chaos.
+
+
+\section*{Fleeing}
+
+Fleeing is an action like any other. Roll Dexterity against a TN set by the Narrator: escaping a slow goblin is TN 3, outrunning a mounted knight is TN 5 or more.
+
+
+\section*{Opposed Rolls}
+
+When two characters directly oppose each other, both roll. Highest result wins. On a tie: narrative stalemate.
+
+
+\section*{Helping Another Protagonist}
+
+A Protagonist may help a companion with an action. The effect depends on the helper's competence in the task at hand.
+
+
+\textbf{Competent help} (helper has at least 2d6 on the same test): adds \textbf{+1d6} to the companion's pool.
+
+
+\textbf{Incompetent help} (helper has less than 2d6): adds \textbf{+1d6} to the pool, but the \textbf{TN rises by 1}. If the TN was 6, it becomes Critical (double 6). If it already required Critical (double 6), it requires triple 6. And so on.
+
+
+\textit{The incompetent who "helps" with an ancient grimoire might make the situation impossible. The player} \textit{must decide: is it worth it?}
+
+
+\section*{Distances}
+
+The game uses no grids or exact measurements. Distances are expressed with four narrative terms:
+
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Distance} & \rpghead{Meaning} & \rpghead{Examples} \\ \hline
+Close & Physical contact, melee & Wrestling, dagger, grapple \\ \hline
+Near & A few steps, reachable instantly & Sword, charge, conversation \\ \hline
+In Range & Shooting distance, too far for melee & Bow, ranged grimoires \\ \hline
+Far & Out of range, takes time to close & Beyond range, fleeing \\ \hline
+\end{rpgtable}
+
+Moving one band closer is an action. The Narrator may require a roll to close in under pressure.
+
+
+\section*{Combat Example}
+
+\textit{The group — Kara (Fighter), Syl (Adventurer), and Venn (Mystic) — is ambushed by two Orc Raiders} \textit{(Expert, TN 5 to hit).}
+
+
+\textbf{\textit{Narrator}}\textit{: "Two orcs burst from the trees. They're Near. They have warhammers. What do you do?"}
+
+
+\textbf{\textit{Kara}}\textit{: "I charge the first with my hammer." }→\textit{ Rolls Strength Expert (2d6}↑\textit{). Gets 3 and 5. Keeps 5. TN} \textit{5: success! Warhammer = 3 Wounds. The orc drops from 4 to 1.}
+
+
+\textbf{\textit{Syl}}\textit{: "I pull back to In Range and shoot." }→\textit{ Dex Expert + Aim (Exceptional, 3d6}↑\textit{). Gets 2, 4, 6. Keeps} \textit{6. Success! Bow = 2 Wounds. First orc falls.}
+
+
+\textbf{\textit{Venn}}\textit{: "Wall of Flames to block the second!" }→\textit{ Costs 2 Fatigue (drops to 1 HP, Severe). Rolls Wonder} \textit{Expert + Channelling (Exceptional, 3d6}↑\textit{) but Severe penalty (-2 tiers }→\textit{ 1d6). Gets 4. TN 5: failure.} \textit{Backlash: flames explode, everyone takes 2 Wounds. Venn drops to -1: out of scene.}
+
+
+\RPGChapter{Weapons And Protection}
+
+Damage depends on the pairing of weapon and Attribute. Each weapon has a natural Attribute — using it with the wrong one reduces damage.
+
+
+\section*{Weapons Table}
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Weapon} & \rpghead{With Strength} & \rpghead{With Dexterity} & \rpghead{Type} \\ \hline
+Dagger & 1W & 2W & Wound \\ \hline
+Sword & 2W & 2W & Wound \\ \hline
+Warhammer & 3W & 1W & Wound \\ \hline
+Bow & — & 2W & Wound \\ \hline
+Spear & 2W & 2W & Wound \\ \hline
+Battle Axe & 2W & 1W & Wound \\ \hline
+Mace & 2F & 1F & Fatigue \\ \hline
+Staff & 1F & 1F & Fatigue \\ \hline
+Fists (Wrestling) & 1F & 1F & Fatigue \\ \hline
+\end{rpgtable}
+
+\textbf{W} = Wound (lethal damage). \textbf{F} = Fatigue (non-lethal, stun damage). A character reduced to zero HP by Fatigue alone faints but is not in mortal danger.
+
+
+A \textbf{Critical} in combat inflicts \textbf{+1 Wound} beyond the weapon's normal damage.
+
+
+\section*{Protection}
+
+Armour determines the \textbf{TN the enemy must beat to hit you}. Each armour has two values: one against Strength attacks and one against Dexterity attacks.
+
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Armour} & \rpghead{TN vs Str} & \rpghead{TN vs Dex} & \rpghead{Access} \\ \hline
+None & 3 & 3 & Everyone \\ \hline
+Light & 3 & 4 & All classes \\ \hline
+Heavy & 4 & 5 & Fighter only \\ \hline
+\end{rpgtable}
+
+\textbf{Restriction}: only the Fighter has the training to wear heavy armour. Adventurers, Scholars, and Mystics cannot equip it regardless of their Attributes.
+
+
+\textbf{Shield}: when an enemy attacks you, the TN of their attack increases by 1. Requires the Shields skill and a free hand.
+
+
+\section*{Notable Objects}
+
+Some objects have a name and a specific effect: a one-tier improvement in a specific situation, or making something otherwise impossible possible.
+
+
+\textbf{\textit{Blade of Salt}}\textit{ — +1 tier against unnatural creatures.}
+
+
+\textbf{\textit{Key of Elsewhere}}\textit{ — opens any lock, but each use draws unwanted attention.}
+
+
+These are only examples. The Narrator creates notable objects following the same pattern: evocative name, specific effect, and possibly a cost or consequence for use.
+
+
+\RPGEngravedPanel{More Notable Objects}{assets/panel-12-engraved.png}{\textbf{{Crown of Command}}{ — +1 tier on Rhetoric. The wearer} {cannot lie.} \textbf{{Lantern of the Dead}}{ — reveals invisible ghosts and spirits.} {Attracts malevolent spirits.} \textbf{{Forge Gloves}}{ — +1 tier on Demolish. Overheat after each} {use: 1F.}}
+
+\RPGChapter{Wounds And Recovery}
+
+Hit Points form a \textbf{single pool} absorbing both combat damage and \textbf{Fatigue Wounds} — the cost of every extraordinary effort, whether casting a Grimoire, heaving a boulder, or running for hours.
+
+
+\section*{Two Types of Wounds, One Pool}
+
+\textbf{Combat Wounds}: at zero HP, the character is out of scene — unconscious, captured, potentially dying. Death occurs only through shared narrative choice.
+
+
+\textbf{Fatigue Wounds}: at zero HP from fatigue alone, the character faints but is not in mortal danger. They awaken after a short rest. Fatigue and combat wounds stack: a Mystic who spent 2 HP on spells and takes 1 Combat Wound is in real danger.
+
+
+\section*{Character State}
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Wounds Left} & \rpghead{State} & \rpghead{Effect} \\ \hline
+All & Healthy & None \\ \hline
+≤ 2 & Battered & -1 tier to all rolls \\ \hline
+≤ 1 & Severe & -2 tiers \\ \hline
+0 & Out of scene & Unconscious or dying \\ \hline
+\end{rpgtable}
+
+\section*{Death}
+
+A character \textbf{dies only if their Combat Wounds (W) alone equal or exceed their maximum HP}. If even a single point of the damage is Fatigue (F), the character is unconscious but alive.
+
+
+A character on the ground with a mix of W and F can be finished off: if they take further Combat Wounds that bring their total W to equal their max HP, they die. The group has time to intervene, but the killing blow exists.
+
+
+\section*{Conditions}
+
+Poison, fire, blindness, fear, and other conditions have no dedicated rules. The Narrator handles them as \textbf{situational penalties} (-1 tier) until the condition is resolved. The same mechanic covers everything.
+
+
+\section*{Recovery}
+
+\textbf{Short rest} (a few hours in safety): recover 1 Wound.
+
+
+\textbf{Long rest} (a full night in safety): recover all Wounds. Resets Exhaustion Rule.
+
+
+\textbf{In-scene treatment}: Medicine skill + success = recover 1 Wound (2 on Critical).
+
+
+\RPGEngravedPanel{The spiral of falling}{assets/panel-13-engraved.png}{{Kara has 6 HP. Takes 2W from an orc. Then heaves a gate} {open — 1F. She's at 3 HP: battered, -1 tier to everything. The} {orc hits again: 2W. Down to 1 HP: severe, -2 tiers. She must} {choose: flee, or declare Exertion and attempt one last} {desperate blow. At the last throw.}}
+
+\RPGChapter{Magic And Grimoires}
+
+Grimoires are specific spells the Mystic purchases at creation. Each works like a card with defined properties. Magic is not free: every casting costs Fatigue Wounds, and failure triggers a Backlash that may strike the Mystic, their allies, or the environment.
+
+
+\section*{Grimoire Structure}
+
+\textbf{Name} — the spell's name.
+
+
+\textbf{Required Skill} — Channelling, Rituals, Alchemy, Occultism, or Arcane Perception.
+
+
+\textbf{TN} — casting difficulty (3–6 or Critical).
+
+
+\textbf{Cost} — Fatigue Wounds paid at casting. Light grimoires can cost 0: the only risk is the Backlash.
+
+
+\textbf{Effect} — what happens on success.
+
+
+\textbf{Backlash} — what happens on failure.
+
+
+\section*{Grimoire Examples}
+
+\textbf{Wall of Flames} — Channelling, TN 5, Cost 2 \textit{Effect}: a wall of fire blocks a passage or surrounds enemies. \textit{Backlash}: flames spread out of control. Everyone present takes 2 Wounds.
+
+
+\textbf{Healing Touch} — Channelling, TN 3, Cost 1 \textit{Effect}: heals 2 Wounds on an ally. \textit{Backlash}: the wounds transfer to the Mystic.
+
+
+\textbf{Circle of Protection} — Rituals, TN 4, Cost 1 \textit{Effect}: a bounded area becomes impassable to enemies for one scene. \textit{Backlash}: the circle traps allies too. No one can leave.
+
+
+\textbf{Alchemical Fire} — Alchemy, TN 4, Cost 1 \textit{Effect}: a vial of fire explodes on impact, 2 Wounds in an area. \textit{Backlash}: explodes in your hands. You and anyone Near take 1 Wound.
+
+
+\textbf{Voice of the Dead} — Occultism, TN 5, Cost 2 \textit{Effect}: interrogate a spirit. It answers three questions truthfully. \textit{Backlash}: the spirit is hostile. It temporarily possesses a group member.
+
+
+\textbf{Eye of the Void} — Arcane Perception, TN 4, Cost 1 \textit{Effect}: see through walls and illusions for one scene. \textit{Backlash}: something on the other side sees you. It has found you.
+
+
+\section*{Creating New Grimoires}
+
+The Narrator and players may create new Grimoires following the six-field structure. The only rule: the Backlash must be specific, concrete, and proportionate to the Effect. The more powerful the Grimoire, the more dangerous the failure — and not only for the Mystic.
+
+
+\RPGEngravedPanel{Balancing a Grimoire}{assets/panel-15-engraved.png}{{TN 3, Cost 1: modest effect, personal backlash. The Mystic} {risks only themselves. Good for everyday utility.} \par\smallskip {TN 5, Cost 2: powerful effect, group backlash. Everyone is} {at risk. The group must decide together if it's worth it.} \par\smallskip {Critical, Cost 3: miracle. If it fails, catastrophe. Use only} {when there is no other way.}}
+
+\section*{Magic for Other Classes}
+
+Any character may purchase Grimoires if they have at least Wonder Competent and the required skill. However, Wonder costs double for non-Mystic classes — making magic possible but very expensive.
+
+
+\RPGChapter{Advancement}
+
+No experience points. At session end, the group answers three questions:
+
+
+\textbf{1.} Did you discover something significant?
+
+
+\textbf{2.} Did your Trait or Burden cause you problems?
+
+
+\textbf{3.} Did you do something that changed the story?
+
+
+Each yes = \textbf{1 advancement point}. Spent like creation points: Attributes, Skills, or Grimoires.
+
+
+\section*{Declaration and Growth in Play}
+
+When you earn a point, \textbf{immediately declare where you invest it}. If the improvement costs more than one point, points are committed one at a time. Meanwhile, \textbf{actively play out that growth}: training, seeking a master, experimenting.
+
+
+The Narrator may refuse an advancement never played out during sessions. Between separate adventures with months of in-game time, growth can be justified by time elapsed.
+
+
+Beyond mechanics, the player may:
+
+
+— Rewrite their \textbf{Trait} (the character has changed).
+
+
+— Resolve their \textbf{Burden} and choose a new one.
+
+
+\RPGEngravedPanel{Growing in play}{assets/panel-16-engraved.png}{{Session 3: Syl declares she wants Dexterity Exceptional.} {Costs 4 points. She commits the first.} \par\smallskip {Session 5: seeks a master archer in the forest. Commits} {the second.} \par\smallskip {Session 8: trains every evening at camp. The third.} \par\smallskip {Session 11: faces an impossible trial — and overcomes it.} {The fourth point. Dexterity Exceptional. She lived it.}}
+
+\RPGChapter{Enemies}
+
+An enemy has no full sheet. They have only four things:
+
+
+\textbf{TN} — two values (Strength / Dexterity) determining how hard the enemy is to hit, and their roll level when attacking.
+
+
+\textbf{Wounds} — how many hits they take (1–3 minions, 4–6 veterans, 7+ bosses).
+
+
+\textbf{Weapon} — determines damage from the same table as players.
+
+
+\textbf{Behaviour} — a phrase guiding their actions.
+
+
+\section*{Examples}
+
+\textbf{\textit{Goblin}}\textit{ — TN: S3/D3, Competent, 2 Wounds, dagger (2W Dex). "Attacks in packs, flees if alone."}
+
+
+\textbf{\textit{Orc Raider}}\textit{ — TN: S3/D4, Expert, 4 Wounds, warhammer (3W Str), light armour. "Charges the weakest."}
+
+
+\textbf{\textit{Corrupted Knight}}\textit{ — TN: S4/D5, Expert, 6 Wounds, sword (2W), heavy armour. "Seeks a duel. Ignores the} \textit{weak."}
+
+
+\section*{Groups}
+
+Identical enemies act as one block. Roll as one, but deal +1 Wound per member beyond the first (max +3). Each Wound to the group eliminates a member.
+
+
+\section*{Special Abilities}
+
+An enemy's Behaviour may include special abilities described in a phrase. The Narrator applies them as narrative conditions.
+
+
+\textbf{\textit{Swamp Troll}}\textit{ — TN: S4/D3, Expert, 6 Wounds, claws (2W Str). "Regenerates 1 Wound each turn. Fire stops} \textit{the regeneration."}
+
+
+\textbf{\textit{Wyvern}}\textit{ — TN: S4/D4, Expert, 5 Wounds, bite (3W Str). "Flies. Venom inflicts 1 additional Fatigue Wound} \textit{per hit."}
+
+
+\RPGChapter{Exertion}
+
+\textit{"I bleed to make it happen."}
+
+
+Before a roll, the player may declare \textbf{Exertion}: add \textbf{+1d6} to the roll. \textbf{After} the roll, take \textbf{1 Fatigue Wound}. This extra die counts for both the result and the Critical.
+
+
+Exertion is limited to \textbf{+1d6 per action} — it does not stack. Since the Wound is applied after the roll, state penalties (Battered, Severe) do not affect the current action but future ones.
+
+
+\textit{A Mystic with 3 HP has spent 1 on a Grimoire. 2 HP left. Needs TN 5. Declares Exertion: adds 1d6 and rolls} \textit{at full power. After the roll, pays 1F and drops to 1 HP (Severe). If they fail and take a hit, they're out. At the} \textit{last throw.}
+
+
+\RPGEngravedPanel{Exertion outside combat}{assets/panel-17-engraved.png}{{The Scholar must translate an ancient inscription before the} {temple collapses. Lore Expert, TN 5. Rolls 2d6}↑{: 3 and 4.} {Failure.}\par\smallskip {Declares Exertion: 1F, adds 1d6. Now three dice. Gets 2, 4, 6.} {Success! But down to 2 HP — battered. When the floor gives} {way, he'll have to run on trembling legs.}}
+
+\RPGChapter{Guide For The Narrator}
+
+\textbf{The Target Number is your main tool.} Base TN is 4. Raise for hard actions, lower for easy ones. Nothing more needed.
+
+
+\textbf{Exhaustion generates adventure.} Failed Critical? Can't retry by force — find another way. This forces creativity.
+
+
+\textbf{Every enemy wants something.} A bandit wants gold, not death. A demon wants a pact, not a brawl. Motivations drive combat.
+
+
+\textbf{Always ask "How do you do it?"} The answer determines the Attribute and the TN.
+
+
+\textbf{Interpret the degree of success.} A 6 vs TN 3 differs from a 4 vs TN 4. Both succeed, but the first is brilliant, the second by a hair.
+
+
+\textbf{Fatigue Wounds are a tool.} Any extreme action can cost them: lifting boulders, running for hours, resisting poison. Not reserved for magic.
+
+
+\textbf{Magic is a group decision.} Backlash can hit everyone. Let the group discuss before risky castings.
+
+
+\textbf{Social interactions use the same rules.} Persuading, deceiving, intimidating: roll Lore + relevant Skill against a TN. No separate rules needed. Social combat works like physical combat.
+
+\RPGBackCoverReference{AT\hspace{.65em}THE}{LAST\hspace{.65em}THROW}
+\end{document}

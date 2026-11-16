@@ -1,0 +1,119 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rpgmanual}[2026/11/11 RPG manual book layout]
+\RequirePackage[a4paper,top=31mm,bottom=29mm,left=26mm,right=26mm,headheight=14pt,headsep=8mm,footskip=7mm]{geometry}
+\RequirePackage{fontspec}
+\setmainfont{FreeSerif}
+\RequirePackage[english]{babel}
+\RequirePackage{microtype}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\RequirePackage{enumitem}
+\RequirePackage{needspace}
+\RequirePackage{hyperref}
+\definecolor{rpgink}{HTML}{25221F}
+\definecolor{rpgbrown}{HTML}{514536}
+\definecolor{rpgline}{HTML}{A99A83}
+\definecolor{rpgshade}{HTML}{F1ECE3}
+\definecolor{rpgpaper}{HTML}{F7F1E6}
+\color{rpgink}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},bookmarksnumbered=true,pdfpagelabels=true}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus .8pt minus .8pt}
+\linespread{1.12}
+\raggedbottom
+\newcommand{\RPGBookTitle}{Manuale di gioco}
+\newcommand{\RPGSetRunningTitle}[1]{\renewcommand{\RPGBookTitle}{#1}}
+\newcounter{rpgchapter}
+\renewcommand{\therpgchapter}{\Roman{rpgchapter}}
+\newcommand{\RPGChapter}[1]{%
+  \par\needspace{10\baselineskip}\addvspace{21pt}%
+  \refstepcounter{rpgchapter}%
+  \phantomsection\addcontentsline{toc}{section}{\protect\numberline{\therpgchapter.}#1}%
+  \begin{center}\vspace{0pt}{\fontsize{19}{23}\selectfont\bfseries \therpgchapter\,\textperiodcentered\,\MakeUppercase{#1}\par}%
+  \vspace{7pt}{\color{rpgline}\rule{.72\linewidth}{.5pt}}\end{center}\vspace{7pt}%
+}
+\titleformat{\section}{\normalfont\Large\bfseries\color{rpgbrown}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{13pt plus 2pt}{5pt}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{rpgbrown}}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+\newcommand{\rpgcorner}[2]{%
+  \begin{scope}[shift={(#1,#2)}]
+  \draw[rpgline,line width=.38pt] (0,0)--(.22,0)--(.22,.22)--(0,.22);
+  \draw[rpgline,line width=.38pt] (0,.09)--(.44,.09) ( .09,0)--(.09,.44);
+  \draw[rpgline,line width=.38pt] (0,0)--(.31,.31);
+  \end{scope}}
+\newcommand{\RPGFrame}{%
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (SW) at ([xshift=15mm,yshift=15mm]current page.south west);
+\coordinate (NE) at ([xshift=-15mm,yshift=-15mm]current page.north east);
+\draw[rpgline,line width=.9pt] (SW) rectangle (NE);
+\draw[rpgline,line width=.35pt] ([xshift=2mm,yshift=2mm]SW) rectangle ([xshift=-2mm,yshift=-2mm]NE);
+\coordinate (NW) at (SW |- NE);
+\coordinate (SE) at (NE |- SW);
+\begin{scope}[shift={(SW)}]\rpgcorner{.18}{.18}\end{scope}
+\begin{scope}[shift={(SE)},xscale=-1]\rpgcorner{.18}{.18}\end{scope}
+\begin{scope}[shift={(NW)},yscale=-1]\rpgcorner{.18}{.18}\end{scope}
+\begin{scope}[shift={(NE)},rotate=180]\rpgcorner{.18}{.18}\end{scope}
+\end{tikzpicture}}
+\newif\ifRPGCoverPage
+\RPGCoverPagefalse
+\AddToHook{shipout/background}{\ifRPGCoverPage\else\RPGFrame\fi}
+\fancypagestyle{rpg}{%
+ \fancyhf{}%
+ \fancyhead[C]{{\footnotesize\itshape\color{rpgline}\RPGBookTitle}}%
+ \fancyfoot[C]{{\footnotesize\color{rpgline}--- \thepage\ ---}}%
+ \renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}
+\fancypagestyle{rpgfrontmatter}{%
+ \fancyhf{}%
+ \fancyhead[C]{{\footnotesize\itshape\color{rpgline}\RPGBookTitle}}%
+ \renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}
+\newcommand{\RPGStartFrontMatter}{\pagenumbering{gobble}}
+\newcommand{\RPGStartContents}{\pagenumbering{roman}}
+\newcommand{\RPGStartMainMatter}{\pagenumbering{arabic}\setcounter{page}{1}}
+\pagestyle{rpg}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+% Use the simpler, robust table API below for arbitrary column counts.
+\NewDocumentEnvironment{rpgtable}{m}{%
+\par\smallskip\begingroup\setlength{\arrayrulewidth}{.34pt}\arrayrulecolor{rpgline}\renewcommand{\arraystretch}{1.32}%
+\rowcolors{2}{rpgshade}{white}%
+\tabularx{\linewidth}{|#1|}\hline
+}{\endtabularx\arrayrulecolor{black}\endgroup\par\smallskip}
+\newcommand{\rpghead}[1]{\cellcolor{rpgbrown}{\color{white}\bfseries #1}}
+\newtcolorbox{rpgnote}[1][]{enhanced,breakable,colback=rpgpaper,colframe=rpgline,boxrule=.55pt,arc=0pt,left=9pt,right=9pt,top=7pt,bottom=7pt,fontupper=\itshape,#1}
+\newtcolorbox{rpgexample}[2][]{enhanced,breakable,colback=rpgpaper,colframe=rpgbrown,boxrule=.6pt,arc=0pt,left=11pt,right=11pt,top=9pt,bottom=8pt,fonttitle=\bfseries\itshape,coltitle=rpgbrown,title={#2},attach title to upper={\par\vspace{5pt}},#1}
+\NewDocumentCommand{\RPGIllustratedBox}{m m +m}{%
+\begin{tcolorbox}[enhanced,colback=rpgpaper,colframe=rpgbrown,boxrule=.7pt,arc=0pt,left=5pt,right=7pt,top=5pt,bottom=5pt]
+\begin{minipage}[c]{.30\linewidth}\centering
+\IfBlankTF{#2}{%
+\begin{tikzpicture}[scale=.9]\draw[rpgline,line width=.8pt] (-1.2,-1.1) rectangle (1.2,1.1);\draw[rpgbrown,line width=.9pt,rotate=20] (-.43,-.43) rectangle (.43,.43);\fill[rpgbrown] (-.22,.05) circle(.07) (.15,.05) circle(.07) (0,-.18) circle(.07);\end{tikzpicture}}{\IfFileExists{#2}{\includegraphics[width=\linewidth]{#2}}{\textit{Immagine non trovata}}}%
+\end{minipage}\hfill
+\begin{minipage}[c]{.64\linewidth}{\bfseries\itshape #1}\par\smallskip\itshape #3\end{minipage}
+\end{tcolorbox}}
+\newcommand{\RPGTitlePage}[3]{%
+\thispagestyle{rpg}\vspace*{.22\textheight}
+\begin{center}{\fontsize{34}{39}\selectfont\bfseries #1\par}\vspace{12pt}
+{\color{rpgline}\rule{.72\linewidth}{.7pt}}\vspace{17pt}\par
+{\Large\itshape #2\par}\vfill {\small #3\par}\vspace{20mm}\end{center}\clearpage}
+% Contents has a deliberate one-page composition: heading, TOC, engraved illustration,
+% then authorship and licensing. Avoids the credits bleeding onto the following chapter.
+\newcommand{\RPGContents}{%
+\thispagestyle{rpgfrontmatter}\vspace*{9mm}
+\begin{center}{\fontsize{27}{31}\selectfont\bfseries TABLE OF CONTENTS\par}\vspace{9pt}
+{\color{rpgline}\rule{.76\linewidth}{.55pt}}\end{center}\vspace{7mm}
+\begingroup\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}% avoid redundant second Contents heading
+\renewcommand{\l@section}[2]{\csname @dottedtocline\endcsname{1}{0em}{3.2em}{\bfseries ##1}{##2}}
+\makeatother\tableofcontents\endgroup
+\vspace{5mm}
+\begin{center}\includegraphics[width=.59\textwidth,height=67mm,keepaspectratio]{assets/last-throw-crosshatch-redrawn.png}\end{center}
+\vfill
+\begin{center}{\small\itshape A game by Jacopo Biscella\par}\vspace{5pt}
+{\footnotesize This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). You are free to share and adapt this material, even commercially, as long as you credit the author and distribute derivative works under the same license.\par}\end{center}
+\clearpage}

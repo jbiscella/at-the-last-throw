@@ -1,0 +1,714 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{rpgcover}
+\usepackage{illustrated-panel}
+\usepackage{tocloft}
+\babelprovide[import]{italian}
+\selectlanguage{italian}
+\RPGSetRunningTitle{All'ultimo tiro}
+\setlength{\cftsecnumwidth}{4.5em}
+\setlength{\cftsecindent}{0em}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\setlength{\parskip}{3pt plus .5pt minus .5pt}
+\linespread{1.06}\selectfont
+\hypersetup{pdftitle={All'ultimo tiro — edizione LaTeX},pdfauthor={Jacopo Biscella}}
+\newcommand{\RPGFullPage}[1]{%
+  \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+  \begin{tikzpicture}[remember picture,overlay]
+  \node[inner sep=0pt,anchor=south west] at (current page.south west)
+   {\includegraphics[width=\paperwidth,height=\paperheight]{#1}};
+  \end{tikzpicture}
+  \clearpage\RPGCoverPagefalse}
+
+% Italian editorial exceptions. English theme and content remain unchanged.
+\renewcommand{\RPGChapter}[1]{%
+ \par\needspace{8\baselineskip}\addvspace{23pt}%
+ \refstepcounter{rpgchapter}%
+ \phantomsection\addcontentsline{toc}{section}{\protect\numberline{\therpgchapter.}#1}%
+ \begin{center}{\fontsize{19}{23}\selectfont\bfseries \therpgchapter\,\textperiodcentered\,\MakeUppercase{#1}\par}%
+ \vspace{7pt}{\color{rpgline}\rule{.72\linewidth}{.5pt}}\end{center}\vspace{8pt}%
+}
+
+\begin{document}
+\RPGStartFrontMatter
+\RPGSetCoverWordSpace{.78em}
+\RPGFrontCover{ALL'ULTIMO TIRO}{DECISIONE, SORTE, CONSEGUENZE}{Jacopo Biscella}{assets/last-throw-crosshatch-redrawn.png}
+\renewcommand{\RPGContents}{%
+\thispagestyle{rpgfrontmatter}\vspace*{2mm}
+\begin{center}{\fontsize{24}{28}\selectfont\bfseries INDICE\par}\vspace{9pt}
+{\color{rpgline}\rule{.76\linewidth}{.55pt}}\end{center}\vspace{3mm}
+\begingroup\csname @starttoc\endcsname{toc}\endgroup
+\vspace{2mm}
+\begin{center}\includegraphics[width=.45\textwidth,height=36mm,keepaspectratio]{assets/last-throw-crosshatch-redrawn.png}\end{center}
+\vfill
+\begin{center}{\small\itshape Un gioco di Jacopo Biscella\par}\vspace{5pt}
+{\footnotesize Quest'opera è rilasciata sotto licenza Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale (CC BY-SA 4.0). Sei libero di condividere e modificare questo materiale, anche per scopi commerciali, a condizione di citare l'autore e distribuire le opere derivate con la stessa licenza.\par}\end{center}
+\clearpage}
+\RPGStartContents
+\RPGContents
+\RPGStartMainMatter
+\RPGChapter{Il Dado}
+
+Ogni volta che un Protagonista tenta un'azione il cui esito è incerto, tira dadi a sei facce (d6). Quanti dadi si tirano e come si leggono dipende dal livello del personaggio nella Caratteristica utilizzata.
+
+
+\section*{Livelli e Tiri}
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Livello} & \rpghead{Tiro} & \rpghead{Significato} \\ \hline
+Inesperto & 2d6, tieni il più basso & Sei negato, fuori dal tuo elemento \\ \hline
+Competente & 1d6 & Capacità funzionale \\ \hline
+Esperto & 2d6, tieni il più alto & Addestrato, dotato, padrone della materia \\ \hline
+\end{rpgtable}
+
+Le \textbf{Abilità} pertinenti migliorano il tiro di un gradino. Le \textbf{penalità situazionali} (ferite, buio, stanchezza) lo peggiorano di uno. Si annullano a vicenda.
+
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Situazione} & \rpghead{Tiro effettivo} \\ \hline
+Inesperto + penalità & Scarso: 3d6, tieni il più basso \\ \hline
+Inesperto & 2d6, tieni il più basso \\ \hline
+Inesperto + abilità / Competente & 1d6 \\ \hline
+Competente + abilità / Esperto & 2d6, tieni il più alto \\ \hline
+Esperto + abilità & Eccezionale: 3d6, tieni il più alto \\ \hline
+\end{rpgtable}
+
+\section*{Valore di Riferimento}
+
+Il risultato del dado si confronta con un \textbf{Valore di Riferimento (VR)}: il numero minimo da eguagliare o superare per riuscire. Il Narratore stabilisce il VR in base alla difficoltà dell'azione.
+
+
+\begin{rpgtable}{Y|Y}
+\rpghead{VR} & \rpghead{Difficoltà} \\ \hline
+3 & Semplice \\ \hline
+4 & Standard \\ \hline
+5 & Difficile \\ \hline
+6 & Estrema \\ \hline
+Critico & Miracolosa — richiede doppio 6 \\ \hline
+\end{rpgtable}
+
+Il Narratore interpreta liberamente il grado di successo o fallimento: un 6 su un VR 4 è un successo brillante, un 4 su un VR 4 è riuscire per il rotto della cuffia.
+
+
+\section*{Il Critico}
+
+Se nel tiro escono \textbf{due o più 6}, è un \textbf{Critico}: un risultato straordinario, oltre il semplice successo. Per ottenere un Critico servono almeno due dadi, il che significa che è possibile solo a livello Esperto o superiore.
+
+
+Alcune azioni — sfondare un portone di ferro, spezzare un incantesimo antico, compiere un miracolo — \textbf{richiedono espressamente un Critico} per riuscire. Le azioni che richiedono Critico possono essere tentate solo da chi possiede un'Abilità pertinente.
+
+
+\textbf{Regola del Logoramento}: un'azione che richiede Critico e viene fallita non può essere ritentata finché non cambiano le circostanze in modo significativo — riposo adeguato, nuovo approccio, aiuto esterno, mutamento della situazione. Il Narratore è giudice di cosa costituisce un cambiamento sufficiente.
+
+
+\section*{Probabilità a Colpo d'Occhio}
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Livello} & \rpghead{Prob. $\geq 4$} & \rpghead{Prob. 6} & \rpghead{Critico} \\ \hline
+Scarso (3d6$\downarrow$) & $\sim$12\% & $\sim$0,5\% & — \\ \hline
+Inesperto (2d6$\downarrow$) & $\sim$25\% & $\sim$3\% & — \\ \hline
+Competente (1d6) & $\sim$50\% & $\sim$17\% & — \\ \hline
+Esperto (2d6$\uparrow$) & $\sim$75\% & $\sim$31\% & $\sim$2,8\% \\ \hline
+Eccezionale (3d6$\uparrow$) & $\sim$87\% & $\sim$42\% & $\sim$7\% \\ \hline
+\end{rpgtable}
+
+\RPGChapter{Creare un Protagonista}
+
+Ogni Protagonista è definito da una \textbf{Razza}, una \textbf{Classe}, quattro \textbf{Caratteristiche}, un insieme di \textbf{Abilità}, un \textbf{Tratto}, un \textbf{Fardello}, e i suoi \textbf{Punti Vita}.
+
+
+Il giocatore ha \textbf{10 punti} da distribuire tra Punti Vita, Caratteristiche e Abilità. La Classe determina i costi, i limiti e le opzioni disponibili.
+
+
+\section*{Costi delle Caratteristiche}
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Livello} & \rpghead{Attr. Primario} & \rpghead{Attr. Non Primario} \\ \hline
+Inesperto → Competente & 1 punto & 2 punti \\ \hline
+Competente → Esperto & 2 punti & 4 punti \\ \hline
+Esperto → Eccezionale & 4 punti & 8 punti \\ \hline
+\end{rpgtable}
+
+Ogni Punto Vita costa \textbf{1 punto}. Ogni Abilità o Grimorio costa \textbf{1 punto}.
+
+
+Il \textbf{bonus razza} concede uno sconto di 1 punto sull'acquisto del livello Competente nell'attributo della famiglia razziale (gratuito se coincide con l'attributo primario della classe). Lo sconto si applica solo a quel passaggio.
+
+
+\section*{Tratto}
+
+Una frase che descrive la natura profonda del personaggio. Non ha effetto meccanico — è carburante narrativo per il Narratore e guida per il giocatore.
+
+
+\textit{"Non lascio indietro nessuno" · "Il potere va preso, non chiesto" · "Preferisco la verità scomoda alla} \textit{menzogna gentile"}
+
+
+\section*{Fardello}
+
+Un peso che il personaggio porta con sé: un rimpianto, un debito, un segreto, una maledizione. Il Narratore lo usa per creare dilemmi e complicazioni personali.
+
+
+\textit{"Ho ucciso un innocente durante la guerra" · "Devo la mia vita a qualcuno che odio" · "Qualcuno} \textit{indossa il mio volto"}
+
+
+\RPGChapter{Caratteristiche e Abilità}
+
+Ogni personaggio ha quattro Caratteristiche. Tutte partono a livello Inesperto. Il giocatore le migliora spendendo punti durante la creazione.
+
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Caratteristica} & \rpghead{Governa} \\ \hline
+Forza & Potenza fisica, resistenza, combattimento corpo a corpo \\ \hline
+Destrezza & Agilità, riflessi, furtività, mira, schivata \\ \hline
+Sapienza & Ragionamento, cultura, conoscenza, influenza sociale \\ \hline
+Prodigio & Connessione al soprannaturale, capacità di compiere miracoli \\ \hline
+\end{rpgtable}
+
+Un'Abilità pertinente migliora il tiro di un gradino. Si può acquistare qualsiasi abilità purché si abbia almeno il livello Competente nella Caratteristica associata. Il costo della Caratteristica fa da filtro naturale.
+
+
+\section*{Abilità di Forza}
+
+\textbf{Armi Pesanti} — armi a due mani, asce, martelli da guerra.
+
+
+\textbf{Scudi} — difesa attiva con scudo, anche come arma.
+
+
+\textbf{Lotta} — combattimento a mani nude, prese, immobilizzare.
+
+
+\textbf{Demolire} — distruggere oggetti, porte, muri, barricati.
+
+
+\textbf{Resistenza} — sopportare dolore, fatica, veleni, condizioni estreme.
+
+
+\section*{Abilità di Destrezza}
+
+\textbf{Furtività} — muoversi senza essere rilevati.
+
+
+\textbf{Acrobazia} — equilibrio, salti, movimenti complessi.
+
+
+\textbf{Scassinare} — apertura di serrature e meccanismi.
+
+
+\textbf{Trappole} — individuare e neutralizzare trappole e meccanismi pericolosi.
+
+
+\textbf{Mira} — colpire bersagli a distanza con accuratezza.
+
+
+\textbf{Borseggio} — sottrarre oggetti senza farsi notare.
+
+
+\textbf{Cavalcare} — controllo di una cavalcatura in movimento e in combattimento.
+
+
+\textbf{Sopravvivenza} — orientarsi per istinto, cacciare, seguire tracce, accamparsi.
+
+
+\section*{Abilità di Sapienza}
+
+\textbf{Diplomazia} — negoziazione, compromesso, trattativa tra parti.
+
+
+\textbf{Retorica} — convincere, ispirare, arringare, parlare a una folla.
+
+
+\textbf{Inganno} — manipolazione e bugie.
+
+
+\textbf{Intimidire} — pressione sociale e psicologica.
+
+
+\textbf{Commercio} — negoziazione economica, valutazione.
+
+
+\textbf{Medicina} — diagnosi, cura, stabilizzazione.
+
+
+\textbf{Lingue} — conoscenza linguistica, testi antichi, comunicazione.
+
+
+\textbf{Storia} — eventi passati, simboli, contesti.
+
+
+\textbf{Diritto} — leggi, contratti, burocrazia.
+
+
+\textbf{Etichetta} — muoversi a corte, conoscere usanze.
+
+
+\textbf{Artigianato} — creare, riparare, valutare oggetti.
+
+
+\textbf{Orientamento} — mappe, stelle, pianificare percorsi.
+
+
+\textbf{Erboristeria} — rimedi naturali, pozioni da piante, unguenti.
+
+
+\textbf{Tattiche} — strategia militare, coordinamento, pianificazione.
+
+
+\section*{Abilità di Prodigio}
+
+\textbf{Canalizzazione} — incanalare e rilasciare energia elementale.
+
+
+\textbf{Rituali} — magia cerimoniale, evocazioni, consacrazioni, patti.
+
+
+\textbf{Alchimia} — trasmutare sostanze, creare elisir, fuoco alchemico.
+
+
+\textbf{Occultismo} — necromanzia, demoni, maledizioni, sapere proibito.
+
+
+\textbf{Percezione Arcana} — sentire la magia, divinazione, vedere oltre il velo.
+
+
+Le abilità di Prodigio supportano anche il lancio dei Grimori: ogni Grimorio richiede una specifica abilità di Prodigio. Oltre alle abilità, il Mistico accede ai \textbf{Grimori}, trattati nel capitolo dedicato.
+
+
+\RPGChapter{Classi}
+
+Ogni Protagonista appartiene a una delle quattro Classi. La Classe determina l'attributo primario (meno costoso da migliorare), il range di Punti Vita, e il tipo di abilità accessibili.
+
+
+\begin{rpgtable}{Y|Y|Y|Y|Y}
+\rpghead{Classe} & \rpghead{Attr. Primario} & \rpghead{PV Min} & \rpghead{PV Max} & \rpghead{Abilità Disponibili} \\ \hline
+Combattente & Forza & 4 & 7 & 5 (Forza) \\ \hline
+Avventuriero & Destrezza & 3 & 5 & 8 (Destrezza) \\ \hline
+Erudito & Sapienza & 2 & 5 & 14 (Sapienza) \\ \hline
+Mistico & Prodigio & 2 & 4 & 5 (Prodigio) + Grimori \\ \hline
+\end{rpgtable}
+
+\section*{Combattente}
+
+Il carro armato del gruppo. Pochi fronzoli, molti Punti Vita, accesso esclusivo ad armatura pesante e armi devastanti. La lista abilità è corta ma non ne ha bisogno: la sua forza è restare in piedi e menare.
+
+
+\section*{Avventuriero}
+
+Versatile e adattabile. PV medi, ampia scelta di abilità. È la classe che risolve problemi con ingegno fisico: scassina, si nasconde, colpisce con precisione, sfugge alle trappole.
+
+
+\section*{Erudito}
+
+Il sapere è potere. La lista abilità più lunga del gioco gli permette di costruirsi come medico, diplomatico, stratega, commerciante, o imbroglione. In combattimento supporta il gruppo con Medicina, Tattiche, Intimidire e Retorica.
+
+
+\section*{Mistico}
+
+Fragile ma capace dell'impossibile. Pochi Punti Vita, compensati dall'accesso ai Grimori — incantesimi che nessun'altra classe può utilizzare. Ogni Grimorio è un rischio: la magia fallita colpisce il Mistico e il suo gruppo.
+
+
+\section*{Esempi di Creazione}
+
+\begin{rpgnote}Combattente Nano — Forza Competente: 0 (bonus razza) → Forza Esperto: +2 punti. 6 PV: 6 punti. 2 abilità: 2 punti. Totale: 10.
+
+Avventuriero Elfo — Destrezza Competente: 0 (bonus razza) → Destrezza Esperto: +2 punti. 4 PV: 4 punti. 4 abilità: 4 punti. Totale: 10.
+
+Erudito Umano — Sapienza Competente: 0 (bonus razza) → Sapienza Esperto: +2 punti. 3 PV: 3 punti. 5 abilità: 5 punti. Totale: 10.
+
+Mistico Fata — Prodigio Competente: 0 (bonus razza) → Prodigio Esperto: +2 punti. 2 PV: 2 punti. 3 abilità: 3 punti. 3 grimori: 3 punti. Totale: 10.\end{rpgnote}
+
+\RPGEngravedPanel{Esempio di creazione — Kael, Avventuriero Elfo}{assets/panel-08-engraved.png}{Luca sceglie un Elfo (Razza della Destrezza) Avventuriero. Destrezza parte Competente gratis grazie al bonus razza. Ha 10 punti.
+
+Destrezza Esperto: 2 punti (primario). 4 PV: 4 punti. Abilità — Furtività, Scassinare, Trappole, Mira: 4 punti. Totale: 10.
+
+Tratto: "Non esiste porta che non possa aprire." Fardello: "Ho rubato qualcosa che non avrei dovuto toccare."}
+
+\RPGChapter{Razze}
+
+Le razze sono raggruppate in quattro famiglie, ciascuna legata a una Caratteristica. La razza concede uno \textbf{sconto di 1 punto} sull'acquisto del livello Competente nell'attributo della famiglia. Gli esempi sono suggerimenti: il Narratore e i giocatori scelgono quali esistono nel loro mondo o ne inventano di nuove.
+
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Famiglia} & \rpghead{Caratteristica} & \rpghead{Esempi} \\ \hline
+Razze della Forza & Forza & Nani, Orchi, Minotauri, ecc. \\ \hline
+Razze della Destrezza & Destrezza & Elfi, Halfling, Goblin, ecc. \\ \hline
+Razze della Sapienza & Sapienza & Umani, Cambiavolto, Sirene, ecc. \\ \hline
+Razze del Prodigio & Prodigio & Fate, Leprecauni, Demoni, Angeli, ecc. \\ \hline
+\end{rpgtable}
+
+L'unica regola meccanica è la famiglia di appartenenza: essa determina quale Caratteristica riceve lo sconto. Un Nano Mistico parte con Forza Competente a costo ridotto, ma pagherà il prezzo pieno per Prodigio.
+
+
+\RPGEngravedPanel{Un Nano Mistico?}{assets/panel-09-engraved.png}{Grunthar è un Nano con la vocazione sbagliata. Tozzo, barbuto, con mani da fabbro — ma sente la magia nel ferro. La sua razza gli dà Forza Competente gratis, ma il suo cuore è nel Prodigio. Costa caro: 2 punti per Competente, 4 per Esperto. Ma quando canalizza il fuoco attraverso il suo martello, nessuno ride più.}
+
+\RPGChapter{Combattimento}
+
+Niente turni rigidi, niente iniziativa, niente griglia. Il combattimento è una conversazione strutturata.
+
+
+\section*{Il Flusso}
+
+\textbf{1.} Il Narratore descrive la situazione e chiede: \textit{"Cosa fai?"}
+
+
+\textbf{2.} Ogni Protagonista dichiara la propria azione.
+
+
+\textbf{3.} Si tira la Caratteristica pertinente contro il VR stabilito dal Narratore.
+
+
+\textbf{4.} Il Narratore descrive le conseguenze e il mondo reagisce.
+
+
+\textbf{5.} Si ripete finché il conflitto si risolve — con la vittoria, la fuga, la resa, o la morte.
+
+
+Non c'è iniziativa né ordine rigido. Il Narratore dà la parola in base alla logica della scena: chi è più vicino, chi è in pericolo immediato, chi ha dichiarato l'azione più urgente. In situazioni caotiche, tutti dichiarano insieme e si risolve nel caos.
+
+
+\section*{Fuggire}
+
+Fuggire è un'azione come le altre. Tira Destrezza contro un VR stabilito dal Narratore in base alla situazione: fuggire da un goblin lento è VR 3, sfuggire a un cavaliere a cavallo è VR 5 o più.
+
+
+\section*{Tiri Contrapposti}
+
+Quando due personaggi si oppongono direttamente, entrambi tirano. Vince il risultato più alto. In caso di parità: stallo narrativo.
+
+
+\section*{Aiuto tra Protagonisti}
+
+Un Protagonista può aiutare un compagno in un'azione. L'effetto dipende dalla competenza dell'aiutante nella prova in questione.
+
+
+\textbf{Aiuto competente} (l'aiutante ha almeno 2d6 sulla stessa prova): aggiunge \textbf{+1d6} al pool del compagno.
+
+
+\textbf{Aiuto incompetente} (l'aiutante ha meno di 2d6): aggiunge \textbf{+1d6} al pool, ma il \textbf{VR sale di 1}. Se il VR era 6, diventa Critico (doppio 6). Se già serviva Critico (doppio 6), servono triplo 6. E così via.
+
+
+\textit{L'incompetente che "aiuta" con un grimorio antico potrebbe rendere la situazione impossibile. Il} \textit{giocatore deve decidere: vale la pena?}
+
+
+\section*{Distanze}
+
+Il gioco non usa griglie né misure esatte. Le distanze sono espresse con quattro termini narrativi che Narratore e giocatori usano come vocabolario condiviso:
+
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Distanza} & \rpghead{Significato} & \rpghead{Esempi} \\ \hline
+Addosso & A contatto fisico, mischia & Lotta, pugnale, presa \\ \hline
+Vicino & A pochi passi, raggiungibile in un istante & Spada, carica, conversazione \\ \hline
+A portata & Distanza da tiro, troppo lontano per la mischia & Arco, grimori a distanza \\ \hline
+Lontano & Fuori portata, serve tempo per avvicinarsi & Oltre la gittata, in fuga \\ \hline
+\end{rpgtable}
+
+Avvicinarsi di una fascia è un'azione: da Lontano ad A portata, da A portata a Vicino, da Vicino ad Addosso. Il Narratore può richiedere un tiro per avvicinarsi sotto pressione.
+
+
+\section*{Esempio di Combattimento}
+
+\textit{Il gruppo — Kara (Combattente), Syl (Avventuriero) e Venn (Mistico) — viene sorpreso da due Orchi} \textit{Razziatori (Esperti, VR 5 per colpirli).}
+
+
+\textbf{Narratore} \textit{: "Due orchi sbucano dagli alberi. Sono Vicini. Hanno martelli. Cosa fate?"}
+
+
+\textbf{Kara} \textit{: "Carico il primo col martello."} → \textit{Tira Forza Esperto (2d6} ↑ \textit{). Esce 3 e 5. Tiene il 5. VR per} \textit{colpire un Esperto è 5: successo! Martello con Forza = 3 Ferite. L'orco ne ha 4, scende a 1.}
+
+
+\textbf{Syl} \textit{: "Mi allontano ad A portata e tiro con l'arco."} → \textit{Tira Destrezza Esperto + Mira (Eccezionale,} \textit{3d6} ↑ \textit{). Esce 2, 4, 6. Tiene il 6. Successo! Arco = 2 Ferite. Il primo orco cade.}
+
+
+\textbf{Venn} \textit{: "Lancio Muro di Fiamme per bloccare il secondo!"} → \textit{Costa 2 Ferite di Stanchezza (Venn} \textit{scende da 3 a 1 PV, stato Grave). Tira Prodigio Esperto + Canalizzazione (Eccezionale, 3d6} ↑ \textit{) ma con}
+
+
+\textit{penalità Grave (-2 gradini, torna a 1d6). Esce 4. VR 5: fallimento. Contraccolpo: le fiamme esplodono} \textit{ovunque, tutti subiscono 2 Ferite. Venn crolla a -1: fuori scena.}
+
+
+\RPGChapter{Armi e Protezione}
+
+Il danno dipende dall'abbinamento tra arma e Caratteristica usata per colpire. Ogni arma ha una Caratteristica naturale — usarla con quella sbagliata riduce il danno.
+
+
+\section*{Tabella Armi}
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Arma} & \rpghead{Con Forza} & \rpghead{Con Destrezza} & \rpghead{Tipo} \\ \hline
+Pugnale & 1F & 2F & Ferita \\ \hline
+Spada & 2F & 2F & Ferita \\ \hline
+Martello da guerra & 3F & 1F & Ferita \\ \hline
+Arco & — & 2F & Ferita \\ \hline
+Lancia & 2F & 2F & Ferita \\ \hline
+Ascia da battaglia & 2F & 1F & Ferita \\ \hline
+Mazza & 2S & 1S & Stanchezza \\ \hline
+Bastone & 1S & 1S & Stanchezza \\ \hline
+Pugni (Lotta) & 1S & 1S & Stanchezza \\ \hline
+\end{rpgtable}
+
+\textbf{F} = Ferita (danno letale). \textbf{S} = Stanchezza (danno non letale, stordimento). Chi va a zero per sole Ferite di Stanchezza sviene ma non è in pericolo di vita.
+
+
+Un \textbf{Critico} in combattimento infligge \textbf{+1 Ferita} rispetto al danno normale dell'arma.
+
+
+\section*{Protezione}
+
+L'armatura determina il \textbf{VR che il nemico deve superare per colpirti}. Ogni armatura ha due valori: uno contro attacchi di Forza e uno contro attacchi di Destrezza.
+
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Armatura} & \rpghead{VR vs Forza} & \rpghead{VR vs Destrezza} & \rpghead{Accesso} \\ \hline
+Nessuna & 3 & 3 & Tutti \\ \hline
+Leggera & 3 & 4 & Tutte le classi \\ \hline
+Pesante & 4 & 5 & Solo Combattente \\ \hline
+\end{rpgtable}
+
+\textbf{Restrizione}: solo il Combattente ha l'addestramento necessario per indossare armatura pesante. Avventurieri, Eruditi e Mistici non possono equipaggiarla, indipendentemente dalle loro Caratteristiche.
+
+
+\textbf{Scudo}: quando un nemico ti attacca, il VR del suo attacco aumenta di 1. Richiede l'abilità Scudi e una mano libera.
+
+
+\section*{Oggetti Notevoli}
+
+Alcuni oggetti hanno un nome e un effetto specifico: concedono un miglioramento di un gradino in una situazione specifica, oppure rendono possibile qualcosa di altrimenti impossibile.
+
+
+\begin{rpgnote}Lama del Sale — +1 gradino contro creature innaturali.
+
+Chiave dell'Altrove — apre qualsiasi serratura, ma ogni uso attira attenzione indesiderata.\end{rpgnote}
+
+Questi sono solo esempi. Il Narratore crea oggetti notevoli seguendo lo stesso schema: un nome evocativo, un effetto specifico (+1 gradino in una situazione, o qualcosa di altrimenti impossibile), e possibilmente un costo o una conseguenza per il loro uso.
+
+
+\RPGEngravedPanel{Altri Oggetti Notevoli}{assets/panel-12-engraved.png}{Corona del Comando — +1 gradino su Retorica. Chi la indossa non può mentire. Lanterna dei Morti — rivela fantasmi e spiriti invisibili. Attira gli spiriti malevoli. Guanti del Fabbro — +1 gradino su Demolire. Si surriscaldano dopo ogni uso: 1S.}
+
+\RPGChapter{Ferite e Recupero}
+
+I Punti Vita formano un \textbf{unico pool} che assorbe sia il danno da combattimento che le \textbf{Ferite di Stanchezza} — il costo di ogni sforzo straordinario, che sia lanciare un Grimorio, sollevare un macigno, o correre per ore.
+
+
+\section*{Due Tipi di Ferite, Un Solo Pool}
+
+\textbf{Ferite da combattimento}: a zero Punti Vita, il personaggio è fuori scena — svenuto, catturato, potenzialmente morente. La morte avviene solo per scelta narrativa condivisa.
+
+
+\textbf{Ferite di Stanchezza}: a zero Punti Vita per sola stanchezza, il personaggio sviene ma non è in pericolo di vita. Si risveglia dopo un riposo breve. Le Ferite di Stanchezza si sommano a quelle da combattimento: un Mistico che ha speso 2 PV in incantesimi e prende 1 Ferita da combattimento è in pericolo reale.
+
+
+\section*{Stato del Personaggio}
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Ferite Rimaste} & \rpghead{Stato} & \rpghead{Effetto} \\ \hline
+Tutte & In forma & Nessuno \\ \hline
+≤ 2 & Malmesso & Penalità di un gradino a ogni tiro \\ \hline
+≤ 1 & Grave & Penalità di due gradini \\ \hline
+0 & Fuori scena & Svenuto o morente \\ \hline
+\end{rpgtable}
+
+\section*{Morte}
+
+Un personaggio \textbf{muore solo se le Ferite da combattimento (F) da sole eguagliano o superano i suoi PV} \textbf{massimi}. Se anche una sola parte del danno è Stanchezza (S), il personaggio è incosciente ma vivo.
+
+
+Un personaggio a terra con un misto di F e S può essere finito: se subisce ulteriori Ferite da combattimento che portano le sue F totali a eguagliare i PV massimi, muore. Il gruppo ha tempo per intervenire, ma il colpo di grazia esiste.
+
+
+\section*{Condizioni}
+
+Veleno, fuoco, cecità, paura e altre condizioni non hanno regole dedicate. Il Narratore le gestisce come \textbf{penalità situazionali} ( − 1 gradino) finché la condizione non viene risolta. La stessa meccanica copre tutto.
+
+
+\section*{Recupero}
+
+\textbf{Riposo breve} (qualche ora al sicuro): recupera 1 Ferita.
+
+
+\textbf{Riposo lungo} (una notte intera al sicuro): recupera tutte le Ferite. Resetta il Logoramento sulle azioni da Critico fallite.
+
+
+\textbf{Cure in scena}: con Abilità Medicina + successo, recupera 1 Ferita (2 con Critico).
+
+
+\RPGEngravedPanel{La spirale della caduta}{assets/panel-13-engraved.png}{Kara ha 6 PV. Prende 2F da un orco. Poi solleva un portone — 1S. È a 3 PV: malmessa, −1 gradino a tutto. L'orco la colpisce di nuovo: 2F. Scende a 1 PV: grave, −2 gradini. Deve scegliere: fuggire, o dichiarare Sforzo e tentare un ultimo colpo disperato. All'ultimo tiro.}
+
+\RPGChapter{Magia e Grimori}
+
+I Grimori sono incantesimi specifici che il Mistico acquista in creazione. Ogni Grimorio funziona come una carta con proprietà definite. La magia non è gratuita: ogni lancio costa Ferite di Stanchezza, e un lancio fallito provoca un Contraccolpo che può colpire il Mistico, i suoi alleati, o l'ambiente circostante.
+
+
+\section*{Struttura di un Grimorio}
+
+Ogni Grimorio ha sei proprietà:
+
+
+\textbf{Nome} — il nome dell'incantesimo.
+
+
+\textbf{Abilità richiesta} — Canalizzazione, Rituali, Alchimia, Occultismo, o Percezione Arcana.
+
+
+\textbf{VR} — la difficoltà del lancio (3–6 o Critico).
+
+
+\textbf{Costo} — Ferite di Stanchezza da pagare al momento del lancio. I grimori leggeri possono avere costo 0: il rischio è solo il Contraccolpo.
+
+
+\textbf{Effetto} — cosa succede se il lancio riesce.
+
+
+\textbf{Contraccolpo} — cosa succede specificamente se il lancio fallisce.
+
+
+\section*{Esempi di Grimori}
+
+\textbf{Muro di Fiamme} — Canalizzazione, VR 5, Costo 2 \textit{Effetto}: un muro di fuoco blocca un passaggio o circonda i nemici. \textit{Contraccolpo}: le fiamme si espandono senza controllo. Tutti i presenti subiscono 2 Ferite.
+
+
+\textbf{Tocco Guaritore} — Canalizzazione, VR 3, Costo 1 \textit{Effetto}: cura 2 Ferite a un alleato. \textit{Contraccolpo}: le ferite passano al Mistico invece di scomparire.
+
+
+\textbf{Cerchio di Protezione} — Rituali, VR 4, Costo 1 \textit{Effetto}: un'area circoscritta diventa impenetrabile ai nemici per una scena. \textit{Contraccolpo}: il cerchio intrappola anche gli alleati. Nessuno può uscire.
+
+
+\textbf{Fuoco Alchemico} — Alchimia, VR 4, Costo 1 \textit{Effetto}: crei una fiala di fuoco che esplode all'impatto, infliggendo 2 Ferite in un'area. \textit{Contraccolpo}: la fiala esplode tra le tue mani. Tu e chi ti è Vicino subite 1 Ferita.
+
+
+\textbf{Voce dei Morti} — Occultismo, VR 5, Costo 2 \textit{Effetto}: interroghi lo spirito di un defunto. Risponde a tre domande con sincerità. \textit{Contraccolpo}: lo spirito è ostile. Possiede temporaneamente un membro del gruppo.
+
+
+\textbf{Occhio del Vuoto} — Percezione Arcana, VR 4, Costo 1 \textit{Effetto}: vedi attraverso muri e illusioni per una scena. \textit{Contraccolpo}: qualcosa dall'altra parte vede te. Vi ha trovati.
+
+
+\section*{Creare Nuovi Grimori}
+
+Il Narratore e i giocatori possono creare nuovi Grimori seguendo la struttura a sei campi. L'unica regola: il Contraccolpo deve essere specifico, concreto, e proporzionato alla potenza dell'Effetto. Più il Grimorio è potente, più il fallimento è pericoloso — e non solo per il Mistico.
+
+
+\RPGEngravedPanel{Bilanciare un Grimorio}{assets/panel-15-engraved.png}{VR 3, Costo 1: effetto modesto, contraccolpo personale. Il Mistico rischia solo sé stesso. Buono per grimori di utilità quotidiana. VR 5, Costo 2: effetto potente, contraccolpo di gruppo. Tutti rischiano. Il gruppo deve decidere insieme se vale la pena. Critico, Costo 3: miracolo. Se fallisce, catastrofe. Usalo solo quando non c'è altra via.}
+
+\section*{Magia per le Altre Classi}
+
+Qualsiasi personaggio può acquistare Grimori, purché abbia almeno Prodigio Competente e l'abilità richiesta dal Grimorio. Tuttavia, Prodigio costa il doppio per le classi non-Mistico — rendendo l'accesso alla magia possibile ma molto costoso.
+
+
+\RPGChapter{Avanzamento}
+
+Non ci sono punti esperienza. A fine sessione, il gruppo risponde a tre domande:
+
+
+\textbf{1.} Hai scoperto qualcosa di significativo?
+
+
+\textbf{2.} Il tuo Tratto o Fardello ti ha creato problemi?
+
+
+\textbf{3.} Hai fatto qualcosa che ha cambiato il corso della storia?
+
+
+Ogni risposta positiva vale \textbf{1 punto avanzamento}. I punti avanzamento si spendono come i punti di creazione: per migliorare Caratteristiche, acquisire Abilità, o ottenere nuovi Grimori.
+
+
+\section*{Dichiarazione e Crescita in Gioco}
+
+Quando guadagni un punto avanzamento, \textbf{devi subito dichiarare dove lo investi}. Se il miglioramento costa più di un punto, i punti si impegnano uno alla volta verso quell'obiettivo. Nel frattempo il giocatore deve \textbf{giocare attivamente quella crescita}: allenarsi, cercare un maestro, sperimentare, studiare.
+
+
+Il Narratore può rifiutare un avanzamento se il giocatore non l'ha mai giocato durante le sessioni. Tra avventure separate con mesi di tempo in-game, la crescita può essere giustificata dal tempo trascorso.
+
+
+Oltre ai miglioramenti meccanici, il giocatore può:
+
+
+— Riscrivere il \textbf{Tratto} (il personaggio è cambiato).
+
+
+— Risolvere il \textbf{Fardello} e sceglierne uno nuovo.
+
+
+\RPGEngravedPanel{Crescere in gioco}{assets/panel-16-engraved.png}{Sessione 3: Syl dichiara di voler portare Destrezza a Eccezionale. Costa 4 punti. Mette il primo. Sessione 5: cerca un maestro arciere nella foresta. Mette il secondo. Sessione 8: si allena ogni sera al campo. Il terzo. Sessione 11: affronta una prova impossibile — e la supera. Il quarto punto. Destrezza Eccezionale. L'ha vissuta.}
+
+\RPGChapter{Nemici}
+
+Un nemico non ha una scheda completa. Ha solo quattro cose:
+
+
+\textbf{VR} — due valori (Forza / Destrezza) che determinano quanto è difficile colpirlo, e il suo livello di tiro quando attacca.
+
+
+\textbf{Ferite} — quanti colpi regge (1–3 gregari, 4–6 veterani, 7+ boss).
+
+
+\textbf{Arma} — determina il danno dalla stessa tabella dei giocatori.
+
+
+\textbf{Comportamento} — una frase che guida le sue azioni.
+
+
+\section*{Esempi}
+
+\begin{rpgnote}Goblin — VR: F3/D3, Competente, 2 Ferite, pugnale (2F Destrezza). "Attacca in branco, fugge se solo."
+
+Orco Razziatore — VR: F3/D4, Esperto, 4 Ferite, martello (3F Forza), armatura leggera. "Carica il più debole."
+
+Cavaliere Corrotto — VR: F4/D5, Esperto, 6 Ferite, spada (2F), armatura pesante. "Cerca il duello. Ignora i deboli."\end{rpgnote}
+
+\section*{Gruppi}
+
+Nemici identici agiscono come un blocco unico. Tirano come un singolo, ma infliggono +1 Ferita per ogni membro oltre il primo (massimo +3). Ogni Ferita inflitta al gruppo elimina un membro.
+
+
+\section*{Capacità Speciali}
+
+Il Comportamento di un nemico può includere capacità speciali, descritte in una frase senza bisogno di regole dedicate. Il Narratore le applica come condizioni narrative.
+
+
+\begin{rpgnote}Troll di Palude — VR: F4/D3, Esperto, 6 Ferite, artigli (2F Forza). "Rigenera 1 Ferita ogni turno. Il fuoco blocca la rigenerazione."
+
+Viverna — VR: F4/D4, Esperto, 5 Ferite, morso (3F Forza). "Vola. Il veleno infligge 1 Ferita di Stanchezza aggiuntiva per colpo."\end{rpgnote}
+
+\RPGChapter{Lo Sforzo}
+
+\textit{"Sanguino pur di riuscirci."}
+
+
+Prima di un tiro, il giocatore può dichiarare uno \textbf{Sforzo}: aggiunge \textbf{+1d6} al tiro. \textbf{Dopo} il tiro, subisce \textbf{1 Ferita} \textbf{di Stanchezza}. Questo dado extra conta sia per il risultato che per il Critico.
+
+
+Lo Sforzo è limitato a \textbf{+1d6 per azione} — non è cumulabile. Poiché la Ferita si applica dopo il tiro, le penalità di stato (Malmesso, Grave) non influenzano l'azione corrente ma quelle successive.
+
+
+\begin{rpgnote}Un Mistico con 3 PV ha già speso 1 in un Grimorio. Gli restano 2 PV. Deve lanciare un incantesimo difficile (VR 5). Dichiara Sforzo: aggiunge 1d6 e tira a piena potenza. Dopo il tiro, paga 1S e scende a 1 PV (Grave). Se fallisce e prende un colpo, è fuori scena. All'ultimo tiro.\end{rpgnote}
+
+\RPGEngravedPanel{Sforzo fuori dal combattimento}{assets/panel-17-engraved.png}{L'Erudito deve tradurre un'iscrizione antica prima che il tempio crolli. Sapienza Esperto, VR 5. Tira 2d6↑: 3 e 4. Fallimento.
+
+Dichiara Sforzo: 1S, aggiunge 1d6. Ora ha tre dadi. Esce 2, 4, 6. Successo! Ma è sceso a 2 PV — malmesso. Quando il pavimento cede, dovrà correre con le gambe che tremano.}
+
+\RPGChapter{Guida per il Narratore}
+
+\textbf{Il Valore di Riferimento è il tuo strumento principale.} Il VR base è 4. Alzalo per le azioni difficili, abbassalo per quelle semplici. Non serve più di questo per calibrare la sfida.
+
+
+\textbf{Il Logoramento genera avventura.} Se il gruppo fallisce un'azione da Critico, non può riprovare con la forza — deve trovare un'altra via. Questo è il motore del gioco: costringe creatività.
+
+
+\textbf{Ogni nemico vuole qualcosa.} Un brigante vuole soldi, non la morte. Un demone vuole un patto, non una rissa. Le motivazioni guidano il combattimento meglio di qualsiasi statistica.
+
+
+\textbf{Chiedi sempre "Come lo fai?"} La risposta del giocatore determina quale Caratteristica si tira e qual è il VR.
+
+
+\textbf{Interpreta il grado di successo.} Un 6 su VR 3 è diverso da un 4 su VR 4. Entrambi sono successi, ma il primo è brillante, il secondo è per un soffio. Usa questa sfumatura.
+
+
+\textbf{Le Ferite di Stanchezza sono uno strumento.} Qualsiasi azione estrema può costare Ferite di Stanchezza: sollevare un macigno, correre per ore, resistere a un veleno. Non sono riservate alla magia.
+
+
+\textbf{La magia è una decisione di gruppo.} Il Contraccolpo di un Grimorio può colpire tutti. Prima di un lancio rischioso, lascia che il gruppo discuta se vale la pena.
+
+
+\textbf{Le interazioni sociali usano le stesse regole.} Convincere, ingannare, intimidire: si tira Sapienza + Abilità pertinente contro un VR. Non servono regole separate. Il combattimento sociale funziona come quello fisico.
+
+\RPGBackCoverItalian{ALL\textquoteright ULTIMO\hspace{.72em}TIRO}
+\end{document}

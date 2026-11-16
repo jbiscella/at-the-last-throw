@@ -1,0 +1,32 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{illustrated-panel}[2026/11/11 RPG engraved illustration-and-text panels]
+\RequirePackage{rpgmanual}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\definecolor{rpggoldpaper}{HTML}{F8F0E3}
+% Breakable across pages is intentionally disabled: illustration and explanatory text remain together.
+% The slot size is content-driven, and each illustration is optically centered.
+% #1 title, #2 transparent image filename, #3 text.
+\NewDocumentCommand{\RPGEngravedPanel}{m m +m}{%
+\par\smallskip\noindent
+\begin{tcolorbox}[enhanced,colback=rpggoldpaper,colframe=rpgbrown,boxrule=.55pt,
+  arc=0pt,outer arc=0pt,boxsep=0pt,left=8pt,right=8pt,top=9pt,bottom=9pt,
+  before skip=10pt,after skip=11pt,
+  overlay={
+    \draw[rpgline,line width=.25pt] ([xshift=2.5pt,yshift=-2.5pt]frame.north west) rectangle ([xshift=-2.5pt,yshift=2.5pt]frame.south east);
+    \node[draw=rpgbrown,fill=rpggoldpaper,diamond,inner sep=.7pt,minimum size=3pt] at (frame.north) {};
+    \node[draw=rpgbrown,fill=rpggoldpaper,diamond,inner sep=.7pt,minimum size=3pt] at (frame.south) {};
+  }]
+\begin{minipage}[c]{.29\linewidth}\centering
+\IfBlankTF{#2}{}{\IfFileExists{#2}{\includegraphics[width=.99\linewidth,height=40mm,keepaspectratio]{#2}}{\textit{Image missing}}}%
+\end{minipage}\hspace{5pt}%
+{\color{rpgline}\vrule width .45pt}\hspace{8pt}%
+\begin{minipage}[c]{.62\linewidth}
+{\raggedright\bfseries\fontsize{10.5}{13}\selectfont #1\par}\vspace{3pt}
+{\fontsize{9.7}{12.3}\selectfont #3\par}
+\end{minipage}
+\end{tcolorbox}\par
+}

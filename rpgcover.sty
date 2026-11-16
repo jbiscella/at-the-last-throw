@@ -1,0 +1,173 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rpgcover}[2026/11/11 Engraved front and back cover with editable overlays]
+\RequirePackage{rpgmanual}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+\definecolor{coverink}{HTML}{27221C}
+% Cover-only typefaces; the main book typography is unchanged.
+% Any locally installed font family name or file understood by fontspec may be used.
+\newcommand{\RPGCoverTitleTypeface}{CinzelDecorative-Bold.ttf}
+\newcommand{\RPGCoverSubtitleTypeface}{IMFeENsc28P.otf}
+\newcommand{\RPGCoverTextTypeface}{IMFeENrm28P.otf}
+\newcommand{\RPGSetCoverTitleFont}[1]{\renewcommand{\RPGCoverTitleTypeface}{#1}}
+\newcommand{\RPGSetCoverSubtitleFont}[1]{\renewcommand{\RPGCoverSubtitleTypeface}{#1}}
+\newcommand{\RPGSetCoverTextFont}[1]{\renewcommand{\RPGCoverTextTypeface}{#1}}
+\newcommand{\RPGCoverTitleFont}{\fontspec{\RPGCoverTitleTypeface}}
+\newcommand{\RPGCoverSubtitleFont}{\fontspec{\RPGCoverSubtitleTypeface}}
+\newcommand{\RPGCoverTextFont}{\fontspec{\RPGCoverTextTypeface}}
+% Both full-page backgrounds are independent images, with no embedded text.
+\newcommand{\RPGFrontBackgroundFile}{assets/engraved-front-background.png}
+\newcommand{\RPGBackBackgroundFile}{assets/engraved-cover-background.png}
+\newcommand{\RPGSetFrontBackground}[1]{\renewcommand{\RPGFrontBackgroundFile}{#1}}
+\newcommand{\RPGSetBackBackground}[1]{\renewcommand{\RPGBackBackgroundFile}{#1}}
+% Backwards-compatible setter: changes both backgrounds if explicitly requested.
+\newcommand{\RPGSetCoverBackground}[1]{\RPGSetFrontBackground{#1}\RPGSetBackBackground{#1}}
+% The rectangle always renders blank white unless an optional barcode image is supplied.
+\newcommand{\RPGBarcodeFile}{}
+\newcommand{\RPGSetBarcode}[1]{\renewcommand{\RPGBarcodeFile}{#1}}
+\newcommand{\RPGDrawBackground}[1]{%
+ \IfFileExists{#1}{%
+  \node[inner sep=0pt,anchor=south west] at (current page.south west)
+   {\includegraphics[width=210mm,height=297mm]{#1}};
+ }{\PackageError{rpgcover}{Background missing: #1}{Provide an existing PNG/JPG/PDF file.}}%
+}
+% #1 x, #2 y, #3 maximum width, #4 maximum height, #5 filename
+\newcommand{\RPGOptionalArtwork}[5]{%
+ \IfBlankTF{#5}{}{\IfFileExists{#5}{%
+  \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(#1mm,#2mm)$)
+   {\includegraphics[width=#3mm,height=#4mm,keepaspectratio]{#5}};
+ }{\PackageWarning{rpgcover}{Artwork #5 not found; omitted}}}%
+}
+% Word spacing only, not letter tracking. Settable independently of the font.
+\newcommand{\RPGCoverWordSpace}{.58em}
+\newcommand{\RPGSetCoverWordSpace}[1]{\renewcommand{\RPGCoverWordSpace}{#1}}
+% Front: {title}{subtitle}{author/publisher}{optional overlay artwork}
+\NewDocumentCommand{\RPGFrontCover}{m m m m}{%
+ \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+ 
+  \RPGDrawBackground{\RPGFrontBackgroundFile}
+  % Both text lines fit inside the engraved top title cartouche.
+  \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,250mm)$)
+   {\RPGCoverTitleFont\fontsize{25}{31}\selectfont\spaceskip=\RPGCoverWordSpace\relax #1};
+  \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,237mm)$)
+   {\RPGCoverSubtitleFont\fontsize{14}{17}\selectfont #2};
+  % Central zone deliberately avoids the title and lower cartouches.
+  \RPGOptionalArtwork{105}{125}{150}{145}{#4}
+  \node[align=center,text=coverink,text width=124mm,inner sep=0pt] at ($(current page.south west)+(105mm,25mm)$)
+   {\RPGCoverTextFont\fontsize{12}{15}\selectfont #3};
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
+% Seven editable reference entries are placed independently in a legible central column.
+% Arguments: baseline in mm from lower edge, heading, brief rule text.
+\newcommand{\RPGBackReference}[3]{%
+  \node[anchor=north west,inner sep=0pt,text=coverink] at ($(current page.south west)+(36mm,#1mm)$)
+    {\RPGCoverSubtitleFont\fontsize{11.7}{13.5}\selectfont $\star$\hspace{5pt}#2};
+  \node[anchor=north west,inner sep=0pt,align=left,text width=140mm,text=coverink] at ($(current page.south west)+(42mm,#1mm-6mm)$)
+    {\RPGCoverTextFont\fontsize{9.7}{10.8}\selectfont #3};
+}
+% Column mode: x and y are millimetres from the lower-left page corner.
+\newcommand{\RPGBackRefColumn}[4]{%
+  \node[anchor=north west,inner sep=0pt,text=coverink] at ($(current page.south west)+(#1mm,#2mm)$)
+    {\RPGCoverSubtitleFont\fontsize{12}{14}\selectfont $\star$\hspace{3pt}#3};
+  \node[anchor=north west,inner sep=0pt,align=left,text width=67mm,text=coverink]
+      at ($(current page.south west)+(#1mm+4mm,#2mm-7mm)$)
+    {\RPGCoverTextFont\fontsize{10.2}{12}\selectfont #4};
+}
+% Back cover uses native LaTeX text only, not typeset raster art.
+% #1: first title line; #2: second title line. Text content is customized using \RPGBackReference.
+\NewDocumentCommand{\RPGBackCoverReference}{m m}{%
+ \clearpage\pagenumbering{gobble}\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+  \RPGDrawBackground{\RPGBackBackgroundFile}
+  % One line, matching the front-cover reading order, with explicit word spacing.
+  % A controlled width protects the ornate border at both sides.
+  \node[align=center,text=coverink,text width=170mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,260mm)$)
+   {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont #1\hspace{.7em}#2}};
+  \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
+  \RPGBackRefColumn{28}{222}{THE THROW}{Untrained: 2d6, keep lowest. Competent: 1d6. Expert: 2d6, keep highest. Skill: +1 tier; penalty: $-1$ tier.}
+  \RPGBackRefColumn{28}{190}{REFERENCE VALUE}{3 Simple; 4 Standard; 5 Hard; 6 Extreme; Critical Miraculous.}
+  \RPGBackRefColumn{28}{158}{CRITICAL}{Two or more sixes, with at least two dice. A failed Critical requires changed circumstances.}
+  \RPGBackRefColumn{28}{126}{EXERTION}{Add 1d6 before rolling; take 1 Fatigue Wound after the roll. Once per action.}
+  \RPGBackRefColumn{111}{222}{DAMAGE}{Weapon and Attribute determine Wounds (W) or Fatigue (F). A combat Critical adds 1 Wound.}
+  \RPGBackRefColumn{111}{190}{WOUNDS}{At 2 HP or less: $-1$ tier. At 1 HP: $-2$ tiers. At zero: out of scene.}
+  \RPGBackRefColumn{111}{158}{REST}{Short rest: recover 1 Wound. Long rest: recover all Wounds and reset Exhaustion.}
+  % Barcode panel opaque white and independent of the text above.
+  \filldraw[fill=white,draw=coverink,line width=.55pt] ($(current page.south west)+(139mm,25mm)$) rectangle ($(current page.south west)+(187mm,55mm)$);
+  \ifdefempty{\RPGBarcodeFile}{}{\IfFileExists{\RPGBarcodeFile}{%
+   \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(163mm,40mm)$)
+    {\includegraphics[width=44mm,height=26mm,keepaspectratio]{\RPGBarcodeFile}};
+  }{\PackageWarning{rpgcover}{Barcode image not found: \RPGBarcodeFile}}}%
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
+
+% Italian-language reference back cover: same coordinates, artwork and typography
+% as the English version, with editable Italian rule summaries.
+\NewDocumentCommand{\RPGBackCoverItalian}{m}{%
+ \clearpage\pagenumbering{gobble}\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+  \RPGDrawBackground{\RPGBackBackgroundFile}
+  \node[align=center,text=coverink,text width=170mm,inner sep=0pt]
+    at ($(current page.south west)+(105mm,260mm)$)
+    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont #1}};
+  \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
+  \RPGBackRefColumn{28}{222}{IL TIRO}{Inesperto: 2d6, tieni il minore. Competente: 1d6. Esperto: 2d6, tieni il maggiore. Abilità: +1 gradino; penalità: $-1$ gradino.}
+  \RPGBackRefColumn{28}{190}{VALORE DI RIFERIMENTO}{3 Semplice; 4 Standard; 5 Difficile; 6 Estrema; Critico Miracolosa.}
+  \RPGBackRefColumn{28}{158}{CRITICO}{Due o più 6, con almeno due dadi. Un tentativo fallito richiede circostanze mutate.}
+  \RPGBackRefColumn{28}{126}{SFORZO}{Aggiungi 1d6 prima del tiro; subisci 1 Ferita di Stanchezza dopo. Una volta per azione.}
+  \RPGBackRefColumn{111}{222}{DANNO}{Arma e Caratteristica determinano Ferite (F) o Stanchezza (S). Un Critico aggiunge 1 Ferita.}
+  \RPGBackRefColumn{111}{190}{FERITE}{A 2 PV o meno: $-1$ gradino. A 1 PV: $-2$ gradini. A zero: fuori scena.}
+  \RPGBackRefColumn{111}{158}{RIPOSO}{Breve: recuperi 1 Ferita. Lungo: recuperi tutte le Ferite e azzeri il Logoramento.}
+  \filldraw[fill=white,draw=coverink,line width=.55pt] ($(current page.south west)+(139mm,25mm)$) rectangle ($(current page.south west)+(187mm,55mm)$);
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
+
+
+% Ukrainian reference back cover: editable text over the shared engraving.
+\NewDocumentCommand{\RPGBackCoverUkrainian}{m}{%
+ \clearpage\pagenumbering{gobble}\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+  \RPGDrawBackground{\RPGBackBackgroundFile}
+  \node[align=center,text=coverink,text width=177mm,inner sep=0pt]
+    at ($(current page.south west)+(105mm,260mm)$)
+    {{\RPGCoverTitleFont\fontsize{23}{27}\selectfont\spaceskip=.65em\relax #1}};
+  \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
+  \RPGBackRefColumn{28}{222}{КИДОК}{Недосвідчений: 2d6, менший. Компетентний: 1d6. Експерт: 2d6, більший. Вміння: +1 щабель; штраф: $-1$ щабель.}
+  \RPGBackRefColumn{28}{190}{ЦІЛЬОВЕ ЗНАЧЕННЯ}{3 — просто; 4 — звичайно; 5 — складно; 6 — екстремально; Критичний — диво.}
+  \RPGBackRefColumn{28}{158}{КРИТИЧНИЙ}{Дві або більше шісток за наявності щонайменше двох кубиків. Повтор невдачі потребує нових обставин.}
+  \RPGBackRefColumn{28}{126}{НАПРУЖЕННЯ}{Додайте 1d6 перед кидком; після нього отримайте 1 Рану Втоми. Раз за дію.}
+  \RPGBackRefColumn{111}{222}{ШКОДА}{Зброя та Характеристика визначають Рани (Р) чи Втому (В). Критичний успіх: +1 Рана.}
+  \RPGBackRefColumn{111}{190}{РАНИ}{За 2 ОЗ або менше: $-1$ щабель. За 1 ОЗ: $-2$ щаблі. За нуля: поза сценою.}
+  \RPGBackRefColumn{111}{158}{ВІДПОЧИНОК}{Короткий: відновіть 1 Рану. Довгий: усі Рани та скидання Виснаження.}
+  \filldraw[fill=white,draw=coverink,line width=.55pt] ($(current page.south west)+(139mm,25mm)$) rectangle ($(current page.south west)+(187mm,55mm)$);
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
+
+% French reference back cover. Independent localized copy, same artwork and coordinates.
+\NewDocumentCommand{\RPGBackCoverFrench}{m}{%
+ \clearpage\pagenumbering{gobble}\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+  \RPGDrawBackground{\RPGBackBackgroundFile}
+  \node[align=center,text=coverink,text width=175mm,inner sep=0pt]
+    at ($(current page.south west)+(105mm,260mm)$)
+    {{\RPGCoverTitleFont\fontsize{23}{27}\selectfont\spaceskip=.72em\relax #1}};
+  \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
+  \RPGBackRefColumn{28}{222}{LE JET}{Novice : 2d6, garder le plus faible. Compétent : 1d6. Expert : 2d6, garder le plus élevé. Compétence : +1 degré ; pénalité : $-1$ degré.}
+  \RPGBackRefColumn{28}{190}{SEUIL DE DIFFICULTÉ}{3 Simple ; 4 Ordinaire ; 5 Difficile ; 6 Extrême ; Critique Miraculeux.}
+  \RPGBackRefColumn{28}{158}{CRITIQUE}{Deux 6 ou davantage avec au moins deux dés. Un échec exige un changement de circonstances.}
+  \RPGBackRefColumn{28}{126}{EFFORT}{Ajoutez 1d6 avant le jet, subissez 1 Blessure de Fatigue après. Une fois par action.}
+  \RPGBackRefColumn{111}{222}{DÉGÂTS}{Arme et Caractéristique déterminent Blessures (B) ou Fatigue (F). Un Critique inflige +1 Blessure.}
+  \RPGBackRefColumn{111}{190}{BLESSURES}{À 2 PV ou moins : $-1$ degré. À 1 PV : $-2$ degrés. À zéro : hors de scène.}
+  \RPGBackRefColumn{111}{158}{REPOS}{Court : 1 Blessure récupérée. Long : toutes les Blessures et réinitialisation de l'Épuisement.}
+  \filldraw[fill=white,draw=coverink,line width=.55pt] ($(current page.south west)+(139mm,25mm)$) rectangle ($(current page.south west)+(187mm,55mm)$);
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
