@@ -8,5 +8,6 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - vendor
   - verify_parity.py
   - build_site.py
