@@ -1,0 +1,19 @@
+title: At the Last Throw
+description: Four-language tabletop RPG
+markdown: kramdown
+# The site ships its own _layouts/default.html. Without this, the github-pages
+# gem applies jekyll-theme-primer, which adds assets/css/style.css to the output.
+theme: null
+collections:
+  chapters:
+    output: true
+# A custom exclude list replaces Jekyll's defaults, so the Bundler install
+# directories (setup-ruby installs into vendor/bundle) must be listed explicitly.
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - verify_parity.py
+  - build_site.py
+  - .bundle/

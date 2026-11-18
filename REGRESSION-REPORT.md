@@ -1,24 +1,36 @@
-# Ukrainian justification fix — regression report
+# Jekyll conversion: full HTML preservation audit
 
-## Cause and patch
+## Result
 
-The Ukrainian language was selected before `\begin{document}`. The active language reverted to English at document start, preventing effective Ukrainian word hyphenation and stretching interword spaces.
+| Check | Result |
+|---|---|
+| Original HTML files | 61 |
+| Jekyll-converted page sources | 61 (9 regular pages + 52 chapter collection pages) |
+| HTML output reconstructed from layout + page data | **61/61 SHA-256 identical** |
+| Original static assets excluding `.nojekyll` | **26/26 SHA-256 identical** |
+| Local links and referenced assets | **1,792 checked; 0 unresolved** |
+| PDF binaries | Unchanged (included in asset hashing) |
+| Desktop/mobile browser screenshots | **Not verified**: browser navigation blocked by host policy |
+| Actual Jekyll command execution | **Not verified**: Jekyll gem absent, RubyGems network unavailable |
 
-The Ukrainian source now selects `ukrainian` immediately after `\begin{document}`, enables `\frenchspacing`, and uses `\emergencystretch=1em`, `\tolerance=1000` rather than the previous more permissive settings. No other language source or theme file was modified.
+The output reconstruction follows the very small Jekyll default layout by substituting `site.data.chrome[page.chrome_key].before`, page HTML content and `.after` without normalization. This is stronger than DOM-only parity, but **does not replace an end-to-end Jekyll build**.
 
-## Validation
+## Jekyll architecture
 
-All four editions were compiled twice with XeLaTeX.
+- `docs/_layouts/default.html` is the Liquid page layout.
+- `docs/_data/chrome.json` preserves exact per-page document head/navigation/footer so the HTML can be reconstructed without redesign.
+- `docs/_chapters/` is a Jekyll collection (52 chapters) with explicit legacy-compatible permalinks.
+- Localized landing and download pages use Jekyll front matter.
+- `docs/assets/` and `docs/downloads/` retain the approved files.
+- `docs/.nojekyll` is intentionally absent.
 
-| Edition | PDF pages | Changed rendered pages relative to preceding baseline | Overfull hbox | Underfull hbox |
-|---|---:|---:|---:|---:|
-| English | 16 | 0 of 16 | 0 | 0 |
-| Italian | 16 | 0 of 16 | 0 | 0 |
-| French | 16 | 0 of 16 | 0 | 0 |
-| Ukrainian | 16 | 15 of 16 (intentional reflow) | 0 | 0 |
+**Tradeoff:** Chrome metadata is retained per page rather than fully normalized into locale-specific Liquid includes. This avoids any change to approved HTML and provides a safe baseline for future refactoring; it is not the final level of Jekyll template reuse.
 
-Raster comparisons were conducted on each page at 72 dpi using identical rendering settings. The front cover is unchanged in Ukrainian.
+## Deployment checks still needed
 
-For Ukrainian body pages, measured extracted-space widths greater than 6 pt fell from 23 to 0; the 95th percentile fell from 4.71 pt to 3.44 pt, and maximum from 7.56 pt to 4.98 pt. These are PDF glyph-space measurements, not perceptual typography scores. Chapters remain present; first printed chapter retains page label 1.
+1. Run `bundle install` and `bundle exec jekyll build --source docs --destination _site` in a machine with RubyGems access.
+2. Compare `_site/` files to `reference-sha256.json` (HTML bytes can differ if Liquid or Jekyll introduces whitespace; in that case compare DOM and rendered screens).
+3. Perform desktop/mobile screenshot comparisons on the actual Jekyll output.
+4. Deploy with GitHub Pages configured for `main` / `docs` after tests succeed.
 
-A targeted visual inspection was performed on the previously affected creation chapter page and the final narrator page. A full native-language proofread is not included.
+The original static HTML baseline is **not** included in the deployment package; the checksums are retained for regression testing.
