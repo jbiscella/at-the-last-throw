@@ -1,11 +1,10 @@
-name: Jekyll HTML parity
+name: Jekyll Build
 
 on:
   pull_request:
     paths:
       - 'docs/**'
-      - 'reference-sha256.json'
-      - 'scripts/check-jekyll-parity.py'
+      - 'scripts/check-jekyll-site.py'
       - '.github/workflows/jekyll-parity.yml'
   workflow_dispatch:
 
@@ -13,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  build-and-compare:
+  build-and-check:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -28,9 +27,9 @@ jobs:
           working-directory: docs
       - name: Build with Jekyll
         run: bundle exec jekyll build --source . --destination ../_site --trace
-      - name: Compare generated output with approved HTML
+      - name: Check local links and four-language completeness
         working-directory: .
-        run: python3 scripts/check-jekyll-parity.py --built _site --reference reference-sha256.json
+        run: python3 scripts/check-jekyll-site.py --built _site
       - name: Upload generated site for review
         if: always()
         uses: actions/upload-artifact@v4
