@@ -1,0 +1,12 @@
+title: At the Last Throw
+description: Four-language tabletop RPG
+markdown: kramdown
+collections:
+  chapters:
+    output: true
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - verify_parity.py
+  - build_site.py
