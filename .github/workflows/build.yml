@@ -4,7 +4,7 @@ name: Build editions
 # then pixel-compare them, so the check shows exactly what the PR changes.
 # Add the label "expected-layout-change" to a PR whose differences are intended.
 #
-# Pushing a tag v*: build and attach the four PDFs to a GitHub Release.
+# Pushing a tag v*: build and attach the six PDFs to a GitHub Release.
 
 on:
   pull_request:
@@ -106,4 +106,5 @@ jobs:
         run: |
           gh release create "$GITHUB_REF_NAME" build/manual.pdf build/manual-it.pdf \
             build/manual-fr.pdf build/manual-uk.pdf \
+            build/manual-de.pdf build/manual-es.pdf \
             --verify-tag --title "$GITHUB_REF_NAME" --generate-notes
