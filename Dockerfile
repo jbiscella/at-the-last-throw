@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       texlive-lang-english \
       texlive-lang-italian \
       texlive-lang-french \
+      texlive-lang-german \
+      texlive-lang-spanish \
       texlive-lang-cyrillic=2024.20250309-1 \
       fonts-freefont-otf=20211204+svn4273-2 \
       fonts-freefont-ttf=20211204+svn4273-2 \
