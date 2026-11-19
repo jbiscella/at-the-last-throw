@@ -1,0 +1,483 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{rpgcover}
+\usepackage{illustrated-panel}
+\usepackage{rpgextra}
+\babelprovide[import]{ngerman}
+\RPGSetRunningTitle{Der letzte Wurf}
+\RPGSetCoverWordSpace{.6em}
+\hypersetup{pdftitle={Der letzte Wurf},pdfauthor={Jacopo Biscella}}
+\renewcommand{\RPGContentsHeading}{INHALT}
+\renewcommand{\RPGContentsByline}{Ein Spiel von Jacopo Biscella}
+\renewcommand{\RPGContentsLicense}{Dieses Werk steht unter der Creative-Commons-Lizenz Namensnennung–Weitergabe unter gleichen Bedingungen 4.0 International (CC BY-SA 4.0). Weitergabe und Bearbeitung, auch kommerziell, sind erlaubt, sofern der Urheber genannt und Bearbeitungen gleich lizenziert werden.}
+\begin{document}
+\selectlanguage{ngerman}
+\let\RPGUnchangedChapter\RPGChapter
+\renewcommand{\RPGChapter}[1]{\par\needspace{16\baselineskip}\RPGUnchangedChapter{#1}}
+\RPGStartFrontMatter
+\RPGFrontCover{DER LETZTE WURF}{ENTSCHEIDUNG, SCHICKSAL, KONSEQUENZ}{Jacopo Biscella}{assets/last-throw-crosshatch-redrawn.png}
+\RPGStartContents
+\RPGContents
+\RPGStartMainMatter
+
+\RPGChapter{Der Würfelwurf}
+Wenn ein Protagonist eine Handlung mit ungewissem Ausgang versucht, wirft er sechsseitige Würfel (W6). Wie viele Würfel geworfen und wie sie ausgewertet werden, hängt von der Stufe des passenden Attributs ab.
+
+\section*{Stufen und Würfe}
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Stufe}&\rpghead{Wurf}&\rpghead{Bedeutung}\\ \hline
+Ungeübt&2W6, niedrigeren behalten&Überfordert\\ \hline
+Kompetent&1W6&Solide Fähigkeit\\ \hline
+Experte&2W6, höheren behalten&Beherrscht sein Handwerk\\ \hline
+\end{rpgtable}
+
+Eine passende \textbf{Fertigkeit} verbessert den Wurf um eine Stufe. Ein \textbf{situativer Malus} (Wunden, Dunkelheit, Erschöpfung) verschlechtert ihn um eine Stufe. Beides hebt sich gegenseitig auf.
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Situation}&\rpghead{Effektiver Wurf}\\ \hline
+Ungeübt + Malus&Schwach: 3W6, niedrigsten behalten\\ \hline
+Ungeübt&2W6, niedrigeren behalten\\ \hline
+Ungeübt + Fertigkeit / Kompetent&1W6\\ \hline
+Kompetent + Fertigkeit / Experte&2W6, höheren behalten\\ \hline
+Experte + Fertigkeit&Herausragend: 3W6, höchsten behalten\\ \hline
+\end{rpgtable}
+
+\section*{Zielwert}
+Das Würfelergebnis wird mit einem \textbf{Zielwert (ZW)} verglichen: dem Mindestwert für einen Erfolg. Der Erzähler legt ihn nach Schwierigkeit der Handlung fest.
+
+\begin{rpgtable}{Y|Y}
+\rpghead{ZW}&\rpghead{Schwierigkeit}\\ \hline
+3&Einfach\\ \hline
+4&Normal\\ \hline
+5&Schwer\\ \hline
+6&Extrem\\ \hline
+Kritisch&Wunderbar: zwei Sechsen nötig\\ \hline
+\end{rpgtable}
+
+Der Erzähler bewertet den Grad von Erfolg oder Misserfolg frei: Eine 6 gegen ZW 4 ist brillant; eine 4 gegen ZW 4 gelingt nur knapp.
+
+\section*{Kritischer Erfolg}
+Zeigt der Wurf \textbf{mindestens zwei Sechsen}, ist er \textbf{kritisch}: ein außergewöhnliches Ergebnis. Dazu braucht man mindestens zwei Würfel; normalerweise ist das erst ab der Stufe Experte möglich.
+
+Manche Handlungen — ein Eisentor mit bloßen Händen einschlagen, einen uralten Zauber brechen, ein Wunder wirken — \textbf{verlangen ausdrücklich einen kritischen Erfolg}. Solche Handlungen darf nur versuchen, wer über eine passende Fertigkeit verfügt.
+
+\textbf{Erschöpfungsregel}: Eine misslungene kritische Handlung darf erst wieder versucht werden, wenn sich die Umstände wesentlich ändern: ausreichende Ruhe, eine neue Vorgehensweise, fremde Hilfe oder eine veränderte Lage. Der Erzähler entscheidet, was ausreicht.
+
+\section*{Wahrscheinlichkeiten im Überblick}
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Stufe}&\rpghead{Wahrsch. ≥4}&\rpghead{Wahrsch. 6}&\rpghead{Kritisch}\\ \hline
+Schwach (3W6↓)&≈12\%&≈0,5\%&—\\ \hline
+Ungeübt (2W6↓)&≈25\%&≈3\%&—\\ \hline
+Kompetent (1W6)&≈50\%&≈17\%&—\\ \hline
+Experte (2W6↑)&≈75\%&≈31\%&≈2,8\%\\ \hline
+Herausragend (3W6↑)&≈87\%&≈42\%&≈7\%\\ \hline
+\end{rpgtable}
+
+\RPGChapter{Einen Protagonisten erschaffen}
+Jeder Protagonist besitzt ein \textbf{Volk}, eine \textbf{Klasse}, vier \textbf{Attribute}, \textbf{Fertigkeiten}, ein \textbf{Merkmal}, eine \textbf{Bürde} und \textbf{Lebenspunkte (LP)}.
+
+Der Spieler verteilt \textbf{10 Punkte} auf Lebenspunkte, Attribute und Fertigkeiten. Die Klasse bestimmt Kosten, Grenzen und Möglichkeiten.
+
+\section*{Attributkosten}
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Stufe}&\rpghead{Hauptattribut}&\rpghead{Anderes Attribut}\\ \hline
+Ungeübt → Kompetent&1 Punkt&2 Punkte\\ \hline
+Kompetent → Experte&2 Punkte&4 Punkte\\ \hline
+Experte → Herausragend&4 Punkte&8 Punkte\\ \hline
+\end{rpgtable}
+
+Jeder Lebenspunkt kostet \textbf{1 Punkt}. Jede Fertigkeit oder jedes Grimoire kostet \textbf{1 Punkt}.
+
+Der \textbf{Volksbonus} gewährt beim Erwerb der Stufe Kompetent im Attribut der Volksfamilie einen Rabatt von 1 Punkt (kostenlos, wenn es zugleich das Hauptattribut der Klasse ist). Der Rabatt gilt nur für diesen Schritt.
+
+\section*{Merkmal}
+Ein Satz, der den Wesenskern des Charakters beschreibt. Keine Regelwirkung, sondern erzählerischer Antrieb und Orientierung für Spieler und Erzähler.
+
+\textit{»Ich lasse niemanden zurück.« »Macht nimmt man sich, man bittet nicht darum.« »Mir ist eine unbequeme Wahrheit lieber als eine freundliche Lüge.«}
+
+\section*{Bürde}
+Eine Last aus der Vergangenheit: Reue, Schuld, Geheimnis oder Fluch. Der Erzähler nutzt sie für Dilemmas.
+
+\textit{»Im Krieg habe ich einen Unschuldigen getötet.« »Ich verdanke mein Leben jemandem, den ich hasse.« »Jemand trägt mein Gesicht.«}
+
+\RPGChapter{Attribute und Fertigkeiten}
+Jeder Charakter besitzt vier Attribute, die alle auf Ungeübt beginnen. Durch Punktausgaben können sie verbessert werden.
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Attribut}&\rpghead{Bereich}\\ \hline
+Stärke&Körperkraft, Ausdauer, Nahkampf\\ \hline
+Geschick&Beweglichkeit, Reflexe, Heimlichkeit, Zielen, Ausweichen\\ \hline
+Wissen&Logik, Kultur, Kenntnisse, sozialer Einfluss\\ \hline
+Wunder&Verbindung zum Übernatürlichen, Wunder\\ \hline
+\end{rpgtable}
+
+Eine passende Fertigkeit verbessert den Wurf um eine Stufe. Fertigkeiten können erworben werden, wenn das zugehörige Attribut mindestens Kompetent ist. Die Kosten des Attributs begrenzen die Auswahl auf natürliche Weise.
+
+\section*{Fertigkeiten der Stärke}
+\textbf{Schwere Waffen} — Zweihandwaffen, Äxte und Kriegshämmer.
+
+\textbf{Schilde} — aktive Verteidigung mit dem Schild, auch als Waffe.
+
+\textbf{Ringen} — waffenloser Kampf, Griffe, Festhalten.
+
+\textbf{Zerstören} — Gegenstände, Türen, Mauern und Barrikaden zertrümmern.
+
+\textbf{Ausdauer} — Schmerz, Müdigkeit, Gifte und extreme Bedingungen ertragen.
+
+\section*{Fertigkeiten des Geschicks}
+\textbf{Heimlichkeit} — sich ungesehen bewegen.
+
+\textbf{Akrobatik} — Gleichgewicht, Sprünge und komplizierte Bewegungen.
+
+\textbf{Schlösserknacken} — Schlösser und Mechanismen öffnen.
+
+\textbf{Fallen} — Fallen und gefährliche Mechanismen erkennen und entschärfen.
+
+\textbf{Zielen} — entfernte Ziele treffsicher treffen.
+
+\textbf{Taschendiebstahl} — Gegenstände unbemerkt entwenden.
+
+\textbf{Reiten} — ein Reittier in Bewegung und Kampf beherrschen.
+
+\textbf{Überleben} — instinktive Orientierung, Jagen, Spurenlesen, Lagern.
+
+\section*{Fertigkeiten des Wissens}
+\textbf{Diplomatie} — Verhandeln, Kompromisse, Vermitteln.
+
+\textbf{Rhetorik} — Überzeugen, Begeistern, Anfeuern, öffentliches Sprechen.
+
+\textbf{Täuschung} — Manipulation und Lügen.
+
+\textbf{Einschüchtern} — sozialer und psychologischer Druck.
+
+\textbf{Handel} — Preisverhandlungen und Wertermittlung.
+
+\textbf{Heilkunde} — Diagnosen, Behandlung und Stabilisierung.
+
+\textbf{Sprachen} — Sprachkenntnisse, alte Texte, Verständigung.
+
+\textbf{Geschichte} — vergangene Ereignisse, Symbole, Zusammenhänge.
+
+\textbf{Recht} — Gesetze, Verträge, Verwaltung.
+
+\textbf{Etikette} — Verhalten am Hof und Kenntnis der Bräuche.
+
+\textbf{Handwerk} — Gegenstände herstellen, reparieren, beurteilen.
+
+\textbf{Orientierung} — Karten, Sterne und Routenplanung.
+
+\textbf{Kräuterkunde} — Naturheilmittel, Tränke und Salben.
+
+\textbf{Taktik} — militärische Strategie, Koordination, Planung.
+
+\section*{Fertigkeiten des Wunders}
+\textbf{Kanalisieren} — Elementarenergie bündeln und freisetzen.
+
+\textbf{Rituale} — zeremonielle Magie, Anrufungen, Weihen und Pakte.
+
+\textbf{Alchemie} — Stoffumwandlung, Elixiere, alchemistisches Feuer.
+
+\textbf{Okkultismus} — Nekromantie, Dämonen, Flüche, verbotenes Wissen.
+
+\textbf{Arkane Wahrnehmung} — Magie spüren, Wahrsagerei, hinter den Schleier blicken.
+
+Diese Fertigkeiten ermöglichen auch Grimoires: Jedes Grimoire setzt eine bestimmte Wunder-Fertigkeit voraus. Darüber hinaus haben Mystiker Zugriff auf \textbf{Grimoires}, die ein eigenes Kapitel behandelt.
+
+\RPGChapter{Klassen}
+Jeder Protagonist gehört einer von vier Klassen an. Sie bestimmt Hauptattribut, Lebenspunktebereich und verfügbare Fertigkeiten.
+
+\begin{rpgtable}{Y|Y|Y|Y|Y}
+\rpghead{Klasse}&\rpghead{Hauptattr.}&\rpghead{LP min.}&\rpghead{LP max.}&\rpghead{Fertigkeiten}\\ \hline
+Kämpfer&Stärke&4&7&5 (Stärke)\\ \hline
+Abenteurer&Geschick&3&5&8 (Geschick)\\ \hline
+Gelehrter&Wissen&2&5&14 (Wissen)\\ \hline
+Mystiker&Wunder&2&4&5 (Wunder) + Grimoires\\ \hline
+\end{rpgtable}
+
+\section*{Kämpfer}
+Der Schutzwall der Gruppe. Viele Lebenspunkte, exklusiver Zugang zu schweren Rüstungen und vernichtenden Waffen. Nur wenige Fertigkeiten, doch seine Stärke ist es, stehen zu bleiben und hart zuzuschlagen.
+
+\section*{Abenteurer}
+Vielseitig und anpassungsfähig. Mittlere LP und viele Fertigkeiten. Löst Probleme durch Geschick: Schlösser knacken, verstecken, gezielt angreifen, Fallen umgehen.
+
+\section*{Gelehrter}
+Wissen ist Macht. Die umfangreichste Fertigkeitenliste erlaubt Heiler, Diplomat, Stratege, Händler oder Trickbetrüger. Im Kampf hilft er mit Heilkunde, Taktik, Einschüchtern und Rhetorik.
+
+\section*{Mystiker}
+Zerbrechlich, aber zum Unmöglichen fähig. Wenige LP werden durch Grimoires ausgeglichen, also Zauber, die andere Klassen ohne Vorbereitung nicht nutzen können. Jeder Zauber ist ein Risiko: Versagen trifft den Mystiker und die Gruppe.
+
+\section*{Beispiele der Erschaffung}
+\textbf{Zwergischer Kämpfer}: Stärke Kompetent 0 (Volk); Stärke Experte +2; 6 LP: 6; 2 Fertigkeiten: 2. Summe 10.
+
+\textbf{Elfischer Abenteurer}: Geschick Kompetent 0 (Volk); Geschick Experte +2; 4 LP: 4; 4 Fertigkeiten: 4. Summe 10.
+
+\textbf{Menschlicher Gelehrter}: Wissen Kompetent 0 (Volk); Wissen Experte +2; 3 LP: 3; 5 Fertigkeiten: 5. Summe 10.
+
+\textbf{Feenhafter Mystiker}: Wunder Kompetent 0 (Volk); Wunder Experte +2; 2 LP: 2; 3 Fertigkeiten: 3; 3 Grimoires: 3. Summe 10.
+
+\RPGEngravedPanel{Beispiel: Kael, elfischer Abenteurer}{assets/panel-08-engraved.png}{Luca wählt einen elfischen Abenteurer (Volk des Geschicks). Durch den Volksbonus ist Geschick Kompetent kostenlos. Er besitzt 10 Punkte.\par\smallskip Geschick Experte: 2 Punkte (Hauptattribut); 4 LP: 4 Punkte; Heimlichkeit, Schlösserknacken, Fallen und Zielen: 4 Punkte. Summe 10.\par\smallskip Merkmal: »Es gibt keine Tür, die ich nicht öffnen kann.« Bürde: »Ich habe etwas gestohlen, das ich niemals hätte berühren dürfen.«}
+\RPGChapter{Völker}
+Die Völker gehören zu vier Familien, die jeweils einem Attribut zugeordnet sind. Das Volk gibt einen \textbf{Rabatt von 1 Punkt}, wenn man Kompetent im Familienattribut kauft. Die Beispiele sind Vorschläge: Die Gruppe legt fest, welche Völker in ihrer Welt existieren, oder erfindet neue.
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Familie}&\rpghead{Attribut}&\rpghead{Beispiele}\\ \hline
+Völker der Stärke&Stärke&Zwerge, Orks, Minotauren usw.\\ \hline
+Völker des Geschicks&Geschick&Elfen, Halblinge, Goblins usw.\\ \hline
+Völker des Wissens&Wissen&Menschen, Gestaltwandler, Sirenen usw.\\ \hline
+Völker des Wunders&Wunder&Feen, Kobolde, Dämonen, Engel usw.\\ \hline
+\end{rpgtable}
+
+Die einzige mechanische Regel ist die Familie: Sie bestimmt den Rabatt. Ein zwergischer Mystiker bezahlt weniger für Stärke, aber den vollen Preis für Wunder.
+
+\RPGEngravedPanel{Ein zwergischer Mystiker?}{assets/panel-09-engraved.png}{Grunthar ist ein Zwerg mit der falschen Berufung: gedrungen, bärtig, mit Schmiedehänden. Doch er spürt Magie im Eisen. Sein Volk gibt ihm Stärke Kompetent umsonst, aber sein Herz gehört dem Wunder. Das ist teuer: 2 Punkte für Kompetent, 4 für Experte. Wenn er Feuer durch seinen Hammer leitet, lacht niemand.}
+\RPGChapter{Kampf}
+Keine starren Runden, keine Initiative, kein Raster. Kampf ist ein strukturiertes Gespräch.
+
+\section*{Ablauf}
+\textbf{1.} Der Erzähler beschreibt die Lage und fragt: \textit{»Was tut ihr?«}
+
+\textbf{2.} Jeder Protagonist erklärt seine Handlung.
+
+\textbf{3.} Das passende Attribut wird gegen den Zielwert des Erzählers geworfen.
+
+\textbf{4.} Der Erzähler schildert die Folgen, und die Welt reagiert.
+
+\textbf{5.} Wiederholen, bis der Konflikt durch Sieg, Flucht, Aufgabe oder Tod endet.
+
+Es gibt keine feste Reihenfolge. Der Erzähler entscheidet nach Szenenlogik, wer handelt: die nächststehende Person, die akut Bedrohte oder die mit der dringendsten Handlung. Im Chaos erklären alle zugleich ihre Absicht.
+
+\section*{Flucht}
+Flucht ist eine Handlung wie jede andere. Wirf Geschick gegen einen vom Erzähler bestimmten ZW: Einem langsamen Goblin zu entkommen hat ZW 3, einen berittenen Ritter abzuhängen ZW 5 oder höher.
+
+\section*{Vergleichswürfe}
+Stehen sich zwei Figuren unmittelbar gegenüber, würfeln beide. Das höhere Ergebnis gewinnt. Gleichstand bedeutet eine erzählerische Pattsituation.
+
+\section*{Anderen Protagonisten helfen}
+Ein Protagonist kann einen Gefährten unterstützen. Der Effekt hängt von seiner Befähigung für die Aufgabe ab.
+
+\textbf{Kompetente Hilfe} (Helfer verwendet mindestens 2W6 beim selben Test): \textbf{+1W6} zum Würfelpool des Gefährten.
+
+\textbf{Inkompetente Hilfe} (Helfer verwendet weniger als 2W6): ebenfalls \textbf{+1W6}, doch der \textbf{ZW steigt um 1}. Aus ZW 6 wird ein kritischer Erfolg (Doppelsechs); aus einem schon kritischen Erfolg wird eine Dreifachsechs und so weiter.
+
+\textit{Wer unkundig bei einem alten Grimoire »hilft«, kann eine Aufgabe unmöglich machen. Der Spieler muss entscheiden, ob es das wert ist.}
+
+\section*{Entfernungen}
+Es gibt keine Raster oder exakten Maße. Vier erzählerische Begriffe beschreiben die Entfernung.
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Entfernung}&\rpghead{Bedeutung}&\rpghead{Beispiele}\\ \hline
+Direkt&Körperkontakt, Nahkampf&Ringen, Dolch, Griff\\ \hline
+Nah&Wenige Schritte; sofort erreichbar&Schwert, Sturmangriff, Gespräch\\ \hline
+In Reichweite&Schussweite, zu weit für Nahkampf&Bogen, Fernzauber\\ \hline
+Fern&Außer Reichweite, Annäherung dauert&Verfolgung, Flucht\\ \hline
+\end{rpgtable}
+
+Um eine Entfernungsstufe näherzukommen, braucht es eine Handlung. Unter Druck kann der Erzähler dafür einen Wurf fordern.
+
+\section*{Kampfbeispiel}
+Kara (Kämpferin), Syl (Abenteurerin) und Venn (Mystiker) geraten in den Hinterhalt zweier Orkplünderer (Experten, ZW 5 zum Treffen).
+
+\textbf{Erzähler}: »Zwei Orks brechen aus den Bäumen. Sie sind Nah und tragen Kriegshämmer. Was tut ihr?«
+
+\textbf{Kara}: »Ich stürme mit dem Hammer auf den ersten los.« Stärke Experte (2W6, höherer): 3 und 5, behält 5. ZW 5: Erfolg! Kriegshammer verursacht 3 Wunden; der Ork fällt von 4 auf 1.
+
+\textbf{Syl}: »Ich gehe auf Reichweite und schieße.« Geschick Experte + Zielen (Herausragend, 3W6, höchster): 2, 4, 6, behält 6. Erfolg! Bogen: 2 Wunden, erster Ork fällt.
+
+\textbf{Venn}: »Flammenwand, um den zweiten aufzuhalten!« Kostet 2 Ermüdung (1 LP verbleibt, Schwer). Wunder Experte + Kanalisieren (Herausragend, 3W6), aber Schwer (-2 Stufen) senkt auf 1W6. Ergebnis 4 gegen ZW 5: misslungen. Rückschlag: Flammen explodieren, alle erhalten 2 Wunden. Venn fällt auf -1 LP und scheidet aus der Szene aus.
+
+\RPGChapter{Waffen und Schutz}
+Der Schaden hängt von der Kombination aus Waffe und Attribut ab. Jede Waffe hat ein natürliches Attribut; wird sie mit dem anderen verwendet, verursacht sie weniger Schaden.
+
+\section*{Waffentabelle}
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Waffe}&\rpghead{Mit Stärke}&\rpghead{Mit Geschick}&\rpghead{Art}\\ \hline
+Dolch&1W&2W&Wunde\\ \hline
+Schwert&2W&2W&Wunde\\ \hline
+Kriegshammer&3W&1W&Wunde\\ \hline
+Bogen&—&2W&Wunde\\ \hline
+Speer&2W&2W&Wunde\\ \hline
+Streitaxt&2W&1W&Wunde\\ \hline
+Keule&2E&1E&Ermüdung\\ \hline
+Stab&1E&1E&Ermüdung\\ \hline
+Fäuste (Ringen)&1E&1E&Ermüdung\\ \hline
+\end{rpgtable}
+
+\textbf{W} = Wunde (tödlicher Schaden). \textbf{E} = Ermüdung (nicht tödlicher Betäubungsschaden). Wer nur durch Ermüdung auf null LP fällt, wird ohnmächtig, gerät aber nicht in Lebensgefahr.
+
+Ein \textbf{kritischer Treffer} verursacht im Kampf \textbf{+1 Wunde} zusätzlich zum normalen Waffenschaden.
+
+\section*{Schutz}
+Rüstung bestimmt den \textbf{Zielwert, den Gegner beim Angriff überwinden müssen}. Jede Rüstung besitzt einen Wert gegen Stärke- und einen gegen Geschick-Angriffe.
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Rüstung}&\rpghead{ZW vs. St.}&\rpghead{ZW vs. Ge.}&\rpghead{Zugang}\\ \hline
+Keine&3&3&Alle\\ \hline
+Leicht&3&4&Alle Klassen\\ \hline
+Schwer&4&5&Nur Kämpfer\\ \hline
+\end{rpgtable}
+
+\textbf{Beschränkung}: Nur der Kämpfer hat gelernt, schwere Rüstung zu tragen. Abenteurer, Gelehrte und Mystiker können sie unabhängig von ihren Attributen nicht anlegen.
+
+\textbf{Schild}: Greift ein Gegner dich an, steigt sein ZW um 1. Erfordert die Fertigkeit Schilde und eine freie Hand.
+
+\section*{Besondere Gegenstände}
+Einige Gegenstände haben einen Namen und einen besonderen Effekt: eine Verbesserung um eine Stufe in bestimmten Situationen oder die Möglichkeit, Unmögliches zu tun.
+
+\textbf{Salzklinge} — +1 Stufe gegen unnatürliche Wesen.
+
+\textbf{Schlüssel des Anderswo} — öffnet jedes Schloss, zieht bei jeder Nutzung aber ungewollte Aufmerksamkeit an.
+
+Dies sind Beispiele. Der Erzähler erschafft weitere Gegenstände nach demselben Muster: einprägsamer Name, eindeutiger Effekt und gegebenenfalls ein Preis oder eine Folge.
+
+\RPGEngravedPanel{Weitere besondere Gegenstände}{assets/panel-12-engraved.png}{\textbf{Krone der Herrschaft}: +1 Stufe auf Rhetorik; ihr Träger kann nicht lügen.\par\smallskip\textbf{Laterne der Toten}: macht unsichtbare Geister sichtbar; lockt bösartige Geister an.\par\smallskip\textbf{Schmiedehandschuhe}: +1 Stufe auf Zerstören; nach jeder Anwendung Überhitzung und 1E.}
+\RPGChapter{Wunden und Heilung}
+Lebenspunkte sind ein \textbf{gemeinsamer Vorrat}, der Kampfschaden und \textbf{Ermüdungswunden} aufnimmt: der Preis außergewöhnlicher Anstrengung, ob beim Wirken eines Grimoires, Heben eines Felsblocks oder stundenlangen Rennen.
+
+\section*{Zwei Schadensarten, ein Vorrat}
+\textbf{Kampfwunden}: Bei null LP ist die Figur aus der Szene — bewusstlos, gefangen oder möglicherweise sterbend. Der Tod richtet sich nach den folgenden Regeln und der gemeinsamen Erzählung.
+
+\textbf{Ermüdungswunden}: Wer allein durch Ermüdung auf null LP fällt, wird ohnmächtig, ist aber nicht in Lebensgefahr und erwacht nach einer kurzen Rast. Ermüdung und Kampfwunden addieren sich: Ein Mystiker, der 2 LP für Zauber ausgab und 1 Kampfwunde erleidet, ist wirklich in Gefahr.
+
+\section*{Zustand des Charakters}
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{LP übrig}&\rpghead{Zustand}&\rpghead{Wirkung}\\ \hline
+Alle&Gesund&Keine\\ \hline
+≤ 2&Angeschlagen&-1 Stufe bei allen Würfen\\ \hline
+≤ 1&Schwer verletzt&-2 Stufen\\ \hline
+0&Aus der Szene&Bewusstlos oder sterbend\\ \hline
+\end{rpgtable}
+
+\section*{Tod}
+Eine Figur \textbf{stirbt nur, wenn die Kampfwunden (W) allein ihre maximalen LP erreichen oder übersteigen}. Solange mindestens ein Punkt des Schadens Ermüdung (E) ist, bleibt sie bewusstlos, aber am Leben.
+
+Eine am Boden liegende Figur mit W und E kann getötet werden: Erhöhen weitere Kampfwunden die Summe W auf ihre maximalen LP, stirbt sie. Die Gruppe kann eingreifen, doch ein tödlicher Stoß ist möglich.
+
+\section*{Zustände}
+Gift, Feuer, Blindheit, Furcht und andere Zustände haben keine Sonderregeln. Der Erzähler behandelt sie bis zu ihrer Beseitigung als \textbf{situativen Malus} (-1 Stufe). Dieselbe Mechanik gilt für alles.
+
+\section*{Erholung}
+\textbf{Kurze Rast} (einige Stunden in Sicherheit): 1 Wunde heilen.
+
+\textbf{Lange Rast} (eine ganze Nacht in Sicherheit): alle Wunden heilen und die Erschöpfungsregel zurücksetzen.
+
+\textbf{Behandlung während einer Szene}: Fertigkeit Heilkunde + erfolgreicher Wurf = 1 Wunde heilen (2 bei kritischem Erfolg).
+
+\RPGEngravedPanel{Die Abwärtsspirale}{assets/panel-13-engraved.png}{Kara hat 6 LP. Ein Ork verursacht 2W. Dann stemmt sie ein Tor auf — 1E. Sie hat 3 LP. Der Ork trifft erneut: 2W. Jetzt bleiben 1 LP und -2 Stufen bei allen Würfen. Sie muss wählen: fliehen oder sich für einen letzten verzweifelten Schlag verausgaben. Beim letzten Wurf.}
+\RPGChapter{Magie und Grimoires}
+Grimoires sind bestimmte Zauber, die der Mystiker bei der Erschaffung kauft. Jedes funktioniert wie eine Karte mit klaren Eigenschaften. Magie ist nicht umsonst: Jeder Zauber kann Ermüdungswunden kosten, und bei Fehlschlag tritt ein \textbf{Rückschlag} auf, der den Mystiker, seine Verbündeten oder die Umgebung trifft.
+
+\section*{Aufbau eines Grimoires}
+\textbf{Name} — Bezeichnung des Zaubers.
+
+\textbf{Benötigte Fertigkeit} — Kanalisieren, Rituale, Alchemie, Okkultismus oder Arkane Wahrnehmung.
+
+\textbf{ZW} — Schwierigkeit (3–6 oder kritisch).
+
+\textbf{Kosten} — beim Wirken gezahlte Ermüdungswunden. Leichte Zauber können 0 kosten; dann droht nur der Rückschlag.
+
+\textbf{Effekt} — was bei Erfolg geschieht.
+
+\textbf{Rückschlag} — was bei Fehlschlag geschieht.
+
+\section*{Beispiele für Grimoires}
+\textbf{Flammenwand} — Kanalisieren, ZW 5, Kosten 2. \textit{Effekt}: Eine Feuerwand versperrt einen Durchgang oder schließt Gegner ein. \textit{Rückschlag}: Die Flammen geraten außer Kontrolle; alle Anwesenden erleiden 2 Wunden.
+
+\textbf{Heilende Berührung} — Kanalisieren, ZW 3, Kosten 1. \textit{Effekt}: Heilt 2 Wunden eines Verbündeten. \textit{Rückschlag}: Die Wunden gehen auf den Mystiker über.
+
+\textbf{Schutzkreis} — Rituale, ZW 4, Kosten 1. \textit{Effekt}: Feinde können eine abgegrenzte Zone für eine Szene nicht betreten. \textit{Rückschlag}: Auch die Verbündeten sind eingeschlossen; niemand kann hinaus.
+
+\textbf{Alchemistisches Feuer} — Alchemie, ZW 4, Kosten 1. \textit{Effekt}: Eine Phiole explodiert beim Aufprall; 2 Wunden in einem Gebiet. \textit{Rückschlag}: Sie explodiert in den Händen; du und alle Nahen erleiden je 1 Wunde.
+
+\textbf{Stimme der Toten} — Okkultismus, ZW 5, Kosten 2. \textit{Effekt}: Einen Geist befragen; er beantwortet drei Fragen wahrheitsgemäß. \textit{Rückschlag}: Der Geist wird feindselig und besetzt vorübergehend ein Gruppenmitglied.
+
+\textbf{Auge der Leere} — Arkane Wahrnehmung, ZW 4, Kosten 1. \textit{Effekt}: Eine Szene lang durch Wände und Illusionen sehen. \textit{Rückschlag}: Etwas jenseits davon sieht dich und hat dich gefunden.
+
+\section*{Neue Grimoires erschaffen}
+Erzähler und Spieler können mit diesen sechs Feldern neue Grimoires entwerfen. Der Rückschlag muss spezifisch, konkret und dem Effekt angemessen sein. Je mächtiger das Grimoire, desto gefährlicher das Versagen — nicht nur für den Mystiker.
+
+\RPGEngravedPanel{Ein Grimoire ausbalancieren}{assets/panel-15-engraved.png}{ZW 3, Kosten 1: bescheidene Wirkung und persönlicher Rückschlag. Für alltägliche Hilfe geeignet.\par\smallskip ZW 5, Kosten 2: starke Wirkung, Gefahr für alle. Die Gruppe muss entscheiden, ob es sich lohnt.\par\smallskip Kritisch, Kosten 3: ein Wunder. Misslingt es, folgt eine Katastrophe. Nur wenn es keinen anderen Weg gibt.}
+\section*{Magie für andere Klassen}
+Jeder Charakter darf Grimoires erwerben, wenn er mindestens Wunder Kompetent und die nötige Fertigkeit besitzt. Für Nicht-Mystiker kostet Wunder allerdings das Doppelte: Magie ist möglich, aber sehr teuer.
+
+\RPGChapter{Fortschritt}
+Keine Erfahrungspunkte. Nach jeder Sitzung beantwortet die Gruppe drei Fragen:
+
+\textbf{1.} Hast du etwas Bedeutendes entdeckt?
+
+\textbf{2.} Hat dir dein Merkmal oder deine Bürde Schwierigkeiten bereitet?
+
+\textbf{3.} Hast du etwas getan, das die Geschichte verändert hat?
+
+Jedes Ja gibt \textbf{1 Fortschrittspunkt}. Er wird wie bei der Charaktererschaffung für Attribute, Fertigkeiten oder Grimoires eingesetzt.
+
+\section*{Erklärung und Entwicklung im Spiel}
+Wenn du einen Punkt erhältst, \textbf{bestimme sofort, wofür du ihn einsetzt}. Kostet die Verbesserung mehrere Punkte, bindest du sie einzeln. \textbf{Spiele diese Entwicklung aktiv aus}: trainiere, suche einen Meister oder experimentiere.
+
+Der Erzähler darf eine Verbesserung ablehnen, die in den Sitzungen nie ausgespielt wurde. Zwischen unabhängigen Abenteuern mit Monaten Spielzeit kann die vergangene Zeit das Wachstum rechtfertigen.
+
+Über die Regeln hinaus darf der Spieler sein \textbf{Merkmal} umschreiben (der Charakter hat sich verändert) oder seine \textbf{Bürde} ablegen und eine neue wählen.
+
+\RPGEngravedPanel{Wachsen im Spiel}{assets/panel-16-engraved.png}{Sitzung 3: Syl will Geschick Herausragend erreichen (4 Punkte) und bindet den ersten.\par\smallskip Sitzung 5: Sie sucht einen Meisterbogenschützen im Wald; der zweite Punkt.\par\smallskip Sitzung 8: Jeden Abend übt sie im Lager; der dritte Punkt.\par\smallskip Sitzung 11: Sie besteht eine unmögliche Prüfung; der vierte Punkt. Geschick Herausragend — sie hat es sich erspielt.}
+\RPGChapter{Gegner}
+Ein Gegner braucht keinen vollständigen Charakterbogen, sondern nur vier Angaben:
+
+\textbf{ZW} — zwei Werte (Stärke/Geschick) für die Schwierigkeit, ihn zu treffen, und seine Würfelstufe beim Angriff.
+
+\textbf{Wunden} — Treffer, die er verträgt (1–3 Handlanger, 4–6 Veteranen, 7+ Anführer).
+
+\textbf{Waffe} — Schaden gemäß derselben Tabelle wie bei Spielern.
+
+\textbf{Verhalten} — ein Satz, der seine Handlungen leitet.
+
+\section*{Beispiele}
+\textbf{Goblin}: ZW S3/G3, Kompetent, 2 Wunden, Dolch (2W Geschick). »Greift in Gruppen an, flieht allein.«
+
+\textbf{Orkplünderer}: ZW S3/G4, Experte, 4 Wunden, Kriegshammer (3W Stärke), leichte Rüstung. »Stürmt auf den Schwächsten zu.«
+
+\textbf{Verdorbener Ritter}: ZW S4/G5, Experte, 6 Wunden, Schwert (2W), schwere Rüstung. »Sucht ein Duell; ignoriert die Schwachen.«
+
+\section*{Gruppen}
+Gleiche Gegner agieren als ein Block. Es gibt nur einen Wurf, aber +1 Wunde Schaden für jedes weitere Mitglied über das erste hinaus (höchstens +3). Jede Wunde gegen die Gruppe entfernt ein Mitglied.
+
+\section*{Besondere Fähigkeiten}
+Das Verhalten kann besondere Fähigkeiten in einem Satz enthalten. Der Erzähler setzt sie als erzählerische Bedingungen um.
+
+\textbf{Sumpftroll}: ZW S4/G3, Experte, 6 Wunden, Klauen (2W Stärke). »Heilt pro Runde 1 Wunde; Feuer verhindert die Heilung.«
+
+\textbf{Wyvern}: ZW S4/G4, Experte, 5 Wunden, Biss (3W Stärke). »Fliegt. Gift verursacht je Treffer 1 zusätzliche Ermüdungswunde.«
+
+\RPGChapter{Verausgabung}
+\textit{»Ich blute, damit es gelingt.«}
+
+Vor einem Wurf darf ein Spieler \textbf{Verausgabung} erklären: \textbf{+1W6} zum Wurf. \textbf{Nach} dem Wurf erleidet er \textbf{1 Ermüdungswunde}. Der zusätzliche Würfel zählt sowohl für das Ergebnis als auch für kritische Erfolge.
+
+Die Verausgabung ist auf \textbf{+1W6 je Handlung} beschränkt und nicht stapelbar. Da die Wunde erst nach dem Wurf entsteht, beeinflussen Zustandsmali (Angeschlagen, Schwer verletzt) die aktuelle Handlung nicht zusätzlich, wohl aber spätere.
+
+Ein Mystiker mit 3 LP hat 1 für ein Grimoire ausgegeben. 2 bleiben. Er braucht ZW 5 und erklärt Verausgabung: +1W6 bei voller Kraft. Danach zahlt er 1E und sinkt auf 1 LP (Schwer verletzt). Scheitert er und wird getroffen, ist er aus der Szene. Beim letzten Wurf.
+
+\RPGEngravedPanel{Verausgabung außerhalb des Kampfes}{assets/panel-17-engraved.png}{Der Gelehrte muss eine uralte Inschrift übersetzen, bevor der Tempel einstürzt. Wissen Experte, ZW 5. Er wirft 2W6 (höherer): 3 und 4. Misslungen.\par\smallskip Er erklärt Verausgabung: 1E und +1W6. Mit drei Würfeln erhält er 2, 4, 6 — Erfolg! Aber er fällt auf 2 LP: angeschlagen. Wenn der Boden nachgibt, muss er mit zitternden Beinen laufen.}
+\RPGChapter{Hinweise für den Erzähler}
+\textbf{Der Zielwert ist dein wichtigstes Werkzeug.} Der normale ZW ist 4. Erhöhe ihn für Schwieriges und senke ihn für Einfaches. Mehr brauchst du nicht.
+
+
+\textbf{Erschöpfung erzeugt Abenteuer.} Ein kritischer Versuch ist misslungen? Bloßes Wiederholen hilft nicht. Die Gruppe muss einen anderen Weg finden. Das fördert Kreativität.
+
+
+\textbf{Jeder Gegner will etwas.} Ein Räuber will Gold, nicht sterben. Ein Dämon will einen Pakt, keine Prügelei. Motive treiben Kämpfe voran.
+
+
+\textbf{Frage immer: »Wie machst du das?«} Die Antwort bestimmt Attribut und Zielwert.
+
+
+\textbf{Deute den Erfolgsgrad.} Eine 6 gegen ZW 3 ist anders als eine 4 gegen ZW 4. Beides gelingt, aber das erste ist glänzend, das zweite haarscharf.
+
+
+\textbf{Ermüdungswunden sind ein Werkzeug.} Jede extreme Handlung kann sie kosten: Felsblöcke heben, stundenlang laufen, Gift widerstehen. Sie gehören nicht nur zur Magie.
+
+
+\textbf{Magie ist eine Gruppenentscheidung.} Rückschläge können jeden treffen. Lass die Gruppe vor riskanten Zaubern beraten.
+
+
+\textbf{Soziale Begegnungen verwenden dieselben Regeln.} Überzeugen, Täuschen, Einschüchtern: Wissen + passende Fertigkeit gegen einen ZW. Kein eigenes System nötig. Sozialer Konflikt funktioniert wie körperlicher.
+
+\RPGBackCoverGerman{DER LETZTE WURF}
+\end{document}
