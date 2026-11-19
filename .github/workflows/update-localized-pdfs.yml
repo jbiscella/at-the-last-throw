@@ -1,0 +1,40 @@
+name: Regenerate localized PDF downloads (temporary)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'manual-de.tex'
+      - 'manual-es.tex'
+      - 'rpgextra.sty'
+      - '.github/workflows/update-localized-pdfs.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ github.event.pull_request.number == 3 && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - name: Build corrected PDFs using pinned TeX Live
+        run: |
+          make docker-image
+          docker run --rm -u "$(id -u):$(id -g)" \
+            -v "$PWD":/work -w /work at-the-last-throw-tex:tl2024 \
+            make -B de es
+      - name: Update downloaded editions on PR branch
+        run: |
+          cp build/manual-de.pdf docs/downloads/rulebook-de.pdf
+          cp build/manual-es.pdf docs/downloads/rulebook-es.pdf
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/downloads/rulebook-de.pdf docs/downloads/rulebook-es.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m 'Regenerate corrected German and Spanish downloadable PDFs'
+            git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+          fi
