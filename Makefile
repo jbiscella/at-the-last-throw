@@ -14,7 +14,8 @@
 # Each edition is compiled twice: TikZ overlays on the covers use remembered page
 # positions, and the table of contents needs a second pass.
 
-EDITIONS := manual manual-it manual-fr manual-uk
+EDITIONS := manual manual-it manual-fr manual-uk manual-de manual-es
+BASELINE_EDITIONS := manual manual-it manual-fr manual-uk
 BUILD    := build
 BASELINE := baseline
 XELATEX  := xelatex -interaction=nonstopmode -halt-on-error -output-directory=$(BUILD)
@@ -39,7 +40,7 @@ STAMP        := $(BUILD)/.toolchain-$(TOOLCHAIN_ID)
 # A failed XeLaTeX pass must not leave a PDF behind that a retry would accept.
 .DELETE_ON_ERROR:
 
-.PHONY: all en it fr uk docker docker-image docker-shell docker-check check baselines \
+.PHONY: all en it fr uk de es docker docker-image docker-shell docker-check check baselines \
         deps update-baselines clean
 
 all: $(PDFS)
@@ -48,6 +49,8 @@ en: $(BUILD)/manual.pdf
 it: $(BUILD)/manual-it.pdf
 fr: $(BUILD)/manual-fr.pdf
 uk: $(BUILD)/manual-uk.pdf
+de: $(BUILD)/manual-de.pdf
+es: $(BUILD)/manual-es.pdf
 
 $(STAMP): | $(BUILD)
 	@rm -f $(BUILD)/.toolchain-*; touch $@
@@ -77,11 +80,11 @@ docker-check: docker-image
 # Compares whatever is already in build/; it never rebuilds, so a failed
 # `make docker` cannot be silently replaced by a local-toolchain build.
 check:
-	@for e in $(EDITIONS); do \
+	@for e in $(BASELINE_EDITIONS); do \
 	  [ -f $(BUILD)/$$e.pdf ] || { echo "missing $(BUILD)/$$e.pdf - run 'make docker' or 'make' first"; exit 2; }; \
 	  [ -f $(BASELINE)/$$e.pdf ] || { echo "missing $(BASELINE)/$$e.pdf - run 'make baselines' first"; exit 2; }; \
 	done
-	@rc=0; for e in $(EDITIONS); do \
+	@rc=0; for e in $(BASELINE_EDITIONS); do \
 	  DIFF_DIR=$(DIFF_DIR) scripts/compare-pdf.sh $(BASELINE)/$$e.pdf $(BUILD)/$$e.pdf $(DPI) || rc=1; \
 	done; exit $$rc
 
@@ -94,7 +97,7 @@ deps:
 	@scripts/check-deps.sh
 
 update-baselines:
-	@for e in $(EDITIONS); do [ -f $(BUILD)/$$e.pdf ] || { echo "missing $(BUILD)/$$e.pdf"; exit 2; }; done
+	@for e in $(BASELINE_EDITIONS); do [ -f $(BUILD)/$$e.pdf ] || { echo "missing $(BUILD)/$$e.pdf"; exit 2; }; done
 	@mkdir -p $(BASELINE); for e in $(EDITIONS); do cp -v $(BUILD)/$$e.pdf $(BASELINE)/$$e.pdf; done
 
 clean:
