@@ -32,7 +32,7 @@ jobs:
             pdf="build/$edition.pdf"
             pages="$(pdfinfo "$pdf" | awk '/^Pages:/{print $2}')"
             test "$pages" -ge 13
-            if grep -Eq '(Overfull|Underfull) \\\\[hv]box' "build/$edition.log"; then
+            if grep -Eq 'Overfull|Underfull' "build/$edition.log"; then
               echo "::error::$edition has box warnings"
               grep -E '(Overfull|Underfull)' "build/$edition.log" | head
               exit 1
