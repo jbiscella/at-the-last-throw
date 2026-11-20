@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rpgextra}[2026/11/19 German and Spanish back covers]
+\RequirePackage{rpgcover}
+\newcommand{\RPGContentsHeading}{TABLE OF CONTENTS}
+\newcommand{\RPGContentsByline}{A game by Jacopo Biscella}
+\newcommand{\RPGContentsLicense}{Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).}
+\renewcommand{\RPGContents}{%
+\thispagestyle{rpgfrontmatter}\vspace*{9mm}
+\begin{center}{\fontsize{27}{31}\selectfont\bfseries \RPGContentsHeading\par}\vspace{9pt}
+{\color{rpgline}\rule{.76\linewidth}{.55pt}}\end{center}\vspace{7mm}
+\begingroup\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\renewcommand{\l@section}[2]{\csname @dottedtocline\endcsname{1}{0em}{3.2em}{\bfseries ##1}{##2}}
+\makeatother\tableofcontents\endgroup
+\vspace{5mm}
+\begin{center}\includegraphics[width=.59\textwidth,height=67mm,keepaspectratio]{assets/last-throw-crosshatch-redrawn.png}\end{center}
+\vfill
+\begin{center}{\small\itshape \RPGContentsByline\par}\vspace{5pt}
+{\footnotesize \RPGContentsLicense\par}\end{center}
+\clearpage}
+
+\newcommand{\RPGBackStart}[1]{%
+ \clearpage\pagenumbering{gobble}\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+  \RPGDrawBackground{\RPGBackBackgroundFile}
+  \node[align=center,text=coverink,text width=170mm,inner sep=0pt] at ($(current page.south west)+(105mm,260mm)$)
+   {{\RPGCoverTitleFont\fontsize{18}{23}\selectfont #1}};
+  \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
+}
+\newcommand{\RPGBackFinish}{%
+  \filldraw[fill=white,draw=coverink,line width=.55pt] ($(current page.south west)+(139mm,25mm)$) rectangle ($(current page.south west)+(187mm,55mm)$);
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
+\newcommand{\RPGBackCoverGerman}[1]{%
+\RPGBackStart{#1}
+\RPGBackRefColumn{28}{222}{WÜRFELPROBE}{Ungeübt: 2W6, niedrigster. Kompetent: 1W6. Experte: 2W6, höchster. Fertigkeit: +1 Stufe; Malus: $-1$ Stufe.}
+\RPGBackRefColumn{28}{190}{ZIELWERT}{3 Einfach; 4 Normal; 5 Schwer; 6 Extrem; Kritisch: wundersam (zwei Sechsen).}
+\RPGBackRefColumn{28}{158}{KRITISCH}{Mindestens zwei Sechsen mit zwei Würfeln. Ein Fehlschlag erfordert neue Umstände.}
+\RPGBackRefColumn{28}{126}{VERAUSGABUNG}{Vor dem Wurf +1W6; danach 1 Ermüdungswunde. Einmal pro Handlung.}
+\RPGBackRefColumn{111}{222}{SCHADEN}{Waffe und Attribut bestimmen Wunden (Wu) oder Ermüdung (E). Kritisch im Kampf: +1 Wunde.}
+\RPGBackRefColumn{111}{190}{WUNDEN}{Bei 2 LP oder weniger: $-1$ Stufe; bei 1 LP: $-2$. Bei null: aus der Szene.}
+\RPGBackRefColumn{111}{158}{RAST}{Kurz: 1 Wunde heilen. Lang: alle Wunden heilen und Erschöpfung zurücksetzen.}
+\RPGBackFinish
+}
+\newcommand{\RPGBackCoverSpanish}[1]{%
+\RPGBackStart{#1}
+\RPGBackRefColumn{28}{222}{LA TIRADA}{Inexperto: 2d6, menor. Competente: 1d6. Experto: 2d6, mayor. Habilidad: +1 grado; penalización: $-1$.}
+\RPGBackRefColumn{28}{190}{NÚMERO OBJETIVO}{3 Sencilla; 4 Normal; 5 Difícil; 6 Extrema; Crítico: milagroso.}
+\RPGBackRefColumn{28}{158}{CRÍTICO}{Dos o más seises con al menos dos dados. Tras fallar hacen falta nuevas circunstancias.}
+\RPGBackRefColumn{28}{126}{ESFUERZO}{Añade 1d6 antes de tirar y sufre 1 Herida de Fatiga después. Una vez por acción.}
+\RPGBackRefColumn{111}{222}{DAÑO}{Arma y Atributo determinan Heridas (H) o Fatiga (F). Un Crítico en combate añade 1 Herida.}
+\RPGBackRefColumn{111}{190}{HERIDAS}{Con 2 PV o menos: $-1$ grado. Con 1 PV: $-2$. Con cero: fuera de escena.}
+\RPGBackRefColumn{111}{158}{DESCANSO}{Corto: recupera 1 Herida. Largo: todas las Heridas y reinicio del Agotamiento.}
+\RPGBackFinish
+}

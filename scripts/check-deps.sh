@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Verify the local toolchain has everything needed to build all four editions.
+# Verify the local toolchain has everything needed to build all six editions.
 set -uo pipefail
 missing=0
 ok()   { printf '  ok       %s\n' "$1"; }
@@ -17,7 +17,7 @@ for s in fontspec babel geometry microtype xcolor tikz fancyhdr titlesec tabular
 done
 
 echo "Babel languages"
-for l in english italian french ukrainian; do
+for l in english italian french ukrainian ngerman spanish; do
   kpsewhich "babel-$l.tex" >/dev/null && ok "$l" || bad "babel-$l.tex"
 done
 

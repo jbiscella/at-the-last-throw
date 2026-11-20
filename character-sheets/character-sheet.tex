@@ -1,0 +1,82 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=0mm]{geometry}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{tikz}
+\pagestyle{empty}
+\setmainfont{FreeSerif}
+% Exact Latin cover title typeface from rpgcover.sty (part of TeX Live).
+\newfontfamily\RPGCoverTitleFont{CinzelDecorative-Bold.ttf}
+\newfontfamily\RPGSheetTextFont{IMFeENrm28P.otf}
+\newfontfamily\RPGCyrillicFont{FreeSerif}[BoldFont={FreeSerif Bold}]
+\definecolor{sheetink}{HTML}{2D251F}
+\input{locales/\SelectedLanguage.tex}
+\newcommand\Sh[1]{\csname Sheet#1\endcsname}
+\newcommand\SheetNode[5]{\node[anchor=#1,inner sep=0pt,text=sheetink,font=#4] at (#2,#3) {#5};}
+\newcommand\SheetBold[4]{\SheetNode{west}{#1}{#2}{\RPGBodyFont\bfseries\fontsize{#3}{#3}\selectfont}{#4}}
+\newcommand\SheetCenter[4]{\SheetNode{center}{#1}{#2}{\RPGBodyFont\bfseries\fontsize{#3}{#3}\selectfont}{#4}}
+\newcommand\SheetSmall[4]{\SheetNode{west}{#1}{#2}{\RPGBodyFont\fontsize{#3}{#3}\selectfont}{#4}}
+\ifdefined\RPGIsUkrainian
+\newcommand\RPGBodyFont{\RPGCyrillicFont}
+\newcommand\RPGTitleFont{\RPGCyrillicFont\bfseries}
+\else
+\newcommand\RPGBodyFont{\RPGSheetTextFont}
+\newcommand\RPGTitleFont{\RPGCoverTitleFont}
+\fi
+\begin{document}
+% The illustration owns the entire grid, borders, checkbox geometry, rules and decor.
+% TikZ adds editable words and numerals only.
+\begin{tikzpicture}[remember picture,overlay]\begin{scope}[shift={(current page.north west)},x=1mm,y=-1mm]
+\node[anchor=north west,inner sep=0] at (0,0) {\includegraphics[width=210mm,height=297mm]{assets/character-background.png}};
+% Two-line cover cartouche uses EXACT same font as new manual, not generated lettering.
+\node[anchor=center,align=center,inner sep=0pt,text=sheetink,font=\RPGTitleFont\fontsize{24}{27}\selectfont,text width=102mm] at (105,26) {\Sh{TitleFirst}\\\Sh{TitleSecond}};
+% Identity; place label just above rather than printing onto engraved fill-in lines.
+\SheetBold{13}{52.5}{10}{\Sh{Name}:}
+\SheetBold{82}{52.5}{10}{\Sh{Race}:}
+\SheetBold{151}{52.5}{10}{\Sh{Class}:}
+% Character attributes: labels and tiers over baked checkbox grid.
+\SheetCenter{138}{66}{11}{\Sh{Attributes}}
+\SheetBold{83}{76}{8.4}{\Sh{Attr1}}
+\SheetSmall{116.4}{76}{5.9}{\Sh{Tier1}}
+\SheetSmall{138.2}{76}{5.9}{\Sh{Tier2}}
+\SheetSmall{160.5}{76}{5.9}{\Sh{Tier3}}
+\SheetSmall{180.2}{76}{5.9}{\Sh{Tier4}}
+\SheetBold{83}{85.2}{8.4}{\Sh{Attr2}}
+\SheetSmall{116.4}{85.2}{5.9}{\Sh{Tier1}}
+\SheetSmall{138.2}{85.2}{5.9}{\Sh{Tier2}}
+\SheetSmall{160.5}{85.2}{5.9}{\Sh{Tier3}}
+\SheetSmall{180.2}{85.2}{5.9}{\Sh{Tier4}}
+\SheetBold{83}{94.3}{8.4}{\Sh{Attr3}}
+\SheetSmall{116.4}{94.3}{5.9}{\Sh{Tier1}}
+\SheetSmall{138.2}{94.3}{5.9}{\Sh{Tier2}}
+\SheetSmall{160.5}{94.3}{5.9}{\Sh{Tier3}}
+\SheetSmall{180.2}{94.3}{5.9}{\Sh{Tier4}}
+\SheetBold{83}{103.6}{8.4}{\Sh{Attr4}}
+\SheetSmall{116.4}{103.6}{5.9}{\Sh{Tier1}}
+\SheetSmall{138.2}{103.6}{5.9}{\Sh{Tier2}}
+\SheetSmall{160.5}{103.6}{5.9}{\Sh{Tier3}}
+\SheetSmall{180.2}{103.6}{5.9}{\Sh{Tier4}}
+\ifdefined\RPGIsUkrainian
+\SheetBold{82}{123}{7.5}{\Sh{Hp}:}
+\else
+\ifdefined\RPGIsSpanish
+\SheetBold{82}{123}{8.25}{\Sh{Hp}:}
+\else
+\ifdefined\RPGIsGerman
+\SheetBold{82}{123}{8.4}{\Sh{Hp}:}
+\else
+\SheetBold{82}{123}{10}{\Sh{Hp}:}
+\fi
+\fi
+\fi
+\foreach \n in {1,...,7}{\pgfmathsetmacro\xx{119.5+(\n-1)*11.9}\SheetCenter{\xx}{123}{11}{\n}}
+\SheetCenter{105}{143.2}{12}{\Sh{Abilities}}
+\SheetBold{15}{201.5}{11}{\Sh{Trait}:}
+\SheetBold{109}{201.5}{11}{\Sh{Burden}:}
+\SheetBold{15}{225.2}{10}{\Sh{Armour}:}
+\SheetBold{58}{225.2}{10}{\Sh{Advancement}}
+\foreach \y in {229.5,235.6,241.7,247.8}{\SheetSmall{58}{\y}{8}{\Sh{Goal}:}}
+\SheetBold{15}{263.5}{10}{\Sh{Notes}:}
+\end{scope}\end{tikzpicture}
+\null
+\end{document}

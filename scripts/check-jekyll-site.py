@@ -5,7 +5,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-LANGUAGES = ("en", "it", "fr", "uk")
+LANGUAGES = ("en", "it", "fr", "uk", "de", "es")
 CHAPTERS_PER_LANGUAGE = 13
 
 class Links(HTMLParser):

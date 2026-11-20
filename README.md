@@ -1,6 +1,6 @@
 # At the Last Throw
 
-A tabletop RPG rulebook in four languages, typeset with XeLaTeX in an engraved, historical-manual style.
+A tabletop RPG rulebook in six languages, typeset with XeLaTeX in an engraved, historical-manual style.
 
 | Edition | Source | Title |
 |---|---|---|
@@ -8,6 +8,8 @@ A tabletop RPG rulebook in four languages, typeset with XeLaTeX in an engraved, 
 | Italian | `manual-it.tex` | All'ultimo tiro |
 | French | `manual-fr.tex` | Au dernier lancer |
 | Ukrainian | `manual-uk.tex` | Останній кидок |
+| German | `manual-de.tex` | Der letzte Wurf |
+| Spanish | `manual-es.tex` | La última tirada |
 
 **Download the PDFs** from [Releases](https://github.com/jbiscella/at-the-last-throw/releases).
 Each edition is 16 A4 pages. The French and Ukrainian editions are translation drafts that have not yet had a native-speaker proofread.

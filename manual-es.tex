@@ -1,0 +1,483 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{rpgcover}
+\usepackage{illustrated-panel}
+\usepackage{rpgextra}
+\babelprovide[import]{spanish}
+\RPGSetRunningTitle{La última tirada}
+\linespread{1.115}
+\setlength{\parskip}{3.85pt plus .8pt minus .8pt}
+\RPGSetCoverWordSpace{.6em}
+\hypersetup{pdftitle={La última tirada},pdfauthor={Jacopo Biscella}}
+\renewcommand{\RPGContentsHeading}{ÍNDICE}
+\renewcommand{\RPGContentsByline}{Un juego de Jacopo Biscella}
+\renewcommand{\RPGContentsLicense}{Esta obra se distribuye bajo Creative Commons Atribución–CompartirIgual 4.0 Internacional (CC BY-SA 4.0). Puedes compartirla y adaptarla, incluso comercialmente, si reconoces al autor y publicas las obras derivadas bajo la misma licencia.}
+\begin{document}
+\selectlanguage{spanish}
+\RPGStartFrontMatter
+\RPGFrontCover{LA ÚLTIMA TIRADA}{DECISIÓN, DESTINO, CONSECUENCIA}{Jacopo Biscella}{assets/last-throw-crosshatch-redrawn.png}
+\RPGStartContents
+\RPGContents
+\RPGStartMainMatter
+
+\RPGChapter{La tirada}
+Cuando un Protagonista intenta una acción de resultado incierto, tira dados de seis caras (d6). La cantidad de dados y la manera de interpretar el resultado dependen de su nivel en el Atributo pertinente.
+
+\section*{Niveles y tiradas}
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Nivel}&\rpghead{Tirada}&\rpghead{Significado} \\ \hline
+Inexperto&2d6, conserva el menor&Fuera de su terreno\\ \hline
+Competente&1d6&Capacidad funcional\\ \hline
+Experto&2d6, conserva el mayor&Domina su oficio\\ \hline
+\end{rpgtable}
+
+Una \textbf{Habilidad} pertinente mejora la tirada un grado. Una \textbf{penalización circunstancial} (heridas, oscuridad, agotamiento) la empeora un grado. Ambas se anulan entre sí.
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Situación}&\rpghead{Tirada efectiva}\\ \hline
+Inexperto + penalización&Deficiente: 3d6, conserva el menor\\ \hline
+Inexperto&2d6, conserva el menor\\ \hline
+Inexperto + habilidad / Competente&1d6\\ \hline
+Competente + habilidad / Experto&2d6, conserva el mayor\\ \hline
+Experto + habilidad&Excepcional: 3d6, conserva el mayor\\ \hline
+\end{rpgtable}
+
+\section*{Número objetivo}
+El resultado del dado se compara con un \textbf{Número Objetivo (NO)}: el mínimo necesario para tener éxito. El Narrador fija el NO según la dificultad de la acción.
+
+\begin{rpgtable}{Y|Y}
+\rpghead{NO}&\rpghead{Dificultad}\\ \hline
+3&Sencilla\\ \hline
+4&Normal\\ \hline
+5&Difícil\\ \hline
+6&Extrema\\ \hline
+Crítico&Milagrosa: requiere dos seises\\ \hline
+\end{rpgtable}
+
+El Narrador interpreta libremente el grado de éxito o fracaso: sacar 6 contra NO 4 es brillante; sacar 4 contra NO 4 significa lograrlo por muy poco.
+
+\section*{El crítico}
+Si la tirada muestra \textbf{dos o más seises}, es un \textbf{Crítico}: un resultado extraordinario. Requiere al menos dos dados, de modo que normalmente solo es posible a nivel Experto o superior.
+
+Algunas acciones —derribar una puerta de hierro con las manos, romper un encantamiento antiguo, obrar un milagro— \textbf{exigen expresamente un Crítico}. Solo puede intentarlas quien posea una Habilidad pertinente.
+
+\textbf{Regla de agotamiento}: una acción que exigía un Crítico y ha fallado no puede repetirse hasta que cambien significativamente las circunstancias: descansar, adoptar otro enfoque, obtener ayuda o modificar la situación. El Narrador decide qué cambio basta.
+
+\section*{Probabilidades de un vistazo}
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Nivel}&\rpghead{Prob. ≥4}&\rpghead{Prob. 6}&\rpghead{Crítico}\\ \hline
+Deficiente (3d6↓)&≈12\%&≈0,5\%&—\\ \hline
+Inexperto (2d6↓)&≈25\%&≈3\%&—\\ \hline
+Competente (1d6)&≈50\%&≈17\%&—\\ \hline
+Experto (2d6↑)&≈75\%&≈31\%&≈2,8\%\\ \hline
+Excepcional (3d6↑)&≈87\%&≈42\%&≈7\%\\ \hline
+\end{rpgtable}
+
+\RPGChapter{Crear un protagonista}
+Cada Protagonista se define por una \textbf{Raza}, una \textbf{Clase}, cuatro \textbf{Atributos}, varias \textbf{Habilidades}, un \textbf{Rasgo}, una \textbf{Carga} y sus \textbf{Puntos de Vida}.
+
+El jugador dispone de \textbf{10 puntos} para repartir entre Puntos de Vida, Atributos y Habilidades. La Clase determina los costes, límites y opciones.
+
+\section*{Costes de atributos}
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Nivel}&\rpghead{Atributo principal}&\rpghead{Otro atributo}\\ \hline
+Inexperto → Competente&1 punto&2 puntos\\ \hline
+Competente → Experto&2 puntos&4 puntos\\ \hline
+Experto → Excepcional&4 puntos&8 puntos\\ \hline
+\end{rpgtable}
+
+Cada Punto de Vida cuesta \textbf{1 punto}. Cada Habilidad o Grimorio cuesta \textbf{1 punto}.
+
+La \textbf{bonificación racial} descuenta un punto al comprar Competente en el atributo de la familia racial (gratis si coincide con el atributo principal de la clase). El descuento solo se aplica a ese paso.
+
+\section*{Rasgo}
+Una frase que describe la naturaleza esencial del personaje. No tiene efecto mecánico: inspira al Narrador y orienta al jugador.
+
+\textit{«No abandono a nadie». «El poder se toma, no se pide». «Prefiero una verdad incómoda a una mentira amable».}
+
+\section*{Carga}
+El peso que lleva consigo: remordimiento, deuda, secreto o maldición. El Narrador lo utiliza para crear dilemas.
+
+\textit{«Maté a un inocente durante la guerra». «Debo la vida a alguien a quien odio». «Alguien lleva mi rostro».}
+
+\RPGChapter{Atributos y habilidades}
+Cada personaje tiene cuatro Atributos que empiezan en Inexperto. Puede mejorarlos gastando puntos.
+
+\begin{rpgtable}{Y|Y}
+\rpghead{Atributo}&\rpghead{Ámbito}\\ \hline
+Fuerza&Potencia, resistencia, combate cuerpo a cuerpo\\ \hline
+Destreza&Agilidad, reflejos, sigilo, puntería, esquiva\\ \hline
+Saber&Razonamiento, cultura, conocimientos, influencia social\\ \hline
+Prodigio&Vínculo con lo sobrenatural, milagros\\ \hline
+\end{rpgtable}
+
+Una Habilidad pertinente mejora la tirada un grado. Puede comprarse cualquier Habilidad si el personaje es al menos Competente en su Atributo asociado. El coste del Atributo actúa como filtro natural.
+
+\section*{Habilidades de Fuerza}
+\textbf{Armas pesadas} — armas a dos manos, hachas, martillos de guerra.
+
+\textbf{Escudos} — defensa activa con escudo, también como arma.
+
+\textbf{Lucha} — combate desarmado, presas y derribos.
+
+\textbf{Demolición} — destruir objetos, puertas, muros y barricadas.
+
+\textbf{Resistencia} — soportar dolor, fatiga, venenos y condiciones extremas.
+
+\section*{Habilidades de Destreza}
+\textbf{Sigilo} — moverse sin ser detectado.
+
+\textbf{Acrobacias} — equilibrio, saltos y movimientos complejos.
+
+\textbf{Cerrajería} — abrir cerraduras y mecanismos.
+
+\textbf{Trampas} — descubrir y desactivar trampas y mecanismos peligrosos.
+
+\textbf{Puntería} — acertar a objetivos lejanos.
+
+\textbf{Hurto} — quitar objetos sin que nadie lo note.
+
+\textbf{Equitación} — controlar monturas en marcha y combate.
+
+\textbf{Supervivencia} — orientarse por instinto, cazar, rastrear y acampar.
+
+\section*{Habilidades de Saber}
+\textbf{Diplomacia} — negociación, compromisos, mediación.
+
+\textbf{Retórica} — persuadir, inspirar, arengar, hablar en público.
+
+\textbf{Engaño} — manipulación y mentiras.
+
+\textbf{Intimidación} — presión social y psicológica.
+
+\textbf{Comercio} — negociación económica y tasación.
+
+\textbf{Medicina} — diagnóstico, tratamiento, estabilización.
+
+\textbf{Idiomas} — conocimientos lingüísticos, textos antiguos y comunicación.
+
+\textbf{Historia} — acontecimientos pasados, símbolos y contexto.
+
+\textbf{Derecho} — leyes, contratos y burocracia.
+
+\textbf{Etiqueta} — desenvolverse en cortes y conocer costumbres.
+
+\textbf{Artesanía} — crear, reparar y valorar objetos.
+
+\textbf{Orientación} — mapas, estrellas, planificación de rutas.
+
+\textbf{Herboristería} — remedios naturales, pociones vegetales y ungüentos.
+
+\textbf{Táctica} — estrategia militar, coordinación y planificación.
+
+\section*{Habilidades de Prodigio}
+\textbf{Canalización} — concentrar y liberar energía elemental.
+
+\textbf{Rituales} — magia ceremonial, invocaciones, consagraciones y pactos.
+
+\textbf{Alquimia} — transmutar sustancias, crear elixires y fuego alquímico.
+
+\textbf{Ocultismo} — nigromancia, demonios, maldiciones y saber prohibido.
+
+\textbf{Percepción arcana} — detectar magia, adivinar, mirar más allá del velo.
+
+Estas habilidades también permiten lanzar Grimorios: cada uno requiere una Habilidad de Prodigio concreta. Además de las habilidades, el Místico dispone de \textbf{Grimorios}, descritos en su propio capítulo.
+
+\RPGChapter{Clases}
+Cada Protagonista pertenece a una de cuatro Clases. La Clase determina el Atributo principal, el intervalo de Puntos de Vida y las Habilidades disponibles.
+
+\begin{rpgtable}{Y|Y|Y|Y|Y}
+\rpghead{Clase}&\rpghead{Principal}&\rpghead{PV mín.}&\rpghead{PV máx.}&\rpghead{Habilidades}\\ \hline
+Guerrero&Fuerza&4&7&5 (Fuerza)\\ \hline
+Aventurero&Destreza&3&5&8 (Destreza)\\ \hline
+Erudito&Saber&2&5&14 (Saber)\\ \hline
+Místico&Prodigio&2&4&5 (Prodigio) + Grimorios\\ \hline
+\end{rpgtable}
+
+\section*{Guerrero}
+El baluarte del grupo. Muchos Puntos de Vida y acceso exclusivo a armaduras pesadas y armas devastadoras. Tiene pocas habilidades, pero no necesita más: su fuerza consiste en resistir y golpear duro.
+
+\section*{Aventurero}
+Versátil y adaptable. PV intermedios, muchas habilidades. Resuelve problemas con ingenio físico: abre cerraduras, se oculta, golpea con precisión, evita trampas.
+
+\section*{Erudito}
+El conocimiento es poder. Su extensa lista de habilidades permite crear un médico, diplomático, estratega, mercader o embaucador. En combate ayuda con Medicina, Táctica, Intimidación y Retórica.
+
+\section*{Místico}
+Frágil, pero capaz de lo imposible. Sus escasos PV se compensan con los Grimorios: conjuros que otras clases no pueden utilizar sin preparación. Cada Grimorio es una apuesta: la magia fallida golpea al Místico y a su grupo.
+
+\section*{Ejemplos de creación}
+\textbf{Guerrero enano}: Fuerza Competente, 0 puntos (racial); Fuerza Experto, +2; 6 PV, 6; 2 Habilidades, 2. Total: 10.
+
+\textbf{Aventurero elfo}: Destreza Competente, 0 (racial); Destreza Experto, +2; 4 PV, 4; 4 Habilidades, 4. Total: 10.
+
+\textbf{Erudito humano}: Saber Competente, 0 (racial); Saber Experto, +2; 3 PV, 3; 5 Habilidades, 5. Total: 10.
+
+\textbf{Místico hada}: Prodigio Competente, 0 (racial); Prodigio Experto, +2; 2 PV, 2; 3 Habilidades, 3; 3 Grimorios, 3. Total: 10.
+
+\RPGEngravedPanel{Ejemplo de creación: Kael, aventurero elfo}{assets/panel-08-engraved.png}{Luca elige un Aventurero elfo (raza de Destreza). Gracias a su bonificación racial empieza con Destreza Competente gratis. Dispone de 10 puntos.\par\smallskip Destreza Experto: 2 puntos (principal); 4 PV: 4 puntos; Sigilo, Cerrajería, Trampas y Puntería: 4 puntos. Total: 10.\par\smallskip Rasgo: «No hay puerta que no pueda abrir». Carga: «Robé algo que jamás debí tocar».}
+\RPGChapter{Razas}
+Las Razas se agrupan en cuatro familias vinculadas a un Atributo. La raza concede un \textbf{descuento de 1 punto} para adquirir Competente en el Atributo de su familia. Los ejemplos son sugerencias: el Narrador y los jugadores deciden cuáles existen en su mundo o inventan otras.
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Familia}&\rpghead{Atributo}&\rpghead{Ejemplos}\\ \hline
+Razas de Fuerza&Fuerza&Enanos, orcos, minotauros, etc.\\ \hline
+Razas de Destreza&Destreza&Elfos, medianos, trasgos, etc.\\ \hline
+Razas de Saber&Saber&Humanos, cambiaformas, sirenas, etc.\\ \hline
+Razas de Prodigio&Prodigio&Hadas, duendes, demonios, ángeles, etc.\\ \hline
+\end{rpgtable}
+
+La única regla mecánica es la familia: determina el descuento. Un Místico enano paga menos por Fuerza, pero el precio completo por Prodigio.
+
+\RPGEngravedPanel{¿Un místico enano?}{assets/panel-09-engraved.png}{Grunthar es un enano con una vocación inesperada. Recio, barbudo y con manos de herrero, siente la magia en el hierro. Su raza le da Fuerza Competente gratis, pero su corazón está en Prodigio: 2 puntos para Competente y 4 para Experto. Cuando canaliza fuego a través de su martillo, nadie se ríe.}
+\RPGChapter{Combate}
+No hay turnos rígidos, iniciativa ni cuadrícula. El combate es una conversación estructurada.
+
+\section*{El desarrollo}
+\textbf{1.} El Narrador describe la situación y pregunta: \textit{«¿Qué hacéis?»}
+
+\textbf{2.} Cada Protagonista declara su acción.
+
+\textbf{3.} Se tira el Atributo pertinente contra el NO establecido por el Narrador.
+
+\textbf{4.} El Narrador describe las consecuencias y el mundo reacciona.
+
+\textbf{5.} Se repite hasta resolver el conflicto: victoria, huida, rendición o muerte.
+
+No hay iniciativa ni orden fijo. El Narrador da la palabra según la lógica de la escena: quién está más cerca, quién corre peligro inmediato o quién ha declarado la acción más urgente. En medio del caos, todos declaran sus acciones a la vez y estas se resuelven en el propio desorden.
+
+\section*{Huir}
+Huir es una acción como cualquier otra. Se tira Destreza contra el NO que fije el Narrador: escapar de un trasgo lento es NO 3; dejar atrás a un caballero a caballo puede ser NO 5 o superior.
+
+\section*{Tiradas enfrentadas}
+Si dos personajes se oponen directamente, ambos tiran. Gana el resultado más alto. Un empate es un punto muerto narrativo.
+
+\section*{Ayudar a otro protagonista}
+Un Protagonista puede ayudar a un compañero. El efecto depende de la competencia del ayudante para esa tarea.
+
+\textbf{Ayuda competente} (el ayudante tira al menos 2d6 en la misma prueba): añade \textbf{+1d6} a la reserva del compañero.
+
+\textbf{Ayuda incompetente} (el ayudante tira menos de 2d6): añade \textbf{+1d6}, pero el \textbf{NO aumenta en 1}. Un NO 6 pasa a exigir Crítico (doble seis); si ya exigía Crítico, pasa a triple seis, y así sucesivamente.
+
+\textit{El incompetente que «ayuda» con un grimorio antiguo puede volver imposible la tarea. ¿Merece la pena? El jugador decide.}
+
+\section*{Distancias}
+No hay cuadrículas ni medidas exactas. Las distancias se expresan mediante cuatro categorías narrativas.
+
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{Distancia}&\rpghead{Significado}&\rpghead{Ejemplos}\\ \hline
+Contacto&Contacto físico, cuerpo a cuerpo&Presas, daga, lucha\\ \hline
+Cerca&A pocos pasos; alcance inmediato&Espada, carga, conversación\\ \hline
+A distancia&Alcance de disparo; lejos del cuerpo a cuerpo&Arco, grimorios a distancia\\ \hline
+Lejos&Fuera de alcance; exige tiempo para acercarse&Fuera de alcance, huida\\ \hline
+\end{rpgtable}
+
+Acercarse una categoría es una acción. El Narrador puede exigir una tirada para hacerlo bajo presión.
+
+\section*{Ejemplo de combate}
+Kara (Guerrera), Syl (Aventurera) y Venn (Místico) sufren una emboscada de dos saqueadores orcos (Expertos, NO 5 para impactar).
+
+\textbf{Narrador}: «Dos orcos salen de los árboles. Están Cerca y llevan martillos de guerra. ¿Qué hacéis?»
+
+\textbf{Kara}: «Cargo contra el primero con mi martillo». Fuerza Experto (2d6, mayor): saca 3 y 5, conserva 5. NO 5: ¡éxito! Martillo = 3 Heridas. El orco pasa de 4 a 1.
+
+\textbf{Syl}: «Retrocedo hasta A distancia y disparo». Destreza Experto + Puntería (Excepcional, 3d6, mayor): saca 2, 4 y 6, conserva 6. ¡Éxito! Arco = 2 Heridas. Cae el primer orco.
+
+\textbf{Venn}: «¡Muro de llamas para detener al segundo!» Paga 2 de Fatiga (queda en 1 PV, Grave). Prodigio Experto + Canalización (Excepcional, 3d6), pero la penalización Grave (-2 grados) lo reduce a 1d6. Saca 4 contra NO 5: falla. Reacción adversa: las llamas estallan, todos sufren 2 Heridas. Venn cae a -1 PV y sale de escena.
+
+\RPGChapter{Armas y protección}
+El daño depende de la combinación entre Arma y Atributo. Cada arma tiene un Atributo natural: utilizar el otro reduce el daño.
+
+\section*{Tabla de armas}
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Arma}&\rpghead{Con Fuerza}&\rpghead{Con Destreza}&\rpghead{Tipo}\\ \hline
+Daga&1H&2H&Herida\\ \hline
+Espada&2H&2H&Herida\\ \hline
+Martillo de guerra&3H&1H&Herida\\ \hline
+Arco&—&2H&Herida\\ \hline
+Lanza&2H&2H&Herida\\ \hline
+Hacha de combate&2H&1H&Herida\\ \hline
+Maza&2F&1F&Fatiga\\ \hline
+Bastón&1F&1F&Fatiga\\ \hline
+Puños (Lucha)&1F&1F&Fatiga\\ \hline
+\end{rpgtable}
+
+\textbf{H} = Herida (daño letal). \textbf{F} = Fatiga (aturdimiento, daño no letal). Quien llega a cero PV solo por Fatiga se desmaya, pero no corre peligro mortal.
+
+Un \textbf{Crítico} en combate causa \textbf{+1 Herida} además del daño normal del arma.
+
+\section*{Protección}
+La armadura determina el \textbf{NO que el enemigo debe superar para golpearte}. Cada armadura ofrece dos valores: contra ataques de Fuerza y de Destreza.
+
+\begin{rpgtable}{Y|Y|Y|Y}
+\rpghead{Armadura}&\rpghead{NO vs. Fue.}&\rpghead{NO vs. Des.}&\rpghead{Acceso}\\ \hline
+Ninguna&3&3&Todos\\ \hline
+Ligera&3&4&Todas las clases\\ \hline
+Pesada&4&5&Solo Guerrero\\ \hline
+\end{rpgtable}
+
+\textbf{Restricción}: solo el Guerrero puede llevar armadura pesada. Aventureros, Eruditos y Místicos no pueden equiparla independientemente de sus Atributos.
+
+\textbf{Escudo}: cuando te atacan, el NO del enemigo aumenta en 1. Requiere la Habilidad Escudos y una mano libre.
+
+\section*{Objetos notables}
+Algunos objetos tienen nombre y efecto propio: mejorar un grado en una situación concreta o permitir lo que normalmente sería imposible.
+
+\textbf{Hoja de sal} — +1 grado contra criaturas antinaturales.
+
+\textbf{Llave de otro lugar} — abre cualquier cerradura; cada uso atrae atención indeseada.
+
+Son solo ejemplos. El Narrador crea objetos con el mismo patrón: nombre evocador, efecto concreto y, quizá, coste o consecuencia.
+
+\RPGEngravedPanel{Más objetos notables}{assets/panel-12-engraved.png}{\textbf{Corona de mando}: +1 grado en Retórica; quien la lleva no puede mentir.\par\smallskip\textbf{Linterna de los muertos}: revela fantasmas y espíritus invisibles, pero atrae espíritus malévolos.\par\smallskip\textbf{Guantes de forja}: +1 grado en Demolición; tras cada uso se sobrecalientan y causan 1F.}
+\RPGChapter{Heridas y recuperación}
+Los Puntos de Vida forman una \textbf{única reserva} que absorbe el daño del combate y las \textbf{Heridas de Fatiga}: el precio de cada esfuerzo extraordinario, sea lanzar un Grimorio, levantar una roca o correr durante horas.
+
+\section*{Dos tipos de daño, una reserva}
+\textbf{Heridas de combate}: a cero PV, el personaje sale de escena: inconsciente, capturado o tal vez moribundo. La muerte depende de las reglas siguientes y de la narración compartida.
+
+\textbf{Heridas de Fatiga}: si llega a cero PV solo por Fatiga, se desmaya pero no corre peligro mortal. Despierta tras un descanso corto. Fatiga y daño de combate se acumulan: un Místico que gasta 2 PV en conjuros y recibe 1 Herida está en peligro real.
+
+\section*{Estado del personaje}
+\begin{rpgtable}{Y|Y|Y}
+\rpghead{PV restantes}&\rpghead{Estado}&\rpghead{Efecto}\\ \hline
+Todos&Sano&Ninguno\\ \hline
+≤ 2&Malherido&-1 grado a todas las tiradas\\ \hline
+≤ 1&Grave&-2 grados\\ \hline
+0&Fuera de escena&Inconsciente o moribundo\\ \hline
+\end{rpgtable}
+
+\section*{Muerte}
+Un personaje \textbf{muere solo si sus Heridas de combate (H), por sí solas, igualan o superan sus PV máximos}. Si al menos un punto del daño es Fatiga (F), permanece inconsciente pero vivo.
+
+Un personaje caído con H y F puede ser rematado: si recibe más Heridas de combate y el total de H alcanza su máximo, muere. El grupo puede intervenir, pero existe el golpe mortal.
+
+\section*{Condiciones}
+Veneno, fuego, ceguera, miedo y otras condiciones no tienen reglas específicas. El Narrador las trata como \textbf{penalizaciones circunstanciales} (-1 grado) hasta resolverlas. La misma mecánica sirve para todo.
+
+\section*{Recuperación}
+\textbf{Descanso corto} (unas horas en seguridad): recupera 1 Herida.
+
+\textbf{Descanso largo} (una noche completa en seguridad): recupera todas las Heridas y reinicia la Regla de agotamiento.
+
+\textbf{Tratamiento durante la escena}: Habilidad Medicina + éxito = recupera 1 Herida (2 con Crítico).
+
+\RPGEngravedPanel{La espiral de la caída}{assets/panel-13-engraved.png}{Kara tiene 6 PV. Un orco le causa 2H. Luego fuerza la apertura de una puerta: 1F. Queda en 3 PV. Otro golpe del orco causa 2H; baja a 1 PV y sufre -2 grados. Debe elegir: huir o declarar Esfuerzo para un último golpe desesperado. A la última tirada.}
+\RPGChapter{Magia y grimorios}
+Los Grimorios son conjuros concretos que el Místico compra al crear su personaje. Cada uno funciona como una carta de propiedades definidas. La magia nunca es gratuita: cada lanzamiento puede costar Heridas de Fatiga y un fallo desencadena una \textbf{Reacción adversa}, capaz de afectar al Místico, sus aliados o el entorno.
+
+\section*{Estructura de un grimorio}
+\textbf{Nombre} — nombre del conjuro.
+
+\textbf{Habilidad requerida} — Canalización, Rituales, Alquimia, Ocultismo o Percepción arcana.
+
+\textbf{NO} — dificultad de lanzamiento (3–6 o Crítico).
+
+\textbf{Coste} — Heridas de Fatiga pagadas al lanzar. Los conjuros leves pueden costar 0; el único riesgo será la Reacción adversa.
+
+\textbf{Efecto} — lo que ocurre al tener éxito.
+
+\textbf{Reacción adversa} — lo que ocurre al fallar.
+
+\section*{Ejemplos de grimorios}
+\textbf{Muro de llamas} — Canalización, NO 5, Coste 2. \textit{Efecto}: un muro de fuego corta un pasaje o rodea enemigos. \textit{Reacción adversa}: las llamas se descontrolan; todos los presentes sufren 2 Heridas.
+
+\textbf{Toque sanador} — Canalización, NO 3, Coste 1. \textit{Efecto}: cura 2 Heridas a un aliado. \textit{Reacción adversa}: las heridas se transfieren al Místico.
+
+\textbf{Círculo de protección} — Rituales, NO 4, Coste 1. \textit{Efecto}: los enemigos no pueden entrar en un área delimitada durante una escena. \textit{Reacción adversa}: los aliados también quedan atrapados; nadie puede salir.
+
+\textbf{Fuego alquímico} — Alquimia, NO 4, Coste 1. \textit{Efecto}: un frasco explota al impactar, causando 2 Heridas en una zona. \textit{Reacción adversa}: explota en las manos; tú y los personajes Cercanos sufrís 1 Herida.
+
+\textbf{Voz de los muertos} — Ocultismo, NO 5, Coste 2. \textit{Efecto}: interrogar a un espíritu, que responde sinceramente a tres preguntas. \textit{Reacción adversa}: el espíritu se vuelve hostil y posee temporalmente a un compañero.
+
+\textbf{Ojo del vacío} — Percepción arcana, NO 4, Coste 1. \textit{Efecto}: ver a través de paredes e ilusiones durante una escena. \textit{Reacción adversa}: algo del otro lado te ve. Te ha encontrado.
+
+\section*{Crear nuevos grimorios}
+Narrador y jugadores pueden inventar Grimorios con esos seis campos. La única regla es que la Reacción adversa sea específica, concreta y proporcionada al Efecto. Cuanto más poderoso el conjuro, más peligrosa la consecuencia, también para los demás.
+
+\RPGEngravedPanel{Equilibrar un grimorio}{assets/panel-15-engraved.png}{NO 3, Coste 1: efecto modesto y riesgo personal; útil a diario.\par\smallskip NO 5, Coste 2: efecto poderoso, riesgo para todo el grupo. Todos deben decidir si merece la pena.\par\smallskip Crítico, Coste 3: un milagro. Si falla, catástrofe. Solo cuando no quede otra salida.}
+\section*{Magia para las demás clases}
+Cualquier personaje puede comprar Grimorios si tiene al menos Prodigio Competente y la Habilidad requerida. Pero Prodigio cuesta el doble a las clases no Místicas; es posible, aunque muy caro.
+
+\RPGChapter{Avance}
+No hay puntos de experiencia. Al final de cada sesión, el grupo responde tres preguntas:
+
+\textbf{1.} ¿Descubriste algo importante?
+
+\textbf{2.} ¿Tu Rasgo o tu Carga te causaron problemas?
+
+\textbf{3.} ¿Hiciste algo que cambiara la historia?
+
+Cada sí concede \textbf{1 punto de avance}, que se gasta como en la creación: Atributos, Habilidades o Grimorios.
+
+\section*{Declaración y crecimiento en juego}
+Al obtener un punto, \textbf{declara inmediatamente dónde lo inviertes}. Si una mejora cuesta más, compromete los puntos uno a uno. Entre tanto, \textbf{representa activamente ese crecimiento}: entrenar, buscar un maestro, experimentar.
+
+El Narrador puede rechazar un avance que nunca se haya desarrollado en las sesiones. Entre aventuras separadas por meses de tiempo ficticio, el paso del tiempo puede justificarlo.
+
+Además, el jugador puede reescribir su \textbf{Rasgo} si el personaje ha cambiado, o resolver su \textbf{Carga} y elegir una nueva.
+
+\RPGEngravedPanel{Crecer durante el juego}{assets/panel-16-engraved.png}{Sesión 3: Syl declara que quiere Destreza Excepcional (4 puntos) y compromete el primero.\par\smallskip Sesión 5: busca a un maestro arquero del bosque; segundo punto.\par\smallskip Sesión 8: entrena todas las noches en el campamento; tercero.\par\smallskip Sesión 11: afronta una prueba imposible y la supera; cuarto punto. Destreza Excepcional. Se lo ha ganado viviéndolo.}
+\RPGChapter{Enemigos}
+Un enemigo no necesita una ficha completa. Solo cuatro datos:
+
+\textbf{NO} — dos valores (Fuerza / Destreza) que indican lo difícil que es golpearlo, además de su nivel de tirada al atacar.
+
+\textbf{Heridas} — cuántos golpes resiste (1–3 esbirros, 4–6 veteranos, 7+ jefes).
+
+\textbf{Arma} — determina el daño según la tabla de los jugadores.
+
+\textbf{Comportamiento} — una frase que guía sus acciones.
+
+\section*{Ejemplos}
+\textbf{Trasgo}: NO Fue3/Des3, Competente, 2 Heridas, daga (2H Des.). «Ataca en grupo; huye cuando está solo».
+
+\textbf{Saqueador orco}: NO Fue3/Des4, Experto, 4 Heridas, martillo de guerra (3H Fue.), armadura ligera. «Carga contra el más débil».
+
+\textbf{Caballero corrupto}: NO Fue4/Des5, Experto, 6 Heridas, espada (2H), armadura pesada. «Busca un duelo; ignora a los débiles».
+
+\section*{Grupos}
+Los enemigos idénticos actúan como un bloque. Haz una tirada única, pero inflige +1 Herida por miembro adicional al primero (máximo +3). Cada Herida sufrida por el grupo elimina a un miembro.
+
+\section*{Capacidades especiales}
+El Comportamiento puede incluir capacidades especiales descritas en una frase. El Narrador las aplica como condiciones narrativas.
+
+\textbf{Trol del pantano}: NO Fue4/Des3, Experto, 6 Heridas, garras (2H Fue.). «Regenera 1 Herida por turno; el fuego impide regenerarse».
+
+\textbf{Guiverno}: NO Fue4/Des4, Experto, 5 Heridas, mordisco (3H Fue.). «Vuela. El veneno causa 1 Herida de Fatiga adicional por impacto».
+
+\RPGChapter{Esfuerzo}
+\textit{«Sangro para conseguirlo».}
+
+Antes de tirar, el jugador puede declarar \textbf{Esfuerzo}: añade \textbf{+1d6} a la tirada. \textbf{Después} de tirar, sufre \textbf{1 Herida de Fatiga}. Ese dado cuenta tanto para el resultado como para un Crítico.
+
+El Esfuerzo se limita a \textbf{+1d6 por acción}: no se acumula. Como la Herida se aplica después, las penalizaciones del estado (Malherido, Grave) no afectan esa tirada, sino las siguientes.
+
+Un Místico con 3 PV ha gastado 1 en un Grimorio y le quedan 2. Necesita NO 5. Declara Esfuerzo, añade 1d6 y tira con toda su capacidad. Después de tirar, paga 1F y queda en 1 PV (Grave). Si falla y recibe un golpe, saldrá de escena. A la última tirada.
+
+\RPGEngravedPanel{Esfuerzo fuera del combate}{assets/panel-17-engraved.png}{El Erudito debe traducir una inscripción antigua antes de que se derrumbe el templo. Saber Experto, NO 5. Tira 2d6 (mayor): 3 y 4. Falla.\par\smallskip Declara Esfuerzo: 1F, añade 1d6. Ahora son tres dados: 2, 4, 6. ¡Éxito! Pero baja a 2 PV: Malherido. Cuando ceda el suelo, tendrá que correr con las piernas temblorosas.}
+\RPGChapter{Guía para el narrador}
+\textbf{El Número Objetivo es tu herramienta principal.} El NO base es 4: súbelo para lo difícil, bájalo para lo sencillo. No necesitas más.
+
+
+\textbf{El agotamiento crea aventuras.} ¿Falló un Crítico? No se puede insistir por la fuerza: hace falta otro camino. Eso fomenta la creatividad.
+
+
+\textbf{Todo enemigo quiere algo.} El bandido busca oro, no morir. El demonio busca un pacto, no pelear. Los motivos impulsan el combate.
+
+
+\textbf{Pregunta siempre «¿Cómo lo haces?».} La respuesta determina el Atributo y el NO.
+
+
+\textbf{Interpreta el grado de éxito.} Un 6 contra NO 3 no equivale a un 4 contra NO 4: ambos aciertan, pero el primero brilla y el segundo apenas lo logra.
+
+
+\textbf{Las Heridas de Fatiga son una herramienta.} Cualquier acción extrema puede costarlas: levantar rocas, correr durante horas, resistir un veneno. No son exclusivas de la magia.
+
+
+\textbf{La magia es una decisión del grupo.} Una Reacción adversa puede afectar a todos. Deja que discutan antes de lanzar conjuros arriesgados.
+
+
+\textbf{Las interacciones sociales usan las mismas reglas.} Persuadir, mentir, intimidar: Saber + Habilidad contra un NO. No necesitan un sistema aparte. El conflicto social funciona como el físico.
+
+\RPGBackCoverSpanish{LA ÚLTIMA TIRADA}
+\end{document}
