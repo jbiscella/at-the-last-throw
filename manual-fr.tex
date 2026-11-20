@@ -74,7 +74,7 @@ Le Narrateur interprète librement la qualité de la réussite ou de l'échec : 
 
 \needspace{13\baselineskip}
 \section*{Le Critique}
-Si le jet donne \textbf{deux 6 ou davantage}, c'est un \textbf{Critique} : un résultat extraordinaire. Il faut lancer au moins deux dés, ce qui n'est possible qu'au niveau Expert ou supérieur.
+Si le jet donne \textbf{deux 6 ou davantage}, c'est un \textbf{Critique} : un résultat extraordinaire. Un Critique exige au moins deux 6 sur des dés valables pour le Critique. Les dés ajoutés par un désavantage ne comptent pas ; les dés bonus comptent. Sans bonus, seuls les niveaux Expert et Exceptionnel peuvent produire un Critique.
 
 Certaines actions — enfoncer une porte de fer à mains nues, briser un antique enchantement, accomplir un miracle — \textbf{exigent explicitement un Critique}. Seuls les personnages disposant d'une Compétence pertinente peuvent les tenter.
 
@@ -219,7 +219,7 @@ Polyvalent et adaptable. Des PV moyens et un large éventail de Compétences. Il
 Le savoir est un pouvoir. Sa longue liste de Compétences permet de devenir médecin, diplomate, stratège, marchand ou escroc. Au combat, il soutient le groupe avec Médecine, Tactique, Intimidation et Rhétorique.
 
 \section*{Mystique}
-Fragile, mais capable de l'impossible. Ses faibles Points de Vie sont compensés par l'accès aux Grimoires : des sorts qu'aucune autre Classe ne peut normalement employer. Chaque Grimoire est un risque, car un échec magique peut toucher tout le groupe.
+Fragile, mais capable de l'impossible. Ses faibles Points de Vie sont compensés par l'accès aux Grimoires : des sorts que les autres Classes ne peuvent acquérir qu'à grand prix. Chaque Grimoire est un risque, car un échec magique peut toucher tout le groupe.
 
 \section*{Exemples de création}
 \begin{rpgnote}
@@ -362,14 +362,14 @@ Gants de forge — +1 degré en Démolition. Ils surchauffent après chaque usag
 Les Points de Vie forment une réserve unique qui absorbe les dégâts du combat et les Blessures de Fatigue : le coût de tout effort extraordinaire, qu'il s'agisse de lancer un Grimoire, soulever un rocher ou courir des heures.
 
 \section*{Deux types de blessures, une seule réserve}
-\textbf{Blessures de combat} : à zéro PV, le personnage sort de la scène : inconscient, capturé ou potentiellement mourant. La mort ne survient que selon un choix narratif partagé.
+\textbf{Blessures de combat} : à zéro PV, le personnage sort de la scène : inconscient, capturé ou potentiellement mourant. La mort survient lorsque les seules Blessures de combat atteignent les PV maximum, selon les règles ci-dessous.
 
 \textbf{Blessures de Fatigue} : à zéro PV uniquement par Fatigue, il s'évanouit sans être en danger de mort. Il se réveille après un court repos. Fatigue et blessures de combat s'additionnent : un Mystique qui dépense 2 PV en sorts puis reçoit 1 Blessure de combat court un véritable danger.
 
 \section*{État du personnage}
 \begin{rpgtable}{Y|Y|Y}
 \rpghead{PV restants} & \rpghead{État} & \rpghead{Effet} \\ \hline
-Tous & En forme & Aucun \\ \hline
+3+ & En forme & Aucun \\ \hline
 $\leq 2$ & Amoché & $-1$ degré à tous les jets \\ \hline
 $\leq 1$ & Grave & $-2$ degrés \\ \hline
 0 & Hors de scène & Inconscient ou mourant \\ \hline
@@ -390,10 +390,10 @@ Poison, feu, cécité, peur et autres conditions n'ont pas de règles spécifiqu
 
 \textbf{Soins pendant la scène} : Compétence Médecine + réussite = récupération de 1 Blessure (2 sur un Critique).
 
-\RPGEngravedPanel{La spirale de la chute}{assets/panel-13-engraved.png}{Kara dispose de 6 PV. Un orc lui inflige 2B. Puis elle soulève une porte : 1F. Il lui reste 3 PV : elle est amochée ($-1$ degré à tous les jets). L'orc la frappe encore : 2B. Elle tombe à 1 PV, état Grave ($-2$ degrés). Elle doit choisir : fuir, ou déclarer un Effort pour tenter un dernier coup désespéré. Au dernier lancer.}
+\RPGEngravedPanel{La spirale de la chute}{assets/panel-13-engraved.png}{Kara dispose de 6 PV. Un orc lui inflige 2B. Puis elle soulève une porte : 1F. Il lui reste 3 PV : elle est en forme, sans pénalité. L'orc la frappe encore : 2B. Elle tombe à 1 PV, état Grave ($-2$ degrés). Elle doit choisir : fuir, ou déclarer un Effort pour tenter un dernier coup désespéré. Au dernier lancer.}
 
 \RPGChapter{Magie et Grimoires}
-Les Grimoires sont des sorts spécifiques que le Mystique acquiert lors de la création. Chacun possède des propriétés définies, comme une carte. La magie n'est pas gratuite : chaque lancement coûte des Blessures de Fatigue, et tout échec provoque un Contrecoup pouvant toucher le Mystique, ses alliés ou son environnement.
+Les Grimoires sont des sorts spécifiques que le Mystique acquiert lors de la création. Chacun possède des propriétés définies, comme une carte. La magie n'est pas gratuite : lancer un Grimoire peut coûter des Blessures de Fatigue, et tout échec provoque un Contrecoup pouvant toucher le Mystique, ses alliés ou son environnement.
 
 \section*{Structure d'un Grimoire}
 Chaque Grimoire possède six propriétés :

@@ -55,7 +55,7 @@ The Narrator freely interprets the degree of success or failure: a 6 against TN 
 
 \section*{The Critical}
 
-If the roll shows \textbf{two or more 6s}, it is a \textbf{Critical}: an extraordinary result. A Critical requires at least two dice, meaning it is only possible at Expert level or higher.
+If the roll shows \textbf{two or more 6s}, it is a \textbf{Critical}: an extraordinary result. A Critical requires at least two sixes on dice eligible for a Critical. Dice rolled because of a disadvantage do not count toward it; bonus dice do. Without bonuses, only Expert or Exceptional rolls can achieve a Critical.
 
 
 Certain actions — smashing an iron gate barehanded, breaking an ancient enchantment, performing a miracle — \textbf{explicitly require a Critical}. Actions requiring a Critical may only be attempted by those possessing a relevant Skill.
@@ -267,7 +267,7 @@ Knowledge is power. The longest skill list in the game allows building as a medi
 
 \section*{Mystic}
 
-Fragile but capable of the impossible. Few Hit Points, offset by access to Grimoires — spells no other class can use. Every Grimoire is a gamble: failed magic strikes the Mystic and their group.
+Fragile but capable of the impossible. Few Hit Points, offset by access to Grimoires — spells other classes can learn only at great cost. Every Grimoire is a gamble: failed magic strikes the Mystic and their group.
 
 
 \section*{Creation Examples}
@@ -453,7 +453,7 @@ Hit Points form a \textbf{single pool} absorbing both combat damage and \textbf{
 
 \section*{Two Types of Wounds, One Pool}
 
-\textbf{Combat Wounds}: at zero HP, the character is out of scene — unconscious, captured, potentially dying. Death occurs only through shared narrative choice.
+\textbf{Combat Wounds}: at zero HP, the character is out of scene — unconscious, captured, potentially dying. Death occurs when Combat Wounds alone reach the character's maximum HP, as detailed below.
 
 
 \textbf{Fatigue Wounds}: at zero HP from fatigue alone, the character faints but is not in mortal danger. They awaken after a short rest. Fatigue and combat wounds stack: a Mystic who spent 2 HP on spells and takes 1 Combat Wound is in real danger.
@@ -462,8 +462,8 @@ Hit Points form a \textbf{single pool} absorbing both combat damage and \textbf{
 \section*{Character State}
 
 \begin{rpgtable}{Y|Y|Y}
-\rpghead{Wounds Left} & \rpghead{State} & \rpghead{Effect} \\ \hline
-All & Healthy & None \\ \hline
+\rpghead{HP Remaining} & \rpghead{State} & \rpghead{Effect} \\ \hline
+3+ & Healthy & None \\ \hline
 ≤ 2 & Battered & -1 tier to all rolls \\ \hline
 ≤ 1 & Severe & -2 tiers \\ \hline
 0 & Out of scene & Unconscious or dying \\ \hline
@@ -493,11 +493,11 @@ Poison, fire, blindness, fear, and other conditions have no dedicated rules. The
 \textbf{In-scene treatment}: Medicine skill + success = recover 1 Wound (2 on Critical).
 
 
-\RPGEngravedPanel{The spiral of falling}{assets/panel-13-engraved.png}{{Kara has 6 HP. Takes 2W from an orc. Then heaves a gate} {open — 1F. She's at 3 HP: battered, -1 tier to everything. The} {orc hits again: 2W. Down to 1 HP: severe, -2 tiers. She must} {choose: flee, or declare Exertion and attempt one last} {desperate blow. At the last throw.}}
+\RPGEngravedPanel{The spiral of falling}{assets/panel-13-engraved.png}{{Kara has 6 HP. Takes 2W from an orc. Then heaves a gate} {open — 1F. She's at 3 HP: healthy, with no penalty. The} {orc hits again: 2W. Down to 1 HP: severe, -2 tiers. She must} {choose: flee, or declare Exertion and attempt one last} {desperate blow. At the last throw.}}
 
 \RPGChapter{Magic And Grimoires}
 
-Grimoires are specific spells the Mystic purchases at creation. Each works like a card with defined properties. Magic is not free: every casting costs Fatigue Wounds, and failure triggers a Backlash that may strike the Mystic, their allies, or the environment.
+Grimoires are specific spells the Mystic purchases at creation. Each works like a card with defined properties. Magic is not free: casting may cost Fatigue Wounds, and failure triggers a Backlash that may strike the Mystic, their allies, or the environment.
 
 
 \section*{Grimoire Structure}
