@@ -23,7 +23,9 @@
     "copyright": "Rules and adventure: CC BY-SA 4.0",
     "author": "An adventure by Jacopo Biscella",
     "nav": "Navigation",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "download_pdf": "Download the adventure PDF",
+    "pdf_pending": "The adventure PDF has not been published yet."
   },
   "it": {
     "title": "La campana di Focolare Vuoto",
@@ -49,7 +51,9 @@
     "copyright": "Regole e avventura: CC BY-SA 4.0",
     "author": "Un’avventura di Jacopo Biscella",
     "nav": "Navigazione",
-    "skip": "Vai al contenuto"
+    "skip": "Vai al contenuto",
+    "download_pdf": "Scarica l’avventura in PDF",
+    "pdf_pending": "Il PDF dell’avventura non è ancora pubblicato."
   },
   "fr": {
     "title": "La cloche de l’Âtre Creux",
@@ -75,7 +79,9 @@
     "copyright": "Règles et aventure : CC BY-SA 4.0",
     "author": "Une aventure de Jacopo Biscella",
     "nav": "Navigation",
-    "skip": "Aller au contenu"
+    "skip": "Aller au contenu",
+    "download_pdf": "Télécharger l’aventure en PDF",
+    "pdf_pending": "Le PDF de l’aventure n’est pas encore publié."
   },
   "es": {
     "title": "La campana de Hogar Hueco",
@@ -101,7 +107,9 @@
     "copyright": "Reglas y aventura: CC BY-SA 4.0",
     "author": "Una aventura de Jacopo Biscella",
     "nav": "Navegación",
-    "skip": "Saltar al contenido"
+    "skip": "Saltar al contenido",
+    "download_pdf": "Descargar la aventura en PDF",
+    "pdf_pending": "El PDF de la aventura aún no está publicado."
   },
   "de": {
     "title": "Die Glocke von Hohlherd",
@@ -127,7 +135,9 @@
     "copyright": "Regeln und Abenteuer: CC BY-SA 4.0",
     "author": "Ein Abenteuer von Jacopo Biscella",
     "nav": "Navigation",
-    "skip": "Zum Inhalt springen"
+    "skip": "Zum Inhalt springen",
+    "download_pdf": "Abenteuer als PDF herunterladen",
+    "pdf_pending": "Das Abenteuer-PDF ist noch nicht veröffentlicht."
   },
   "uk": {
     "title": "Дзвін Порожнього Вогнища",
@@ -153,6 +163,8 @@
     "copyright": "Правила та пригода: CC BY-SA 4.0",
     "author": "Пригода Якопо Бішелли",
     "nav": "Навігація",
-    "skip": "Перейти до вмісту"
+    "skip": "Перейти до вмісту",
+    "download_pdf": "Завантажити пригоду у PDF",
+    "pdf_pending": "PDF пригоди ще не опубліковано."
   }
 }
