@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ page.lang }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+{% assign ui = site.data.hollow_hearth[page.lang] %}
+<title>{{ page.title | escape }} · {{ ui.game | escape }}</title><meta name="description" content="{{ ui.title | escape }}">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/hollow-hearth.css' | relative_url }}">
+<link rel="icon" href="{{ '/assets/diamond.svg' | relative_url }}" type="image/svg+xml">
+{% assign languages = 'en,it,fr,uk,de,es' | split: ',' %}
+{% for lang in languages %}<link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}/{{ lang }}/adventure/{% if page.section %}read/{{ page.section }}.html{% else %}index.html{% endif %}">{% endfor %}
+</head><body class="lang-{{ page.lang }} hh-body"><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="wordmark" href="{{ '/' | relative_url }}{{ page.lang }}/index.html"><span class="lozenge">✧</span> {{ ui.game }}</a>
+<nav class="desktop-nav" aria-label="Navigation"><a href="{{ '/' | relative_url }}{{ page.lang }}/index.html">{{ ui.home }}</a><a href="{{ '/' | relative_url }}{{ page.lang }}/downloads.html">{{ ui.downloads }}</a><a href="{{ '/' | relative_url }}{{ page.lang }}/read/01.html">{{ ui.rules }}</a><a aria-current="page" href="{{ '/' | relative_url }}{{ page.lang }}/adventure/index.html">{{ ui.adventure }}</a></nav>
+<details class="lang-nav"><summary aria-label="{{ ui.languages }}">{{ page.lang | upcase }} <span aria-hidden="true">⌄</span></summary><div>{% for lang in languages %}<a lang="{{ lang }}" hreflang="{{ lang }}" {% if lang == page.lang %}class="current"{% endif %} href="{{ '/' | relative_url }}{{ lang }}/adventure/{% if page.section %}read/{{ page.section }}.html{% else %}index.html{% endif %}">{{ lang | upcase }}</a>{% endfor %}</div></details>
+<details class="mobile-nav"><summary>{{ ui.adventure }}</summary><div><a href="{{ '/' | relative_url }}{{ page.lang }}/index.html">{{ ui.home }}</a><a href="{{ '/' | relative_url }}{{ page.lang }}/read/01.html">{{ ui.rules }}</a><a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/index.html">{{ ui.adventure }}</a></div></details>
+</div></header>
+<main id="main" class="reader-layout hh-reader">
+<aside class="sidebar"><p class="sidebar-title">{{ ui.contents }}</p><ol>{% assign keys = '01,02,03,04,05' | split: ',' %}{% for key in keys %}{% assign i = forloop.index0 %}<li><a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/read/{{ key }}.html" {% if page.section == key %}aria-current="page"{% endif %}><span>{{ forloop.index }}.</span>{% case key %}{% when '01' %}{{ ui.prepare }}{% when '02' %}{{ ui.village }}{% when '03' %}{{ ui.wood }}{% when '04' %}{{ ui.tower }}{% when '05' %}{{ ui.reference }}{% endcase %}</a></li>{% endfor %}</ol>
+<a class="hh-overview-link" href="{{ '/' | relative_url }}{{ page.lang }}/adventure/index.html">{{ ui.back }}</a></aside>
+<article class="reader-article parchment"><div class="chapter-label">{{ ui.author }}</div>
+{% if page.kind == 'adventure_home' %}<h1>{{ ui.title }}</h1>{% else %}<h1>{{ page.chapter_title }}</h1>{% endif %}
+<div class="engraved-rule"><span>◆</span></div>
+{% if page.kind == 'adventure_home' %}<p class="hh-subtitle">{{ ui.titleline }}</p><img class="hh-hero-engraving" src="{{ '/assets/hollow-hearth/front-overlay.webp' | relative_url }}" alt="" loading="eager"><p class="hh-subtitle">{{ ui.read }}</p><ol class="hh-index">{% for key in keys %}<li><a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/read/{{ key }}.html">{% case key %}{% when '01' %}{{ ui.prepare }}{% when '02' %}{{ ui.village }}{% when '03' %}{{ ui.wood }}{% when '04' %}{{ ui.tower }}{% when '05' %}{{ ui.reference }}{% endcase %}</a></li>{% endfor %}</ol>{% endif %}
+<div class="prose hh-prose">{{ content }}</div>
+{% if page.section %}<nav class="chapter-nav" aria-label="Navigation"><span>{% if page.previous %}<a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/read/{{ page.previous }}.html">← {{ ui.prev }}</a>{% else %}<a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/index.html">← {{ ui.back }}</a>{% endif %}</span><span>{% if page.next %}<a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/read/{{ page.next }}.html">{{ ui.next }} →</a>{% else %}<a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/index.html">{{ ui.back }} →</a>{% endif %}</span></nav>{% endif %}
+</article></main><footer class="site-footer"><div class="footer-frame"><div class="diamond">✧</div><p>{{ ui.author }}</p><p>{{ ui.copyright }}</p><p><a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/index.html">{{ ui.back }}</a> · <a href="{{ '/' | relative_url }}{{ page.lang }}/read/01.html">{{ ui.rules }}</a></p></div></footer>
+</body></html>
