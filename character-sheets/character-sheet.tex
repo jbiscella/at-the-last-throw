@@ -11,11 +11,31 @@
 \newfontfamily\RPGCyrillicFont{FreeSerif}[BoldFont={FreeSerif Bold}]
 \definecolor{sheetink}{HTML}{2D251F}
 \input{locales/\SelectedLanguage.tex}
+% Punctuation before a field; a locale may redefine it (French: no-break space before the colon).
+\providecommand\SheetColon{:}
 \newcommand\Sh[1]{\csname Sheet#1\endcsname}
 \newcommand\SheetNode[5]{\node[anchor=#1,inner sep=0pt,text=sheetink,font=#4] at (#2,#3) {#5};}
 \newcommand\SheetBold[4]{\SheetNode{west}{#1}{#2}{\RPGBodyFont\bfseries\fontsize{#3}{#3}\selectfont}{#4}}
 \newcommand\SheetCenter[4]{\SheetNode{center}{#1}{#2}{\RPGBodyFont\bfseries\fontsize{#3}{#3}\selectfont}{#4}}
 \newcommand\SheetSmall[4]{\SheetNode{west}{#1}{#2}{\RPGBodyFont\fontsize{#3}{#3}\selectfont}{#4}}
+% \SheetFit{anchor}{x}{y}{font}{free width in mm}{text}: shrinks the text proportionally
+% only when it is wider than the free space measured on the background artwork.
+\newsavebox\SheetMeasure
+% The box is built outside the picture: inside it TikZ typesets loose text in \nullfont.
+\newcommand\SheetFit[6]{\pgfinterruptpicture\global\setbox\SheetMeasure\hbox{\color{sheetink}#4#6}%
+  \ifdim\wd\SheetMeasure>#5mm\relax\global\setbox\SheetMeasure\hbox{\resizebox{#5mm}{!}{\box\SheetMeasure}}\fi
+  \endpgfinterruptpicture\node[anchor=#1,inner sep=0pt] at (#2,#3) {\usebox\SheetMeasure};}
+% Tier labels: one common size per language (at most 7 pt), so the four columns match.
+% Label x = checkbox right edge + 1.5 mm; free width ends 1.5 mm before the next box or the frame.
+\newcommand\SheetTierFont{\RPGBodyFont\fontsize{7}{7}\selectfont}
+\def\SheetTierX#1{\ifcase#1\or116.06\or138.58\or162.09\or181.81\fi}
+\def\SheetTierFree#1{\ifcase#1\or15.73\or16.92\or13.14\or15.93\fi}
+\newcommand\SheetComputeTierScale{\gdef\SheetTierScale{1}%
+  \foreach \k in {1,...,4}{\sbox\SheetMeasure{\SheetTierFont\Sh{Tier\k}}%
+    \pgfmathsetmacro\fit{min(\SheetTierScale,\SheetTierFree{\k}*72.27/25.4/\wd\SheetMeasure)}%
+    \xdef\SheetTierScale{\fit}}}
+\newcommand\SheetTiers[1]{\foreach \k in {1,...,4}{\node[anchor=west,inner sep=0pt,text=sheetink] at (\SheetTierX{\k},#1)
+  {\scalebox{\SheetTierScale}{\SheetTierFont\strut\Sh{Tier\k}}};}}% \strut: same box height, same baseline
 \ifdefined\RPGIsUkrainian
 \newcommand\RPGBodyFont{\RPGCyrillicFont}
 \newcommand\RPGTitleFont{\RPGCyrillicFont\bfseries}
@@ -24,6 +44,7 @@
 \newcommand\RPGTitleFont{\RPGCoverTitleFont}
 \fi
 \begin{document}
+\SheetComputeTierScale
 % The illustration owns the entire grid, borders, checkbox geometry, rules and decor.
 % TikZ adds editable words and numerals only.
 \begin{tikzpicture}[remember picture,overlay]\begin{scope}[shift={(current page.north west)},x=1mm,y=-1mm]
@@ -31,53 +52,33 @@
 % Two-line cover cartouche uses EXACT same font as new manual, not generated lettering.
 \node[anchor=center,align=center,inner sep=0pt,text=sheetink,font=\RPGTitleFont\fontsize{24}{27}\selectfont,text width=102mm] at (105,26) {\Sh{TitleFirst}\\\Sh{TitleSecond}};
 % Identity; place label just above rather than printing onto engraved fill-in lines.
-\SheetBold{13}{52.5}{10}{\Sh{Name}:}
-\SheetBold{82}{52.5}{10}{\Sh{Race}:}
-\SheetBold{151}{52.5}{10}{\Sh{Class}:}
+\SheetBold{13}{52.5}{10}{\Sh{Name}\SheetColon}
+\SheetBold{82}{52.5}{10}{\Sh{Race}\SheetColon}
+\SheetBold{151}{52.5}{10}{\Sh{Class}\SheetColon}
 % Character attributes: labels and tiers over baked checkbox grid.
-\SheetCenter{138}{66}{11}{\Sh{Attributes}}
+% Centred between the heading ornaments (free span 121.7--158.2 mm), 1.5 mm clear of each.
+\SheetFit{center}{139.95}{66}{\RPGBodyFont\bfseries\fontsize{11}{11}\selectfont}{33.5}{\Sh{Attributes}}
 \SheetBold{83}{76}{8.4}{\Sh{Attr1}}
-\SheetSmall{116.4}{76}{5.9}{\Sh{Tier1}}
-\SheetSmall{138.2}{76}{5.9}{\Sh{Tier2}}
-\SheetSmall{160.5}{76}{5.9}{\Sh{Tier3}}
-\SheetSmall{180.2}{76}{5.9}{\Sh{Tier4}}
+\SheetTiers{76}
 \SheetBold{83}{85.2}{8.4}{\Sh{Attr2}}
-\SheetSmall{116.4}{85.2}{5.9}{\Sh{Tier1}}
-\SheetSmall{138.2}{85.2}{5.9}{\Sh{Tier2}}
-\SheetSmall{160.5}{85.2}{5.9}{\Sh{Tier3}}
-\SheetSmall{180.2}{85.2}{5.9}{\Sh{Tier4}}
+\SheetTiers{85.2}
 \SheetBold{83}{94.3}{8.4}{\Sh{Attr3}}
-\SheetSmall{116.4}{94.3}{5.9}{\Sh{Tier1}}
-\SheetSmall{138.2}{94.3}{5.9}{\Sh{Tier2}}
-\SheetSmall{160.5}{94.3}{5.9}{\Sh{Tier3}}
-\SheetSmall{180.2}{94.3}{5.9}{\Sh{Tier4}}
+\SheetTiers{94.3}
 \SheetBold{83}{103.6}{8.4}{\Sh{Attr4}}
-\SheetSmall{116.4}{103.6}{5.9}{\Sh{Tier1}}
-\SheetSmall{138.2}{103.6}{5.9}{\Sh{Tier2}}
-\SheetSmall{160.5}{103.6}{5.9}{\Sh{Tier3}}
-\SheetSmall{180.2}{103.6}{5.9}{\Sh{Tier4}}
-\ifdefined\RPGIsUkrainian
-\SheetBold{82}{123}{7.5}{\Sh{Hp}:}
-\else
-\ifdefined\RPGIsSpanish
-\SheetBold{82}{123}{8.25}{\Sh{Hp}:}
-\else
-\ifdefined\RPGIsGerman
-\SheetBold{82}{123}{8.4}{\Sh{Hp}:}
-\else
-\SheetBold{82}{123}{10}{\Sh{Hp}:}
-\fi
-\fi
-\fi
+\SheetTiers{103.6}
+% Free width up to 1.5 mm before the first hit-point box (113.57 mm).
+\SheetFit{west}{82}{123}{\RPGBodyFont\bfseries\fontsize{10}{10}\selectfont}{30.07}{\Sh{Hp}\SheetColon}
 \foreach \n in {1,...,7}{\pgfmathsetmacro\xx{119.5+(\n-1)*11.9}\SheetCenter{\xx}{123}{11}{\n}}
-\SheetSmall{82}{133}{7}{\Sh{WoundLegend}}
-\SheetCenter{105}{143.2}{12}{\Sh{Abilities}}
-\SheetBold{15}{201.5}{11}{\Sh{Trait}:}
-\SheetBold{109}{201.5}{11}{\Sh{Burden}:}
-\SheetBold{15}{225.2}{10}{\Sh{Armour}:}
+% Below the hit-point frame (its bottom rule ends at 132.3 mm; the next frame starts at 136.5 mm).
+\SheetFit{west}{82}{134.4}{\RPGBodyFont\fontsize{7}{7}\selectfont}{117}{\Sh{WoundLegend}}
+% Centred between the heading ornaments (free span 89.1--121.3 mm), 1.5 mm clear of each.
+\SheetFit{center}{105.2}{143.2}{\RPGBodyFont\bfseries\fontsize{12}{12}\selectfont}{29.2}{\Sh{Abilities}}
+\SheetBold{15}{201.5}{11}{\Sh{Trait}\SheetColon}
+\SheetBold{109}{201.5}{11}{\Sh{Burden}\SheetColon}
+\SheetBold{15}{225.2}{10}{\Sh{Armour}\SheetColon}
 \SheetBold{58}{225.2}{10}{\Sh{Advancement}}
-\foreach \y in {229.5,235.6,241.7,247.8}{\SheetSmall{58}{\y}{8}{\Sh{Goal}:}}
-\SheetBold{15}{263.5}{10}{\Sh{Notes}:}
+\foreach \y in {229.5,235.6,241.7,247.8}{\SheetSmall{58}{\y}{8}{\Sh{Goal}\SheetColon}}
+\SheetBold{15}{263.5}{10}{\Sh{Notes}\SheetColon}
 \end{scope}\end{tikzpicture}
 \null
 \end{document}
