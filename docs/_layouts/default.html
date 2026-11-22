@@ -1,1 +1,9 @@
-{{ site.data.chrome[page.chrome_key].before }}{{ content }}{{ site.data.chrome[page.chrome_key].after }}
+{% assign adventure_ui = site.data.hollow_hearth[page.lang] %}
+{% assign adventure_url = '/' | append: page.lang | append: '/adventure/index.html' | relative_url %}
+{% capture adventure_nav_link %}<a href="{{ adventure_url }}">{{ adventure_ui.adventure }}</a>{% endcapture %}
+{% assign chrome_before = site.data.chrome[page.chrome_key].before %}
+{% assign desktop_end = adventure_nav_link | append: '</nav>' %}
+{% assign chrome_before = chrome_before | replace: '</nav>', desktop_end %}
+{% capture mobile_end %}<a href="{{ adventure_url }}">{{ adventure_ui.adventure }}</a></div></details></div></header>{% endcapture %}
+{% assign chrome_before = chrome_before | replace: '</div></details></div></header>', mobile_end %}
+{{ chrome_before }}{{ content }}{{ site.data.chrome[page.chrome_key].after }}
