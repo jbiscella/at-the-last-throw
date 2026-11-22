@@ -25,7 +25,26 @@
     "nav": "Navigation",
     "skip": "Skip to content",
     "download_pdf": "Download the adventure PDF",
-    "pdf_pending": "The adventure PDF has not been published yet."
+    "pdf_pending": "The adventure PDF has not been published yet.",
+    "catalog": {
+      "home": "The game",
+      "rules": "Rules",
+      "adventures": "Adventures",
+      "characters": "Characters",
+      "intro": "Introductory adventure",
+      "intro_short": "A starting adventure for new players and Narrators.",
+      "first": "Start with an adventure",
+      "explore": "Explore the adventure",
+      "browse": "Browse adventures",
+      "characters_empty": "No individual character profiles have been published yet.",
+      "characters_hint": "The blank character sheet is available now; published characters will appear here.",
+      "blank": "Blank character sheet",
+      "download": "Download character sheet",
+      "catalog_lead": "Find an adventure to read or run. Start with the introductory adventure if you are new to the game.",
+      "online": "Read online",
+      "materials": "Downloads"
+    },
+    "intro_label": "Introductory adventure"
   },
   "it": {
     "title": "La campana di Focolare Vuoto",
@@ -53,7 +72,26 @@
     "nav": "Navigazione",
     "skip": "Vai al contenuto",
     "download_pdf": "Scarica l’avventura in PDF",
-    "pdf_pending": "Il PDF dell’avventura non è ancora pubblicato."
+    "pdf_pending": "Il PDF dell’avventura non è ancora pubblicato.",
+    "catalog": {
+      "home": "Il gioco",
+      "rules": "Regole",
+      "adventures": "Avventure",
+      "characters": "Personaggi",
+      "intro": "Avventura introduttiva",
+      "intro_short": "Un punto di partenza per nuovi giocatori e Narratori.",
+      "first": "Inizia con un'avventura",
+      "explore": "Scopri l'avventura",
+      "browse": "Esplora le avventure",
+      "characters_empty": "Non sono ancora stati pubblicati profili di personaggi.",
+      "characters_hint": "La scheda vuota è già disponibile; i personaggi pubblicati appariranno qui.",
+      "blank": "Scheda del personaggio vuota",
+      "download": "Scarica la scheda",
+      "catalog_lead": "Scegli un'avventura da leggere o condurre. Se non conosci il gioco, inizia dall'avventura introduttiva.",
+      "online": "Leggi online",
+      "materials": "Download"
+    },
+    "intro_label": "Avventura introduttiva"
   },
   "fr": {
     "title": "La cloche de l’Âtre Creux",
@@ -81,7 +119,26 @@
     "nav": "Navigation",
     "skip": "Aller au contenu",
     "download_pdf": "Télécharger l’aventure en PDF",
-    "pdf_pending": "Le PDF de l’aventure n’est pas encore publié."
+    "pdf_pending": "Le PDF de l’aventure n’est pas encore publié.",
+    "catalog": {
+      "home": "Le jeu",
+      "rules": "Règles",
+      "adventures": "Aventures",
+      "characters": "Personnages",
+      "intro": "Aventure d’initiation",
+      "intro_short": "Un point de départ pour les nouveaux joueurs et Narrateurs.",
+      "first": "Commencer avec une aventure",
+      "explore": "Découvrir l’aventure",
+      "browse": "Explorer les aventures",
+      "characters_empty": "Aucun profil de personnage n’a encore été publié.",
+      "characters_hint": "La fiche vierge est disponible ; les personnages publiés apparaîtront ici.",
+      "blank": "Fiche de personnage vierge",
+      "download": "Télécharger la fiche",
+      "catalog_lead": "Choisissez une aventure à lire ou à mener. Pour découvrir le jeu, commencez par l’aventure d’initiation.",
+      "online": "Lire en ligne",
+      "materials": "Téléchargements"
+    },
+    "intro_label": "Aventure d’initiation"
   },
   "es": {
     "title": "La campana de Hogar Hueco",
@@ -109,7 +166,26 @@
     "nav": "Navegación",
     "skip": "Saltar al contenido",
     "download_pdf": "Descargar la aventura en PDF",
-    "pdf_pending": "El PDF de la aventura aún no está publicado."
+    "pdf_pending": "El PDF de la aventura aún no está publicado.",
+    "catalog": {
+      "home": "El juego",
+      "rules": "Reglas",
+      "adventures": "Aventuras",
+      "characters": "Personajes",
+      "intro": "Aventura introductoria",
+      "intro_short": "Un punto de partida para nuevos jugadores y narradores.",
+      "first": "Empieza con una aventura",
+      "explore": "Descubre la aventura",
+      "browse": "Explorar aventuras",
+      "characters_empty": "Todavía no se han publicado perfiles de personajes.",
+      "characters_hint": "La ficha en blanco ya está disponible; los personajes publicados aparecerán aquí.",
+      "blank": "Ficha de personaje en blanco",
+      "download": "Descargar ficha",
+      "catalog_lead": "Elige una aventura para leer o dirigir. Si eres nuevo en el juego, empieza con la aventura introductoria.",
+      "online": "Leer en línea",
+      "materials": "Descargas"
+    },
+    "intro_label": "Aventura introductoria"
   },
   "de": {
     "title": "Die Glocke von Hohlherd",
@@ -137,7 +213,26 @@
     "nav": "Navigation",
     "skip": "Zum Inhalt springen",
     "download_pdf": "Abenteuer als PDF herunterladen",
-    "pdf_pending": "Das Abenteuer-PDF ist noch nicht veröffentlicht."
+    "pdf_pending": "Das Abenteuer-PDF ist noch nicht veröffentlicht.",
+    "catalog": {
+      "home": "Das Spiel",
+      "rules": "Regeln",
+      "adventures": "Abenteuer",
+      "characters": "Charaktere",
+      "intro": "Einführungsabenteuer",
+      "intro_short": "Ein Einstieg für neue Spieler und Spielleiter.",
+      "first": "Mit einem Abenteuer beginnen",
+      "explore": "Abenteuer entdecken",
+      "browse": "Abenteuer ansehen",
+      "characters_empty": "Es wurden noch keine einzelnen Charakterprofile veröffentlicht.",
+      "characters_hint": "Ein leerer Charakterbogen ist bereits verfügbar. Veröffentlichte Charaktere erscheinen hier.",
+      "blank": "Leerer Charakterbogen",
+      "download": "Charakterbogen herunterladen",
+      "catalog_lead": "Wähle ein Abenteuer zum Lesen oder Leiten. Für den Einstieg eignet sich das Einführungsabenteuer.",
+      "online": "Online lesen",
+      "materials": "Downloads"
+    },
+    "intro_label": "Einführungsabenteuer"
   },
   "uk": {
     "title": "Дзвін Порожнього Вогнища",
@@ -165,6 +260,25 @@
     "nav": "Навігація",
     "skip": "Перейти до вмісту",
     "download_pdf": "Завантажити пригоду у PDF",
-    "pdf_pending": "PDF пригоди ще не опубліковано."
+    "pdf_pending": "PDF пригоди ще не опубліковано.",
+    "catalog": {
+      "home": "Про гру",
+      "rules": "Правила",
+      "adventures": "Пригоди",
+      "characters": "Персонажі",
+      "intro": "Вступна пригода",
+      "intro_short": "Початок для нових гравців та Оповідачів.",
+      "first": "Почніть із пригоди",
+      "explore": "Переглянути пригоду",
+      "browse": "Переглянути пригоди",
+      "characters_empty": "Профілі окремих персонажів поки не опубліковано.",
+      "characters_hint": "Порожній аркуш персонажа вже доступний. Опубліковані персонажі з’являться тут.",
+      "blank": "Порожній аркуш персонажа",
+      "download": "Завантажити аркуш",
+      "catalog_lead": "Оберіть пригоду, щоб прочитати або провести її. Якщо ви новачок у грі, почніть зі вступної пригоди.",
+      "online": "Читати онлайн",
+      "materials": "Завантаження"
+    },
+    "intro_label": "Вступна пригода"
   }
 }
