@@ -66,7 +66,7 @@ def main():
         print(f"BROKEN: {page} -> {url}")
     if missing or broken:
         raise SystemExit(1)
-    print(f"PASS: Jekyll site builds with all {len(LANGUAGES)} languages, {CHAPTERS_PER_LANGUAGE} rule chapters and {ADVENTURE_SECTIONS} adventure sections each, and valid local links, adventure catalogs.")
+    print(f"PASS: Jekyll site builds with all {len(LANGUAGES)} languages, {CHAPTERS_PER_LANGUAGE} rule chapters and {ADVENTURE_SECTIONS} adventure sections each, with an adventure catalog per language and valid local links.")
 
 if __name__ == "__main__":
     main()
