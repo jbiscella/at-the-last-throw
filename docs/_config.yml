@@ -9,7 +9,7 @@ collections:
     output: true
   adventures:
     output: false
-  characters:
+  pregenerated_sheets:
     output: false
 # A custom exclude list replaces Jekyll's defaults, so the Bundler install
 # directories (setup-ruby installs into vendor/bundle) must be listed explicitly.
