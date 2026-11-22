@@ -34,6 +34,8 @@ def main():
         required.add(root / lang / "index.html")
         required.add(root / lang / "downloads.html")
         required.update(root / lang / "read" / f"{n:02d}.html" for n in range(1, CHAPTERS_PER_LANGUAGE + 1))
+        required.add(root / lang / "adventures" / "index.html")
+        required.add(root / lang / "characters" / "index.html")
         required.add(root / lang / "adventure" / "index.html")
         required.update(root / lang / "adventure" / "read" / f"{n:02d}.html" for n in range(1, ADVENTURE_SECTIONS + 1))
     missing = sorted(str(p.relative_to(root)) for p in required if not p.is_file())
@@ -65,7 +67,7 @@ def main():
         print(f"BROKEN: {page} -> {url}")
     if missing or broken:
         raise SystemExit(1)
-    print(f"PASS: Jekyll site builds with all {len(LANGUAGES)} languages, {CHAPTERS_PER_LANGUAGE} rule chapters and {ADVENTURE_SECTIONS} adventure sections each, and valid local links.")
+    print(f"PASS: Jekyll site builds with all {len(LANGUAGES)} languages, {CHAPTERS_PER_LANGUAGE} rule chapters and {ADVENTURE_SECTIONS} adventure sections each, and valid local links, adventure and character catalogs.")
 
 if __name__ == "__main__":
     main()
