@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ page.lang }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+{% assign ui = site.data.hollow_hearth[page.lang] %}{% assign c = ui.catalog %}
+<title>{{ page.title | escape }} · {{ ui.game | escape }}</title><meta name="description" content="{{ page.title | escape }} · {{ ui.game | escape }}">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/hollow-hearth.css' | relative_url }}">
+<link rel="icon" href="{{ '/assets/diamond.svg' | relative_url }}" type="image/svg+xml"></head>
+<body class="lang-{{ page.lang }} hh-body"><a class="skip" href="#main">{{ ui.skip }}</a>
+<header class="site-header"><div class="header-inner">
+<a class="wordmark" href="{{ '/' | relative_url }}{{ page.lang }}/index.html"><span class="lozenge">✧</span> {{ ui.game }}</a>
+<nav class="desktop-nav" aria-label="{{ ui.nav }}">
+<a href="{{ '/' | relative_url }}{{ page.lang }}/index.html">{{ c.home }}</a>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/read/01.html">{{ c.rules }}</a>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/adventures/index.html" {% if page.kind == 'adventures' %}aria-current="page"{% endif %}>{{ c.adventures }}</a>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/characters/index.html" {% if page.kind == 'characters' %}aria-current="page"{% endif %}>{{ c.characters }}</a></nav>
+{% assign languages = 'en,it,fr,uk,de,es' | split: ',' %}{% assign language_names = 'English,Italiano,Français,Українська,Deutsch,Español' | split: ',' %}
+<details class="lang-nav"><summary aria-label="{{ ui.languages }}">{{ page.lang | upcase }} <span aria-hidden="true">⌄</span></summary><div>
+{% for lang in languages %}<a lang="{{ lang }}" hreflang="{{ lang }}" {% if lang == page.lang %}class="current"{% endif %} href="{{ '/' | relative_url }}{{ lang }}/{{ page.kind }}/index.html">{{ language_names[forloop.index0] }}</a>{% endfor %}
+</div></details>
+<details class="mobile-nav"><summary>{{ ui.nav }}</summary><div>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/index.html">{{ c.home }}</a>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/read/01.html">{{ c.rules }}</a>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/adventures/index.html" {% if page.kind == 'adventures' %}aria-current="page"{% endif %}>{{ c.adventures }}</a>
+<a href="{{ '/' | relative_url }}{{ page.lang }}/characters/index.html" {% if page.kind == 'characters' %}aria-current="page"{% endif %}>{{ c.characters }}</a>
+</div></details></div></header>
+<main id="main" class="content-page hh-catalog">
+<div class="page-heading"><p class="overline">{{ ui.game }}</p><h1>{{ page.title }}</h1><div class="engraved-rule"><span>◆</span></div>
+{% if page.kind == 'adventures' %}<p>{{ c.catalog_lead }}</p>{% endif %}</div>
+{% if page.kind == 'adventures' %}
+{% assign entries = site.adventures | where: 'lang', page.lang | sort: 'order' %}
+<div class="hh-catalog-list">{% for item in entries %}
+<article class="hh-catalog-card parchment">
+{% if item.image_path %}<a class="hh-catalog-art" href="{{ item.landing | relative_url }}"><img src="{{ item.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+<div class="hh-catalog-copy">
+{% if item.category == 'introductory' %}<p class="hh-category">{{ ui.intro_label }}</p>{% endif %}
+<h2><a href="{{ item.landing | relative_url }}">{{ item.title }}</a></h2>
+{% if item.category == 'introductory' %}<p>{{ c.intro_short }}</p>{% endif %}
+<p class="hh-catalog-actions"><a class="ink-button" href="{{ item.landing | relative_url }}">{{ c.explore }}</a>
+{% assign pdf = site.static_files | where: 'path', item.pdf_path | first %}
+{% if pdf %}<a class="subtle-link" href="{{ item.pdf_path | relative_url }}" download>{{ ui.download_pdf }}</a>{% endif %}</p></div></article>{% endfor %}</div>
+{% else %}
+{% assign entries = site.characters | where: 'lang', page.lang | sort: 'order' %}
+{% if entries.size == 0 %}
+<section class="hh-empty parchment"><h2>{{ c.characters_empty }}</h2><p>{{ c.characters_hint }}</p><a class="ink-button" href="{{ '/downloads/character-' | append: page.lang | append: '.pdf' | relative_url }}" download>{{ c.download }}</a></section>
+{% else %}
+<div class="hh-catalog-list">{% for item in entries %}
+<article class="hh-catalog-card parchment">
+{% if item.image_path %}<a class="hh-catalog-art" href="{{ item.landing | relative_url }}"><img src="{{ item.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+<div class="hh-catalog-copy"><h2><a href="{{ item.landing | relative_url }}">{{ item.title }}</a></h2>
+{% if item.summary %}<p>{{ item.summary }}</p>{% endif %}<p><a class="ink-button" href="{{ item.landing | relative_url }}">{{ c.explore }}</a></p></div></article>{% endfor %}</div>
+{% endif %}{% endif %}
+</main><footer class="site-footer"><div class="footer-frame"><p>{{ ui.author }}</p><p>{{ ui.copyright }}</p><p><a href="{{ '/' | relative_url }}{{ page.lang }}/downloads.html">{{ c.materials }}</a> · <a href="{{ '/' | relative_url }}{{ page.lang }}/adventures/index.html">{{ c.adventures }}</a> · <a href="{{ '/' | relative_url }}{{ page.lang }}/characters/index.html">{{ c.characters }}</a></p></div></footer>
+</body></html>
