@@ -10,7 +10,7 @@ permalink: /en/downloads.html
 {% assign adventures = site.adventures | where: 'lang', page.lang | sort: 'order' %}
 {% for item in adventures %}
 {% assign pdf = site.static_files | where: 'path', item.pdf_path | first %}
-<article class="download-card" id="adventure-download">
+<article class="download-card" id="{% if forloop.first %}adventure-download{% else %}adventure-download-{{ item.content_id }}{% endif %}">
 <div class="download-icon" aria-hidden="true">✧</div>
 <div><h2>{{ item.title }}</h2>{% if item.category == 'introductory' %}<p class="overline">{{ u.intro_label }}</p>{% endif %}<p>{{ u.titleline }}</p></div>
 <div><a class="ink-button" href="{{ item.landing | relative_url }}">{{ u.catalog.online }}</a>
