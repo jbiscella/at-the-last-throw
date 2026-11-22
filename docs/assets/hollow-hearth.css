@@ -16,3 +16,6 @@
 
 /* The overview already contains its table of contents: hide the reader sidebar there. */
 .hh-overview{display:block}.hh-overview .sidebar{display:none}.hh-overview .reader-article{width:min(100%,900px);margin:0 auto}
+
+/* center environments from the LaTeX source. */
+.hh-prose .center{text-align:center}
