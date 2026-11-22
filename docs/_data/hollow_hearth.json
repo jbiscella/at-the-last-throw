@@ -21,7 +21,9 @@
     "titleline": "An adventure for “At the Last Throw”",
     "view": "View full-size map",
     "copyright": "Rules and adventure: CC BY-SA 4.0",
-    "author": "An adventure by Jacopo Biscella"
+    "author": "An adventure by Jacopo Biscella",
+    "nav": "Navigation",
+    "skip": "Skip to content"
   },
   "it": {
     "title": "La campana di Focolare Vuoto",
@@ -31,21 +33,23 @@
     "village": "Scena 1 · Il villaggio",
     "wood": "Scena 2 · Il bosco dei sussurri",
     "tower": "Scena 3 · La vecchia torre",
-    "reference": "Riferimento del Narratore",
-    "home": "Home",
-    "rules": "Leggi le regole",
+    "reference": "Promemoria del Narratore",
+    "home": "Presentazione",
+    "rules": "Leggi il manuale",
     "downloads": "Download",
     "adventure": "Avventura",
     "languages": "Lingua",
     "contents": "Indice dell’avventura",
     "next": "Sezione successiva",
     "prev": "Sezione precedente",
-    "back": "Panoramica",
+    "back": "Panoramica dell’avventura",
     "maps": "Mappe",
     "titleline": "Un’avventura per «All’ultimo tiro»",
     "view": "Apri la mappa a dimensione piena",
     "copyright": "Regole e avventura: CC BY-SA 4.0",
-    "author": "Un’avventura di Jacopo Biscella"
+    "author": "Un’avventura di Jacopo Biscella",
+    "nav": "Navigazione",
+    "skip": "Vai al contenuto"
   },
   "fr": {
     "title": "La cloche de l’Âtre Creux",
@@ -54,9 +58,9 @@
     "prepare": "Préparer la séance",
     "village": "Scène 1 · Le village",
     "wood": "Scène 2 · Le bois des murmures",
-    "tower": "Scène 3 · La vieille tour",
+    "tower": "Scène 3 · La vieille tour de guet",
     "reference": "Aide-mémoire du Narrateur",
-    "home": "Accueil",
+    "home": "Présentation",
     "rules": "Lire les règles",
     "downloads": "Téléchargements",
     "adventure": "Aventure",
@@ -64,12 +68,14 @@
     "contents": "Sommaire de l’aventure",
     "next": "Section suivante",
     "prev": "Section précédente",
-    "back": "Présentation",
+    "back": "Présentation de l’aventure",
     "maps": "Cartes",
-    "titleline": "Une aventure pour «Au dernier lancer»",
+    "titleline": "Une aventure pour « Au dernier lancer »",
     "view": "Agrandir la carte",
-    "copyright": "Règles et aventure : CC BY-SA 4.0",
-    "author": "Une aventure de Jacopo Biscella"
+    "copyright": "Règles et aventure : CC BY-SA 4.0",
+    "author": "Une aventure de Jacopo Biscella",
+    "nav": "Navigation",
+    "skip": "Aller au contenu"
   },
   "es": {
     "title": "La campana de Hogar Hueco",
@@ -80,7 +86,7 @@
     "wood": "Escena 2 · El bosque susurrante",
     "tower": "Escena 3 · La antigua atalaya",
     "reference": "Referencia del Narrador",
-    "home": "Inicio",
+    "home": "El juego",
     "rules": "Leer las reglas",
     "downloads": "Descargas",
     "adventure": "Aventura",
@@ -88,12 +94,14 @@
     "contents": "Índice de la aventura",
     "next": "Siguiente sección",
     "prev": "Sección anterior",
-    "back": "Introducción",
+    "back": "Presentación de la aventura",
     "maps": "Mapas",
     "titleline": "Una aventura para «La última tirada»",
     "view": "Abrir mapa a tamaño completo",
     "copyright": "Reglas y aventura: CC BY-SA 4.0",
-    "author": "Una aventura de Jacopo Biscella"
+    "author": "Una aventura de Jacopo Biscella",
+    "nav": "Navegación",
+    "skip": "Saltar al contenido"
   },
   "de": {
     "title": "Die Glocke von Hohlherd",
@@ -103,8 +111,8 @@
     "village": "Szene 1 · Das Dorf",
     "wood": "Szene 2 · Der Flüsterwald",
     "tower": "Szene 3 · Der alte Wachturm",
-    "reference": "Schnellreferenz",
-    "home": "Start",
+    "reference": "Erzählerreferenz",
+    "home": "Das Spiel",
     "rules": "Regeln lesen",
     "downloads": "Downloads",
     "adventure": "Abenteuer",
@@ -112,12 +120,14 @@
     "contents": "Abenteuerübersicht",
     "next": "Nächster Abschnitt",
     "prev": "Vorheriger Abschnitt",
-    "back": "Überblick",
+    "back": "Abenteuerüberblick",
     "maps": "Karten",
-    "titleline": "Ein Abenteuer für „Der letzte Wurf“",
+    "titleline": "Ein Abenteuer für »Der letzte Wurf«",
     "view": "Karte in voller Größe öffnen",
     "copyright": "Regeln und Abenteuer: CC BY-SA 4.0",
-    "author": "Ein Abenteuer von Jacopo Biscella"
+    "author": "Ein Abenteuer von Jacopo Biscella",
+    "nav": "Navigation",
+    "skip": "Zum Inhalt springen"
   },
   "uk": {
     "title": "Дзвін Порожнього Вогнища",
@@ -128,7 +138,7 @@
     "wood": "Сцена 2 · Шепітний ліс",
     "tower": "Сцена 3 · Стара сторожова вежа",
     "reference": "Пам’ятка Оповідача",
-    "home": "Головна",
+    "home": "Про гру",
     "rules": "Читати правила",
     "downloads": "Завантаження",
     "adventure": "Пригода",
@@ -138,9 +148,11 @@
     "prev": "Попередній розділ",
     "back": "Огляд пригоди",
     "maps": "Мапи",
-    "titleline": "Пригода для «Останній кидок»",
+    "titleline": "Пригода для «Останнього кидка»",
     "view": "Відкрити мапу повністю",
     "copyright": "Правила та пригода: CC BY-SA 4.0",
-    "author": "Пригода Якопо Бішелли"
+    "author": "Пригода Якопо Бішелли",
+    "nav": "Навігація",
+    "skip": "Перейти до вмісту"
   }
 }
