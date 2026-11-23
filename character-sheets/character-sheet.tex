@@ -14,17 +14,38 @@
 % Punctuation before a field; a locale may redefine it (French: no-break space before the colon).
 \providecommand\SheetColon{:}
 \newcommand\Sh[1]{\csname Sheet#1\endcsname}
-\newcommand\SheetNode[5]{\node[anchor=#1,inner sep=0pt,text=sheetink,font=#4] at (#2,#3) {#5};}
-\newcommand\SheetBold[4]{\SheetNode{west}{#1}{#2}{\RPGBodyBold\fontsize{#3}{#3}\selectfont}{#4}}
-\newcommand\SheetCenter[4]{\SheetNode{center}{#1}{#2}{\RPGBodyBold\fontsize{#3}{#3}\selectfont}{#4}}
-\newcommand\SheetSmall[4]{\SheetNode{west}{#1}{#2}{\RPGBodyFont\fontsize{#3}{#3}\selectfont}{#4}}
-% \SheetFit{anchor}{x}{y}{font}{free width in mm}{text}: shrinks the text proportionally
-% only when it is wider than the free space measured on the background artwork.
 \newsavebox\SheetMeasure
-% The box is built outside the picture: inside it TikZ typesets loose text in \nullfont.
+\newsavebox\SheetCapBox
+\newlength\SheetCapShift
+% Labels sit on their baseline, placed half a cap height below the given y, so every word in a
+% row shares one baseline. (Centring the box instead moves words with accents or descenders.)
+% The boxes are built outside the picture: inside it TikZ typesets loose text in \nullfont.
+\newcommand\SheetSetCapShift[1]{\pgfinterruptpicture\global\setbox\SheetCapBox\hbox{#1H}%
+  \global\SheetCapShift=.5\ht\SheetCapBox\endpgfinterruptpicture}
+\newcommand\SheetBaseNode[4]{\SheetSetCapShift{#3}%
+  \node[anchor=base west,inner sep=0pt,text=sheetink,font=#3,yshift=-\SheetCapShift] at (#1,#2) {#4};}
+\newcommand\SheetBold[4]{\SheetBaseNode{#1}{#2}{\RPGBodyBold\fontsize{#3}{#3}\selectfont}{#4}}
+\newcommand\SheetSmall[4]{\SheetBaseNode{#1}{#2}{\RPGBodyFont\fontsize{#3}{#3}\selectfont}{#4}}
+% Numerals in the hit-point boxes stay optically centred on their box.
+\newcommand\SheetCenter[4]{\node[anchor=center,inner sep=0pt,text=sheetink,font=\RPGBodyBold\fontsize{#3}{#3}\selectfont] at (#1,#2) {#4};}
+% \SheetFit{base anchor}{x}{y}{font}{free width in mm}{text}: shrinks the text proportionally
+% only when it is wider than the free space measured on the background artwork.
 \newcommand\SheetFit[6]{\pgfinterruptpicture\global\setbox\SheetMeasure\hbox{\color{sheetink}#4#6}%
-  \ifdim\wd\SheetMeasure>#5mm\relax\global\setbox\SheetMeasure\hbox{\resizebox{#5mm}{!}{\box\SheetMeasure}}\fi
-  \endpgfinterruptpicture\node[anchor=#1,inner sep=0pt] at (#2,#3) {\usebox\SheetMeasure};}
+  \global\setbox\SheetCapBox\hbox{#4H}\global\SheetCapShift=.5\ht\SheetCapBox
+  \ifdim\wd\SheetMeasure>#5mm\relax
+    \pgfmathsetmacro\SheetFitRatio{#5*72.27/25.4/\wd\SheetMeasure}%
+    \global\SheetCapShift=\SheetFitRatio\SheetCapShift
+    \global\setbox\SheetMeasure\hbox{\resizebox{#5mm}{!}{\box\SheetMeasure}}\fi
+  \endpgfinterruptpicture\node[anchor=#1,inner sep=0pt,yshift=-\SheetCapShift] at (#2,#3) {\usebox\SheetMeasure};}
+% Both section headings share one size per language: at most 12 pt, shrunk together only when
+% either heading would be wider than its free span between the ornaments.
+\newcommand\SheetComputeHeadingSize{%
+  \sbox\SheetMeasure{\RPGBodyBold\fontsize{12}{12}\selectfont\Sh{Attributes}}%
+  \pgfmathsetmacro\SheetHeadA{33.5/25.4*72.27/\wd\SheetMeasure*12}%
+  \sbox\SheetMeasure{\RPGBodyBold\fontsize{12}{12}\selectfont\Sh{Abilities}}%
+  \pgfmathsetmacro\SheetHeadB{29.2/25.4*72.27/\wd\SheetMeasure*12}%
+  \pgfmathsetmacro\SheetHeadC{min(12,\SheetHeadA,\SheetHeadB)}\xdef\SheetHeadingSize{\SheetHeadC}}
+\newcommand\SheetHeadingFont{\RPGBodyBold\fontsize{\SheetHeadingSize}{\SheetHeadingSize}\selectfont}
 % Tier labels: one common size per language (at most 7 pt), so the four columns match.
 % Label x = checkbox right edge + 1.5 mm; free width ends 1.5 mm before the next box or the frame.
 \newcommand\SheetTierFont{\RPGBodyFont\fontsize{7}{7}\selectfont}
@@ -34,8 +55,10 @@
   \foreach \k in {1,...,4}{\sbox\SheetMeasure{\SheetTierFont\Sh{Tier\k}}%
     \pgfmathsetmacro\fit{min(\SheetTierScale,\SheetTierFree{\k}*72.27/25.4/\wd\SheetMeasure)}%
     \xdef\SheetTierScale{\fit}}}
-\newcommand\SheetTiers[1]{\foreach \k in {1,...,4}{\node[anchor=west,inner sep=0pt,text=sheetink] at (\SheetTierX{\k},#1)
-  {\scalebox{\SheetTierScale}{\SheetTierFont\strut\Sh{Tier\k}}};}}% \strut: same box height, same baseline
+% Tier labels share the baseline of the attribute name in the same row (8.4 pt label font).
+\newcommand\SheetTiers[1]{\SheetSetCapShift{\RPGBodyBold\fontsize{8.4}{8.4}\selectfont}%
+  \foreach \k in {1,...,4}{\node[anchor=base west,inner sep=0pt,text=sheetink,yshift=-\SheetCapShift] at (\SheetTierX{\k},#1)
+  {\scalebox{\SheetTierScale}{\SheetTierFont\Sh{Tier\k}}};}}
 % IM Fell English has no bold, so Latin labels use its regular weight (as they already did through
 % font substitution); only the Cyrillic fallback has a real bold. build.sh rejects missing font shapes.
 \ifdefined\RPGIsUkrainian
@@ -49,6 +72,7 @@
 \fi
 \begin{document}
 \SheetComputeTierScale
+\SheetComputeHeadingSize
 % The illustration owns the entire grid, borders, checkbox geometry, rules and decor.
 % TikZ adds editable words and numerals only.
 \begin{tikzpicture}[remember picture,overlay]\begin{scope}[shift={(current page.north west)},x=1mm,y=-1mm]
@@ -64,7 +88,7 @@
 \SheetBold{151}{52.5}{10}{\Sh{Class}\SheetColon}
 % Character attributes: labels and tiers over baked checkbox grid.
 % Centred between the heading ornaments (free span 121.7--158.2 mm), 1.5 mm clear of each.
-\SheetFit{center}{139.95}{66}{\RPGBodyBold\fontsize{11}{11}\selectfont}{33.5}{\Sh{Attributes}}
+\SheetFit{base}{139.95}{66}{\SheetHeadingFont}{33.5}{\Sh{Attributes}}
 \SheetBold{83}{76}{8.4}{\Sh{Attr1}}
 \SheetTiers{76}
 \SheetBold{83}{85.2}{8.4}{\Sh{Attr2}}
@@ -74,17 +98,17 @@
 \SheetBold{83}{103.6}{8.4}{\Sh{Attr4}}
 \SheetTiers{103.6}
 % Free width up to 1.5 mm before the first hit-point box (113.57 mm).
-\SheetFit{west}{82}{123}{\RPGBodyBold\fontsize{10}{10}\selectfont}{30.07}{\Sh{Hp}\SheetColon}
+\SheetFit{base west}{82}{123}{\RPGBodyBold\fontsize{10}{10}\selectfont}{30.07}{\Sh{Hp}\SheetColon}
 \foreach \n in {1,...,7}{\pgfmathsetmacro\xx{119.5+(\n-1)*11.9}\SheetCenter{\xx}{123}{11}{\n}}
 % Below the hit-point frame (its bottom rule ends at 132.3 mm; the next frame starts at 136.5 mm).
-\SheetFit{west}{82}{134.4}{\RPGBodyFont\fontsize{7}{7}\selectfont}{117}{\Sh{WoundLegend}}
+\SheetFit{base west}{82}{134.4}{\RPGBodyFont\fontsize{7}{7}\selectfont}{117}{\Sh{WoundLegend}}
 % Centred between the heading ornaments (free span 89.1--121.3 mm), 1.5 mm clear of each.
-\SheetFit{center}{105.2}{143.2}{\RPGBodyBold\fontsize{12}{12}\selectfont}{29.2}{\Sh{Abilities}}
+\SheetFit{base}{105.2}{143.2}{\SheetHeadingFont}{29.2}{\Sh{Abilities}}
 \SheetBold{15}{201.5}{11}{\Sh{Trait}\SheetColon}
 \SheetBold{109}{201.5}{11}{\Sh{Burden}\SheetColon}
 \SheetBold{15}{225.2}{10}{\Sh{Armour}\SheetColon}
 \SheetBold{58}{225.2}{10}{\Sh{Advancement}}
-\foreach \y in {229.5,235.6,241.7,247.8}{\SheetSmall{58}{\y}{8}{\Sh{Goal}\SheetColon}}
+\foreach \y in {229.1,235.2,241.3,247.4}{\SheetSmall{58}{\y}{8}{\Sh{Goal}\SheetColon}}
 \SheetBold{15}{263.5}{10}{\Sh{Notes}\SheetColon}
 \end{scope}\end{tikzpicture}
 \null
