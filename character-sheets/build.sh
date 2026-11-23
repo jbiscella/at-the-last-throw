@@ -7,6 +7,16 @@ if command -v magick >/dev/null 2>&1; then IM=magick; else IM=convert; fi
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 
+# run_xelatex LOG ARGS...: runs XeLaTeX quietly; on failure shows the TeX error from LOG and stops.
+run_xelatex() {
+  local log=$1; shift
+  if ! xelatex "$@" >"$log" 2>&1; then
+    echo "XeLaTeX failed (full log: $log):" >&2
+    grep -A3 '^!' "$log" | head -n 12 >&2 || tail -n 20 "$log" >&2
+    exit 1
+  fi
+}
+
 # check JOB PAGES [SOURCE [DEFINITIONS]]: builds SOURCE.tex (default JOB.tex) as JOB.pdf after the
 # TeX DEFINITIONS, rejects typesetting problems and checks the page count,
 # then typesets the words without the artwork and counts, page by page, the text pixels that
@@ -14,18 +24,20 @@ trap 'rm -rf "$work"' EXIT
 check() {
   local source=$1 pages=$2 input=${3:-$1} defs=${4:-}
   for pass in 1 2; do
-    xelatex -interaction=nonstopmode -halt-on-error -jobname="${source}" "${defs}\\input{${input}.tex}" \
-      >"build-${source}.log" 2>&1
+    run_xelatex "build-${source}.log" -interaction=nonstopmode -halt-on-error -jobname="${source}" "${defs}\\input{${input}.tex}"
   done
   if grep -E 'Overfull \\hbox|Missing character:|Font shape .* undefined' "build-${source}.log"; then
     echo "Review typesetting of ${source}" >&2
     exit 1
   fi
-  pdfinfo "${source}.pdf" | grep -q "Pages: *${pages}\$"
+  if ! pdfinfo "${source}.pdf" | grep -q "Pages: *${pages}\$"; then
+    echo "${source}: expected ${pages} page(s)" >&2
+    exit 1
+  fi
 
   for pass in 1 2; do
-    xelatex -interaction=nonstopmode -halt-on-error -output-directory="$work" -jobname="text-${source}" \
-      "${defs}\\def\\SheetTextOnly{1}\\input{${input}.tex}" >"$work/text-${source}.log" 2>&1
+    run_xelatex "$work/text-${source}.log" -interaction=nonstopmode -halt-on-error -output-directory="$work" \
+      -jobname="text-${source}" "${defs}\\def\\SheetTextOnly{1}\\input{${input}.tex}"
   done
   for page in $(seq 1 "$pages"); do
     pdftoppm -r 200 -gray -png -singlefile -f "$page" -l "$page" "$work/text-${source}.pdf" "$work/text-${source}"
