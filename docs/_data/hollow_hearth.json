@@ -38,7 +38,7 @@
       "online": "Read online",
       "materials": "Downloads",
       "pregenerated_title": "Pregenerated characters",
-      "pregenerated_download": "Download pregenerated character sheet"
+      "pregenerated_download": "Download the pregenerated character sheets"
     },
     "intro_label": "Introductory adventure"
   },
@@ -81,7 +81,7 @@
       "online": "Leggi online",
       "materials": "Download",
       "pregenerated_title": "Personaggi pregenerati",
-      "pregenerated_download": "Scarica la scheda pregenerata"
+      "pregenerated_download": "Scarica le schede pregenerate"
     },
     "intro_label": "Avventura introduttiva"
   },
@@ -124,7 +124,7 @@
       "online": "Lire en ligne",
       "materials": "Téléchargements",
       "pregenerated_title": "Personnages prétirés",
-      "pregenerated_download": "Télécharger la fiche prétirée"
+      "pregenerated_download": "Télécharger les fiches prétirées"
     },
     "intro_label": "Aventure d’initiation"
   },
@@ -167,7 +167,7 @@
       "online": "Leer en línea",
       "materials": "Descargas",
       "pregenerated_title": "Personajes pregenerados",
-      "pregenerated_download": "Descargar ficha pregenerada"
+      "pregenerated_download": "Descargar las fichas pregeneradas"
     },
     "intro_label": "Aventura introductoria"
   },
@@ -210,7 +210,7 @@
       "online": "Online lesen",
       "materials": "Downloads",
       "pregenerated_title": "Vorgefertigte Charaktere",
-      "pregenerated_download": "Vorgefertigten Charakterbogen herunterladen"
+      "pregenerated_download": "Vorgefertigte Charakterbögen herunterladen"
     },
     "intro_label": "Einführungsabenteuer"
   },
@@ -253,7 +253,7 @@
       "online": "Читати онлайн",
       "materials": "Завантаження",
       "pregenerated_title": "Готові персонажі",
-      "pregenerated_download": "Завантажити аркуш готового персонажа"
+      "pregenerated_download": "Завантажити аркуші готових персонажів"
     },
     "intro_label": "Вступна пригода"
   }

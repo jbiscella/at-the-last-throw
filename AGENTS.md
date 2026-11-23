@@ -48,6 +48,10 @@ character sheets or the site.
 - **Fitting text:** use `\SheetFit` instead of per-language font-size branches.
 - **Font limits:** IM Fell English has no bold and no Cyrillic; Cinzel Decorative has no Cyrillic.
 - **Build checks:** `build.sh` fails on font substitutions and on any text pixel that touches an engraved line. Do not weaken these checks to get a pass.
+- **Pregenerated sheets:** `hollow-hearth-pregens-<lang>.tex` fill the same template with the data in `pregens/hollow-hearth-<lang>.tex` (portraits in `assets/hollow-hearth/pregens/`); `build.sh` builds and checks them page by page.
+  - Every build must follow the creation rules in `manual.tex`: 10 points, the class HP range, skills only in Attributes at Competent or better, weapon damage, armour access and Grimoire fields.
+  - Each translation mirrors the English data file and takes its terms from that language's manual.
+  - Publish them as `docs/downloads/hollow-hearth-pregens-<lang>.pdf`, listed in `docs/_pregenerated_sheets/`.
 
 ## Before claiming something is done
 - **Site:** run the Jekyll build, then `python3 scripts/check-jekyll-site.py --built <site>`.
