@@ -109,8 +109,8 @@ class Converter:
         return html.unescape(re.sub(r"<[^>]+>", "", html_text)).strip()
 
     def graphics(self, s):
-        """\\includegraphics{assets/x.png} followed by its caption group(s)."""
-        pat = re.compile(r"\\includegraphics(\[[^\]]*\])?\{assets/(?:[\w-]+/)?([\w-]+)\.png\}")
+        """\\includegraphics{assets/x.png} (or the .jpg print copy) followed by its caption group(s)."""
+        pat = re.compile(r"\\includegraphics(\[[^\]]*\])?\{assets/(?:[\w-]+/)?([\w-]+)\.(?:png|jpg)\}")
         out, i = [], 0
         while True:
             m = pat.search(s, i)
@@ -136,7 +136,8 @@ class Converter:
                     break
             caps_html = [self.inline(c) for c in caps]
             caption = " — ".join(c for c in caps_html if c)
-            alt = " — ".join(self.text_of(c) for c in caps_html) or name
+            # A layout command after the caption (\vspace, removed by clean()) leaves an empty group.
+            alt = " — ".join(t for t in (self.text_of(c) for c in caps_html) if t) or name
             out.append(s[i:m.start()])
             out.append(self.block(self.figure(name, caption, alt)))
             i = j
@@ -189,6 +190,8 @@ class Converter:
                         self.text_of(self.inline(t)) + " — " + self.text_of(self.inline(c)))))
         s = replace_macro(s, "HHInlineFigure", 3, lambda n, w, c: self.block(
             self.figure(n, self.inline(c), self.text_of(self.inline(c)))))
+        s = replace_macro(s, "HHSceneArt", 2, lambda n, c: self.block(
+            self.figure(n, self.inline(c), self.text_of(self.inline(c)) or n)))
         s = self.notes(s)
         s = self.graphics(s)
         s = self.tables(s)

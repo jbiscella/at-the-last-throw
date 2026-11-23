@@ -9,12 +9,13 @@
 \usepackage{needspace}
 \usepackage{titlesec}
 \babelprovide[import]{ngerman}
-\selectlanguage{ngerman}
 \titleformat{\subsection}{\normalfont\Large\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{12pt plus 2pt}{5pt}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+% Stat boxes never start in the last lines of a page, where they would split after their title.
+\BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\needspace{4\baselineskip}}{}{}
 \setcounter{tocdepth}{1}
@@ -24,17 +25,20 @@
 \interlinepenalty=0
 \emergencystretch=1.2em
 \newcommand{\HHInlineFigure}[3]{%
-  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.png}%
+  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
   \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#3\par}\end{center}}
+% Scene-opening illustrations float: here when they fit, otherwise at the foot of the next page.
+% They never narrow a read-aloud box or leave a gap at the bottom of a page.
+\newcommand{\HHSceneArt}[2]{%
+  \begin{figure}[!hb]\centering\includegraphics[width=.62\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
+  \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#2\par}\end{figure}}
+% Full-page maps float to the next free page instead of ending the current page early.
 \newcommand{\HHSceneMap}[3]{%
-  \clearpage\thispagestyle{rpg}%
-  \vspace*{5mm}%
-  \begin{center}
+  \begin{figure}[p]\centering
     {\Large\bfseries\color{rpgbrown}#2\par}\vspace{6mm}%
-    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.png}\par\vspace{4mm}%
+    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}\par\vspace{4mm}%
     {\small\itshape\color{rpgbrown}#3\par}%
-  \end{center}%
-  \clearpage}
+  \end{figure}}
 \newcommand{\HHContents}{%
   \clearpage\thispagestyle{rpg}
   \vspace*{10mm}\begin{center}{\fontsize{27}{31}\selectfont\bfseries INHALT\par}\vspace{9pt}
@@ -112,6 +116,8 @@
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
  \end{tikzpicture}\clearpage\RPGCoverPagefalse}
 \begin{document}
+% Select the language here: babel resets to its main language (english) at \begin{document}.
+\selectlanguage{ngerman}
 \RPGStartFrontMatter
 \HHFrontCover
 \HHContents
@@ -160,7 +166,7 @@ Gehört ein Mystiker zur Gruppe, wird in Szene 3 wahrscheinlich auch sein erster
 
 \par\needspace{65mm}\subsection{Die Ausgangslage}\label{die-ausgangslage}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.png}\par{\scriptsize\itshape\color{rpgbrown}Die gestohlene Glocke, in Wachstuch gewickelt}\vspace{-5pt}\end{wrapfigure}
+\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.jpg}\par{\scriptsize\itshape\color{rpgbrown}Die gestohlene Glocke, in Wachstuch gewickelt}\vspace{-5pt}\end{wrapfigure}
 
 Vor sieben Generationen segnete ein wandernder Mystiker namens \textbf{Veyl Ashen} eine Bronzeglocke, gegossen in der Schmiede einer kleinen Siedlung dort, wo die Königsstraße endet und der alte Wald beginnt. Die Siedlung erhielt den Namen \textbf{Hohlherd}. Die Glocke, die bei jeder Abenddämmerung geläutet wurde, hielt das \textbf{Hohle Volk} -- blasse, rindenhäutige Wesen, die zwischen den Bäumen hervor flüstern -- unten bei den Wurzeln, wo es hingehört.
 
@@ -176,7 +182,7 @@ Das ist die Frist. Wenn in jener Nacht der Mond untergegangen ist und in der Dä
 
 \subsection{Der Einstieg}\label{der-einstieg}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/village.png}\par{\scriptsize\itshape\color{rpgbrown}Hohlherd in der Dämmerung: das leere Podest}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{village}{Hohlherd in der Dämmerung: das leere Podest}
 
 Passe die Ankunft an die Merkmale und Bürden an, die deine Spieler aufgeschrieben haben. Ein paar schnelle Anregungen:
 
@@ -287,7 +293,7 @@ Wenn ein Spieler erklärt: \emph{»Ich will wissen, ob sie lügt«}, frage ihn, 
 
 \RPGChapter{Szene 2 — Der Flüsterwald}\label{szene-2-der-fluxfcsterwald}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/hollow.png}\par{\scriptsize\itshape\color{rpgbrown}Ein Beobachter zwischen den Bäumen}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{hollow}{Ein Beobachter zwischen den Bäumen}
 
 \textbf{Regelschwerpunkt:} Hilfe, Entfernungsstufen, Zustände als $-1$ Stufe.
 
@@ -355,7 +361,7 @@ Kommt die Sitzung schnell voran und scheint die Gruppe noch zu wenig gefordert, 
 
 \RPGChapter{Szene 3 — Der alte Wachturm}\label{szene-3-der-alte-wachturm}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/tower.png}\par{\scriptsize\itshape\color{rpgbrown}Der alte Wachturm in der Dämmerung}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{tower}{Der alte Wachturm in der Dämmerung}
 
 \textbf{Regelschwerpunkt:} Kampf als Gespräch, Wunden und Ermüdung, kritischer Erfolg, Rückschlag, \textbf{Verausgabung}.
 
@@ -385,12 +391,12 @@ Die Glocke, Sir Corwin und die entscheidende Konfrontation befinden sich alle im
 \par\medskip\noindent
 \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.028\linewidth}}p{.345\linewidth}@{}}
 \centering\vspace{0pt}
-\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.png}\par\vspace{2pt}
+\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Alter Wachturm: Obergeschoss\par}
 {\scriptsize Treppe im Norden; offene Westseite; Südfenster, Glocke und Kohlebecken auf der intakten Ostseite.\par}
 &
 \centering\vspace{0pt}
-\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.png}\par\vspace{2pt}
+\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Sir Corwin Vask\par}
 \end{tabular}
 \par\medskip

@@ -9,12 +9,13 @@
 \usepackage{needspace}
 \usepackage{titlesec}
 \babelprovide[import]{spanish}
-\selectlanguage{spanish}
 \titleformat{\subsection}{\normalfont\Large\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{12pt plus 2pt}{5pt}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+% Stat boxes never start in the last lines of a page, where they would split after their title.
+\BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\needspace{4\baselineskip}}{}{}
 \setcounter{tocdepth}{1}
@@ -24,17 +25,20 @@
 \interlinepenalty=0
 \emergencystretch=1.2em
 \newcommand{\HHInlineFigure}[3]{%
-  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.png}%
+  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
   \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#3\par}\end{center}}
+% Scene-opening illustrations float: here when they fit, otherwise at the foot of the next page.
+% They never narrow a read-aloud box or leave a gap at the bottom of a page.
+\newcommand{\HHSceneArt}[2]{%
+  \begin{figure}[!hb]\centering\includegraphics[width=.62\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
+  \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#2\par}\end{figure}}
+% Full-page maps float to the next free page instead of ending the current page early.
 \newcommand{\HHSceneMap}[3]{%
-  \clearpage\thispagestyle{rpg}%
-  \vspace*{5mm}%
-  \begin{center}
+  \begin{figure}[p]\centering
     {\Large\bfseries\color{rpgbrown}#2\par}\vspace{6mm}%
-    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.png}\par\vspace{4mm}%
+    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}\par\vspace{4mm}%
     {\small\itshape\color{rpgbrown}#3\par}%
-  \end{center}%
-  \clearpage}
+  \end{figure}}
 \newcommand{\HHContents}{%
   \clearpage\thispagestyle{rpg}
   \vspace*{10mm}\begin{center}{\fontsize{27}{31}\selectfont\bfseries ÍNDICE\par}\vspace{9pt}
@@ -109,6 +113,8 @@
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
  \end{tikzpicture}\clearpage\RPGCoverPagefalse}
 \begin{document}
+% Select the language here: babel resets to its main language (english) at \begin{document}.
+\selectlanguage{spanish}
 \RPGStartFrontMatter
 \HHFrontCover
 \HHContents
@@ -157,7 +163,7 @@ Si el grupo incluye un Místico, la tercera escena es también donde probablemen
 
 \par\needspace{65mm}\subsection{La premisa}\label{la-premisa}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.png}\par{\scriptsize\itshape\color{rpgbrown}La campana robada, envuelta en hule}\vspace{-5pt}\end{wrapfigure}
+\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.jpg}\par{\scriptsize\itshape\color{rpgbrown}La campana robada, envuelta en hule}\vspace{-5pt}\end{wrapfigure}
 
 Hace siete generaciones, un Místico errante llamado \textbf{Veyl Ashen} bendijo una campana de bronce fundida en la fragua de un pequeño asentamiento, levantado donde termina el camino del rey y comienza el bosque antiguo. El asentamiento recibió el nombre de \textbf{Hogar Hueco}. La campana, tañida cada atardecer, mantenía a \textbf{la Gente Hueca} (seres pálidos con piel de corteza que susurran desde entre los árboles) allá abajo, entre las raíces, donde le corresponde estar.
 
@@ -173,7 +179,7 @@ Ese es el plazo. Esa noche, cuando se ponga la luna, si ninguna campana suena al
 
 \subsection{El gancho}\label{el-gancho}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/village.png}\par{\scriptsize\itshape\color{rpgbrown}Hogar Hueco al anochecer: la plataforma vacía}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{village}{Hogar Hueco al anochecer: la plataforma vacía}
 
 Adapta la llegada a los Rasgos y Cargas que hayan escrito tus jugadores. Algunas ideas rápidas:
 
@@ -284,7 +290,7 @@ Cuando un jugador declare \emph{«Quiero saber si miente»}, pregúntale \textbf
 
 \RPGChapter{Escena 2 --- El bosque susurrante}\label{escena-2-el-bosque-susurrante}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/hollow.png}\par{\scriptsize\itshape\color{rpgbrown}Un observador entre los árboles}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{hollow}{Un observador entre los árboles}
 
 \textbf{Enfoque mecánico:} mecánica de Ayuda, categorías de distancia, Condiciones como $-1$ grado.
 
@@ -352,7 +358,7 @@ Si la sesión avanza deprisa y el grupo parece poco puesto a prueba, una pareja 
 
 \RPGChapter{Escena 3 --- La antigua atalaya}\label{escena-3-la-antigua-atalaya}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/tower.png}\par{\scriptsize\itshape\color{rpgbrown}La antigua atalaya al anochecer}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{tower}{La antigua atalaya al anochecer}
 
 \textbf{Enfoque mecánico:} combate como conversación, Heridas y Fatiga, Crítico, Reacción adversa, \textbf{Esfuerzo}.
 
@@ -382,12 +388,12 @@ La campana, Sir Corwin y el enfrentamiento decisivo están en el piso superior. 
 \par\medskip\noindent
 \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.028\linewidth}}p{.345\linewidth}@{}}
 \centering\vspace{0pt}
-\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.png}\par\vspace{2pt}
+\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Antigua atalaya: piso superior\par}
 {\scriptsize Escalera al norte; lado occidental a cielo abierto; ventana sur, campana y brasero en el lado este, intacto.\par}
 &
 \centering\vspace{0pt}
-\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.png}\par\vspace{2pt}
+\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Sir Corwin Vask\par}
 \end{tabular}
 \par\medskip

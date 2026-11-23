@@ -38,7 +38,10 @@ character sheets or the site.
 ## PDFs and toolchain
 - **Pinned container only:** publishable PDFs come only from the pinned container (`make docker`; `character-sheets/build.sh` run inside it).
 - **Local TeX Live:** a local TeX Live renders differently, pixel by pixel. Use it only as a syntax check and never commit its PDFs.
-- **Adventure images:** the print sources use the full-resolution originals in `assets/hollow-hearth/*.png`. Never derive them from the low-resolution web `.webp` files.
+- **Adventure images:** the full-resolution PNG originals in `assets/hollow-hearth/*.png` are the source. Never derive anything from the low-resolution web `.webp` files.
+  - The print sources include JPEG copies of the interior illustrations (`assets/hollow-hearth/*.jpg`), made from the PNG originals by `scripts/build-adventure-print-art.sh` inside the pinned container. Embedded as PNG they made each adventure PDF about 36 MB.
+  - After changing a PNG original, rerun that script and commit the new `.jpg`. Never edit a `.jpg` by hand.
+  - The cover overlays (`*-overlay.png`) stay PNG: they need their transparency on the parchment cover.
 
 ## Character sheet
 - **How the text is placed:** words are placed in millimetres over a raster artwork (`character-sheets/assets/character-background.png`). Measure the free space on the artwork before moving or adding text.

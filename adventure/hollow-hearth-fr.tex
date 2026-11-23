@@ -9,12 +9,13 @@
 \usepackage{needspace}
 \usepackage{titlesec}
 \babelprovide[import]{french}
-\selectlanguage{french}
 \titleformat{\subsection}{\normalfont\Large\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{12pt plus 2pt}{5pt}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+% Stat boxes never start in the last lines of a page, where they would split after their title.
+\BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\needspace{4\baselineskip}}{}{}
 \setcounter{tocdepth}{1}
@@ -24,17 +25,20 @@
 \interlinepenalty=0
 \emergencystretch=1.2em
 \newcommand{\HHInlineFigure}[3]{%
-  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.png}%
+  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
   \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#3\par}\end{center}}
+% Scene-opening illustrations float: here when they fit, otherwise at the foot of the next page.
+% They never narrow a read-aloud box or leave a gap at the bottom of a page.
+\newcommand{\HHSceneArt}[2]{%
+  \begin{figure}[!hb]\centering\includegraphics[width=.62\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
+  \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#2\par}\end{figure}}
+% Full-page maps float to the next free page instead of ending the current page early.
 \newcommand{\HHSceneMap}[3]{%
-  \clearpage\thispagestyle{rpg}%
-  \vspace*{5mm}%
-  \begin{center}
+  \begin{figure}[p]\centering
     {\Large\bfseries\color{rpgbrown}#2\par}\vspace{6mm}%
-    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.png}\par\vspace{4mm}%
+    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}\par\vspace{4mm}%
     {\small\itshape\color{rpgbrown}#3\par}%
-  \end{center}%
-  \clearpage}
+  \end{figure}}
 \newcommand{\HHContents}{%
   \clearpage\thispagestyle{rpg}
   \vspace*{10mm}\begin{center}{\fontsize{27}{31}\selectfont\bfseries SOMMAIRE\par}\vspace{9pt}
@@ -109,6 +113,8 @@
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
  \end{tikzpicture}\clearpage\RPGCoverPagefalse}
 \begin{document}
+% Select the language here: babel resets to its main language (english) at \begin{document}.
+\selectlanguage{french}
 \RPGStartFrontMatter
 \HHFrontCover
 \HHContents
@@ -157,7 +163,7 @@ Si le groupe compte un Mystique, c’est aussi dans la scène~3 que son premier 
 
 \par\needspace{65mm}\subsection{Le contexte}\label{les-pruxe9mices}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.png}\par{\scriptsize\itshape\color{rpgbrown}La cloche volée, enveloppée de toile huilée}\vspace{-5pt}\end{wrapfigure}
+\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.jpg}\par{\scriptsize\itshape\color{rpgbrown}La cloche volée, enveloppée de toile huilée}\vspace{-5pt}\end{wrapfigure}
 
 Il y a sept générations, un Mystique errant nommé \textbf{Veyl Ashen} bénit une cloche de bronze coulée dans la forge d’un petit village bâti là où s’arrête la route du roi et où commence la vieille forêt. Le village prit le nom de \textbf{l’Âtre Creux}. Sonnée à chaque crépuscule, la cloche maintenait le \textbf{Peuple Creux} --- des êtres pâles à la peau d’écorce, qui murmurent entre les arbres --- parmi les racines, là où est sa place.
 
@@ -173,7 +179,7 @@ Voilà le compte à rebours. Cette nuit-là, une fois la lune couchée, sans clo
 
 \subsection{L’accroche}\label{laccroche}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/village.png}\par{\scriptsize\itshape\color{rpgbrown}L’Âtre Creux au crépuscule~: la plateforme vide}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{village}{L’Âtre Creux au crépuscule~: la plateforme vide}
 
 Adaptez l’arrivée aux Traits et aux Fardeaux que vos joueurs ont écrits. Quelques pistes rapides~:
 
@@ -284,7 +290,7 @@ Quand un joueur déclare \emph{«~Je veux savoir si elle ment~»}, demandez-lui 
 
 \RPGChapter{Scène 2 --- Le bois des murmures}\label{scuxe8ne-2-le-bois-des-murmures}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/hollow.png}\par{\scriptsize\itshape\color{rpgbrown}Un guetteur parmi les arbres}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{hollow}{Un guetteur parmi les arbres}
 
 \textbf{Mécaniques en jeu~:} Aide, catégories de distance, Conditions à $-1$ degré.
 
@@ -352,7 +358,7 @@ Si la séance avance vite et que le groupe semble peu mis à l’épreuve, une p
 
 \RPGChapter{Scène 3 --- La vieille tour de guet}\label{scuxe8ne-3-la-vieille-tour-de-guet}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/tower.png}\par{\scriptsize\itshape\color{rpgbrown}La vieille tour de guet au crépuscule}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{tower}{La vieille tour de guet au crépuscule}
 
 \textbf{Mécaniques en jeu~:} le combat comme conversation, Blessures et Fatigue, Critique, Contrecoup, \textbf{Effort}.
 
@@ -382,12 +388,12 @@ La cloche, Sir Corwin et la confrontation finale se trouvent tous à l’étage.
 \par\medskip\noindent
 \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.028\linewidth}}p{.345\linewidth}@{}}
 \centering\vspace{0pt}
-\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.png}\par\vspace{2pt}
+\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Vieille tour de guet~: étage\par}
 {\scriptsize Escalier au nord~; côté ouest à découvert~; fenêtre sud, cloche et brasero du côté est intact.\par}
 &
 \centering\vspace{0pt}
-\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.png}\par\vspace{2pt}
+\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Sir Corwin Vask\par}
 \end{tabular}
 \par\medskip

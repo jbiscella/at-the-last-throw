@@ -13,6 +13,8 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+% Stat boxes never start in the last lines of a page, where they would split after their title.
+\BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\needspace{4\baselineskip}}{}{}
 \setcounter{tocdepth}{1}
@@ -22,17 +24,20 @@
 \interlinepenalty=100
 \emergencystretch=1.2em
 \newcommand{\HHInlineFigure}[3]{%
-  \begin{center}\includegraphics[width=#2\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/#1.png}%
+  \begin{center}\includegraphics[width=#2\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
   \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#3\par}\end{center}}
+% Scene-opening illustrations float: here when they fit, otherwise at the foot of the next page.
+% They never narrow a read-aloud box or leave a gap at the bottom of a page.
+\newcommand{\HHSceneArt}[2]{%
+  \begin{figure}[!hb]\centering\includegraphics[width=.62\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
+  \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#2\par}\end{figure}}
+% Full-page maps float to the next free page instead of ending the current page early.
 \newcommand{\HHSceneMap}[3]{%
-  \clearpage\thispagestyle{rpg}%
-  \vspace*{5mm}%
-  \begin{center}
+  \begin{figure}[p]\centering
     {\Large\bfseries\color{rpgbrown}#2\par}\vspace{6mm}%
-    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.png}\par\vspace{4mm}%
+    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}\par\vspace{4mm}%
     {\small\itshape\color{rpgbrown}#3\par}%
-  \end{center}%
-  \clearpage}
+  \end{figure}}
 \newcommand{\HHContents}{%
   \clearpage\thispagestyle{rpg}
   \vspace*{10mm}\begin{center}{\fontsize{27}{31}\selectfont\bfseries TABLE OF CONTENTS\par}\vspace{9pt}
@@ -98,7 +103,7 @@
    {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont THE BELL OF\\[1.0mm]HOLLOW HEARTH};
   \node[align=center,text=coverink,text width=135mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,235mm)$)
-   {\RPGCoverSubtitleFont\fontsize{9.5}{12}\selectfont An adventure for ``At the Last Throw''};
+   {\RPGCoverSubtitleFont\fontsize{9.5}{12}\selectfont An adventure for “At the Last Throw”};
   \RPGOptionalArtwork{105}{119}{150}{138}{\HHFrontArt}
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,25mm)$)
@@ -153,7 +158,7 @@ If the party includes a Mystic, Scene 3 is also where their first Backlash will 
 
 \par\needspace{65mm}\subsection{The Premise}\label{the-premise}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.png}\par{\scriptsize\itshape\color{rpgbrown}The stolen bell, wrapped in oilcloth}\vspace{-5pt}\end{wrapfigure}
+\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.jpg}\par{\scriptsize\itshape\color{rpgbrown}The stolen bell, wrapped in oilcloth}\vspace{-5pt}\end{wrapfigure}
 
 Seven generations ago, a wandering Mystic named \textbf{Veyl Ashen} blessed a bronze bell cast in the forge of a small settlement built where the King\textquotesingle s road ends and the old forest begins. The settlement took the name \textbf{Hollow Hearth}. The bell, rung at every dusk, kept the \textbf{Hollow Folk} --- pale, bark-skinned things that whisper from between the trees --- back among the roots where they belong.
 
@@ -169,7 +174,7 @@ That is the clock. After moonset on that night, with no bell to sound at dusk, t
 
 \subsection{The Hook}\label{the-hook}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/village.png}\par{\scriptsize\itshape\color{rpgbrown}Hollow Hearth at dusk: the empty platform}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{village}{Hollow Hearth at dusk: the empty platform}
 
 Tailor the arrival to the Traits and Burdens your players have written. Some quick prompts:
 
@@ -280,7 +285,7 @@ When a player declares \emph{"I want to know if she\textquotesingle s lying,"} a
 
 \RPGChapter{Scene 2 — The Whispering Wood}\label{scene-2--the-whispering-wood}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/hollow.png}\par{\scriptsize\itshape\color{rpgbrown}A watcher among the trees}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{hollow}{A watcher among the trees}
 
 \textbf{Mechanic focus:} Helping mechanic, distance bands, Conditions as -1 tier.
 
@@ -348,7 +353,7 @@ If the session is moving fast and the party seems undertested, a pair of \textbf
 
 \RPGChapter{Scene 3 — The Old Watchtower}\label{scene-3--the-old-watchtower}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/tower.png}\par{\scriptsize\itshape\color{rpgbrown}The Old Watchtower at dusk}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{tower}{The Old Watchtower at dusk}
 
 \textbf{Mechanic focus:} Combat as conversation, Wounds vs Fatigue, Critical, Backlash, \textbf{Exertion}.
 
@@ -378,12 +383,12 @@ The bell, Sir Corwin, and the climactic confrontation are all on the upper floor
 \par\medskip\noindent
 \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.028\linewidth}}p{.345\linewidth}@{}}
 \centering\vspace{0pt}
-\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.png}\par\vspace{2pt}
+\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Old Watchtower: upper floor\par}
 {\scriptsize North stairway; exposed western side; south window, bell and brazier on the intact east.\par}
 &
 \centering\vspace{0pt}
-\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.png}\par\vspace{2pt}
+\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Sir Corwin Vask\par}
 \end{tabular}
 \par\medskip

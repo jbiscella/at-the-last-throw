@@ -9,12 +9,13 @@
 \usepackage{needspace}
 \usepackage{titlesec}
 \babelprovide[import]{ukrainian}
-\selectlanguage{ukrainian}
 \titleformat{\subsection}{\normalfont\Large\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{12pt plus 2pt}{5pt}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+% Stat boxes never start in the last lines of a page, where they would split after their title.
+\BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\needspace{4\baselineskip}}{}{}
 \setcounter{tocdepth}{1}
@@ -24,17 +25,20 @@
 \interlinepenalty=0
 \emergencystretch=1.2em
 \newcommand{\HHInlineFigure}[3]{%
-  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.png}%
+  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
   \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#3\par}\end{center}}
+% Scene-opening illustrations float: here when they fit, otherwise at the foot of the next page.
+% They never narrow a read-aloud box or leave a gap at the bottom of a page.
+\newcommand{\HHSceneArt}[2]{%
+  \begin{figure}[!hb]\centering\includegraphics[width=.62\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
+  \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#2\par}\end{figure}}
+% Full-page maps float to the next free page instead of ending the current page early.
 \newcommand{\HHSceneMap}[3]{%
-  \clearpage\thispagestyle{rpg}%
-  \vspace*{5mm}%
-  \begin{center}
+  \begin{figure}[p]\centering
     {\Large\bfseries\color{rpgbrown}#2\par}\vspace{6mm}%
-    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.png}\par\vspace{4mm}%
+    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}\par\vspace{4mm}%
     {\small\itshape\color{rpgbrown}#3\par}%
-  \end{center}%
-  \clearpage}
+  \end{figure}}
 \newcommand{\HHContents}{%
   \clearpage\thispagestyle{rpg}
   \vspace*{10mm}\begin{center}{\fontsize{27}{31}\selectfont\bfseries ЗМІСТ\par}\vspace{9pt}
@@ -114,6 +118,8 @@
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
  \end{tikzpicture}\clearpage\RPGCoverPagefalse}
 \begin{document}
+% Select the language here: babel resets to its main language (english) at \begin{document}.
+\selectlanguage{ukrainian}
 \RPGStartFrontMatter
 \HHFrontCover
 \HHContents
@@ -162,7 +168,7 @@
 
 \par\needspace{65mm}\subsection{Передісторія}\label{ux43fux435ux440ux435ux434ux456ux441ux442ux43eux440ux456ux44f}
 
-\begin{wrapfigure}{r}{.33\linewidth}\vspace{-8pt}\centering\includegraphics[width=.98\linewidth,height=52mm,keepaspectratio]{assets/hollow-hearth/bell.png}\par{\scriptsize\itshape\color{rpgbrown}Украдений дзвін, загорнутий у промаслене полотно}\vspace{-5pt}\end{wrapfigure}
+\begin{wrapfigure}{r}{.33\linewidth}\vspace{-8pt}\centering\includegraphics[width=.98\linewidth,height=52mm,keepaspectratio]{assets/hollow-hearth/bell.jpg}\par{\scriptsize\itshape\color{rpgbrown}Украдений дзвін, загорнутий у промаслене полотно}\vspace{-5pt}\end{wrapfigure}
 
 Сім поколінь тому мандрівний Містик на ім’я \textbf{Вейл Ешен} благословив бронзовий дзвін, відлитий у кузні маленького поселення, збудованого там, де закінчується королівський шлях і починається стародавній ліс. Поселення назвали \textbf{Порожнє Вогнище}. Дзвін, у який били щосутінків, тримав \textbf{Порожній Народ} --- блідих істот зі шкірою, мов кора, що шепочуть з-поміж дерев, --- там, де йому й місце: серед коренів.
 
@@ -178,7 +184,7 @@
 
 \subsection{Зачіпка}\label{ux43fux43eux447ux430ux442ux43eux43a-ux43fux440ux438ux433ux43eux434ux438}
 
-\begin{wrapfigure}{r}{.33\linewidth}\vspace{-8pt}\centering\includegraphics[width=.98\linewidth,height=52mm,keepaspectratio]{assets/hollow-hearth/village.png}\par{\scriptsize\itshape\color{rpgbrown}Порожнє Вогнище в сутінках: порожній поміст}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{village}{Порожнє Вогнище в сутінках: порожній поміст}
 
 Пристосуй прибуття героїв до Рис і Тягарів, які записали гравці. Кілька швидких підказок:
 
@@ -289,7 +295,7 @@
 
 \RPGChapter{Сцена 2 --- Шепітний ліс}\label{ux441ux446ux435ux43dux430-2-ux448ux435ux43fux456ux442ux43dux438ux439-ux43bux456ux441}
 
-\begin{wrapfigure}{r}{.33\linewidth}\vspace{-8pt}\centering\includegraphics[width=.98\linewidth,height=52mm,keepaspectratio]{assets/hollow-hearth/hollow.png}\par{\scriptsize\itshape\color{rpgbrown}Спостерігач серед дерев}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{hollow}{Спостерігач серед дерев}
 
 \textbf{Механічний акцент:} механіка Допомоги, категорії відстаней, Стани як $-1$ щабель.
 
@@ -357,7 +363,7 @@
 
 \RPGChapter{Сцена 3 --- Стара сторожова вежа}\label{ux441ux446ux435ux43dux430-3-ux441ux442ux430ux440ux430-ux441ux442ux43eux440ux43eux436ux43eux432ux430-ux432ux435ux436ux430}
 
-\begin{wrapfigure}{r}{.35\linewidth}\vspace{-7pt}\centering\includegraphics[width=\linewidth,height=69mm,keepaspectratio]{assets/hollow-hearth/tower.png}\par{\scriptsize\itshape\color{rpgbrown}Стара сторожова вежа в сутінках}\vspace{-6pt}\end{wrapfigure}
+\HHSceneArt{tower}{Стара сторожова вежа в сутінках}
 
 \textbf{Механічний акцент:} бій як розмова, Рани й Втома, Критичний успіх, Віддача, \textbf{Напруження}.
 
@@ -387,12 +393,12 @@
 \par\medskip\noindent
 \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.028\linewidth}}p{.345\linewidth}@{}}
 \centering\vspace{0pt}
-\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.png}\par\vspace{2pt}
+\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Стара сторожова вежа: верхній поверх\par}
 {\scriptsize Північні сходи; відкритий західний бік; південне вікно, дзвін і жаровня в уцілілій східній частині.\par}
 &
 \centering\vspace{0pt}
-\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.png}\par\vspace{2pt}
+\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Сер Корвін Васк\par}
 \end{tabular}
 \par\medskip

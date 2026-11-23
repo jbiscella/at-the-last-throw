@@ -9,12 +9,13 @@
 \usepackage{needspace}
 \usepackage{titlesec}
 \babelprovide[import]{italian}
-\selectlanguage{italian}
 \titleformat{\subsection}{\normalfont\Large\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{12pt plus 2pt}{5pt}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+% Stat boxes never start in the last lines of a page, where they would split after their title.
+\BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\needspace{4\baselineskip}}{}{}
 \setcounter{tocdepth}{1}
@@ -24,17 +25,20 @@
 \interlinepenalty=0
 \emergencystretch=1.2em
 \newcommand{\HHInlineFigure}[3]{%
-  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.png}%
+  \begin{center}\includegraphics[width=#2\linewidth,height=56mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
   \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#3\par}\end{center}}
+% Scene-opening illustrations float: here when they fit, otherwise at the foot of the next page.
+% They never narrow a read-aloud box or leave a gap at the bottom of a page.
+\newcommand{\HHSceneArt}[2]{%
+  \begin{figure}[!hb]\centering\includegraphics[width=.62\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}%
+  \par\vspace{2pt}{\footnotesize\itshape\color{rpgbrown}#2\par}\end{figure}}
+% Full-page maps float to the next free page instead of ending the current page early.
 \newcommand{\HHSceneMap}[3]{%
-  \clearpage\thispagestyle{rpg}%
-  \vspace*{5mm}%
-  \begin{center}
+  \begin{figure}[p]\centering
     {\Large\bfseries\color{rpgbrown}#2\par}\vspace{6mm}%
-    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.png}\par\vspace{4mm}%
+    \includegraphics[width=.96\linewidth,height=190mm,keepaspectratio]{assets/hollow-hearth/#1.jpg}\par\vspace{4mm}%
     {\small\itshape\color{rpgbrown}#3\par}%
-  \end{center}%
-  \clearpage}
+  \end{figure}}
 \newcommand{\HHContents}{%
   \clearpage\thispagestyle{rpg}
   \vspace*{10mm}\begin{center}{\fontsize{27}{31}\selectfont\bfseries INDICE\par}\vspace{9pt}
@@ -109,6 +113,8 @@
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
  \end{tikzpicture}\clearpage\RPGCoverPagefalse}
 \begin{document}
+% Select the language here: babel resets to its main language (english) at \begin{document}.
+\selectlanguage{italian}
 \RPGStartFrontMatter
 \HHFrontCover
 \HHContents
@@ -157,7 +163,7 @@ Se il gruppo comprende un Mistico, è probabile che nella Scena 3 avvenga anche 
 
 \par\needspace{65mm}\subsection{La premessa}\label{la-premessa}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.png}\par{\scriptsize\itshape\color{rpgbrown}La campana rubata, avvolta nella tela cerata}\vspace{-5pt}\end{wrapfigure}
+\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/bell.jpg}\par{\scriptsize\itshape\color{rpgbrown}La campana rubata, avvolta nella tela cerata}\vspace{-5pt}\end{wrapfigure}
 
 Sette generazioni fa, un Mistico errante di nome \textbf{Veyl Ashen} benedisse una campana di bronzo fusa nella forgia di un piccolo insediamento, sorto dove finisce la strada del Re e comincia l'antica foresta. L'insediamento prese il nome di \textbf{Focolare Vuoto}. La campana, suonata a ogni crepuscolo, teneva il \textbf{Popolo Cavo} --- esseri pallidi dalla pelle di corteccia che sussurrano fra gli alberi --- confinato fra le radici, dove deve stare.
 
@@ -173,7 +179,7 @@ Questo è il conto alla rovescia. Quella notte, dopo il tramonto della luna, sen
 
 \subsection{L'aggancio}\label{laggancio}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/village.png}\par{\scriptsize\itshape\color{rpgbrown}Focolare Vuoto al crepuscolo: la piattaforma vuota}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{village}{Focolare Vuoto al crepuscolo: la piattaforma vuota}
 
 Adatta l'arrivo ai Tratti e ai Fardelli scritti dai giocatori. Qualche spunto rapido:
 
@@ -284,7 +290,7 @@ Quando un giocatore dichiara \emph{«Voglio capire se mente»}, chiedigli \textb
 
 \RPGChapter{Scena 2 --- Il bosco dei sussurri}\label{scena-2-il-bosco-dei-sussurri}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/hollow.png}\par{\scriptsize\itshape\color{rpgbrown}Un osservatore fra gli alberi}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{hollow}{Un osservatore fra gli alberi}
 
 \textbf{Focus meccanico:} Aiuto, fasce di distanza, Condizioni come $-1$ gradino.
 
@@ -352,7 +358,7 @@ Se la sessione procede spedita e il gruppo sembra poco messo alla prova, una cop
 
 \RPGChapter{Scena 3 --- La vecchia torre}\label{scena-3-la-vecchia-torre-di-guardia}
 
-\begin{wrapfigure}{r}{.38\linewidth}\vspace{-5pt}\centering\includegraphics[width=.98\linewidth,height=58mm,keepaspectratio]{assets/hollow-hearth/tower.png}\par{\scriptsize\itshape\color{rpgbrown}La vecchia torre al crepuscolo}\vspace{-5pt}\end{wrapfigure}
+\HHSceneArt{tower}{La vecchia torre al crepuscolo}
 
 \textbf{Focus meccanico:} combattimento come conversazione, Ferite e Stanchezza, Critico, Contraccolpo, \textbf{Sforzo}.
 
@@ -382,12 +388,12 @@ La campana, Ser Corwin e il confronto decisivo si trovano tutti al piano superio
 \par\medskip\noindent
 \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.028\linewidth}}p{.345\linewidth}@{}}
 \centering\vspace{0pt}
-\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.png}\par\vspace{2pt}
+\includegraphics[width=.98\linewidth,height=70mm,keepaspectratio]{assets/hollow-hearth/map-upper.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}La vecchia torre: piano superiore\par}
 {\scriptsize Scala a nord; lato occidentale esposto; finestra a sud, campana e braciere sul lato est intatto.\par}
 &
 \centering\vspace{0pt}
-\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.png}\par\vspace{2pt}
+\includegraphics[width=.95\linewidth,height=68mm,keepaspectratio]{assets/hollow-hearth/corwin.jpg}\par\vspace{2pt}
 {\footnotesize\itshape\color{rpgbrown}Ser Corwin Vask\par}
 \end{tabular}
 \par\medskip
