@@ -12,7 +12,17 @@
 \expandafter\def\csname SheetTier2\endcsname{Kompetent}
 \expandafter\def\csname SheetTier3\endcsname{Experte}
 \expandafter\def\csname SheetTier4\endcsname{Herausragend}
-\def\SheetWoundLegend{Wu = Kampfwunde\quad/\quad E = Ermüdung}
+\def\SheetWoundLegend{Wu oder E in die Kästchen schreiben, vom höchsten abwärts:\quad Wu = Kampfwunde\quad/\quad E = Ermüdung}
+\def\SheetDie{W6}
+% Dice of each tier (Untrained, Competent, Expert, Exceptional) and how to read them.
+\expandafter\def\csname SheetDice1\endcsname{2\SheetDie\SheetDown}
+\expandafter\def\csname SheetDice2\endcsname{1\SheetDie}
+\expandafter\def\csname SheetDice3\endcsname{2\SheetDie\SheetUp}
+\expandafter\def\csname SheetDice4\endcsname{3\SheetDie\SheetUp}
+\def\SheetDiceLegend{\SheetUp\ höchsten behalten\quad·\quad\SheetDown\ niedrigsten behalten\quad·\quad passende Fertigkeit: +1 Stufe\quad·\quad Malus: –1 Stufe\quad·\quad zwei oder mehr 6: kritischer Erfolg}
+% State penalties printed under hit-point boxes 2 and 1.
+\def\SheetPenaltyOne{–1 Stufe}
+\def\SheetPenaltyTwo{–2 Stufen}
 \def\SheetHp{LEBENSPUNKTE}
 \def\SheetAbilities{FERTIGKEITEN}
 \def\SheetTrait{MERKMAL}
@@ -21,3 +31,6 @@
 \def\SheetAdvancement{FORTSCHRITTE}
 \def\SheetGoal{Ziel}
 \def\SheetNotes{NOTIZEN}
+% Pregenerated sheets only: the weapon field and the maximum Hit Points.
+\def\SheetWeapon{WAFFE}
+\def\SheetHpMax#1{Maximum: #1}

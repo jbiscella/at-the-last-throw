@@ -12,7 +12,16 @@
 \expandafter\def\csname SheetTier2\endcsname{Competent}
 \expandafter\def\csname SheetTier3\endcsname{Expert}
 \expandafter\def\csname SheetTier4\endcsname{Exceptional}
-\def\SheetWoundLegend{W = Combat Wound\quad/\quad F = Fatigue Wound}
+\def\SheetWoundLegend{Write W or F in the boxes, from the highest down:\quad W = Combat Wound\quad/\quad F = Fatigue Wound}
+% Dice of each tier (Untrained, Competent, Expert, Exceptional) and how to read them.
+\expandafter\def\csname SheetDice1\endcsname{2\SheetDie\SheetDown}
+\expandafter\def\csname SheetDice2\endcsname{1\SheetDie}
+\expandafter\def\csname SheetDice3\endcsname{2\SheetDie\SheetUp}
+\expandafter\def\csname SheetDice4\endcsname{3\SheetDie\SheetUp}
+\def\SheetDiceLegend{\SheetUp\ keep the highest\quad·\quad\SheetDown\ keep the lowest\quad·\quad relevant Skill: +1 tier\quad·\quad penalty: –1 tier\quad·\quad two or more 6s: Critical}
+% State penalties printed under hit-point boxes 2 and 1.
+\def\SheetPenaltyOne{–1 tier}
+\def\SheetPenaltyTwo{–2 tiers}
 \def\SheetHp{HIT POINTS}
 \def\SheetAbilities{ABILITIES}
 \def\SheetTrait{TRAIT}
@@ -21,3 +30,6 @@
 \def\SheetAdvancement{ADVANCEMENTS}
 \def\SheetGoal{Goal}
 \def\SheetNotes{NOTES}
+% Pregenerated sheets only: the weapon field and the maximum Hit Points.
+\def\SheetWeapon{WEAPON}
+\def\SheetHpMax#1{Maximum: #1}

@@ -17,15 +17,15 @@
   name/.store in=\PregenName, race/.store in=\PregenRace, class/.store in=\PregenClass,
   portrait/.store in=\PregenPortrait,
   tiers/.store in=\PregenTiers,% tier of Strength, Dexterity, Lore, Wonder: 1 Untrained ... 4 Exceptional
-  hp/.store in=\PregenHp,% maximum Hit Points; the boxes above it are crossed out
-  left/.store in=\PregenLeft, right/.store in=\PregenRight,
+  hp/.store in=\PregenHp,% maximum Hit Points; the boxes above it are shaded
+  left/.store in=\PregenLeft, right/.store in=\PregenRight, weapon/.store in=\PregenWeapon,
   trait/.store in=\PregenTrait, burden/.store in=\PregenBurden,
   armour/.store in=\PregenArmour, armour tn/.store in=\PregenArmourTn,
   notes/.store in=\PregenNotes}
 % build.sh builds one PDF per character: it defines \PregenOnly as that character's portrait key,
 % and every other \PregenSheet call prints nothing.
 \newcommand\PregenSheet[1]{%
-  \pgfkeys{/pregen,name=,race=,class=,portrait=,tiers={1,1,1,1},hp=7,left=,right=,trait=,burden=,
+  \pgfkeys{/pregen,name=,race=,class=,portrait=,tiers={1,1,1,1},hp=7,left=,right=,weapon=,trait=,burden=,
     armour=,armour tn=,notes=,#1}%
   \ifdefined\PregenOnly\ifx\PregenPortrait\PregenOnly\PregenPrint\fi\else\PregenPrint\fi}
 \newcommand\PregenPrint{\let\SheetFill\PregenFill\SheetPage\clearpage}
@@ -67,8 +67,25 @@
 \def\PregenBoxX#1{\ifcase#1\or112.8\or135.2\or158.85\or178.5\fi}
 \newcommand\PregenMark[2]{\draw[sheetink,line width=.9pt,line cap=round]
   (#1-1,#2-1)--(#1+1,#2+1) (#1-1,#2+1)--(#1+1,#2-1);}
-% Hit-point boxes, measured on the artwork: centres in mm, 9.1 mm tall around y = 123.05.
-\def\PregenHpX#1{\ifcase#1\or119.2\or131.0\or142.85\or154.7\or166.8\or178.9\or191.1\fi}
+% Hit-point boxes, measured on the artwork: inner left and right edges in mm; inside, the boxes
+% run from 118.7 to 127.3 mm.
+\def\PregenHpL#1{\ifcase#1\or114.0\or125.7\or137.5\or149.4\or161.4\or173.5\or185.7\fi}
+\def\PregenHpR#1{\ifcase#1\or124.7\or136.5\or148.4\or160.2\or172.5\or184.5\or196.7\fi}
+% Notes: three engraved lines at 267.8, 272.9 and 278.1 mm, ending at 145.1, 142.3 and 138.9 mm.
+% The first runs under the NOTES label, so the text starts 2.5 mm after the label; the build
+% stops if the notes need a fourth line.
+\newcommand\PregenNotesBlock{%
+  \pgfinterruptpicture
+  \global\setbox\SheetMeasure\hbox{\RPGBodyBold\fontsize{10}{10}\selectfont\Sh{Notes}\SheetColon}%
+  \pgfmathsetmacro\PregenIndent{15+\wd\SheetMeasure*25.4/72.27+2.5-19}%
+  \global\setbox\PregenBlock\vtop{\PregenFont{8.5}\baselineskip=5.15mm\lineskiplimit=-\maxdimen
+    \parindent=0pt\parskip=0pt\rightskip=0pt plus 1fil\hyphenpenalty=10000\exhyphenpenalty=10000
+    \parshape 3 \PregenIndent mm \dimexpr125mm-\PregenIndent mm\relax 0mm 122.3mm 0mm 118.9mm
+    \strut\PregenNotes\strut\par}%
+  \ifdim\dimexpr\ht\PregenBlock+\dp\PregenBlock\relax>16.4mm\relax
+    \PackageError{pregen-fill}{More than three lines of notes on \PregenName's sheet}{}\fi
+  \endpgfinterruptpicture
+  \node[anchor=base west,inner sep=0pt,text=sheetink] at (19,266.5) {\usebox\PregenBlock};}
 \newcommand\PregenFill{%
   % Portrait: inside the frame's inner edge (12.2--72.5 x 64.4--129.5 mm), clear of its hatching.
   \ifdefined\SheetTextOnly\else
@@ -83,14 +100,17 @@
   \foreach \PregenT [count=\PregenRow] in \PregenTiers {%
     \pgfmathsetmacro\PregenY{{76,85.2,94.3,103.6}[\PregenRow-1]-0.1}%
     \PregenMark{\PregenBoxX{\PregenT}}{\PregenY}}
-  % Boxes above the maximum are crossed out; the others stay free for W and F marks.
+  % Boxes above the maximum are shaded (a cross would read as a wound); the others stay free.
+  % The maximum is written under the HIT POINTS label (free from 84 to 112 mm down to 130.8 mm).
   \foreach \PregenN in {1,...,7} {\ifnum\PregenN>\PregenHp\relax
-    \draw[sheetink,line width=.6pt,line cap=round]
-      (\PregenHpX{\PregenN}-3.7,123.05-3) -- (\PregenHpX{\PregenN}+3.7,123.05+3)
-      (\PregenHpX{\PregenN}-3.7,123.05+3) -- (\PregenHpX{\PregenN}+3.7,123.05-3);\fi}
+    \fill[sheetink,opacity=.2] (\PregenHpL{\PregenN}+.3,119) rectangle (\PregenHpR{\PregenN}-.3,127);\fi}
+  \PregenLine{84}{129.4}{7.5}{27}{\Sh{HpMax}{\PregenHp}}
   % Abilities: eight engraved lines per column, 148.4--188.4 mm (5.714 mm pitch). The right
-  % column starts on its second line: its first one runs under the ABILITIES heading.
-  \PregenRuled{16.5}{148.4}{9}{83}{5.714}{8}{\PregenLeft}
+  % column starts on its second line: its first one runs under the ABILITIES heading. The weapon
+  % has its own labelled field on the last line of the left column, apart from the skills.
+  \PregenRuled{16.5}{148.4}{9}{83}{5.714}{7}{\PregenLeft}
+  \ifx\PregenWeapon\empty\else
+    \PregenLine{16.5}{187.1}{9}{83}{\Sh{Weapon}\SheetColon\enspace\PregenWeapon}\fi
   \ifx\PregenRight\empty\else\PregenRuled{109.8}{154.114}{8.6}{83.5}{5.714}{7}{\PregenRight}\fi
   % Trait and Burden: two engraved lines each, at 208.2 and 213.8 mm.
   \PregenRuled{16.5}{208.2}{9.5}{79.5}{5.6}{2}{{\PregenTrait}}
@@ -99,6 +119,4 @@
   % above the frame's bottom rule at 238.1 mm.
   \PregenLine{16.2}{232.3}{9.5}{27.5}{\PregenArmour}
   \PregenLine{16.2}{236.6}{7.5}{27.5}{\PregenArmourTn}
-  % Notes: the first engraved line (268.1 mm) sits under the NOTES label, so the text starts on
-  % the second; two lines, at 273.1 (16.7--142.3 mm) and 278.3 mm (17.9--138.9 mm).
-  \PregenRuled{26}{273.1}{8.5}{111}{5.2}{2}{{\PregenNotes}}}
+  \PregenNotesBlock}

@@ -15,6 +15,11 @@
 \input{locales/\SelectedLanguage.tex}
 % Punctuation before a field; a locale may redefine it (French: no-break space before the colon).
 \providecommand\SheetColon{:}
+% Die notation (German locales use W6) and the keep-highest / keep-lowest arrows of the rulebook's
+% examples. IM Fell English has no arrows, so they come from FreeSerif (as the Cyrillic text does).
+\providecommand\SheetDie{d6}
+\newcommand\SheetUp{{\RPGCyrillicFont ↑}}
+\newcommand\SheetDown{{\RPGCyrillicFont ↓}}
 \newcommand\Sh[1]{\csname Sheet#1\endcsname}
 \newsavebox\SheetMeasure
 \newsavebox\SheetCapBox
@@ -102,9 +107,21 @@
 \SheetTiers{94.3}
 \SheetBold{83}{103.6}{8.4}{\Sh{Attr4}}
 \SheetTiers{103.6}
+% Dice of each tier, over its column: between the heading ornaments (lowest ink at 68.5 mm) and
+% the first row of checkboxes (top at 74.1 mm), left-aligned with each checkbox.
+\foreach \k/\x in {1/111.0,2/133.4,3/157.05,4/176.7}{%
+  \node[anchor=base west,inner sep=0pt,text=sheetink,font=\RPGBodyFont\fontsize{7}{7}\selectfont] at (\x,72.9)
+    {\csname SheetDice\k\endcsname};}
+% How to read the dice, under the last row (checkboxes end at 104.9 mm, the frame's inner rule
+% starts at 109.5 mm; free from 84 to 196 mm).
+\SheetFit{base west}{84}{106.9}{\RPGBodyFont\fontsize{6.5}{6.5}\selectfont}{111}{\Sh{DiceLegend}}
 % Free width up to 1.5 mm before the first hit-point box (113.57 mm).
 \SheetFit{base west}{82}{123}{\RPGBodyBold\fontsize{10}{10}\selectfont}{30.07}{\Sh{Hp}\SheetColon}
 \foreach \n in {1,...,7}{\pgfmathsetmacro\xx{119.5+(\n-1)*11.9}\SheetCenter{\xx}{123}{11}{\n}}
+% State penalties under boxes 2 and 1, in the free strip between the boxes (bottom 127.8 mm) and
+% the frame (131 mm); each box is 10.7 mm wide inside.
+\SheetFit{base}{131.1}{129.4}{\RPGBodyFont\fontsize{5.5}{5.5}\selectfont}{10}{\Sh{PenaltyOne}}
+\SheetFit{base}{119.35}{129.4}{\RPGBodyFont\fontsize{5.5}{5.5}\selectfont}{10}{\Sh{PenaltyTwo}}
 % Below the hit-point frame (its bottom rule ends at 132.3 mm; the next frame starts at 136.5 mm).
 \SheetFit{base west}{82}{134.4}{\RPGBodyFont\fontsize{7}{7}\selectfont}{117}{\Sh{WoundLegend}}
 % Centred between the heading ornaments (free span 89.1--121.3 mm), 1.5 mm clear of each;

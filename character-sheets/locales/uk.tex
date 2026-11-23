@@ -13,7 +13,16 @@
 \expandafter\def\csname SheetTier2\endcsname{Компет.}
 \expandafter\def\csname SheetTier3\endcsname{Експерт}
 \expandafter\def\csname SheetTier4\endcsname{Винятк.}
-\def\SheetWoundLegend{Р = Бойова рана\quad/\quad В = Втома}
+\def\SheetWoundLegend{Пишіть Р або В у клітинки, від найбільшої вниз:\quad Р = Бойова рана\quad/\quad В = Втома}
+% Dice of each tier (Untrained, Competent, Expert, Exceptional) and how to read them.
+\expandafter\def\csname SheetDice1\endcsname{2\SheetDie\SheetDown}
+\expandafter\def\csname SheetDice2\endcsname{1\SheetDie}
+\expandafter\def\csname SheetDice3\endcsname{2\SheetDie\SheetUp}
+\expandafter\def\csname SheetDice4\endcsname{3\SheetDie\SheetUp}
+\def\SheetDiceLegend{\SheetUp\ взяти більший\quad·\quad\SheetDown\ взяти менший\quad·\quad доречне вміння: +1 щабель\quad·\quad штраф: –1 щабель\quad·\quad два або більше 6: Критичний успіх}
+% State penalties printed under hit-point boxes 2 and 1.
+\def\SheetPenaltyOne{–1 щабель}
+\def\SheetPenaltyTwo{–2 щаблі}
 \def\SheetHp{ОЧКИ ЗДОРОВ’Я}
 \def\SheetAbilities{ВМІННЯ}
 \def\SheetTrait{РИСА}
@@ -22,3 +31,6 @@
 \def\SheetAdvancement{РОЗВИТОК}
 \def\SheetGoal{Мета}
 \def\SheetNotes{НОТАТКИ}
+% Pregenerated sheets only: the weapon field and the maximum Hit Points.
+\def\SheetWeapon{ЗБРОЯ}
+\def\SheetHpMax#1{Максимум: #1}

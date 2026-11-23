@@ -12,7 +12,16 @@
 \expandafter\def\csname SheetTier2\endcsname{Competente}
 \expandafter\def\csname SheetTier3\endcsname{Esperto}
 \expandafter\def\csname SheetTier4\endcsname{Eccezionale}
-\def\SheetWoundLegend{F = Ferita da combattimento\quad/\quad S = Stanchezza}
+\def\SheetWoundLegend{Scrivi F o S nelle caselle, dalla più alta in giù:\quad F = Ferita da combattimento\quad/\quad S = Stanchezza}
+% Dice of each tier (Untrained, Competent, Expert, Exceptional) and how to read them.
+\expandafter\def\csname SheetDice1\endcsname{2\SheetDie\SheetDown}
+\expandafter\def\csname SheetDice2\endcsname{1\SheetDie}
+\expandafter\def\csname SheetDice3\endcsname{2\SheetDie\SheetUp}
+\expandafter\def\csname SheetDice4\endcsname{3\SheetDie\SheetUp}
+\def\SheetDiceLegend{\SheetUp\ tieni il più alto\quad·\quad\SheetDown\ tieni il più basso\quad·\quad Abilità pertinente: +1 gradino\quad·\quad penalità: –1 gradino\quad·\quad due o più 6: Critico}
+% State penalties printed under hit-point boxes 2 and 1.
+\def\SheetPenaltyOne{–1 gradino}
+\def\SheetPenaltyTwo{–2 gradini}
 \def\SheetHp{PUNTI VITA}
 \def\SheetAbilities{ABILITÀ}
 \def\SheetTrait{TRATTO}
@@ -21,3 +30,6 @@
 \def\SheetAdvancement{AVANZAMENTI}
 \def\SheetGoal{Obiettivo}
 \def\SheetNotes{NOTE}
+% Pregenerated sheets only: the weapon field and the maximum Hit Points.
+\def\SheetWeapon{ARMA}
+\def\SheetHpMax#1{Massimo: #1}
