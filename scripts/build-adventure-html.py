@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the web edition of "The Bell of Hollow Hearth" from its LaTeX sources.
 
-adventure/adventure-<lang>.tex is the single authoritative source. This script
+adventure/hollow-hearth-<lang>.tex is the single authoritative source. This script
 writes docs/<lang>/adventure/read/01-05.html; those files must not be edited
 by hand. Requires pandoc (used for the running text only).
 
@@ -21,7 +21,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 LANGUAGES = ("en", "it", "fr", "de", "es", "uk")
 SECTION_KEYS = ("prepare", "village", "wood", "tower", "reference")
-WEB_ASSETS = "/assets/hollow-hearth/"
+SOURCE_SLUG = "hollow-hearth"
+WEB_ASSETS = "/assets/" + SOURCE_SLUG + "/"
 MAPS = ("map-village", "map-forest", "map-ground", "map-upper")
 ENGRAVINGS = ("tower",)
 
@@ -109,7 +110,7 @@ class Converter:
 
     def graphics(self, s):
         """\\includegraphics{assets/x.png} followed by its caption group(s)."""
-        pat = re.compile(r"\\includegraphics(\[[^\]]*\])?\{assets/([\w-]+)\.png\}")
+        pat = re.compile(r"\\includegraphics(\[[^\]]*\])?\{assets/(?:[\w-]+/)?([\w-]+)\.png\}")
         out, i = [], 0
         while True:
             m = pat.search(s, i)
@@ -263,7 +264,7 @@ def front_matter(lang, ui, n):
         lines.append(f'previous: "{n:02d}"')
     if n < 4:
         lines.append(f'next: "{n + 2:02d}"')
-    lines.append("generated_from: \"adventure/adventure-" + lang + ".tex\"")
+    lines.append("generated_from: \"adventure/" + SOURCE_SLUG + "-" + lang + ".tex\"")
     lines.append("---")
     return "\n".join(lines) + "\n"
 
@@ -276,7 +277,7 @@ def main():
     a = ap.parse_args()
     data = json.loads((ROOT / "docs/_data/hollow_hearth.json").read_text(encoding="utf-8"))
     for lang in a.langs:
-        tex = (a.source_dir / f"adventure-{lang}.tex").read_text(encoding="utf-8")
+        tex = (a.source_dir / f"{SOURCE_SLUG}-{lang}.tex").read_text(encoding="utf-8")
         for n, chunk in enumerate(split_pages(tex)):
             conv = Converter(lang, data[lang])
             body = conv.convert(clean(chunk))

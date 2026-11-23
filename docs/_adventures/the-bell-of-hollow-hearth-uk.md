@@ -6,6 +6,6 @@ category: introductory
 summary: "Початок для нових гравців та Оповідачів."
 order: 1
 landing: "/uk/adventure/index.html"
-pdf_path: "/downloads/adventure-uk.pdf"
+pdf_path: "/downloads/hollow-hearth-uk.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
 ---

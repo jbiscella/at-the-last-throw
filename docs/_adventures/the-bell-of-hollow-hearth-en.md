@@ -6,6 +6,6 @@ category: introductory
 summary: "A starting adventure for new players and Narrators."
 order: 1
 landing: "/en/adventure/index.html"
-pdf_path: "/downloads/adventure-en.pdf"
+pdf_path: "/downloads/hollow-hearth-en.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
 ---

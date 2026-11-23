@@ -21,7 +21,7 @@
 <div class="engraved-rule"><span>◆</span></div>
 {% if page.kind == 'adventure_home' %}<p class="hh-category hh-category-center">{{ ui.intro_label }}</p>{% endif %}
 {% if page.kind == 'adventure_home' %}<p class="hh-subtitle">{{ ui.titleline }}</p><img class="hh-hero-engraving" src="{{ '/assets/hollow-hearth/front-overlay.webp' | relative_url }}" alt="" loading="eager"><p class="center-action"><a class="ink-button" href="{{ '/' | relative_url }}{{ page.lang }}/adventure/read/01.html">{{ ui.read }}</a> <a class="subtle-link" href="{{ '/' | relative_url }}{{ page.lang }}/adventures/index.html">{{ ui.catalog.browse }}</a></p>
-{% assign adventure_pdf = '/downloads/adventure-' | append: page.lang | append: '.pdf' %}
+{% assign adventure_entry = site.adventures | where: 'lang', page.lang | where: 'content_id', 'the-bell-of-hollow-hearth' | first %}{% assign adventure_pdf = adventure_entry.pdf_path %}
 {% assign published_pdf = site.static_files | where: 'path', adventure_pdf | first %}
 {% if published_pdf %}<p class="center-action"><a href="{{ adventure_pdf | relative_url }}" download>{{ ui.download_pdf }}</a></p>{% endif %}
 <ol class="hh-index">{% for key in keys %}<li><a href="{{ '/' | relative_url }}{{ page.lang }}/adventure/read/{{ key }}.html">{% case key %}{% when '01' %}{{ ui.prepare }}{% when '02' %}{{ ui.village }}{% when '03' %}{{ ui.wood }}{% when '04' %}{{ ui.tower }}{% when '05' %}{{ ui.reference }}{% endcase %}</a></li>{% endfor %}</ol>{% endif %}
