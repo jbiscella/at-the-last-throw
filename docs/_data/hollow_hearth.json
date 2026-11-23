@@ -38,7 +38,9 @@
       "online": "Read online",
       "materials": "Downloads",
       "pregenerated_title": "Pregenerated characters",
-      "pregenerated_download": "Download the pregenerated character sheets"
+      "print_title": "Print & play",
+      "pregenerated_lead": "Four ready-to-play Protagonists, one A4 sheet each.",
+      "sheet_pdf": "Sheet (PDF)"
     },
     "intro_label": "Introductory adventure"
   },
@@ -81,7 +83,9 @@
       "online": "Leggi online",
       "materials": "Download",
       "pregenerated_title": "Personaggi pregenerati",
-      "pregenerated_download": "Scarica le schede pregenerate"
+      "print_title": "Materiale da stampare",
+      "pregenerated_lead": "Quattro Protagonisti pronti per giocare, una scheda A4 ciascuno.",
+      "sheet_pdf": "Scheda (PDF)"
     },
     "intro_label": "Avventura introduttiva"
   },
@@ -124,7 +128,9 @@
       "online": "Lire en ligne",
       "materials": "Téléchargements",
       "pregenerated_title": "Personnages prétirés",
-      "pregenerated_download": "Télécharger les fiches prétirées"
+      "print_title": "À imprimer",
+      "pregenerated_lead": "Quatre Protagonistes prêts à jouer, une fiche A4 chacun.",
+      "sheet_pdf": "Fiche (PDF)"
     },
     "intro_label": "Aventure d’initiation"
   },
@@ -167,7 +173,9 @@
       "online": "Leer en línea",
       "materials": "Descargas",
       "pregenerated_title": "Personajes pregenerados",
-      "pregenerated_download": "Descargar las fichas pregeneradas"
+      "print_title": "Para imprimir",
+      "pregenerated_lead": "Cuatro protagonistas listos para jugar, una ficha A4 cada uno.",
+      "sheet_pdf": "Ficha (PDF)"
     },
     "intro_label": "Aventura introductoria"
   },
@@ -210,7 +218,9 @@
       "online": "Online lesen",
       "materials": "Downloads",
       "pregenerated_title": "Vorgefertigte Charaktere",
-      "pregenerated_download": "Vorgefertigte Charakterbögen herunterladen"
+      "print_title": "Zum Ausdrucken",
+      "pregenerated_lead": "Vier spielfertige Protagonisten, je ein A4-Bogen.",
+      "sheet_pdf": "Bogen (PDF)"
     },
     "intro_label": "Einführungsabenteuer"
   },
@@ -253,7 +263,9 @@
       "online": "Читати онлайн",
       "materials": "Завантаження",
       "pregenerated_title": "Готові персонажі",
-      "pregenerated_download": "Завантажити аркуші готових персонажів"
+      "print_title": "Для друку",
+      "pregenerated_lead": "Чотири готові протагоністи, по аркушу A4 на кожного.",
+      "sheet_pdf": "Лист (PDF)"
     },
     "intro_label": "Вступна пригода"
   }

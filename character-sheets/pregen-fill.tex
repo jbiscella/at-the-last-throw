@@ -22,10 +22,13 @@
   trait/.store in=\PregenTrait, burden/.store in=\PregenBurden,
   armour/.store in=\PregenArmour, armour tn/.store in=\PregenArmourTn,
   notes/.store in=\PregenNotes}
+% build.sh builds one PDF per character: it defines \PregenOnly as that character's portrait key,
+% and every other \PregenSheet call prints nothing.
 \newcommand\PregenSheet[1]{%
   \pgfkeys{/pregen,name=,race=,class=,portrait=,tiers={1,1,1,1},hp=7,left=,right=,trait=,burden=,
     armour=,armour tn=,notes=,#1}%
-  \let\SheetFill\PregenFill\SheetPage\clearpage}
+  \ifdefined\PregenOnly\ifx\PregenPortrait\PregenOnly\PregenPrint\fi\else\PregenPrint\fi}
+\newcommand\PregenPrint{\let\SheetFill\PregenFill\SheetPage\clearpage}
 % Free text after a label on the same baseline: starts 2.5 mm after the label (never before the
 % engraved line starts) and shrinks only if it would run past the end of the line.
 % #1 label x, #2 row y, #3 label text, #4 line start, #5 line end, #6 value

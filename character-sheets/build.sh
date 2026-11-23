@@ -7,13 +7,15 @@ if command -v magick >/dev/null 2>&1; then IM=magick; else IM=convert; fi
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 
-# check SOURCE PAGES: builds SOURCE.tex, rejects typesetting problems and checks the page count,
+# check JOB PAGES [SOURCE [DEFINITIONS]]: builds SOURCE.tex (default JOB.tex) as JOB.pdf after the
+# TeX DEFINITIONS, rejects typesetting problems and checks the page count,
 # then typesets the words without the artwork and counts, page by page, the text pixels that
 # land on the artwork's dark engraved lines (rules, frames, checkboxes).
 check() {
-  local source=$1 pages=$2
+  local source=$1 pages=$2 input=${3:-$1} defs=${4:-}
   for pass in 1 2; do
-    xelatex -interaction=nonstopmode -halt-on-error "${source}.tex" >"build-${source}.log" 2>&1
+    xelatex -interaction=nonstopmode -halt-on-error -jobname="${source}" "${defs}\\input{${input}.tex}" \
+      >"build-${source}.log" 2>&1
   done
   if grep -E 'Overfull \\hbox|Missing character:|Font shape .* undefined' "build-${source}.log"; then
     echo "Review typesetting of ${source}" >&2
@@ -23,7 +25,7 @@ check() {
 
   for pass in 1 2; do
     xelatex -interaction=nonstopmode -halt-on-error -output-directory="$work" -jobname="text-${source}" \
-      "\\def\\SheetTextOnly{1}\\input{${source}.tex}" >"$work/text-${source}.log" 2>&1
+      "${defs}\\def\\SheetTextOnly{1}\\input{${input}.tex}" >"$work/text-${source}.log" 2>&1
   done
   for page in $(seq 1 "$pages"); do
     pdftoppm -r 200 -gray -png -singlefile -f "$page" -l "$page" "$work/text-${source}.pdf" "$work/text-${source}"
@@ -44,7 +46,10 @@ for language in en it fr uk de es; do
   check "character-${language}" 1
 done
 
-# Pregenerated Protagonists of The Bell of Hollow Hearth, one page each (pregens/hollow-hearth-*.tex).
+# Pregenerated Protagonists of The Bell of Hollow Hearth: one A4 PDF per character, built from the
+# language's data file (pregens/hollow-hearth-<lang>.tex) with only that character printed.
 for language in en it fr uk de es; do
-  check "hollow-hearth-pregens-${language}" 4
+  for character in aldren-varr nim-thistledown mara-veyne elyra-ashenveil; do
+    check "hollow-hearth-${character}-${language}" 1 "hollow-hearth-pregens-${language}" "\\def\\PregenOnly{${character}}"
+  done
 done

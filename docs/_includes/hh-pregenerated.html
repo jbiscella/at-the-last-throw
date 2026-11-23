@@ -1,0 +1,10 @@
+{% comment %}
+The pregenerated Protagonists of one adventure, listed with that adventure (front matter
+`pregenerated` in docs/_adventures/<slug>-<lang>.md): portrait, name, race and class, and the
+character's own one-page PDF. Parameters: adventure (the collection entry), level (heading tag).
+{% endcomment %}{% assign hh_ui = site.data.hollow_hearth[page.lang].catalog %}{% assign hh_people = include.adventure.pregenerated %}{% assign hh_level = include.level | default: 'h2' %}
+{% if hh_people.size > 0 %}<section class="hh-pregens" id="{{ include.adventure.content_id }}-pregenerated">
+<{{ hh_level }}>{{ hh_ui.pregenerated_title }}</{{ hh_level }}><p>{{ hh_ui.pregenerated_lead }}</p>
+<ul class="hh-pregen-list">{% for person in hh_people %}{% assign hh_file = site.static_files | where: 'path', person.pdf_path | first %}
+<li class="hh-pregen"><img src="{{ person.portrait | relative_url }}" alt="" loading="lazy" width="120" height="120"><span class="hh-pregen-name">{{ person.name }}</span><span class="hh-pregen-role">{{ person.role }}</span>{% if hh_file %}<a class="subtle-link" href="{{ person.pdf_path | relative_url }}" download>{{ hh_ui.sheet_pdf }}</a>{% endif %}</li>{% endfor %}</ul>
+</section>{% endif %}

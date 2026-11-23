@@ -91,8 +91,9 @@
 \SheetBold{82}{52.5}{10}{\Sh{Race}\SheetColon}
 \SheetBold{151}{52.5}{10}{\Sh{Class}\SheetColon}
 % Character attributes: labels and tiers over baked checkbox grid.
-% Centred between the heading ornaments (free span 121.7--158.2 mm), 1.5 mm clear of each.
-\SheetFit{base}{139.95}{66}{\SheetHeadingFont}{33.5}{\Sh{Attributes}}
+% Centred between the heading ornaments (free span 121.7--158.2 mm), 1.5 mm clear of each;
+% the cap-height centre sits on the ornaments' axis (67.7 mm, measured on the artwork).
+\SheetFit{base}{139.95}{67.7}{\SheetHeadingFont}{33.5}{\Sh{Attributes}}
 \SheetBold{83}{76}{8.4}{\Sh{Attr1}}
 \SheetTiers{76}
 \SheetBold{83}{85.2}{8.4}{\Sh{Attr2}}
@@ -106,8 +107,9 @@
 \foreach \n in {1,...,7}{\pgfmathsetmacro\xx{119.5+(\n-1)*11.9}\SheetCenter{\xx}{123}{11}{\n}}
 % Below the hit-point frame (its bottom rule ends at 132.3 mm; the next frame starts at 136.5 mm).
 \SheetFit{base west}{82}{134.4}{\RPGBodyFont\fontsize{7}{7}\selectfont}{117}{\Sh{WoundLegend}}
-% Centred between the heading ornaments (free span 89.1--121.3 mm), 1.5 mm clear of each.
-\SheetFit{base}{105.2}{143.2}{\SheetHeadingFont}{29.2}{\Sh{Abilities}}
+% Centred between the heading ornaments (free span 89.1--121.3 mm), 1.5 mm clear of each;
+% the cap-height centre sits on the ornaments' axis (141.7 mm, measured on the artwork).
+\SheetFit{base}{105.2}{141.7}{\SheetHeadingFont}{29.2}{\Sh{Abilities}}
 \SheetBold{15}{201.5}{11}{\Sh{Trait}\SheetColon}
 \SheetBold{109}{201.5}{11}{\Sh{Burden}\SheetColon}
 \SheetBold{15}{225.2}{10}{\Sh{Armour}\SheetColon}

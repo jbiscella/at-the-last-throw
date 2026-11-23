@@ -51,7 +51,8 @@ character sheets or the site.
 - **Pregenerated sheets:** `hollow-hearth-pregens-<lang>.tex` fill the same template with the data in `pregens/hollow-hearth-<lang>.tex` (portraits in `assets/hollow-hearth/pregens/`); `build.sh` builds and checks them page by page.
   - Every build must follow the creation rules in `manual.tex`: 10 points, the class HP range, skills only in Attributes at Competent or better, weapon damage, armour access and Grimoire fields.
   - Each translation mirrors the English data file and takes its terms from that language's manual.
-  - Publish them as `docs/downloads/hollow-hearth-pregens-<lang>.pdf`, listed in `docs/_pregenerated_sheets/`.
+  - `build.sh` builds one A4 PDF per character (`\PregenOnly` selects it). Publish them as `docs/downloads/<slug>-<character>-<lang>.pdf`.
+  - Each character goes with its own adventure: list it under `pregenerated` in `docs/_adventures/<slug>-<lang>.md`, with a web portrait in `docs/assets/<slug>/pregens/` made from the PNG original. The overview, downloads and catalog pages read that list. Never put the sheets in a separate section or bundle them in a single file.
 
 ## Before claiming something is done
 - **Site:** run the Jekyll build, then `python3 scripts/check-jekyll-site.py --built <site>`.
