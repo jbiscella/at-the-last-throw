@@ -13,6 +13,10 @@
 # on the page. Same pixel size as the original, quality 92, no chroma subsampling, no metadata.
 # The cover overlays (front-overlay, back-overlay) stay PNG: they sit on the parchment cover
 # and need their transparency.
+#
+# It also makes JPEG copies of the two shared parchment cover backgrounds (assets/engraved-*-
+# background.png, quality 95, no chroma subsampling), which the adventure covers use: about
+# 1 MB each instead of 3.3 MB, with no visible difference. The rulebook still uses the PNGs.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 slug=${1:-hollow-hearth}
@@ -24,4 +28,9 @@ for png in "assets/${slug}"/*.png; do
   "$IM" "$png" -background white -alpha remove -alpha off \
     -sampling-factor 1x1 -quality 92 -strip "assets/${slug}/${name}.jpg"
   echo "assets/${slug}/${name}.jpg"
+done
+
+for name in engraved-front-background engraved-cover-background; do
+  "$IM" "assets/${name}.png" -sampling-factor 1x1 -quality 95 -strip "assets/${name}.jpg"
+  echo "assets/${name}.jpg"
 done

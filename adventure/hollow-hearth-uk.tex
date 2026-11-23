@@ -14,6 +14,7 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+\usepackage{xsavebox}
 % Stat boxes never start in the last lines of a page, where they would split after their title.
 \BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
@@ -47,13 +48,16 @@
   \expandafter\def\csname l@section\endcsname##1##2{\csname @dottedtocline\endcsname{1}{0em}{4em}{\bfseries ##1}{##2}}%
   \csname @starttoc\endcsname{toc}\endgroup
   \vspace{5mm}
-  \begin{center}\includegraphics[height=68mm,width=.59\linewidth,keepaspectratio]{assets/hollow-hearth/front-overlay.png}\end{center}
+  \begin{center}\resizebox{!}{68mm}{\xusebox{HHFrontOverlay}}\end{center}
   \vfill
   \begin{center}{\small\itshape Пригода Якопо Бішелли\par}\vspace{5pt}
   {\footnotesize Ця пригода, як і «Останній кидок», поширюється за ліцензією Creative Commons Attribution–ShareAlike 4.0 International (CC BY-SA 4.0). Дозволено поширювати й адаптувати її, також комерційно, за умови зазначення автора та збереження ліцензії у похідних творах.\par}\end{center}
   \clearpage}
 \RPGSetRunningTitle{Дзвін Порожнього Вогнища}
 \RPGSetCoverWordSpace{.78em}
+% JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh): the PNGs
+% made each PDF about 6 MB larger with no visible difference in print.
+\RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
 \hypersetup{pdftitle={Дзвін Порожнього Вогнища},pdfauthor={Jacopo Biscella}}
 \setlength{\emergencystretch}{2em}
 \setcounter{secnumdepth}{-1}
@@ -75,7 +79,7 @@
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGBackBackgroundFile}
   \node[align=center,text=coverink,text width=170mm,inner sep=0pt] at ($(current page.south west)+(105mm,260mm)$)
-    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont ДЗВІН ПОРОЖНЬОГО ВОГНИЩА}};
+    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont\spaceskip=\RPGCoverWordSpace\relax ДЗВІН ПОРОЖНЬОГО ВОГНИЩА}};
   \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt] at ($(current page.south west)+(105mm,240mm)$)
     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
@@ -104,15 +108,18 @@
 }
 \newcommand{\HHFrontCover}{%
  \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+ % The front overlay goes into the PDF once, as a form reused on the contents page.
+ \xsavebox{HHFrontOverlay}{\includegraphics{\HHFrontArt}}
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGFrontBackgroundFile}
   \node[align=center,text=coverink,text width=138mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,248mm)$)
-   {\RPGCoverTitleFont\fontsize{19}{23}\selectfont ДЗВІН\\[1.0mm]ПОРОЖНЬОГО ВОГНИЩА};
+   {\RPGCoverTitleFont\fontsize{19}{23}\selectfont\spaceskip=\RPGCoverWordSpace\relax ДЗВІН\\[1.0mm]ПОРОЖНЬОГО ВОГНИЩА};
   \node[align=center,text=coverink,text width=135mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,235mm)$)
    {\RPGCoverSubtitleFont\fontsize{9.0}{11.6}\selectfont Пригода для «Останнього кидка»};
-  \RPGOptionalArtwork{105}{119}{150}{138}{\HHFrontArt}
+  \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,119mm)$)
+   {\resizebox{!}{138mm}{\xusebox{HHFrontOverlay}}};
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,25mm)$)
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
@@ -409,7 +416,7 @@
 
 Це створює \textbf{четвертий підхід}, на який текст вище лише натякав:
 
-\textbf{Підйом.} Персонаж з \textbf{Акробатикою} може видертися на купу уламків обваленої стіни на нижньому поверсі, піднятися далі зовнішнім боком зруйнованої західної стіни й проникнути всередину через пролом у даху. Кидок \textbf{Спритність + Акробатика, ЦЗ 4}, щоб видертися чисто; без Акробатики --- \textbf{ЦЗ 5}. Провал означає падіння --- 1 Рана від висоти плюс шум падіння (Корвін почує). У разі успіху персонаж зістрибує на верхній поверх \emph{за спиною} Корвіна й захоплює його зненацька. Цей підхід --- лише для одного персонажа: Боєць у важкому обладунку не зможе так видертися, а Містик із 2 ОЗ не може дозволити собі падіння в разі провалу. \textbf{Найкраще для цього підходить спритний Авантюрист.}
+\textbf{Підйом.} Персонаж з \textbf{Акробатикою} може видертися на купу уламків обваленої стіни на нижньому поверсі, піднятися далі зовнішнім боком зруйнованої західної стіни й проникнути всередину через пролом у даху. Кидок \textbf{Спритність + Акробатика, ЦЗ 4}, щоб видертися чисто; без Акробатики --- \textbf{ЦЗ 5}. Провал означає падіння --- 1 Рана від висоти плюс шум падіння (Корвін почує). У разі успіху персонаж зістрибує на верхній поверх \emph{за спиною} Корвіна й захоплює його зненацька. Цей підхід --- лише для одного персонажа: Боєць у важкому обладунку не зможе так видертися, а Містик, у якого мало ОЗ, навряд чи може дозволити собі падіння в разі провалу. \textbf{Найкраще для цього підходить спритний Авантюрист.}
 
 \par\Needspace{12\baselineskip}\noindent\textbf{Тактичні особливості верхнього поверху:}
 

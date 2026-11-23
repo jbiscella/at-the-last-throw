@@ -14,6 +14,7 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+\usepackage{xsavebox}
 % Stat boxes never start in the last lines of a page, where they would split after their title.
 \BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
@@ -47,13 +48,16 @@
   \expandafter\def\csname l@section\endcsname##1##2{\csname @dottedtocline\endcsname{1}{0em}{4em}{\bfseries ##1}{##2}}%
   \csname @starttoc\endcsname{toc}\endgroup
   \vspace{5mm}
-  \begin{center}\includegraphics[height=68mm,width=.59\linewidth,keepaspectratio]{assets/hollow-hearth/front-overlay.png}\end{center}
+  \begin{center}\resizebox{!}{68mm}{\xusebox{HHFrontOverlay}}\end{center}
   \vfill
   \begin{center}{\small\itshape Una aventura de Jacopo Biscella\par}\vspace{5pt}
   {\footnotesize Esta aventura se distribuye bajo Creative Commons Atribución–CompartirIgual 4.0 Internacional (CC BY-SA 4.0), en las mismas condiciones que La última tirada. Se permite compartir y adaptar el material, incluso comercialmente, citando al autor y manteniendo la licencia en las obras derivadas.\par}\end{center}
   \clearpage}
 \RPGSetRunningTitle{La campana de Hogar Hueco}
 \RPGSetCoverWordSpace{.78em}
+% JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh): the PNGs
+% made each PDF about 6 MB larger with no visible difference in print.
+\RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
 \hypersetup{pdftitle={La campana de Hogar Hueco},pdfauthor={Jacopo Biscella}}
 \setlength{\emergencystretch}{2em}
 \setcounter{secnumdepth}{-1}
@@ -70,7 +74,7 @@
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGBackBackgroundFile}
   \node[align=center,text=coverink,text width=170mm,inner sep=0pt] at ($(current page.south west)+(105mm,260mm)$)
-    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont LA CAMPANA DE HOGAR HUECO}};
+    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont\spaceskip=\RPGCoverWordSpace\relax LA CAMPANA DE HOGAR HUECO}};
   \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt] at ($(current page.south west)+(105mm,240mm)$)
     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
@@ -99,15 +103,18 @@
 }
 \newcommand{\HHFrontCover}{%
  \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+ % The front overlay goes into the PDF once, as a form reused on the contents page.
+ \xsavebox{HHFrontOverlay}{\includegraphics{\HHFrontArt}}
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGFrontBackgroundFile}
   \node[align=center,text=coverink,text width=138mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,248mm)$)
-   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont LA CAMPANA DE\\[1.0mm]HOGAR HUECO};
+   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont\spaceskip=\RPGCoverWordSpace\relax LA CAMPANA DE\\[1.0mm]HOGAR HUECO};
   \node[align=center,text=coverink,text width=135mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,235mm)$)
    {\RPGCoverSubtitleFont\fontsize{9.5}{12}\selectfont Una aventura para «La última tirada»};
-  \RPGOptionalArtwork{105}{119}{150}{138}{\HHFrontArt}
+  \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,119mm)$)
+   {\resizebox{!}{138mm}{\xusebox{HHFrontOverlay}}};
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,25mm)$)
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
@@ -404,7 +411,7 @@ Sir Corwin está sentado en una silla de madera junto a \textbf{la ventana sur},
 
 Esto crea una \textbf{cuarta aproximación} que hasta ahora solo se insinuaba:
 
-\textbf{La escalada.} Un personaje con \textbf{Acrobacias} puede trepar por el montón de cascotes del muro derrumbado del piso inferior y seguir subiendo por el exterior de la pared occidental rota, hasta entrar por el hueco del tejado. Tira \textbf{Destreza + Acrobacias, NO 4}, para trepar limpiamente; sin Acrobacias, \textbf{NO 5}. Un fallo significa caer: 1 Herida por la altura, más el ruido de la caída (Corwin lo oirá). Con un éxito, el personaje cae en el piso superior \emph{a espaldas} de Corwin, por sorpresa. Es una aproximación para un solo personaje: el Guerrero con armadura pesada no puede hacer esta escalada, y el Místico de 2 PV no puede permitirse la caída si falla. \textbf{Un Aventurero ágil es el más indicado para esta aproximación.}
+\textbf{La escalada.} Un personaje con \textbf{Acrobacias} puede trepar por el montón de cascotes del muro derrumbado del piso inferior y seguir subiendo por el exterior de la pared occidental rota, hasta entrar por el hueco del tejado. Tira \textbf{Destreza + Acrobacias, NO 4}, para trepar limpiamente; sin Acrobacias, \textbf{NO 5}. Un fallo significa caer: 1 Herida por la altura, más el ruido de la caída (Corwin lo oirá). Con un éxito, el personaje cae en el piso superior \emph{a espaldas} de Corwin, por sorpresa. Es una aproximación para un solo personaje: el Guerrero con armadura pesada no puede hacer esta escalada, y un Místico, con pocos PV, difícilmente puede permitirse la caída si falla. \textbf{Un Aventurero ágil es el más indicado para esta aproximación.}
 
 \par\Needspace{12\baselineskip}\noindent\textbf{Elementos tácticos del piso superior:}
 

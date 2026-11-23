@@ -14,6 +14,7 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+\usepackage{xsavebox}
 % Stat boxes never start in the last lines of a page, where they would split after their title.
 \BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
@@ -47,13 +48,16 @@
   \expandafter\def\csname l@section\endcsname##1##2{\csname @dottedtocline\endcsname{1}{0em}{4em}{\bfseries ##1}{##2}}%
   \csname @starttoc\endcsname{toc}\endgroup
   \vspace{5mm}
-  \begin{center}\includegraphics[height=68mm,width=.59\linewidth,keepaspectratio]{assets/hollow-hearth/front-overlay.png}\end{center}
+  \begin{center}\resizebox{!}{68mm}{\xusebox{HHFrontOverlay}}\end{center}
   \vfill
   \begin{center}{\small\itshape Ein Abenteuer von Jacopo Biscella\par}\vspace{5pt}
   {\footnotesize Dieses Abenteuer steht wie Der letzte Wurf unter der Lizenz Creative Commons Namensnennung–Weitergabe unter gleichen Bedingungen 4.0 International (CC BY-SA 4.0). Weitergabe und Bearbeitung, auch kommerziell, sind erlaubt, wenn der Autor genannt wird und abgeleitete Werke gleich lizenziert bleiben.\par}\end{center}
   \clearpage}
 \RPGSetRunningTitle{Die Glocke von Hohlherd}
 \RPGSetCoverWordSpace{.78em}
+% JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh): the PNGs
+% made each PDF about 6 MB larger with no visible difference in print.
+\RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
 \hypersetup{pdftitle={Die Glocke von Hohlherd},pdfauthor={Jacopo Biscella}}
 \setlength{\emergencystretch}{2em}
 \setcounter{secnumdepth}{-1}
@@ -73,7 +77,7 @@
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGBackBackgroundFile}
   \node[align=center,text=coverink,text width=170mm,inner sep=0pt] at ($(current page.south west)+(105mm,260mm)$)
-    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont DIE GLOCKE VON HOHLHERD}};
+    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont\spaceskip=\RPGCoverWordSpace\relax DIE GLOCKE VON HOHLHERD}};
   \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt] at ($(current page.south west)+(105mm,240mm)$)
     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
@@ -102,15 +106,18 @@
 }
 \newcommand{\HHFrontCover}{%
  \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+ % The front overlay goes into the PDF once, as a form reused on the contents page.
+ \xsavebox{HHFrontOverlay}{\includegraphics{\HHFrontArt}}
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGFrontBackgroundFile}
   \node[align=center,text=coverink,text width=138mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,248mm)$)
-   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont DIE GLOCKE VON\\[1.0mm]HOHLHERD};
+   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont\spaceskip=\RPGCoverWordSpace\relax DIE GLOCKE VON\\[1.0mm]HOHLHERD};
   \node[align=center,text=coverink,text width=135mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,235mm)$)
    {\RPGCoverSubtitleFont\fontsize{9.0}{11.6}\selectfont Ein Abenteuer zu »Der letzte Wurf«};
-  \RPGOptionalArtwork{105}{119}{150}{138}{\HHFrontArt}
+  \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,119mm)$)
+   {\resizebox{!}{138mm}{\xusebox{HHFrontOverlay}}};
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,25mm)$)
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
@@ -407,7 +414,7 @@ Sir Corwin sitzt auf einem Holzstuhl neben dem \textbf{Südfenster} und beobacht
 
 Dadurch entsteht ein \textbf{vierter Weg}, den der bisherige Text nur angedeutet hat:
 
-\textbf{Das Klettern.} Ein Charakter mit \textbf{Akrobatik} kann den Schutthaufen der eingestürzten Mauer im Erdgeschoss erklimmen und an der Außenseite der zerbrochenen Westmauer weiterklettern, um durch die Lücke im Dach einzusteigen. Würfle \textbf{Geschick + Akrobatik, ZW 4}, für ein sauberes Klettern; ohne Akrobatik \textbf{ZW 5}. Ein Fehlschlag bedeutet einen Sturz -- 1 Wunde durch die Höhe und dazu der Lärm des Sturzes (Corwin hört ihn). Bei Erfolg landet der Charakter im Obergeschoss \emph{hinter} Corwin und überrascht ihn. Dieser Weg ist nur für eine einzelne Figur: Der Kämpfer in schwerer Rüstung schafft diese Kletterei nicht, und der Mystiker mit 2 LP kann sich den Sturz bei einem Fehlschlag nicht leisten. \textbf{Am besten eignet sich ein gewandter Abenteurer für diesen Weg.}
+\textbf{Das Klettern.} Ein Charakter mit \textbf{Akrobatik} kann den Schutthaufen der eingestürzten Mauer im Erdgeschoss erklimmen und an der Außenseite der zerbrochenen Westmauer weiterklettern, um durch die Lücke im Dach einzusteigen. Würfle \textbf{Geschick + Akrobatik, ZW 4}, für ein sauberes Klettern; ohne Akrobatik \textbf{ZW 5}. Ein Fehlschlag bedeutet einen Sturz -- 1 Wunde durch die Höhe und dazu der Lärm des Sturzes (Corwin hört ihn). Bei Erfolg landet der Charakter im Obergeschoss \emph{hinter} Corwin und überrascht ihn. Dieser Weg ist nur für eine einzelne Figur: Der Kämpfer in schwerer Rüstung schafft diese Kletterei nicht, und ein Mystiker mit wenigen LP kann sich den Sturz bei einem Fehlschlag kaum leisten. \textbf{Am besten eignet sich ein gewandter Abenteurer für diesen Weg.}
 
 \par\Needspace{12\baselineskip}\noindent\textbf{Taktische Besonderheiten des Obergeschosses:}
 

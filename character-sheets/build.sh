@@ -5,6 +5,11 @@ cd "$(dirname "$0")"
 # ImageMagick 7 installs `magick`; ImageMagick 6 only `convert`.
 if command -v magick >/dev/null 2>&1; then IM=magick; else IM=convert; fi
 work=$(mktemp -d)
+
+# The sheets embed a JPEG copy of the artwork (quality 95, no chroma subsampling): 0.9 MB instead
+# of 2.7 MB in each of the 30 PDFs, with no visible difference. The PNG stays the source, and the
+# collision test below measures the engraved lines on the PNG.
+"$IM" assets/character-background.png -sampling-factor 1x1 -quality 95 -strip assets/character-background.jpg
 trap 'rm -rf "$work"' EXIT
 
 # run_xelatex LOG ARGS...: runs XeLaTeX quietly; on failure shows the TeX error from LOG and stops.

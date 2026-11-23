@@ -18,3 +18,7 @@
 # Delivery archives and ad-hoc backups (history lives in git)
 *.zip
 *-backup.tex
+
+# Character sheets built in place by character-sheets/build.sh; the published copies live in
+# docs/downloads/
+/character-sheets/*.pdf

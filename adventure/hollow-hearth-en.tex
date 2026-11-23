@@ -13,6 +13,7 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{rpgbrown}}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{10pt plus 2pt}{4pt}
 \usepackage{etoolbox}
+\usepackage{xsavebox}
 % Stat boxes never start in the last lines of a page, where they would split after their title.
 \BeforeBeginEnvironment{rpgnote}{\par\needspace{8\baselineskip}}
 \pretocmd{\subsection}{\needspace{5\baselineskip}}{}{}
@@ -46,13 +47,16 @@
   \expandafter\def\csname l@section\endcsname##1##2{\csname @dottedtocline\endcsname{1}{0em}{4em}{\bfseries ##1}{##2}}%
   \csname @starttoc\endcsname{toc}\endgroup
   \vspace{5mm}
-  \begin{center}\includegraphics[height=68mm,width=.59\linewidth,keepaspectratio]{assets/hollow-hearth/front-overlay.png}\end{center}
+  \begin{center}\resizebox{!}{68mm}{\xusebox{HHFrontOverlay}}\end{center}
   \vfill
   \begin{center}{\small\itshape An adventure by Jacopo Biscella\par}\vspace{5pt}
   {\footnotesize This adventure is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0), under the same terms as At the Last Throw. You are free to share and adapt this material, including commercially, provided you credit the author and distribute derivative works under the same license.\par}\end{center}
   \clearpage}
 \RPGSetRunningTitle{The Bell of Hollow Hearth}
 \RPGSetCoverWordSpace{.78em}
+% JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh): the PNGs
+% made each PDF about 6 MB larger with no visible difference in print.
+\RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
 \hypersetup{pdftitle={The Bell of Hollow Hearth — At the Last Throw},pdfauthor={Jacopo Biscella}}
 \setlength{\emergencystretch}{2em}
 \setcounter{secnumdepth}{-1}
@@ -66,7 +70,7 @@
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGBackBackgroundFile}
   \node[align=center,text=coverink,text width=170mm,inner sep=0pt] at ($(current page.south west)+(105mm,260mm)$)
-    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont THE BELL OF HOLLOW HEARTH}};
+    {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont\spaceskip=\RPGCoverWordSpace\relax THE BELL OF HOLLOW HEARTH}};
   \draw[coverink,line width=.45pt] ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt] at ($(current page.south west)+(105mm,240mm)$)
     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
@@ -96,15 +100,18 @@
 }
 \newcommand{\HHFrontCover}{%
  \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+ % The front overlay goes into the PDF once, as a form reused on the contents page.
+ \xsavebox{HHFrontOverlay}{\includegraphics{\HHFrontArt}}
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGFrontBackgroundFile}
   \node[align=center,text=coverink,text width=138mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,248mm)$)
-   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont THE BELL OF\\[1.0mm]HOLLOW HEARTH};
+   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont\spaceskip=\RPGCoverWordSpace\relax THE BELL OF\\[1.0mm]HOLLOW HEARTH};
   \node[align=center,text=coverink,text width=135mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,235mm)$)
    {\RPGCoverSubtitleFont\fontsize{9.5}{12}\selectfont An adventure for “At the Last Throw”};
-  \RPGOptionalArtwork{105}{119}{150}{138}{\HHFrontArt}
+  \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,119mm)$)
+   {\resizebox{!}{138mm}{\xusebox{HHFrontOverlay}}};
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt]
    at ($(current page.south west)+(105mm,25mm)$)
    {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
@@ -399,7 +406,7 @@ The \textbf{western half of the upper floor is open sky}: the same collapse that
 
 This creates a \textbf{fourth approach} that the earlier text only hinted at:
 
-\textbf{The Climb.} A character with \textbf{Acrobatics} can climb the rubble pile of the collapsed wall on the ground floor and continue up the outside of the broken western wall, entering through the gap in the roof. Roll \textbf{Dex + Acrobatics, TN 4} to climb cleanly; without Acrobatics, \textbf{TN 5}. A failure means falling --- 1 Wound from the height plus the noise of the fall (Corwin will hear). On a success, the character drops onto the upper floor \emph{behind} Corwin, with surprise. This is a single-character approach: the Fighter in heavy armour cannot make this climb, and the Mystic with 2 HP cannot afford the fall on a failure. \textbf{A nimble Adventurer is best suited to this approach.}
+\textbf{The Climb.} A character with \textbf{Acrobatics} can climb the rubble pile of the collapsed wall on the ground floor and continue up the outside of the broken western wall, entering through the gap in the roof. Roll \textbf{Dex + Acrobatics, TN 4} to climb cleanly; without Acrobatics, \textbf{TN 5}. A failure means falling --- 1 Wound from the height plus the noise of the fall (Corwin will hear). On a success, the character drops onto the upper floor \emph{behind} Corwin, with surprise. This is a single-character approach: the Fighter in heavy armour cannot make this climb, and a Mystic, short on Hit Points, can ill afford the fall on a failure. \textbf{A nimble Adventurer is best suited to this approach.}
 
 \par\Needspace{12\baselineskip}\noindent\textbf{Tactical features of the upper floor:}
 

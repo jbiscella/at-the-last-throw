@@ -3,7 +3,8 @@
 {% assign ui = site.data.hollow_hearth[page.lang] %}{% assign c = ui.catalog %}
 <title>{{ page.title | escape }} · {{ ui.game | escape }}</title><meta name="description" content="{{ page.title | escape }} · {{ ui.game | escape }}">
 <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/hollow-hearth.css' | relative_url }}">
-<link rel="icon" href="{{ '/assets/diamond.svg' | relative_url }}" type="image/svg+xml"></head>
+<link rel="icon" href="{{ '/assets/diamond.svg' | relative_url }}" type="image/svg+xml">
+{% assign hh_languages = 'en,it,fr,uk,de,es' | split: ',' %}{% for lang in hh_languages %}<link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}/{{ lang }}/{{ page.kind }}/index.html">{% endfor %}</head>
 <body class="lang-{{ page.lang }} hh-body"><a class="skip" href="#main">{{ ui.skip }}</a>
 <header class="site-header"><div class="header-inner">
 <a class="wordmark" href="{{ '/' | relative_url }}{{ page.lang }}/index.html"><span class="lozenge">✧</span> {{ ui.game }}</a>
@@ -28,7 +29,7 @@
 {% assign entries = site.adventures | where: 'lang', page.lang | sort: 'order' %}
 <div class="hh-catalog-list">{% for item in entries %}
 <article class="hh-catalog-card parchment">
-{% if item.image_path %}<a class="hh-catalog-art" href="{{ item.landing | relative_url }}"><img src="{{ item.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+{% if item.image_path %}<a class="hh-catalog-art" href="{{ item.landing | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ item.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
 <div class="hh-catalog-copy">
 {% if item.category == 'introductory' %}<p class="hh-category">{{ ui.intro_label }}</p>{% endif %}
 <h2><a href="{{ item.landing | relative_url }}">{{ item.title }}</a></h2>

@@ -36,19 +36,27 @@ character sheets or the site.
 - **Fire timing:** the brazier fire spreads over "two scenes", not "two narrative exchanges". Every translation got this wrong once.
 
 ## PDFs and toolchain
-- **Pinned container only:** publishable PDFs come only from the pinned container (`make docker`; `character-sheets/build.sh` run inside it).
+- **Pinned container only:** publishable PDFs come only from the pinned container `at-the-last-throw-tex:tl2024`:
+  - rulebooks: `make docker`;
+  - adventures: `scripts/build-adventure-pdfs.sh [slug]` (two XeLaTeX passes per language, copied to `docs/downloads/`);
+  - character sheets: `character-sheets/build.sh`.
+
+  Run the scripts with `docker run --rm -u "$(id -u):$(id -g)" -v "$PWD":/work -w /work at-the-last-throw-tex:tl2024 <script>` (for `build.sh`, `-w /work/character-sheets ./build.sh`).
 - **Local TeX Live:** a local TeX Live renders differently, pixel by pixel. Use it only as a syntax check and never commit its PDFs.
 - **Adventure images:** the full-resolution PNG originals in `assets/hollow-hearth/*.png` are the source. Never derive anything from the low-resolution web `.webp` files.
   - The print sources include JPEG copies of the interior illustrations (`assets/hollow-hearth/*.jpg`), made from the PNG originals by `scripts/build-adventure-print-art.sh` inside the pinned container. Embedded as PNG they made each adventure PDF about 36 MB.
   - After changing a PNG original, rerun that script and commit the new `.jpg`. Never edit a `.jpg` by hand.
   - The cover overlays (`*-overlay.png`) stay PNG: they need their transparency on the parchment cover.
+  - The same script makes `assets/engraved-*-background.jpg` (quality 95) from the shared cover PNGs; the adventure covers use the JPEGs, the rulebook still uses the PNGs.
+  - The character-sheet artwork works the same way: `build.sh` makes `character-sheets/assets/character-background.jpg` (quality 95) from the PNG, the sheets embed the JPEG, and the collision test measures the PNG. Never edit the JPEG by hand.
+- **Web edition of an adventure:** `scripts/build-adventure-html.py` needs pandoc and Pillow (not in the container); its committed output was made with pandoc 2.17.1.1. The `.webp` web images are made from the PNG originals.
 
 ## Character sheet
 - **How the text is placed:** words are placed in millimetres over a raster artwork (`character-sheets/assets/character-background.png`). Measure the free space on the artwork before moving or adding text.
 - **Fitting text:** use `\SheetFit` instead of per-language font-size branches.
 - **Font limits:** IM Fell English has no bold and no Cyrillic; Cinzel Decorative has no Cyrillic.
 - **Build checks:** `build.sh` fails on font substitutions and on any text pixel that touches an engraved line. Do not weaken these checks to get a pass.
-- **Pregenerated sheets:** `hollow-hearth-pregens-<lang>.tex` fill the same template with the data in `pregens/hollow-hearth-<lang>.tex` (portraits in `assets/hollow-hearth/pregens/`); `build.sh` builds and checks them page by page.
+- **Pregenerated sheets:** `hollow-hearth-pregens-<lang>.tex` fill the same template with the data in `pregens/hollow-hearth-<lang>.tex` (portraits in `assets/hollow-hearth/pregens/`); `build.sh` builds and checks each sheet.
   - Every build must follow the creation rules in `manual.tex`: 10 points, the class HP range, skills only in Attributes at Competent or better, weapon damage, armour access and Grimoire fields.
   - Each translation mirrors the English data file and takes its terms from that language's manual.
   - The notes are a play reminder, not the creation cost: the character's key rolls with the dice already worked out (Attribute + Skill tier, `\SheetUp`/`\SheetDown` arrows), Exertion, and any rule the character is most likely to get wrong. A Grimoire's Cost carries its unit (Fatigue). The weapon goes in its own `weapon` field, not among the skills.
