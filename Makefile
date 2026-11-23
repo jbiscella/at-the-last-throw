@@ -7,6 +7,11 @@
 #   make baselines         download the latest release PDFs into baseline/ (needs gh)
 #   make check             pixel-compare build/*.pdf against baseline/*.pdf
 #   make docker-check      same, using the tools inside the container
+#   make docker-adventure  adventure print art and PDFs into docs/downloads/ (pinned container)
+#   make docker-sheets     blank and pregenerated character sheets, with their checks (pinned container)
+#   make site              build the Jekyll site into build/site/ (ruby:3.3 container) and check its links
+#   make site-serve        serve the site with live reload on port 4000 (ruby:3.3 container)
+#   make page-counts       compare the page count of every PDF in docs/downloads/ with REF (origin/main)
 #   make deps              verify that the local toolchain has every package/font needed
 #   make update-baselines  copy build/*.pdf into baseline/ (local only)
 #   make clean             remove build/
@@ -20,6 +25,8 @@ BUILD    := build
 BASELINE := baseline
 XELATEX  := xelatex -interaction=nonstopmode -halt-on-error -output-directory=$(BUILD)
 IMAGE    := at-the-last-throw-tex:tl2024
+# Adventure slug for docker-adventure (sources adventure/<slug>-<lang>.tex).
+SLUG     := hollow-hearth
 DPI      := 72
 # Set DIFF_DIR=build/diff to also write a highlighted diff image for every changed page.
 DIFF_DIR :=
@@ -40,7 +47,7 @@ STAMP        := $(BUILD)/.toolchain-$(TOOLCHAIN_ID)
 # A failed XeLaTeX pass must not leave a PDF behind that a retry would accept.
 .DELETE_ON_ERROR:
 
-.PHONY: all en it fr uk de es docker docker-image docker-shell docker-check check baselines \
+.PHONY: all en it fr uk de es docker docker-image docker-shell docker-check docker-adventure docker-sheets site site-serve page-counts check baselines \
         deps update-baselines clean
 
 all: $(PDFS)
@@ -70,6 +77,31 @@ docker-image:
 # a rebuilt image can change the layout without changing the XeTeX version.
 docker: docker-image | $(BUILD)
 	$(DOCKER_RUN) $(IMAGE) make -B all
+
+# Adventures: the print JPEGs from the PNG originals, then the PDFs (scripts/build-adventure-*.sh).
+docker-adventure: docker-image
+	$(DOCKER_RUN) $(IMAGE) scripts/build-adventure-print-art.sh $(SLUG)
+	$(DOCKER_RUN) $(IMAGE) scripts/build-adventure-pdfs.sh $(SLUG)
+
+# Character sheets: builds them in character-sheets/ and checks every page; copying them to
+# docs/downloads/ is a separate, deliberate step.
+docker-sheets: docker-image
+	$(DOCKER_RUN) -w /work/character-sheets $(IMAGE) ./build.sh
+
+# The website, built like GitHub Pages does (github-pages gem from docs/Gemfile.lock) in the
+# official ruby:3.3 image; the gems are cached in the jekyll-gems volume.
+JEKYLL_RUN = docker run --rm -v "$(CURDIR)/docs":/srv/site:ro -v jekyll-gems:/gems -e BUNDLE_PATH=/gems -e BUNDLE_FROZEN=true -w /srv/site
+site: | $(BUILD)
+	mkdir -p $(BUILD)/site
+	$(JEKYLL_RUN) -v "$(CURDIR)/$(BUILD)/site":/out ruby:3.3 sh -c 'bundle install --quiet && bundle exec jekyll build --destination /tmp/site && cp -r /tmp/site/. /out && chown -R $(shell id -u):$(shell id -g) /out'
+	python3 scripts/check-jekyll-site.py --built $(BUILD)/site
+
+site-serve:
+	$(JEKYLL_RUN) -p 4000:4000 -p 35729:35729 ruby:3.3 sh -c 'bundle install --quiet && bundle exec jekyll serve --host 0.0.0.0 --livereload --destination /tmp/site'
+
+REF ?= origin/main
+page-counts:
+	scripts/check-page-counts.sh $(REF)
 
 docker-shell: docker-image
 	$(DOCKER_RUN) -it $(IMAGE) bash

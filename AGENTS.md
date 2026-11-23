@@ -36,12 +36,21 @@ character sheets or the site.
 - **Fire timing:** the brazier fire spreads over "two scenes", not "two narrative exchanges". Every translation got this wrong once.
 
 ## PDFs and toolchain
-- **Pinned container only:** publishable PDFs come only from the pinned container `at-the-last-throw-tex:tl2024`:
-  - rulebooks: `make docker`;
-  - adventures: `scripts/build-adventure-pdfs.sh [slug]` (two XeLaTeX passes per language, copied to `docs/downloads/`);
-  - character sheets: `character-sheets/build.sh`.
+- **Pinned container only:** publishable PDFs come only from the pinned container. Its image, `at-the-last-throw-tex:tl2024`, is defined by the `Dockerfile` at the repository root (TeX Live 2024, FreeSerif, poppler-utils, ImageMagick 7, all pinned). Every `make docker*` target builds it on first use, which takes about two minutes and needs about 2.5 GB. Only Docker and GNU Make are needed on the host.
+- **Make targets:**
 
-  Run the scripts with `docker run --rm -u "$(id -u):$(id -g)" -v "$PWD":/work -w /work at-the-last-throw-tex:tl2024 <script>` (for `build.sh`, `-w /work/character-sheets ./build.sh`).
+  | Target | What it does |
+  |---|---|
+  | `make docker` | rulebooks into `build/` |
+  | `make docker-adventure` | print JPEGs from the PNG originals, then the adventure PDFs into `docs/downloads/` (`SLUG=hollow-hearth`) |
+  | `make docker-sheets` | the 30 character sheets in `character-sheets/`, with all their checks; copy the ones you mean to publish to `docs/downloads/` |
+  | `make site` | the Jekyll site into `build/site/` in the official `ruby:3.3` image (GitHub Pages gems from `docs/Gemfile.lock`, cached in the `jekyll-gems` volume), then the link check |
+  | `make site-serve` | the same site with live reload on port 4000 (on a Chromebook, open `http://penguin.linux.test:4000/`) |
+  | `make page-counts` | the page count of every PDF in `docs/downloads/` against `REF` (default `origin/main`) |
+  | `make docker-shell` | a shell inside the pinned container |
+
+  The scripts behind the targets (`scripts/build-adventure-*.sh`, `character-sheets/build.sh`) can also be run with `docker run --rm -u "$(id -u):$(id -g)" -v "$PWD":/work -w /work at-the-last-throw-tex:tl2024 <script>`.
+- **Same content, new bytes:** a rebuild embeds new dates, so an unchanged PDF still shows as modified. Commit a rebuilt PDF only when its content changed: compare text and pixels with the committed version, and otherwise restore it with `git checkout`.
 - **Local TeX Live:** a local TeX Live renders differently, pixel by pixel. Use it only as a syntax check and never commit its PDFs.
 - **Adventure images:** the full-resolution PNG originals in `assets/hollow-hearth/*.png` are the source. Never derive anything from the low-resolution web `.webp` files.
   - The print sources include JPEG copies of the interior illustrations (`assets/hollow-hearth/*.jpg`), made from the PNG originals by `scripts/build-adventure-print-art.sh` inside the pinned container. Embedded as PNG they made each adventure PDF about 36 MB.
@@ -65,6 +74,15 @@ character sheets or the site.
   - Each character goes with its own adventure: list it under `pregenerated` in `docs/_adventures/<slug>-<lang>.md`, with a web portrait in `docs/assets/<slug>/pregens/` made from the PNG original. The overview, downloads and catalog pages read that list. Never put the sheets in a separate section or bundle them in a single file.
 
 ## Before claiming something is done
+- **Every language, every file:** a claim about "all languages" or "no regressions" needs a check of all six languages and every affected file, never a sample. A page-count check of English alone once missed that the Spanish adventure had grown from 15 to 16 pages.
+- **Page counts:** run `make page-counts` (and with `REF=<commit before your change>`). Explain every changed count in the pull request, and re-check the page references that cite a PDF that grew.
+- **Rebuilt PDFs:** compare every language with the previous build, page by page (`pdftotext` per page and a pixel comparison with `pdftoppm` plus `compare`). Only the pages you meant to change may differ. A longer sentence once pushed two lines of the German adventure onto the next page.
+- **Numbers derived from the rules** (sheet notes, examples): work them out with every rule that applies at that moment. A Grimoire's Cost is paid first, and the resulting HP state already penalises the roll: Elyra (4 HP) pays 2F for Wall of Flames, so she rolls at 2 HP, −1 tier.
+- **Adventure text against published data:** a sentence about "the Mystic" or "the Fighter" must agree with the pregenerated characters. "The Mystic with 2 HP" contradicted Elyra's 4 HP.
+- **TeX control words eat the following space:** write `\SheetUp\ against`, not `\SheetUp against`.
 - **Site:** run the Jekyll build, then `python3 scripts/check-jekyll-site.py --built <site>`.
 - **Adventure pages:** rerun `scripts/build-adventure-html.py`; the result must leave `git diff` on `docs/*/adventures/*/read/` empty.
 - **Word counts:** `wc -w` miscounts Cyrillic text, so compare word counts with a Unicode-aware tokenizer.
+- **Before pushing:** run `git fetch` and look for commits from other sessions on the branch. Read them and check that they do not conflict with yours, by file or by logic, before rebasing.
+- **Pull request description:** edit it from its current version (`gh pr view --json body`), never from an old copy, so other sessions' additions survive. When the work is done, rewrite it from the current state: stale claims accumulate.
+- **Publication:** GitHub Pages serves `main:/docs` at atthelastthrow.com. Anything merged into `main` is published at once.
