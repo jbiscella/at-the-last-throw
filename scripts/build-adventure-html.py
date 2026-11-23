@@ -2,7 +2,7 @@
 """Generate the web edition of "The Bell of Hollow Hearth" from its LaTeX sources.
 
 adventure/hollow-hearth-<lang>.tex is the single authoritative source. This script
-writes docs/<lang>/adventure/read/01-05.html; those files must not be edited
+writes docs/<lang>/adventures/<web slug>/read/01-05.html; those files must not be edited
 by hand. Requires pandoc (used for the running text only).
 
 Page split: 01 = opening chapter, 02-04 = the three scene chapters (\\RPGChapter),
@@ -22,6 +22,8 @@ ROOT = Path(__file__).resolve().parent.parent
 LANGUAGES = ("en", "it", "fr", "de", "es", "uk")
 SECTION_KEYS = ("prepare", "village", "wood", "tower", "reference")
 SOURCE_SLUG = "hollow-hearth"
+# Web pages live under docs/<lang>/adventures/<WEB_SLUG>/, the adventure's content_id in docs/_adventures/.
+WEB_SLUG = "the-bell-of-hollow-hearth"
 WEB_ASSETS = "/assets/" + SOURCE_SLUG + "/"
 MAPS = ("map-village", "map-forest", "map-ground", "map-upper")
 ENGRAVINGS = ("tower",)
@@ -262,7 +264,7 @@ def front_matter(lang, ui, n):
     title = ui[SECTION_KEYS[n]]
     lines = ["---", 'layout: "hollow_hearth"', f'lang: "{lang}"', 'kind: "adventure_chapter"',
              f'section: "{sec}"', f"chapter_title: {json.dumps(title, ensure_ascii=False)}",
-             f"title: {json.dumps(title, ensure_ascii=False)}", f'permalink: "/{lang}/adventure/read/{sec}.html"']
+             f"title: {json.dumps(title, ensure_ascii=False)}", f'permalink: "/{lang}/adventures/{WEB_SLUG}/read/{sec}.html"']
     if n > 0:
         lines.append(f'previous: "{n:02d}"')
     if n < 4:
@@ -287,7 +289,7 @@ def main():
             leftover = re.findall(r"\\[A-Za-z]+|HHBLOCK\d+X", re.sub(r"<[^>]+>", "", body))
             if leftover:
                 sys.exit(f"{lang} page {n + 1:02d}: unconverted LaTeX {sorted(set(leftover))}")
-            out = a.out_dir / lang / "adventure" / "read" / f"{n + 1:02d}.html"
+            out = a.out_dir / lang / "adventures" / WEB_SLUG / "read" / f"{n + 1:02d}.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(front_matter(lang, data[lang], n) + body, encoding="utf-8")
         print(f"{lang}: 5 pages written")

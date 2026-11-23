@@ -5,7 +5,7 @@ title: "Die Glocke von Hohlherd"
 category: introductory
 summary: "Ein Einstieg für neue Spieler und Erzähler."
 order: 1
-landing: "/de/adventure/index.html"
+landing: "/de/adventures/the-bell-of-hollow-hearth/index.html"
 pdf_path: "/downloads/hollow-hearth-de.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
 pregenerated:

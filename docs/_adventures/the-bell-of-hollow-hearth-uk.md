@@ -5,7 +5,7 @@ title: "Дзвін Порожнього Вогнища"
 category: introductory
 summary: "Початок для нових гравців та Оповідачів."
 order: 1
-landing: "/uk/adventure/index.html"
+landing: "/uk/adventures/the-bell-of-hollow-hearth/index.html"
 pdf_path: "/downloads/hollow-hearth-uk.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
 pregenerated:

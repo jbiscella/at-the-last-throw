@@ -35,8 +35,8 @@ def main():
         required.add(root / lang / "downloads.html")
         required.update(root / lang / "read" / f"{n:02d}.html" for n in range(1, CHAPTERS_PER_LANGUAGE + 1))
         required.add(root / lang / "adventures" / "index.html")
-        required.add(root / lang / "adventure" / "index.html")
-        required.update(root / lang / "adventure" / "read" / f"{n:02d}.html" for n in range(1, ADVENTURE_SECTIONS + 1))
+        required.add(root / lang / "adventures" / "the-bell-of-hollow-hearth" / "index.html")
+        required.update(root / lang / "adventures" / "the-bell-of-hollow-hearth" / "read" / f"{n:02d}.html" for n in range(1, ADVENTURE_SECTIONS + 1))
     missing = sorted(str(p.relative_to(root)) for p in required if not p.is_file())
 
     broken = []
