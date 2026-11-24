@@ -22,3 +22,4 @@
 # Character sheets built in place by character-sheets/build.sh; the published copies live in
 # docs/downloads/
 /character-sheets/*.pdf
+__pycache__/
