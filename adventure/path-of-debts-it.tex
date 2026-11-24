@@ -5,6 +5,9 @@
 \RPGSetRunningTitle{Il sentiero dei debiti}
 \hypersetup{pdftitle={Il sentiero dei debiti — All'ultimo tiro},pdfauthor={Jacopo Biscella}}
 \RPGSetCoverWordSpace{.78em}
+% Paragraph spacing and leading as in manual-<lang>.tex and the adventure.
+\setlength{\parskip}{3pt plus .5pt minus .5pt}
+\linespread{1.06}\selectfont
 % JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh), as in the adventure.
 \RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
 % The layout of \RPGFrontCover (rpgcover.sty), with the overlay saved once (xsavebox) and reused
@@ -17,7 +20,7 @@
   \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,250mm)$)
    {\RPGCoverTitleFont\fontsize{25}{31}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO DEI DEBITI};
   \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,237mm)$)
-   {\RPGCoverSubtitleFont\fontsize{14}{17}\selectfont Un racconto introduttivo ad All'ultimo tiro};
+   {\RPGCoverSubtitleFont\fontsize{14}{17}\selectfont Un racconto introduttivo per «All'ultimo tiro»};
   \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,125mm)$)
    {\resizebox{!}{145mm}{\xusebox{SentieroOverlay}}};
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt] at ($(current page.south west)+(105mm,25mm)$)
@@ -98,7 +101,7 @@
 {\color{rpgline}\rule{.76\linewidth}{.55pt}}\end{center}\vspace{8mm}
 \begingroup
 \makeatletter
-\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{3.8em}{\bfseries #1}{#2}}
+\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{4em}{\bfseries #1}{#2}}
 \@starttoc{toc}
 \makeatother
 \endgroup
@@ -106,12 +109,10 @@
 \begin{center}\resizebox{!}{65mm}{\xusebox{SentieroOverlay}}\end{center}
 \vfill
 \begin{center}{\small\itshape Un racconto introduttivo per All'ultimo tiro\par}
-\vspace{4pt}{\footnotesize Jacopo Biscella\par}\end{center}
+\vspace{4pt}{\footnotesize Jacopo Biscella\par}\vspace{5pt}
+{\footnotesize Questo racconto è pubblicato con licenza Creative Commons Attribuzione-Condividi allo stesso modo 4.0 Internazionale (CC BY-SA 4.0), alle stesse condizioni di All'ultimo tiro. È consentita la condivisione e l'adattamento, anche commerciale, purché l'autore venga citato e le opere derivate mantengano la stessa licenza.\par}\end{center}
 \clearpage
 \RPGStartMainMatter
-\begin{rpgnote}
-\textbf{Come leggere i riquadri.} Nei riquadri \emph{Al tavolo} i dadi sono disegnati: \Dado{5}~dado tenuto, \Dado*{2}~dado scartato, \Bersaglio~VR da raggiungere, \Riuscita~riuscita, \Fallita~fallimento. I livelli si scrivono come sulla scheda: Inesperto 2d6\Giu\ (tieni il più basso), Competente 1d6, Esperto 2d6\Su\ (tieni il più alto), Eccezionale 3d6\Su.
-\end{rpgnote}
 \RPGChapter{Una moneta cattiva}
 La moneta aveva due teste. Una portava la corona del re; l'altra, il volto di un uomo che il re aveva fatto impiccare vent'anni prima.
 
@@ -146,6 +147,9 @@ Mara depose la moneta sul tavolo, dalla parte del re. «Sì.»
 Non gli disse di aver visto una grafia simile, anni prima, sul margine di un antico registro. Né gli chiese perché una mano avesse cancellato una data e ne avesse scritta un'altra. Aveva imparato che le domande poste troppo presto rendevano prudenti anche i bugiardi meno capaci.
 
 Quella notte copiò il nome del villaggio in fondo alle proprie note. Poi corresse l'itinerario. Il carro sarebbe andato a nord. Mara, al crocevia, avrebbe preso il sentiero del bosco.
+\begin{rpgnote}
+\textbf{Come leggere i riquadri.} Nei riquadri \emph{Al tavolo} i dadi sono disegnati: \Dado{5}~dado tenuto, \Dado*{2}~dado scartato, \Bersaglio~VR da raggiungere, \Riuscita~riuscita, \Fallita~fallimento. I livelli si scrivono come sulla scheda: Inesperto 2d6\Giu\ (tieni il più basso), Competente 1d6, Esperto 2d6\Su\ (tieni il più alto), Eccezionale 3d6\Su.
+\end{rpgnote}
 \begin{rpgexample}{Al tavolo · Il primo tiro}
 \textbf{Narratore:} «Il mercante chiude il registro. Mara ha visto il nome del villaggio e una data raschiata. La data è illeggibile a prima vista. Come provi a ricostruirla?»
 
