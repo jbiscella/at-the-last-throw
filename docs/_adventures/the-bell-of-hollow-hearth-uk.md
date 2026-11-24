@@ -16,7 +16,7 @@ pregenerated:
     portrait: "/assets/hollow-hearth/pregens/aldren-varr.webp"
   - id: nim-thistledown
     name: "Нім Тіслдаун"
-    role: "Авантюрист-ельф"
+    role: "Авантюристка-ельфійка"
     pdf_path: "/downloads/hollow-hearth-nim-thistledown-uk.pdf"
     portrait: "/assets/hollow-hearth/pregens/nim-thistledown.webp"
   - id: mara-veyne
@@ -26,7 +26,7 @@ pregenerated:
     portrait: "/assets/hollow-hearth/pregens/mara-veyne.webp"
   - id: elyra-ashenveil
     name: "Еліра Ешенвейл"
-    role: "Містик-людина"
+    role: "Містикиня-людина"
     pdf_path: "/downloads/hollow-hearth-elyra-ashenveil-uk.pdf"
     portrait: "/assets/hollow-hearth/pregens/elyra-ashenveil.webp"
 ---
