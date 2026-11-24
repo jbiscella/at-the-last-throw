@@ -10,17 +10,18 @@
 \linespread{1.06}\selectfont
 % JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh), as in the adventure.
 \RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
-% The layout of \RPGFrontCover (rpgcover.sty), with the overlay saved once (xsavebox) and reused
-% on the contents page instead of being embedded twice.
+% The adventure's front-cover typography, with the overlay saved once (xsavebox) and reused on the
+% contents page instead of being embedded twice.
 \newcommand{\SentieroFrontCover}{%
  \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
  \xsavebox{SentieroOverlay}{\includegraphics{assets/path-of-debts/front-overlay.png}}%
  \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
   \RPGDrawBackground{\RPGFrontBackgroundFile}
-  \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,250mm)$)
-   {\RPGCoverTitleFont\fontsize{25}{31}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO DEI DEBITI};
-  \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,237mm)$)
-   {\RPGCoverSubtitleFont\fontsize{14}{17}\selectfont Un racconto introduttivo per «All'ultimo tiro»};
+  % Title and subtitle as on the adventure's cover: same sizes and positions in the cartouche.
+  \node[align=center,text=coverink,text width=138mm,inner sep=0pt] at ($(current page.south west)+(105mm,248mm)$)
+   {\RPGCoverTitleFont\fontsize{16.6}{20.7}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO\\[1.0mm]DEI DEBITI};
+  \node[align=center,text=coverink,text width=135mm,inner sep=0pt] at ($(current page.south west)+(105mm,235mm)$)
+   {\RPGCoverSubtitleFont\fontsize{9.5}{12}\selectfont Un racconto introduttivo per «All'ultimo tiro»};
   \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,125mm)$)
    {\resizebox{150mm}{!}{\xusebox{SentieroOverlay}}};
   \node[align=center,text=coverink,text width=124mm,inner sep=0pt] at ($(current page.south west)+(105mm,25mm)$)
@@ -35,30 +36,30 @@
    \RPGDrawBackground{\RPGBackBackgroundFile}
    \node[align=center,text=coverink,text width=170mm,inner sep=0pt]
      at ($(current page.south west)+(105mm,260mm)$)
-     {{\RPGCoverTitleFont\fontsize{18}{22}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO DEI DEBITI}};
+     {{\RPGCoverTitleFont\fontsize{19}{23}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO DEI DEBITI}};
    \draw[coverink,line width=.45pt]
      ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
    \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
-     at ($(current page.south west)+(105mm,236mm)$)
-     {\RPGCoverTextFont\fontsize{11}{14.5}\selectfont
+     at ($(current page.south west)+(105mm,240mm)$)
+     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
       Una moneta falsa. Una lettera senza destinatario. Due viaggiatori che non avevano motivo di fidarsi l'uno dell'altra.};
    \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
      at ($(current page.south west)+(105mm,209mm)$)
-     {\RPGCoverTextFont\fontsize{10.6}{14}\selectfont
+     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
       Nim Thistledown e Mara Veyne seguono la strada del Re fino a Focolare Vuoto. Lungo il cammino scopriranno che una promessa può essere più pericolosa di un'arma, e che certe scelte hanno conseguenze anche quando nessuno le vede.};
    \draw[coverink,line width=.45pt]
      ($(current page.south west)+(57mm,165mm)$)--($(current page.south west)+(153mm,165mm)$);
    \node[anchor=north,align=center,text=coverink,text width=144mm,inner sep=0pt]
      at ($(current page.south west)+(105mm,157mm)$)
-     {\RPGCoverSubtitleFont\fontsize{12.5}{16}\selectfont
+     {\RPGCoverSubtitleFont\fontsize{13}{17}\selectfont
       Un prologo narrativo a La campana di Focolare Vuoto};
    \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
      at ($(current page.south west)+(105mm,131mm)$)
-     {\RPGCoverTextFont\fontsize{10.5}{14}\selectfont
+     {\RPGCoverTextFont\fontsize{10.4}{13.4}\selectfont
       Sette esempi mostrano come le decisioni dei giocatori diventano prove, dialoghi e conseguenze al tavolo di All'ultimo tiro.};
    \node[anchor=north,align=center,text=coverink,text width=144mm,inner sep=0pt]
      at ($(current page.south west)+(105mm,100mm)$)
-     {\RPGCoverSubtitleFont\fontsize{11}{14}\selectfont
+     {\RPGCoverSubtitleFont\fontsize{10.5}{13.2}\selectfont
       Il racconto termina dove comincia l'avventura.};
    \filldraw[fill=white,draw=coverink,line width=.55pt]
      ($(current page.south west)+(139mm,25mm)$) rectangle
