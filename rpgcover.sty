@@ -19,8 +19,10 @@
 \newcommand{\RPGCoverSubtitleFont}{\fontspec{\RPGCoverSubtitleTypeface}}
 \newcommand{\RPGCoverTextFont}{\fontspec{\RPGCoverTextTypeface}}
 % Both full-page backgrounds are independent images, with no embedded text.
-\newcommand{\RPGFrontBackgroundFile}{assets/engraved-front-background.png}
-\newcommand{\RPGBackBackgroundFile}{assets/engraved-cover-background.png}
+% JPEG copies (quality 95) of the PNG originals, made by scripts/build-adventure-print-art.sh: the PNGs
+% made every rulebook PDF about 4.5 MB larger with no visible difference in print.
+\newcommand{\RPGFrontBackgroundFile}{assets/engraved-front-background.jpg}
+\newcommand{\RPGBackBackgroundFile}{assets/engraved-cover-background.jpg}
 \newcommand{\RPGSetFrontBackground}[1]{\renewcommand{\RPGFrontBackgroundFile}{#1}}
 \newcommand{\RPGSetBackBackground}[1]{\renewcommand{\RPGBackBackgroundFile}{#1}}
 % Backwards-compatible setter: changes both backgrounds if explicitly requested.

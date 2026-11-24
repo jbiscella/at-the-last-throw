@@ -59,7 +59,7 @@ character sheets or the site.
   - The print sources include JPEG copies of the interior illustrations (`assets/hollow-hearth/*.jpg`), made from the PNG originals by `scripts/build-adventure-print-art.sh` inside the pinned container. Embedded as PNG they made each adventure PDF about 36 MB.
   - After changing a PNG original, rerun that script and commit the new `.jpg`. Never edit a `.jpg` by hand.
   - The cover overlays (`*-overlay.png`) stay PNG: they need their transparency on the parchment cover.
-  - The same script makes `assets/engraved-*-background.jpg` (quality 95) from the shared cover PNGs; the adventure covers use the JPEGs, the rulebook still uses the PNGs.
+  - The same script makes `assets/engraved-*-background.jpg` (quality 95) from the shared cover PNGs; every cover uses the JPEGs (the default in `rpgcover.sty`; the adventure and the prologue also set them), and the PNGs stay the source.
   - The character-sheet artwork works the same way: `build.sh` makes `character-sheets/assets/character-background.jpg` (quality 95) from the PNG, the sheets embed the JPEG, and the collision test measures the PNG. Never edit the JPEG by hand.
 - **Web edition of an adventure:** `scripts/build-adventure-html.py` needs pandoc and Pillow (not in the container); its committed output was made with pandoc 2.17.1.1. The `.webp` web images are made from the PNG originals.
 
