@@ -63,8 +63,10 @@
     \global\setbox\SheetMeasure\hbox{\resizebox{#4mm}{!}{\box\SheetMeasure}}\fi
   \endpgfinterruptpicture
   \node[anchor=base west,inner sep=0pt,text=sheetink] at (#1,#2) {\usebox\SheetMeasure};}
-% Tier mark: an X inside the 3.6 mm checkbox, 0.8 mm clear of its edges.
-\def\PregenBoxX#1{\ifcase#1\or112.8\or135.2\or158.85\or178.5\fi}
+% Tier mark: an X centred on the checkbox's light interior (about 3.3 x 3.4 mm), measured on the
+% rendered blank sheet at 600 dpi. The engraved boxes have heavier bottom and right edges, so this
+% centre lies about 0.1 mm right of and below the centre of the edge lines.
+\def\PregenBoxX#1{\ifcase#1\or112.9\or135.32\or159.05\or178.56\fi}
 \newcommand\PregenMark[2]{\draw[sheetink,line width=.9pt,line cap=round]
   (#1-1,#2-1)--(#1+1,#2+1) (#1-1,#2+1)--(#1+1,#2-1);}
 % Hit-point boxes, measured on the artwork: inner left and right edges in mm; inside, the boxes
@@ -96,10 +98,9 @@
   \PregenAfterLabel{13}{52.5}{\Sh{Name}\SheetColon}{24.5}{78.7}{\PregenName}
   \PregenAfterLabel{82}{52.5}{\Sh{Race}\SheetColon}{93}{139.3}{\PregenRace}
   \PregenAfterLabel{151}{52.5}{\Sh{Class}\SheetColon}{156.2}{196.5}{\PregenClass}
-  % One tier per attribute: box centres measured on the artwork (edges 74.05/77.71,
-  % 83.01/86.68, 92.17/95.83 and 101.05/104.79 mm).
+  % One tier per attribute: centres of the boxes' light interiors, one row per attribute.
   \foreach \PregenT [count=\PregenRow] in \PregenTiers {%
-    \pgfmathsetmacro\PregenY{{75.88,84.84,94.0,102.92}[\PregenRow-1]}%
+    \pgfmathsetmacro\PregenY{{75.97,84.9,94.09,103.02}[\PregenRow-1]}%
     \PregenMark{\PregenBoxX{\PregenT}}{\PregenY}}
   % Boxes above the maximum are shaded (a cross would read as a wound); the others stay free.
   % The maximum is written under the HIT POINTS label (free from 84 to 112 mm down to 130.8 mm).
