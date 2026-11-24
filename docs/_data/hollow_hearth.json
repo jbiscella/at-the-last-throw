@@ -44,14 +44,21 @@
       "prologue_label": "Prologue",
       "prologue_lead": "A story that takes Nim and Mara to Hollow Hearth and shows, in seven examples, how the game is played at the table.",
       "prologue_read": "Read the prologue",
-      "prologue_pdf": "Prologue (PDF)"
+      "prologue_pdf": "Download the prologue PDF",
+      "prologue_part": "Part",
+      "prologue_of": "of",
+      "narrator_only": "For the Narrator only",
+      "prologue_card": "Read it first: a short story that leads into the adventure.",
+      "facts": "2–3 hours · 3–4 Protagonists · At least one Fighter"
     },
     "intro_label": "Introductory adventure",
     "prologue_icons": {
       "kept": "{n}, kept",
       "dropped": "{n}, set aside",
       "success": "success",
-      "failure": "failure"
+      "failure": "failure",
+      "keep_high": "keep the highest",
+      "keep_low": "keep the lowest"
     }
   },
   "it": {
@@ -99,14 +106,21 @@
       "prologue_label": "Prologo",
       "prologue_lead": "Un racconto che porta Nim e Mara fino a Focolare Vuoto e mostra, in sette esempi, come si gioca al tavolo.",
       "prologue_read": "Leggi il prologo",
-      "prologue_pdf": "Prologo (PDF)"
+      "prologue_pdf": "Scarica il prologo in PDF",
+      "prologue_part": "Parte",
+      "prologue_of": "di",
+      "narrator_only": "Solo per il Narratore",
+      "prologue_card": "Da leggere prima: un racconto breve che porta all’avventura.",
+      "facts": "2–3 ore · 3–4 Protagonisti · Almeno un Combattente"
     },
     "intro_label": "Avventura introduttiva",
     "prologue_icons": {
       "kept": "{n}, tenuto",
       "dropped": "{n}, scartato",
       "success": "riuscita",
-      "failure": "fallimento"
+      "failure": "fallimento",
+      "keep_high": "tieni il più alto",
+      "keep_low": "tieni il più basso"
     }
   },
   "fr": {
@@ -154,14 +168,21 @@
       "prologue_label": "Prologue",
       "prologue_lead": "Un récit qui mène Nim et Mara jusqu’à l’Âtre Creux et montre, en sept exemples, comment on joue autour de la table.",
       "prologue_read": "Lire le prologue",
-      "prologue_pdf": "Prologue (PDF)"
+      "prologue_pdf": "Télécharger le prologue en PDF",
+      "prologue_part": "Partie",
+      "prologue_of": "sur",
+      "narrator_only": "Réservé au Narrateur",
+      "prologue_card": "À lire d’abord : un court récit qui mène à l’aventure.",
+      "facts": "2–3 heures · 3–4 Protagonistes · Au moins un Guerrier"
     },
     "intro_label": "Aventure d’initiation",
     "prologue_icons": {
       "kept": "{n}, gardé",
       "dropped": "{n}, écarté",
       "success": "réussite",
-      "failure": "échec"
+      "failure": "échec",
+      "keep_high": "garder le plus élevé",
+      "keep_low": "garder le plus faible"
     }
   },
   "es": {
@@ -209,14 +230,21 @@
       "prologue_label": "Prólogo",
       "prologue_lead": "Un relato que lleva a Nim y Mara hasta Hogar Hueco y muestra, en siete ejemplos, cómo se juega en la mesa.",
       "prologue_read": "Leer el prólogo",
-      "prologue_pdf": "Prólogo (PDF)"
+      "prologue_pdf": "Descargar el prólogo en PDF",
+      "prologue_part": "Parte",
+      "prologue_of": "de",
+      "narrator_only": "Solo para el Narrador",
+      "prologue_card": "Para leer primero: un relato breve que lleva a la aventura.",
+      "facts": "2–3 horas · 3–4 Protagonistas · Al menos un Guerrero"
     },
     "intro_label": "Aventura introductoria",
     "prologue_icons": {
       "kept": "{n}, conservado",
       "dropped": "{n}, descartado",
       "success": "éxito",
-      "failure": "fallo"
+      "failure": "fallo",
+      "keep_high": "conserva el mayor",
+      "keep_low": "conserva el menor"
     }
   },
   "de": {
@@ -264,14 +292,21 @@
       "prologue_label": "Prolog",
       "prologue_lead": "Eine Erzählung, die Nim und Mara nach Hohlherd führt und in sieben Beispielen zeigt, wie am Tisch gespielt wird.",
       "prologue_read": "Prolog lesen",
-      "prologue_pdf": "Prolog (PDF)"
+      "prologue_pdf": "Prolog als PDF herunterladen",
+      "prologue_part": "Teil",
+      "prologue_of": "von",
+      "narrator_only": "Nur für den Erzähler",
+      "prologue_card": "Zuerst lesen: eine kurze Erzählung, die ins Abenteuer führt.",
+      "facts": "2–3 Stunden · 3–4 Protagonisten · Mindestens ein Kämpfer"
     },
     "intro_label": "Einführungsabenteuer",
     "prologue_icons": {
       "kept": "{n}, behalten",
       "dropped": "{n}, verworfen",
       "success": "Erfolg",
-      "failure": "Fehlschlag"
+      "failure": "Fehlschlag",
+      "keep_high": "höheren behalten",
+      "keep_low": "niedrigeren behalten"
     }
   },
   "uk": {
@@ -319,14 +354,21 @@
       "prologue_label": "Пролог",
       "prologue_lead": "Оповідання, що веде Нім і Мару до Порожнього Вогнища та на семи прикладах показує, як грають за столом.",
       "prologue_read": "Читати пролог",
-      "prologue_pdf": "Пролог (PDF)"
+      "prologue_pdf": "Завантажити пролог у PDF",
+      "prologue_part": "Частина",
+      "prologue_of": "з",
+      "narrator_only": "Лише для Оповідача",
+      "prologue_card": "Прочитайте спочатку: коротке оповідання, що веде до пригоди.",
+      "facts": "2–3 години · 3–4 Протагоністи · Щонайменше один Боєць"
     },
     "intro_label": "Вступна пригода",
     "prologue_icons": {
       "kept": "{n}, залишено",
       "dropped": "{n}, відкинуто",
       "success": "успіх",
-      "failure": "невдача"
+      "failure": "невдача",
+      "keep_high": "взяти більший",
+      "keep_low": "взяти менший"
     }
   }
 }

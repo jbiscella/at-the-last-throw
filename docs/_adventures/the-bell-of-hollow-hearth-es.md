@@ -10,7 +10,7 @@ pdf_path: "/downloads/hollow-hearth-es.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
 prologue:
   title: "El sendero de las deudas"
-  page: "/es/adventures/the-bell-of-hollow-hearth/prologue.html"
+  page: "/es/adventures/the-bell-of-hollow-hearth/prologue/01.html"
   pdf_path: "/downloads/path-of-debts-es.pdf"
   image_path: "/assets/path-of-debts/front-overlay.webp"
 pregenerated:

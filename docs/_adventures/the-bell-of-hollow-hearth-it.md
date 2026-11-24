@@ -10,7 +10,7 @@ pdf_path: "/downloads/hollow-hearth-it.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
 prologue:
   title: "Il sentiero dei debiti"
-  page: "/it/adventures/the-bell-of-hollow-hearth/prologue.html"
+  page: "/it/adventures/the-bell-of-hollow-hearth/prologue/01.html"
   pdf_path: "/downloads/path-of-debts-it.pdf"
   image_path: "/assets/path-of-debts/front-overlay.webp"
 pregenerated:
