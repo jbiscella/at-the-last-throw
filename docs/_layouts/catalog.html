@@ -37,6 +37,7 @@
 <p class="hh-catalog-actions"><a class="ink-button" href="{{ item.landing | relative_url }}">{{ c.explore }}</a>
 {% assign pdf = site.static_files | where: 'path', item.pdf_path | first %}
 {% if pdf %}<a class="subtle-link" href="{{ item.pdf_path | relative_url }}" download>{{ ui.download_pdf }}</a>{% endif %}
+{% if item.prologue %}<a class="subtle-link" href="{{ item.prologue.page | relative_url }}">{{ c.prologue_label }}: {{ item.prologue.title }}</a>{% endif %}
 {% if item.pregenerated.size > 0 %}<a class="subtle-link" href="{{ item.landing | relative_url }}#{{ item.content_id }}-pregenerated">{{ c.pregenerated_title }}</a>{% endif %}</p></div></article>{% endfor %}</div>
 </main><footer class="site-footer"><div class="footer-frame"><p>{{ ui.game }} · Jacopo Biscella</p><p>CC BY-SA 4.0</p><p><a href="{{ '/' | relative_url }}{{ page.lang }}/downloads.html">{{ c.materials }}</a> · <a href="{{ '/' | relative_url }}{{ page.lang }}/adventures/index.html">{{ c.adventures }}</a></p></div></footer>
 </body></html>

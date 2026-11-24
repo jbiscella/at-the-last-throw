@@ -40,9 +40,19 @@
       "pregenerated_title": "Pregenerated characters",
       "print_title": "Print & play",
       "pregenerated_lead": "Four ready-to-play Protagonists, one A4 sheet each.",
-      "sheet_pdf": "Sheet (PDF)"
+      "sheet_pdf": "Sheet (PDF)",
+      "prologue_label": "Prologue",
+      "prologue_lead": "A story that takes Nim and Mara to Hollow Hearth and shows, in seven examples, how the game is played at the table.",
+      "prologue_read": "Read the prologue",
+      "prologue_pdf": "Prologue (PDF)"
     },
-    "intro_label": "Introductory adventure"
+    "intro_label": "Introductory adventure",
+    "prologue_icons": {
+      "kept": "{n}, kept",
+      "dropped": "{n}, set aside",
+      "success": "success",
+      "failure": "failure"
+    }
   },
   "it": {
     "title": "La campana di Focolare Vuoto",
@@ -85,9 +95,19 @@
       "pregenerated_title": "Personaggi pregenerati",
       "print_title": "Materiale da stampare",
       "pregenerated_lead": "Quattro Protagonisti pronti per giocare, una scheda A4 ciascuno.",
-      "sheet_pdf": "Scheda (PDF)"
+      "sheet_pdf": "Scheda (PDF)",
+      "prologue_label": "Prologo",
+      "prologue_lead": "Un racconto che porta Nim e Mara fino a Focolare Vuoto e mostra, in sette esempi, come si gioca al tavolo.",
+      "prologue_read": "Leggi il prologo",
+      "prologue_pdf": "Prologo (PDF)"
     },
-    "intro_label": "Avventura introduttiva"
+    "intro_label": "Avventura introduttiva",
+    "prologue_icons": {
+      "kept": "{n}, tenuto",
+      "dropped": "{n}, scartato",
+      "success": "riuscita",
+      "failure": "fallimento"
+    }
   },
   "fr": {
     "title": "La cloche de l’Âtre Creux",
@@ -130,9 +150,19 @@
       "pregenerated_title": "Personnages prétirés",
       "print_title": "À imprimer",
       "pregenerated_lead": "Quatre Protagonistes prêts à jouer, une fiche A4 chacun.",
-      "sheet_pdf": "Fiche (PDF)"
+      "sheet_pdf": "Fiche (PDF)",
+      "prologue_label": "Prologue",
+      "prologue_lead": "Un récit qui mène Nim et Mara jusqu’à l’Âtre Creux et montre, en sept exemples, comment on joue autour de la table.",
+      "prologue_read": "Lire le prologue",
+      "prologue_pdf": "Prologue (PDF)"
     },
-    "intro_label": "Aventure d’initiation"
+    "intro_label": "Aventure d’initiation",
+    "prologue_icons": {
+      "kept": "{n}, gardé",
+      "dropped": "{n}, écarté",
+      "success": "réussite",
+      "failure": "échec"
+    }
   },
   "es": {
     "title": "La campana de Hogar Hueco",
@@ -175,9 +205,19 @@
       "pregenerated_title": "Personajes pregenerados",
       "print_title": "Para imprimir",
       "pregenerated_lead": "Cuatro protagonistas listos para jugar, una ficha A4 cada uno.",
-      "sheet_pdf": "Ficha (PDF)"
+      "sheet_pdf": "Ficha (PDF)",
+      "prologue_label": "Prólogo",
+      "prologue_lead": "Un relato que lleva a Nim y Mara hasta Hogar Hueco y muestra, en siete ejemplos, cómo se juega en la mesa.",
+      "prologue_read": "Leer el prólogo",
+      "prologue_pdf": "Prólogo (PDF)"
     },
-    "intro_label": "Aventura introductoria"
+    "intro_label": "Aventura introductoria",
+    "prologue_icons": {
+      "kept": "{n}, conservado",
+      "dropped": "{n}, descartado",
+      "success": "éxito",
+      "failure": "fallo"
+    }
   },
   "de": {
     "title": "Die Glocke von Hohlherd",
@@ -220,9 +260,19 @@
       "pregenerated_title": "Vorgefertigte Charaktere",
       "print_title": "Zum Ausdrucken",
       "pregenerated_lead": "Vier spielfertige Protagonisten, je ein A4-Bogen.",
-      "sheet_pdf": "Bogen (PDF)"
+      "sheet_pdf": "Bogen (PDF)",
+      "prologue_label": "Prolog",
+      "prologue_lead": "Eine Erzählung, die Nim und Mara nach Hohlherd führt und in sieben Beispielen zeigt, wie am Tisch gespielt wird.",
+      "prologue_read": "Prolog lesen",
+      "prologue_pdf": "Prolog (PDF)"
     },
-    "intro_label": "Einführungsabenteuer"
+    "intro_label": "Einführungsabenteuer",
+    "prologue_icons": {
+      "kept": "{n}, behalten",
+      "dropped": "{n}, verworfen",
+      "success": "Erfolg",
+      "failure": "Fehlschlag"
+    }
   },
   "uk": {
     "title": "Дзвін Порожнього Вогнища",
@@ -265,8 +315,18 @@
       "pregenerated_title": "Готові персонажі",
       "print_title": "Для друку",
       "pregenerated_lead": "Чотири готові протагоністи, по аркушу A4 на кожного.",
-      "sheet_pdf": "Лист (PDF)"
+      "sheet_pdf": "Лист (PDF)",
+      "prologue_label": "Пролог",
+      "prologue_lead": "Оповідання, що веде Нім і Мару до Порожнього Вогнища та на семи прикладах показує, як грають за столом.",
+      "prologue_read": "Читати пролог",
+      "prologue_pdf": "Пролог (PDF)"
     },
-    "intro_label": "Вступна пригода"
+    "intro_label": "Вступна пригода",
+    "prologue_icons": {
+      "kept": "{n}, залишено",
+      "dropped": "{n}, відкинуто",
+      "success": "успіх",
+      "failure": "невдача"
+    }
   }
 }

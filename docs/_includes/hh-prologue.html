@@ -1,0 +1,10 @@
+{% comment %}
+The prologue of an adventure (front matter `prologue` in docs/_adventures/<slug>-<lang>.md):
+title, a one-line lead, the link to read it online and its PDF. Parameters: adventure (the
+collection entry), level (heading tag), image (false leaves the art out).
+{% endcomment %}{% assign hp_ui = site.data.hollow_hearth[page.lang].catalog %}{% assign hp = include.adventure.prologue %}{% assign hp_level = include.level | default: 'h2' %}
+{% if hp %}{% assign hp_file = site.static_files | where: 'path', hp.pdf_path | first %}<section class="hh-overview-section pd-prologue" id="{{ include.adventure.content_id }}-prologue">
+<{{ hp_level }}>{{ hp_ui.prologue_label }}: {{ hp.title }}</{{ hp_level }}>
+{% if hp.image_path and include.image != false %}<img class="pd-prologue-art" src="{{ hp.image_path | relative_url }}" alt="" loading="lazy">{% endif %}<p>{{ hp_ui.prologue_lead }}</p>
+<p class="pd-prologue-actions"><a class="ink-button" href="{{ hp.page | relative_url }}">{{ hp_ui.prologue_read }}</a>{% if hp_file %} <a class="subtle-link" href="{{ hp.pdf_path | relative_url }}" download aria-label="{{ hp.title }} — {{ hp_ui.prologue_pdf }}">{{ hp_ui.prologue_pdf }}</a>{% endif %}</p>
+</section>{% endif %}

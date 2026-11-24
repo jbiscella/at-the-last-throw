@@ -8,6 +8,11 @@ order: 1
 landing: "/uk/adventures/the-bell-of-hollow-hearth/index.html"
 pdf_path: "/downloads/hollow-hearth-uk.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
+prologue:
+  title: "Стежка боргів"
+  page: "/uk/adventures/the-bell-of-hollow-hearth/prologue.html"
+  pdf_path: "/downloads/path-of-debts-uk.pdf"
+  image_path: "/assets/path-of-debts/front-overlay.webp"
 pregenerated:
   - id: aldren-varr
     name: "Алдрен Варр"
