@@ -74,11 +74,16 @@ class RulebookConverter(A.Converter):
 
 
 def symbols(s):
-    # Paragraph breaks first: clean() drops \\smallskip with its space, which would glue a following
-    # word to \\par.
+    # Paragraph breaks first: clean() drops \smallskip with its space, which would glue a following
+    # word to \par.
     s = re.sub(r"\\par\\(?:small|med|big)skip\s*", "\n\n", s)
     s = re.sub(r"\\par(?![a-zA-Z])\s*", "\n\n", s)
-    for a, b in (("$\\uparrow$", "↑"), ("$\\downarrow$", "↓"), ("$\\leq$", "≤"), ("$\\geq$", "≥"), ("$\\sim$", "~"),
+    # Comparison signs written as maths ("$\geq 4$", "$\leq 2$") become plain text, so pandoc adds no
+    # three-per-em spaces around them.
+    s = re.sub(r"\$\\([lg]eq)\s*([^$]*)\$", lambda m: ("≤" if m.group(1) == "leq" else "≥") + " " + m.group(2).strip(), s)
+    # "$\sim$" is the "about" sign before a percentage: \textasciitilde, not "~", which LaTeX and pandoc
+    # read as a no-break space.
+    for a, b in (("$\\uparrow$", "↑"), ("$\\downarrow$", "↓"), ("$\\sim$", "\\textasciitilde{}"),
                  ("\\textquoteright{}", "’"), ("\\textquoteright", "’")):
         s = s.replace(a, b)
     return s
