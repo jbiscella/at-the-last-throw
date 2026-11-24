@@ -78,10 +78,13 @@
   \or \foreach \x/\y in {.28/.22,.28/.5,.28/.78,.72/.22,.72/.5,.72/.78}{\fill (\x,\y) circle (.085);}
   \fi}
 \makeatletter
-\newcommand\Dado{\@ifstar{\Dado@{.4}}{\Dado@{1}}}
-\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em,opacity=#1]{%
-  \draw[rpgbrown,line width=.5pt,rounded corners=1.2pt,fill=white] (0,-.12) rectangle (1,.88);
-  \begin{scope}[shift={(0,-.12)},rpgink]\DadoPips{#2}\end{scope}}}
+% A die that is set aside has a dashed outline and lighter pips, but stays legible.
+\tikzset{dado kept/.style={draw=rpgbrown,fill=white},dado dropped/.style={draw=rpgbrown,fill=rpgshade,dash pattern=on .9pt off .6pt},
+  pips kept/.style={fill=rpgink},pips dropped/.style={fill=rpgbrown!70}}
+\newcommand\Dado{\@ifstar{\Dado@{dropped}}{\Dado@{kept}}}
+\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em]{%
+  \path[dado #1,line width=.5pt,rounded corners=1.2pt] (0,-.12) rectangle (1,.88);
+  \begin{scope}[shift={(0,-.12)},pips #1]\DadoPips{#2}\end{scope}}}
 \makeatother
 \newcommand\Su{{\fontspec{FreeSerif}↑}}
 \newcommand\Giu{{\fontspec{FreeSerif}↓}}
@@ -113,7 +116,7 @@
 \RPGChapter{A Bad Coin}
 The coin had two heads. One bore the king's crown; the other, the face of a man the king had hanged twenty years before.
 
-Mara Veyne turned it between thumb and forefinger. The copper was worn on one side only. Whoever had struck it meant the trick to last a short while: long enough to change hands, not long enough to reach a tax collector's eyes.
+The scholar Mara Veyne turned it between thumb and forefinger. The copper was worn on one side only. Whoever had struck it meant the trick to last a short while: long enough to change hands, not long enough to reach a tax collector's eyes.
 
 “I told you it's false,” said the merchant.
 
@@ -145,7 +148,7 @@ He did not tell the merchant that he had seen a similar hand years before, in th
 
 That night he copied the village's name at the end of his notes. Then he changed his route. The wagon would go north. Mara, at the crossroads, would take the forest path.
 \begin{rpgnote}
-\textbf{How to read the boxes.} In the \emph{At the table} boxes the dice are drawn: \Dado{5}~die kept, \Dado*{2}~die set aside, \Bersaglio~TN to reach, \Riuscita~success, \Fallita~failure. The tiers are written as on the sheet: Untrained 2d6\Giu\ (keep the lowest), Competent 1d6, Expert 2d6\Su\ (keep the highest), Exceptional 3d6\Su.
+\textbf{How to read the boxes.} In the \emph{At the table} boxes the dice are drawn: \Dado{5}~die kept, \Dado*{2}~die set aside, \Bersaglio~TN to reach, \Riuscita~success, \Fallita~failure. The tiers are written as on the sheet: Untrained 2d6\Giu\ (keep the lowest), Competent 1d6, Expert 2d6\Su\ (keep the highest), Exceptional 3d6\Su. TN is the Target Number, the value to reach. Near is one of the rulebook's distances: a few steps away, reachable instantly.
 \end{rpgnote}
 \begin{rpgexample}{At the table · The first roll}
 \textbf{Narrator:} “The merchant closes the ledger. Mara has seen the village's name and a scratched-out date. At first glance the date is illegible. How do you try to make it out?”
@@ -654,7 +657,7 @@ The delivery was over: they would not look for the nameless recipient, nor take 
 
 \textbf{Mara's player:} “I tell him he can leave: I don't want to hurt him. Mara is Expert in Lore and has Diplomacy.”
 
-\textbf{Narrator:} “He was already hesitating: he lowers the spear, and no roll is needed. The man with the sword, though, frees his arm and strikes. When an enemy attacks, I roll for him against the TN of your armour: yours is light, and against a Strength blow it's \Bersaglio\,TN~3. He is Expert: 2d6\Su. I roll \Dado*{1}\,\Dado{4}: I keep 4. He hits you: the sword deals 2 Wounds.” \Fallita
+\textbf{Narrator:} “He was already hesitating: he lowers the spear, and no roll is needed. The man with the sword, though, frees his arm and strikes. When an enemy attacks, I roll for him against the TN of your armour: yours is light, and against a Strength blow it's \Bersaglio\,TN~3. He is Expert: 2d6\Su. I roll \Dado*{1}\,\Dado{4}: I keep 4. He hits you: the sword deals 2 Wounds.”
 
 \textbf{Narrator:} “Nim had 4 Hit Points; now she has 2. At 2 HP you are Battered: −1 tier to every roll. In actions that use the injured shoulder, the condition's −1 is added: your Dexterity Expert drops two tiers, to 2d6\Giu. The man sees the young man back away and doesn't follow you.”
 
@@ -685,7 +688,11 @@ Nim turned to Mara. For once she had nothing to sell and no quip ready.
 
 \emph{Here “The Bell of Hollow Hearth” begins: the Narrator can read aloud the arrival, in “The Hook”. At the table, the answer to Nim's question belongs to the players: the events of this prologue do not set a path for them.}
 \endgroup
+\clearpage
 \RPGChapter{For the Narrator}
+\begin{rpgnote}
+\textbf{For the Narrator only.} This chapter reveals the secrets of “The Bell of Hollow Hearth”. If you will play the adventure as a player, stop here.
+\end{rpgnote}
 This prologue leads into “The Bell of Hollow Hearth”. If your players have read it, or if you played it, Nim and Mara arrive in the village with a letter and a false coin. The adventure does not mention them: here is how to use them.
 
 \textbf{The letter.} The buyer of the bell wrote it, and it was meant for Thessik, the brigand who drank with Marrel at the inn. “Half the debt” is the price already paid to the brigands; the other half will come with the buyer, to the tower, at midnight.

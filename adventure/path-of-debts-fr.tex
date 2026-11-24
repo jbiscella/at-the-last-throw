@@ -79,10 +79,13 @@
   \or \foreach \x/\y in {.28/.22,.28/.5,.28/.78,.72/.22,.72/.5,.72/.78}{\fill (\x,\y) circle (.085);}
   \fi}
 \makeatletter
-\newcommand\Dado{\@ifstar{\Dado@{.4}}{\Dado@{1}}}
-\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em,opacity=#1]{%
-  \draw[rpgbrown,line width=.5pt,rounded corners=1.2pt,fill=white] (0,-.12) rectangle (1,.88);
-  \begin{scope}[shift={(0,-.12)},rpgink]\DadoPips{#2}\end{scope}}}
+% A die that is set aside has a dashed outline and lighter pips, but stays legible.
+\tikzset{dado kept/.style={draw=rpgbrown,fill=white},dado dropped/.style={draw=rpgbrown,fill=rpgshade,dash pattern=on .9pt off .6pt},
+  pips kept/.style={fill=rpgink},pips dropped/.style={fill=rpgbrown!70}}
+\newcommand\Dado{\@ifstar{\Dado@{dropped}}{\Dado@{kept}}}
+\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em]{%
+  \path[dado #1,line width=.5pt,rounded corners=1.2pt] (0,-.12) rectangle (1,.88);
+  \begin{scope}[shift={(0,-.12)},pips #1]\DadoPips{#2}\end{scope}}}
 \makeatother
 \newcommand\Su{{\fontspec{FreeSerif}↑}}
 \newcommand\Giu{{\fontspec{FreeSerif}↓}}
@@ -116,7 +119,7 @@
 \RPGChapter{Une mauvaise pièce}
 La pièce avait une tête de chaque côté. L’une portait la couronne du roi~; l’autre, le visage d’un homme que le roi avait fait pendre vingt ans plus tôt.
 
-Mara Veyne la fit tourner entre le pouce et l’index. Le cuivre n’était usé que d’un côté. Celui qui l’avait frappée voulait que la ruse dure peu~: assez pour changer de mains, pas assez pour tomber sous les yeux d’un percepteur.
+L’érudit Mara Veyne la fit tourner entre le pouce et l’index. Le cuivre n’était usé que d’un côté. Celui qui l’avait frappée voulait que la ruse dure peu~: assez pour changer de mains, pas assez pour tomber sous les yeux d’un percepteur.
 
 «~Je t’ai dit qu’elle était fausse~», dit le marchand.
 
@@ -148,7 +151,7 @@ Il ne dit pas au marchand qu’il avait vu une écriture semblable des années p
 
 Cette nuit-là, il recopia le nom du village à la fin de ses notes. Puis il changea d’itinéraire. Le chariot irait vers le nord. Mara, au carrefour, prendrait le sentier de la forêt.
 \begin{rpgnote}
-\textbf{Comment lire les encadrés.} Dans les encadrés \emph{À la table}, les dés sont dessinés~: \Dado{5}~dé gardé, \Dado*{2}~dé écarté, \Bersaglio~SD à atteindre, \Riuscita~réussite, \Fallita~échec. Les niveaux s’écrivent comme sur la fiche~: Novice 2d6\Giu\ (garder le plus faible), Compétent 1d6, Expert 2d6\Su\ (garder le plus élevé), Exceptionnel 3d6\Su.
+\textbf{Comment lire les encadrés.} Dans les encadrés \emph{À la table}, les dés sont dessinés~: \Dado{5}~dé gardé, \Dado*{2}~dé écarté, \Bersaglio~SD à atteindre, \Riuscita~réussite, \Fallita~échec. Les niveaux s’écrivent comme sur la fiche~: Novice 2d6\Giu\ (garder le plus faible), Compétent 1d6, Expert 2d6\Su\ (garder le plus élevé), Exceptionnel 3d6\Su. Le SD est le Seuil de difficulté, la valeur à atteindre. Proche est l’une des distances du manuel~: quelques pas, accès immédiat.
 \end{rpgnote}
 \begin{rpgexample}{À la table · Le premier jet}
 \textbf{Narrateur~:} «~Le marchand referme le registre. Mara a vu le nom du village et une date grattée. À première vue, la date est illisible. Comment essaies-tu de la déchiffrer~?~»
@@ -657,7 +660,7 @@ La livraison était terminée~: ils ne chercheraient pas le destinataire sans no
 
 \textbf{Joueur de Mara~:} «~Je lui dis qu’il peut s’en aller~: je ne veux pas lui faire de mal. Mara est Expert en Savoir et a Diplomatie.~»
 
-\textbf{Narrateur~:} «~Il hésitait déjà~: il baisse sa lance, et aucun jet n’est nécessaire. L’homme à l’épée, en revanche, dégage son bras et frappe. Quand un ennemi attaque, je lance pour lui contre le SD de ton armure~: la tienne est légère, et contre un coup de Force elle vaut \Bersaglio\,SD~3. Il est Expert~: 2d6\Su. J’obtiens \Dado*{1}\,\Dado{4}~: je garde 4. Il te touche~: l’épée inflige 2~Blessures.~» \Fallita
+\textbf{Narrateur~:} «~Il hésitait déjà~: il baisse sa lance, et aucun jet n’est nécessaire. L’homme à l’épée, en revanche, dégage son bras et frappe. Quand un ennemi attaque, je lance pour lui contre le SD de ton armure~: la tienne est légère, et contre un coup de Force elle vaut \Bersaglio\,SD~3. Il est Expert~: 2d6\Su. J’obtiens \Dado*{1}\,\Dado{4}~: je garde 4. Il te touche~: l’épée inflige 2~Blessures.~»
 
 \textbf{Narrateur~:} «~Nim avait 4~Points de Vie~; il lui en reste 2. À 2~PV, tu es Amochée~: −1 degré à tous les jets. Dans les actions qui sollicitent l’épaule blessée, le −1 de la condition s’ajoute~: ta Dextérité Expert baisse de deux degrés, à 2d6\Giu. L’homme voit le jeune homme reculer et ne vous suit pas.~»
 
@@ -688,7 +691,11 @@ Nim se tourna vers Mara. Pour une fois, elle n’avait rien à vendre et aucune 
 
 \emph{Ici commence «~La cloche de l’Âtre Creux~»~: le Narrateur peut lire à voix haute l’arrivée, dans «~L’accroche~». À la table, la réponse à la question de Nim appartient aux joueurs~: les événements de ce prologue ne leur imposent aucun chemin.}
 \endgroup
+\clearpage
 \RPGChapter{Pour le Narrateur}
+\begin{rpgnote}
+\textbf{Réservé au Narrateur.} Ce chapitre révèle les secrets de «~La cloche de l’Âtre Creux~». Si vous allez jouer l’aventure comme joueur, arrêtez-vous ici.
+\end{rpgnote}
 Ce prologue mène à «~La cloche de l’Âtre Creux~». Si vos joueurs l’ont lu, ou si vous l’avez joué, Nim et Mara arrivent au village avec une lettre et une fausse pièce. L’aventure ne les mentionne pas~: voici comment les utiliser.
 
 \textbf{La lettre.} C’est l’acheteur de la cloche qui l’a écrite, et elle était destinée à Thessik, le brigand qui buvait avec Marrel à l’auberge. «~La moitié de la dette~» est le prix déjà payé aux brigands~; l’autre moitié viendra avec l’acheteur, à la tour, à minuit.

@@ -79,10 +79,13 @@
   \or \foreach \x/\y in {.28/.22,.28/.5,.28/.78,.72/.22,.72/.5,.72/.78}{\fill (\x,\y) circle (.085);}
   \fi}
 \makeatletter
-\newcommand\Dado{\@ifstar{\Dado@{.4}}{\Dado@{1}}}
-\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em,opacity=#1]{%
-  \draw[rpgbrown,line width=.5pt,rounded corners=1.2pt,fill=white] (0,-.12) rectangle (1,.88);
-  \begin{scope}[shift={(0,-.12)},rpgink]\DadoPips{#2}\end{scope}}}
+% A die that is set aside has a dashed outline and lighter pips, but stays legible.
+\tikzset{dado kept/.style={draw=rpgbrown,fill=white},dado dropped/.style={draw=rpgbrown,fill=rpgshade,dash pattern=on .9pt off .6pt},
+  pips kept/.style={fill=rpgink},pips dropped/.style={fill=rpgbrown!70}}
+\newcommand\Dado{\@ifstar{\Dado@{dropped}}{\Dado@{kept}}}
+\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em]{%
+  \path[dado #1,line width=.5pt,rounded corners=1.2pt] (0,-.12) rectangle (1,.88);
+  \begin{scope}[shift={(0,-.12)},pips #1]\DadoPips{#2}\end{scope}}}
 \makeatother
 \newcommand\Su{{\fontspec{FreeSerif}↑}}
 \newcommand\Giu{{\fontspec{FreeSerif}↓}}
@@ -116,7 +119,7 @@
 \RPGChapter{Eine schlechte Münze}
 Die Münze hatte zwei Köpfe. Der eine trug die Krone des Königs, der andere das Gesicht eines Mannes, den der König vor zwanzig Jahren hatte hängen lassen.
 
-Mara Veyne drehte sie zwischen Daumen und Zeigefinger. Das Kupfer war nur auf einer Seite abgegriffen. Wer sie geprägt hatte, wollte, dass der Schwindel nur kurz hielt: lange genug, um den Besitzer zu wechseln, nicht lange genug, um einem Steuereintreiber unter die Augen zu kommen.
+Der Gelehrte Mara Veyne drehte sie zwischen Daumen und Zeigefinger. Das Kupfer war nur auf einer Seite abgegriffen. Wer sie geprägt hatte, wollte, dass der Schwindel nur kurz hielt: lange genug, um den Besitzer zu wechseln, nicht lange genug, um einem Steuereintreiber unter die Augen zu kommen.
 
 »Ich hab dir doch gesagt, dass sie falsch ist«, sagte der Händler.
 
@@ -148,7 +151,7 @@ Er erzählte dem Händler nicht, dass er vor Jahren eine ähnliche Handschrift g
 
 In jener Nacht schrieb er den Namen des Dorfes ans Ende seiner Notizen. Dann änderte er seine Route. Der Wagen würde nach Norden fahren. Mara würde an der Kreuzung den Waldpfad nehmen.
 \begin{rpgnote}
-\textbf{So liest man die Kästen.} In den Kästen \emph{Am Tisch} sind die Würfel abgebildet: \Dado{5}~behaltener Würfel, \Dado*{2}~beiseitegelegter Würfel, \Bersaglio~zu erreichender ZW, \Riuscita~Erfolg, \Fallita~Fehlschlag. Stufen wie auf dem Charakterbogen: Ungeübt 2W6\Giu\ (niedrigeren behalten), Kompetent 1W6, Experte 2W6\Su\ (höheren behalten), Herausragend 3W6\Su.
+\textbf{So liest man die Kästen.} In den Kästen \emph{Am Tisch} sind die Würfel abgebildet: \Dado{5}~behaltener Würfel, \Dado*{2}~beiseitegelegter Würfel, \Bersaglio~zu erreichender ZW, \Riuscita~Erfolg, \Fallita~Fehlschlag. Stufen wie auf dem Charakterbogen: Ungeübt 2W6\Giu\ (niedrigeren behalten), Kompetent 1W6, Experte 2W6\Su\ (höheren behalten), Herausragend 3W6\Su. ZW ist der Zielwert, die Zahl, die man erreichen muss. Nah ist eine der Entfernungen des Regelbuchs: wenige Schritte, sofort erreichbar.
 \end{rpgnote}
 \begin{rpgexample}{Am Tisch · Der erste Wurf}
 \textbf{Erzähler:} »Der Händler schlägt das Buch zu. Mara hat den Namen des Dorfes gesehen und ein weggekratztes Datum. Auf den ersten Blick ist das Datum unleserlich. Wie versuchst du, es zu entziffern?«
@@ -657,7 +660,7 @@ Die Lieferung war vorbei: Sie würden weder den namenlosen Empfänger suchen noc
 
 \textbf{Maras Spieler:} »Ich sage ihm, er kann gehen; ich will ihm nichts tun. Mara ist Experte in Wissen und hat Diplomatie.«
 
-\textbf{Erzähler:} »Er hat ohnehin schon gezögert: Er senkt den Speer, und es braucht keinen Wurf. Der Mann mit dem Schwert befreit aber seinen Arm und schlägt zu. Wenn ein Gegner angreift, würfle ich für ihn gegen den ZW deiner Rüstung: Deine ist leicht, und gegen einen Stärke-Hieb ist das \Bersaglio\,ZW~3. Er ist Experte: 2W6\Su. Ich würfle \Dado*{1}\,\Dado{4}: Ich behalte die 4. Er trifft dich: Das Schwert verursacht 2 Wunden.« \Fallita
+\textbf{Erzähler:} »Er hat ohnehin schon gezögert: Er senkt den Speer, und es braucht keinen Wurf. Der Mann mit dem Schwert befreit aber seinen Arm und schlägt zu. Wenn ein Gegner angreift, würfle ich für ihn gegen den ZW deiner Rüstung: Deine ist leicht, und gegen einen Stärke-Hieb ist das \Bersaglio\,ZW~3. Er ist Experte: 2W6\Su. Ich würfle \Dado*{1}\,\Dado{4}: Ich behalte die 4. Er trifft dich: Das Schwert verursacht 2 Wunden.«
 
 \textbf{Erzähler:} »Nim hatte 4 Lebenspunkte; jetzt hat sie 2. Mit 2 LP bist du Angeschlagen: −1 Stufe bei allen Würfen. Bei Handlungen mit der verletzten Schulter kommt das −1 des Zustands dazu: Dein Geschick Experte sinkt um zwei Stufen, auf 2W6\Giu. Der Mann sieht den jungen Mann zurückweichen und folgt euch nicht.«
 
@@ -688,7 +691,11 @@ Nim wandte sich zu Mara. Ausnahmsweise hatte sie nichts zu verkaufen und keinen 
 
 \emph{Hier beginnt »Die Glocke von Hohlherd«: Der Erzähler kann die Ankunft aus »Der Einstieg« vorlesen. Am Tisch gehört die Antwort auf Nims Frage den Spielern: Die Ereignisse dieses Prologs geben ihnen keinen Weg vor.}
 \endgroup
+\clearpage
 \RPGChapter{Für den Erzähler}
+\begin{rpgnote}
+\textbf{Nur für den Erzähler.} Dieses Kapitel verrät die Geheimnisse von »Die Glocke von Hohlherd«. Wer das Abenteuer als Spielerin oder Spieler erleben wird, hört hier auf.
+\end{rpgnote}
 Dieser Prolog führt zu »Die Glocke von Hohlherd« hin. Wenn deine Spieler ihn gelesen haben oder ihr ihn gespielt habt, kommen Nim und Mara mit einem Brief und einer falschen Münze im Dorf an. Das Abenteuer erwähnt sie nicht: So kannst du sie einsetzen.
 
 \textbf{Der Brief.} Der Käufer der Glocke hat ihn geschrieben, und er war für Thessik bestimmt, den Räuber, der mit Marrel in der Schenke trank. »Die Hälfte der Schuld« ist der Preis, der den Räubern schon bezahlt wurde; die andere Hälfte kommt mit dem Käufer, zum Wachturm, um Mitternacht.

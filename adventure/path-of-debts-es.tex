@@ -79,10 +79,13 @@
   \or \foreach \x/\y in {.28/.22,.28/.5,.28/.78,.72/.22,.72/.5,.72/.78}{\fill (\x,\y) circle (.085);}
   \fi}
 \makeatletter
-\newcommand\Dado{\@ifstar{\Dado@{.4}}{\Dado@{1}}}
-\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em,opacity=#1]{%
-  \draw[rpgbrown,line width=.5pt,rounded corners=1.2pt,fill=white] (0,-.12) rectangle (1,.88);
-  \begin{scope}[shift={(0,-.12)},rpgink]\DadoPips{#2}\end{scope}}}
+% A die that is set aside has a dashed outline and lighter pips, but stays legible.
+\tikzset{dado kept/.style={draw=rpgbrown,fill=white},dado dropped/.style={draw=rpgbrown,fill=rpgshade,dash pattern=on .9pt off .6pt},
+  pips kept/.style={fill=rpgink},pips dropped/.style={fill=rpgbrown!70}}
+\newcommand\Dado{\@ifstar{\Dado@{dropped}}{\Dado@{kept}}}
+\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em]{%
+  \path[dado #1,line width=.5pt,rounded corners=1.2pt] (0,-.12) rectangle (1,.88);
+  \begin{scope}[shift={(0,-.12)},pips #1]\DadoPips{#2}\end{scope}}}
 \makeatother
 \newcommand\Su{{\fontspec{FreeSerif}↑}}
 \newcommand\Giu{{\fontspec{FreeSerif}↓}}
@@ -116,7 +119,7 @@
 \RPGChapter{Una mala moneda}
 La moneda tenía dos caras. Una llevaba la corona del rey; la otra, el rostro de un hombre al que el rey había mandado ahorcar veinte años atrás.
 
-Mara Veyne la hizo girar entre el pulgar y el índice. El cobre estaba gastado por un solo lado. Quien la había acuñado quería que el engaño durase poco: lo bastante para cambiar de manos, no lo bastante para llegar a los ojos de un recaudador.
+El erudito Mara Veyne la hizo girar entre el pulgar y el índice. El cobre estaba gastado por un solo lado. Quien la había acuñado quería que el engaño durase poco: lo bastante para cambiar de manos, no lo bastante para llegar a los ojos de un recaudador.
 
 «Ya te he dicho que es falsa», dijo el mercader.
 
@@ -148,7 +151,7 @@ No le contó al mercader que había visto una letra parecida años atrás, en el
 
 Esa noche copió el nombre de la aldea al final de sus notas. Luego cambió de ruta. El carro iría al norte. Mara, en la encrucijada, tomaría el sendero del bosque.
 \begin{rpgnote}
-\textbf{Cómo leer los recuadros.} En los recuadros \emph{En la mesa} los dados aparecen dibujados: \Dado{5}~dado que se conserva, \Dado*{2}~dado descartado, \Bersaglio~NO que hay que alcanzar, \Riuscita~éxito, \Fallita~fallo. Los niveles se escriben como en la hoja: Inexperto 2d6\Giu\ (conserva el menor), Competente 1d6, Experto 2d6\Su\ (conserva el mayor), Excepcional 3d6\Su.
+\textbf{Cómo leer los recuadros.} En los recuadros \emph{En la mesa} los dados aparecen dibujados: \Dado{5}~dado que se conserva, \Dado*{2}~dado descartado, \Bersaglio~NO que hay que alcanzar, \Riuscita~éxito, \Fallita~fallo. Los niveles se escriben como en la hoja: Inexperto 2d6\Giu\ (conserva el menor), Competente 1d6, Experto 2d6\Su\ (conserva el mayor), Excepcional 3d6\Su. El NO es el Número Objetivo, el valor que hay que alcanzar. Cerca es una de las distancias del manual: a pocos pasos, alcance inmediato.
 \end{rpgnote}
 \begin{rpgexample}{En la mesa · La primera tirada}
 \textbf{Narrador:} «El mercader cierra el libro. Mara ha visto el nombre de la aldea y una fecha raspada. A primera vista la fecha es ilegible. ¿Cómo intentas descifrarla?»
@@ -657,7 +660,7 @@ La entrega había terminado: no buscarían al destinatario sin nombre ni aceptar
 
 \textbf{Jugador de Mara:} «Le digo que puede irse: no quiero hacerle daño. Mara es Experto en Saber y tiene Diplomacia».
 
-\textbf{Narrador:} «Ya estaba vacilando: baja la lanza y no hace falta tirar. Pero el hombre de la espada libera el brazo y golpea. Cuando un enemigo ataca, tiro yo por él contra el NO de tu armadura: la tuya es ligera, y contra un golpe de Fuerza es \Bersaglio\,NO~3. Él es Experto: 2d6\Su. Saco \Dado*{1}\,\Dado{4}: conservo 4. Te alcanza: la espada causa 2 Heridas». \Fallita
+\textbf{Narrador:} «Ya estaba vacilando: baja la lanza y no hace falta tirar. Pero el hombre de la espada libera el brazo y golpea. Cuando un enemigo ataca, tiro yo por él contra el NO de tu armadura: la tuya es ligera, y contra un golpe de Fuerza es \Bersaglio\,NO~3. Él es Experto: 2d6\Su. Saco \Dado*{1}\,\Dado{4}: conservo 4. Te alcanza: la espada causa 2 Heridas».
 
 \textbf{Narrador:} «Nim tenía 4 Puntos de Vida; ahora tiene 2. Con 2 PV estás Malherida: −1 grado a todas las tiradas. En las acciones que usan el hombro herido se suma el −1 de la condición: tu Destreza Experto baja dos grados, a 2d6\Giu. El hombre ve que el joven retrocede y no os sigue».
 
@@ -688,7 +691,11 @@ Nim se volvió hacia Mara. Por una vez no tenía nada que vender ni ninguna rép
 
 \emph{Aquí empieza «La campana de Hogar Hueco»: el Narrador puede leer en voz alta la llegada, en «El gancho». En la mesa, la respuesta a la pregunta de Nim corresponde a los jugadores: los hechos de este prólogo no les marcan ningún camino.}
 \endgroup
+\clearpage
 \RPGChapter{Para el Narrador}
+\begin{rpgnote}
+\textbf{Solo para el Narrador.} Este capítulo revela los secretos de «La campana de Hogar Hueco». Si vas a jugar la aventura como jugador, detente aquí.
+\end{rpgnote}
 Este prólogo conduce a «La campana de Hogar Hueco». Si tus jugadores lo han leído, o si lo habéis jugado, Nim y Mara llegan a la aldea con una carta y una moneda falsa. La aventura no las menciona: así puedes usarlas.
 
 \textbf{La carta.} La escribió el comprador de la campana, e iba dirigida a Thessik, el forajido que bebía con Marrel en la posada. «La mitad de la deuda» es el precio ya pagado a los forajidos; la otra mitad llegará con el comprador, a la atalaya, a medianoche.

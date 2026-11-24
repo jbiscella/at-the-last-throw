@@ -79,10 +79,13 @@
   \or \foreach \x/\y in {.28/.22,.28/.5,.28/.78,.72/.22,.72/.5,.72/.78}{\fill (\x,\y) circle (.085);}
   \fi}
 \makeatletter
-\newcommand\Dado{\@ifstar{\Dado@{.4}}{\Dado@{1}}}
-\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em,opacity=#1]{%
-  \draw[rpgbrown,line width=.5pt,rounded corners=1.2pt,fill=white] (0,-.12) rectangle (1,.88);
-  \begin{scope}[shift={(0,-.12)},rpgink]\DadoPips{#2}\end{scope}}}
+% A die that is set aside has a dashed outline and lighter pips, but stays legible.
+\tikzset{dado kept/.style={draw=rpgbrown,fill=white},dado dropped/.style={draw=rpgbrown,fill=rpgshade,dash pattern=on .9pt off .6pt},
+  pips kept/.style={fill=rpgink},pips dropped/.style={fill=rpgbrown!70}}
+\newcommand\Dado{\@ifstar{\Dado@{dropped}}{\Dado@{kept}}}
+\newcommand\Dado@[2]{\tikz[baseline=-.1em,x=.95em,y=.95em]{%
+  \path[dado #1,line width=.5pt,rounded corners=1.2pt] (0,-.12) rectangle (1,.88);
+  \begin{scope}[shift={(0,-.12)},pips #1]\DadoPips{#2}\end{scope}}}
 \makeatother
 \newcommand\Su{{\fontspec{FreeSerif}↑}}
 \newcommand\Giu{{\fontspec{FreeSerif}↓}}
@@ -116,7 +119,7 @@
 \RPGChapter{Una moneta cattiva}
 La moneta aveva due teste. Una portava la corona del re; l'altra, il volto di un uomo che il re aveva fatto impiccare vent'anni prima.
 
-Mara Veyne la girò fra pollice e indice. Il rame era consumato soltanto su un lato. Chi l'aveva coniata voleva che l'inganno durasse poco: abbastanza per passare di mano, non abbastanza per finire sotto gli occhi di un esattore.
+Lo studioso Mara Veyne la girò fra pollice e indice. Il rame era consumato soltanto su un lato. Chi l'aveva coniata voleva che l'inganno durasse poco: abbastanza per passare di mano, non abbastanza per finire sotto gli occhi di un esattore.
 
 «Te l'ho detto che è falsa», disse il mercante.
 
@@ -148,7 +151,7 @@ Non gli disse di aver visto una grafia simile, anni prima, sul margine di un ant
 
 Quella notte copiò il nome del villaggio in fondo alle proprie note. Poi corresse l'itinerario. Il carro sarebbe andato a nord. Mara, al crocevia, avrebbe preso il sentiero del bosco.
 \begin{rpgnote}
-\textbf{Come leggere i riquadri.} Nei riquadri \emph{Al tavolo} i dadi sono disegnati: \Dado{5}~dado tenuto, \Dado*{2}~dado scartato, \Bersaglio~VR da raggiungere, \Riuscita~riuscita, \Fallita~fallimento. I livelli si scrivono come sulla scheda: Inesperto 2d6\Giu\ (tieni il più basso), Competente 1d6, Esperto 2d6\Su\ (tieni il più alto), Eccezionale 3d6\Su.
+\textbf{Come leggere i riquadri.} Nei riquadri \emph{Al tavolo} i dadi sono disegnati: \Dado{5}~dado tenuto, \Dado*{2}~dado scartato, \Bersaglio~VR da raggiungere, \Riuscita~riuscita, \Fallita~fallimento. I livelli si scrivono come sulla scheda: Inesperto 2d6\Giu\ (tieni il più basso), Competente 1d6, Esperto 2d6\Su\ (tieni il più alto), Eccezionale 3d6\Su. VR è il Valore di Riferimento, il numero da raggiungere. Vicino è una delle distanze del manuale: a pochi passi, raggiungibile in un istante.
 \end{rpgnote}
 \begin{rpgexample}{Al tavolo · Il primo tiro}
 \textbf{Narratore:} «Il mercante chiude il registro. Mara ha visto il nome del villaggio e una data raschiata. La data è illeggibile a prima vista. Come provi a ricostruirla?»
@@ -657,7 +660,7 @@ La consegna era conclusa: non avrebbero cercato il destinatario senza nome, né 
 
 \textbf{Giocatore di Mara:} «Gli dico che può andarsene: non voglio fargli male. Mara è Esperto in Sapienza e ha Diplomazia.»
 
-\textbf{Narratore:} «Il ragazzo esitava già: abbassa la lancia, e non serve tirare. L'uomo con la spada, però, libera il braccio e colpisce. Quando un nemico attacca, tiro io per lui contro il VR della tua armatura: è leggera, e contro un colpo di Forza vale \Bersaglio\,VR~3. Lui è Esperto: 2d6\Su. Escono \Dado*{1}\,\Dado{4}: tengo 4. Ti colpisce: la spada fa 2 Ferite.» \Fallita
+\textbf{Narratore:} «Il ragazzo esitava già: abbassa la lancia, e non serve tirare. L'uomo con la spada, però, libera il braccio e colpisce. Quando un nemico attacca, tiro io per lui contro il VR della tua armatura: è leggera, e contro un colpo di Forza vale \Bersaglio\,VR~3. Lui è Esperto: 2d6\Su. Escono \Dado*{1}\,\Dado{4}: tengo 4. Ti colpisce: la spada fa 2 Ferite.»
 
 \textbf{Narratore:} «Nim aveva 4 Punti Vita; ora ne ha 2. A 2 PV sei Malmessa: −1 gradino a ogni tiro. Nelle azioni che usano la spalla ferita si aggiunge il −1 della condizione: la tua Destrezza Esperto scende di due gradini, a 2d6\Giu. L'uomo vede il ragazzo ritirarsi e non vi insegue.»
 
@@ -688,7 +691,11 @@ Nim si voltò verso Mara. Per una volta non aveva niente da vendere e nessuna ba
 
 \emph{Qui comincia «La campana di Focolare Vuoto»: il Narratore può leggere ad alta voce l'arrivo, in «L'aggancio». Al tavolo, la risposta alla domanda di Nim spetta ai giocatori: gli avvenimenti di questo prologo non impongono loro un percorso.}
 \endgroup
+\clearpage
 \RPGChapter{Per il Narratore}
+\begin{rpgnote}
+\textbf{Solo per il Narratore.} Questo capitolo svela i segreti di «La campana di Focolare Vuoto». Se giocherai l'avventura come giocatore, fermati qui.
+\end{rpgnote}
 Questo prologo si collega a «La campana di Focolare Vuoto». Se i giocatori l'hanno letto, o se lo avete giocato, Nim e Mara arrivano al villaggio con una lettera e una moneta falsa. L'avventura non ne parla: ecco come usarle.
 
 \textbf{La lettera.} L'ha scritta il compratore della campana, ed era destinata a Thessik, il brigante che alla locanda beveva con Marrel. «Metà del conto» è il prezzo già pagato ai briganti; l'altra metà arriverà con il compratore, alla torre, a mezzanotte.
