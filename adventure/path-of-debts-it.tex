@@ -1,11 +1,29 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage{rpgcover} % Loads the original rpgmanual.sty and its fonts
+\babelprovide[import]{italian}
+\usepackage{xsavebox}
 \RPGSetRunningTitle{Il sentiero dei debiti}
 \hypersetup{pdftitle={Il sentiero dei debiti — All'ultimo tiro},pdfauthor={Jacopo Biscella}}
 \RPGSetCoverWordSpace{.78em}
+% JPEG copies of the shared cover backgrounds (scripts/build-adventure-print-art.sh), as in the adventure.
+\RPGSetFrontBackground{assets/engraved-front-background.jpg}\RPGSetBackBackground{assets/engraved-cover-background.jpg}
+% The layout of \RPGFrontCover (rpgcover.sty), with the overlay saved once (xsavebox) and reused
+% on the contents page instead of being embedded twice.
 \newcommand{\SentieroFrontCover}{%
-  \RPGFrontCover{IL SENTIERO DEI DEBITI}{Un racconto introduttivo ad All'ultimo tiro}{Jacopo Biscella}{assets/sentiero-front-overlay.png}%
-}
+ \clearpage\RPGCoverPagetrue\thispagestyle{empty}\null
+ \xsavebox{SentieroOverlay}{\includegraphics{assets/path-of-debts/front-overlay.png}}%
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+  \RPGDrawBackground{\RPGFrontBackgroundFile}
+  \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,250mm)$)
+   {\RPGCoverTitleFont\fontsize{25}{31}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO DEI DEBITI};
+  \node[align=center,text=coverink,text width=145mm,inner sep=0pt] at ($(current page.south west)+(105mm,237mm)$)
+   {\RPGCoverSubtitleFont\fontsize{14}{17}\selectfont Un racconto introduttivo ad All'ultimo tiro};
+  \node[inner sep=0pt,anchor=center] at ($(current page.south west)+(105mm,125mm)$)
+   {\resizebox{!}{145mm}{\xusebox{SentieroOverlay}}};
+  \node[align=center,text=coverink,text width=124mm,inner sep=0pt] at ($(current page.south west)+(105mm,25mm)$)
+   {\RPGCoverTextFont\fontsize{12}{15}\selectfont Jacopo Biscella};
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse}
 % Uses precisely the back background and the editable cover fonts from rpgcover.sty.
 % This is text layout only: no substitute illustrations or background graphics.
 \newcommand{\SentieroBackCover}{%
@@ -14,7 +32,7 @@
    \RPGDrawBackground{\RPGBackBackgroundFile}
    \node[align=center,text=coverink,text width=170mm,inner sep=0pt]
      at ($(current page.south west)+(105mm,260mm)$)
-     {{\RPGCoverTitleFont\fontsize{18}{22}\selectfont IL SENTIERO DEI DEBITI}};
+     {{\RPGCoverTitleFont\fontsize{18}{22}\selectfont\spaceskip=\RPGCoverWordSpace\relax IL SENTIERO DEI DEBITI}};
    \draw[coverink,line width=.45pt]
      ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
    \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
@@ -46,6 +64,8 @@
  \clearpage\RPGCoverPagefalse
 }
 \begin{document}
+% Select the language here: babel resets to its main language (english) at \begin{document}.
+\selectlanguage{italian}
 \RPGStartFrontMatter
 \SentieroFrontCover
 \RPGStartContents
@@ -60,7 +80,7 @@
 \makeatother
 \endgroup
 \vfill
-\begin{center}\includegraphics[width=.58\linewidth,height=65mm,keepaspectratio]{assets/sentiero-front-overlay.png}\end{center}
+\begin{center}\resizebox{!}{65mm}{\xusebox{SentieroOverlay}}\end{center}
 \vfill
 \begin{center}{\small\itshape Un racconto introduttivo per All'ultimo tiro\par}
 \vspace{4pt}{\footnotesize Jacopo Biscella\par}\end{center}
