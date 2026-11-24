@@ -1,0 +1,670 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{rpgcover} % Loads the original rpgmanual.sty and its fonts
+\RPGSetRunningTitle{Il sentiero dei debiti}
+\hypersetup{pdftitle={Il sentiero dei debiti — All'ultimo tiro},pdfauthor={Jacopo Biscella}}
+\RPGSetCoverWordSpace{.78em}
+\newcommand{\SentieroFrontCover}{%
+  \RPGFrontCover{IL SENTIERO DEI DEBITI}{Un racconto introduttivo ad All'ultimo tiro}{Jacopo Biscella}{assets/sentiero-front-overlay.png}%
+}
+% Uses precisely the back background and the editable cover fonts from rpgcover.sty.
+% This is text layout only: no substitute illustrations or background graphics.
+\newcommand{\SentieroBackCover}{%
+ \clearpage\pagenumbering{gobble}\RPGCoverPagetrue\thispagestyle{empty}\null
+ \begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+   \RPGDrawBackground{\RPGBackBackgroundFile}
+   \node[align=center,text=coverink,text width=170mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,260mm)$)
+     {{\RPGCoverTitleFont\fontsize{18}{22}\selectfont IL SENTIERO DEI DEBITI}};
+   \draw[coverink,line width=.45pt]
+     ($(current page.south west)+(57mm,246mm)$)--($(current page.south west)+(153mm,246mm)$);
+   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,236mm)$)
+     {\RPGCoverTextFont\fontsize{11}{14.5}\selectfont
+      Una moneta falsa. Una lettera senza destinatario. Due viaggiatori che non avevano motivo di fidarsi l'uno dell'altra.};
+   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,209mm)$)
+     {\RPGCoverTextFont\fontsize{10.6}{14}\selectfont
+      Nim Thistledown e Mara Veyne seguono la strada del Re fino a Focolare Vuoto. Lungo il cammino scopriranno che una promessa puo essere piu pericolosa di un'arma, e che certe scelte hanno conseguenze anche quando nessuno le vede.};
+   \draw[coverink,line width=.45pt]
+     ($(current page.south west)+(57mm,165mm)$)--($(current page.south west)+(153mm,165mm)$);
+   \node[anchor=north,align=center,text=coverink,text width=144mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,157mm)$)
+     {\RPGCoverSubtitleFont\fontsize{12.5}{16}\selectfont
+      Un prologo narrativo a La campana di Focolare Vuoto};
+   \node[anchor=north,align=left,text=coverink,text width=137mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,131mm)$)
+     {\RPGCoverTextFont\fontsize{10.5}{14}\selectfont
+      Sette esempi mostrano come le decisioni dei giocatori diventano prove, dialoghi e conseguenze al tavolo di All'ultimo tiro.};
+   \node[anchor=north,align=center,text=coverink,text width=144mm,inner sep=0pt]
+     at ($(current page.south west)+(105mm,100mm)$)
+     {\RPGCoverSubtitleFont\fontsize{11}{14}\selectfont
+      Il racconto termina dove comincia l'avventura.};
+   \filldraw[fill=white,draw=coverink,line width=.55pt]
+     ($(current page.south west)+(139mm,25mm)$) rectangle
+     ($(current page.south west)+(187mm,55mm)$);
+ \end{tikzpicture}
+ \clearpage\RPGCoverPagefalse
+}
+\begin{document}
+\RPGStartFrontMatter
+\SentieroFrontCover
+\RPGStartContents
+\clearpage\thispagestyle{rpgfrontmatter}
+\vspace*{9mm}
+\begin{center}{\fontsize{27}{31}\selectfont\bfseries INDICE\par}\vspace{9pt}
+{\color{rpgline}\rule{.76\linewidth}{.55pt}}\end{center}\vspace{8mm}
+\begingroup
+\makeatletter
+\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{3.8em}{\bfseries #1}{#2}}
+\@starttoc{toc}
+\makeatother
+\endgroup
+\vfill
+\begin{center}\includegraphics[width=.58\linewidth,height=65mm,keepaspectratio]{assets/sentiero-front-overlay.png}\end{center}
+\vfill
+\begin{center}{\small\itshape Un racconto introduttivo per All'ultimo tiro\par}
+\vspace{4pt}{\footnotesize Jacopo Biscella\par}\end{center}
+\clearpage
+\RPGStartMainMatter
+\begin{rpgnote}
+\textbf{Nota editoriale.} Questa è una prima stesura narrativa, non un nuovo capitolo canonico dell'avventura. I riquadri di gioco rappresentano un'ipotetica sessione: mostrano una possibile traduzione delle scelte dei giocatori in eventi narrativi. Non stabiliscono che i personaggi abbiano realmente compiuto quelle azioni nella campagna di chi legge.
+\end{rpgnote}
+\RPGChapter{Una moneta cattiva}
+La moneta aveva due teste. Una portava la corona del re; l'altra, il volto di un uomo che il re aveva fatto impiccare vent'anni prima.
+
+Mara Veyne la girò fra pollice e indice. Il rame era consumato soltanto su un lato. Chi l'aveva coniata voleva che l'inganno durasse poco: abbastanza per passare di mano, non abbastanza per finire sotto gli occhi di un esattore.
+
+«Te l'ho detto che è falsa», disse il mercante.
+
+«Non ho detto il contrario.»
+
+«E allora perché la guardi da mezz'ora?»
+
+«Per capire chi vuole usarla.»
+
+Erano seduti a un tavolo nella casa di posta di Tre Guadi. Fuori pioveva da quattro giorni. La strada del Re era diventata una lunga striscia di fango su cui carri e cavalli avanzavano a fatica. Il mercante aveva venduto a Mara un posto sul carro per il tratto a nord, insieme a una promessa: avrebbe potuto consultare il registro delle merci prima di arrivare al crocevia.
+
+Quella promessa, Mara lo aveva capito, valeva più del passaggio.
+
+Nel registro c'erano i nomi dei villaggi serviti dal carro. Fra essi, scritto da una mano diversa, c'era \textbf{Focolare Vuoto}. Accanto al nome qualcuno aveva tracciato un segno rotondo, poi cancellato.
+
+«Quel posto non è più sulla mia tratta», disse il mercante, vedendo dove guardava.
+
+«Da quando?»
+
+«Da quando i prezzi del legname hanno smesso di coprire il costo del viaggio.»
+
+«E quel segno?»
+
+L'uomo chiuse il registro. «Una sciocchezza per riconoscere una consegna. Il carro parte all'alba. Vuoi ancora venire?»
+
+Mara depose la moneta sul tavolo, dalla parte del re. «Sì.»
+
+Non gli disse di aver visto una grafia simile, anni prima, sul margine di un antico registro. Né gli chiese perché una mano avesse cancellato una data e ne avesse scritta un'altra. Aveva imparato che le domande poste troppo presto rendevano prudenti anche i bugiardi meno capaci.
+
+Quella notte copiò il nome del villaggio in fondo alle proprie note. Poi corresse l'itinerario. Il carro sarebbe andato a nord. Lei, al crocevia, avrebbe preso il sentiero del bosco.
+\begin{rpgexample}{Al tavolo · Il primo tiro}
+\textbf{Narratore:} «Il mercante chiude il registro. Mara ha visto il nome del villaggio e una data raschiata. La data è illeggibile a prima vista. Come provi a ricostruirla?»
+
+\textbf{Giocatrice di Mara:} «Confronto la traccia dei numeri con le altre date scritte dalla stessa mano. Mara è Esperta in Sapienza; non sto usando Storia, perché qui devo soltanto leggere segni cancellati.»
+
+\textbf{Narratore:} «Va bene: VR 4. Tira 2d6 e conserva il più alto. Non ti serve un'Abilità aggiuntiva per questo esempio.»
+
+\textbf{Giocatrice:} «Escono 2 e 5: tengo 5.»
+
+\textbf{Narratore:} «Riesci. La data è di due settimane fa, non di ieri. Il nome del villaggio, invece, lo conoscevi già: non dipendeva dal tiro.»
+
+\emph{Una prova si usa quando l'esito è incerto. Il grado Esperto consente 2d6, conservando il migliore. Il tiro supera il VR 4; un indizio essenziale non viene nascosto dietro una prova.}
+
+\end{rpgexample}
+\RPGChapter{La terza strada}
+Nim Thistledown non prese subito la borsa.
+
+Il vetturino la teneva aperta, con l'espressione di chi si aspetta un ringraziamento. Dentro c'erano sei monete d'argento e una carta piegata in quattro.
+
+«Il pagamento concordato», disse l'uomo.
+
+«Per la strada che conosciamo entrambi, forse.»
+
+«Per una consegna.»
+
+«E perché non la porti tu?»
+
+Il vetturino indicò il carro, fermo con una ruota spezzata davanti alla scuderia. «Perché mi mancano un cavallo, una ruota e la voglia di farmi ammazzare per una lettera.»
+
+Nim aprì la carta. Non era sigillata. Conteneva due righe: \emph{Il conto è stato saldato. Nessuno deve aspettare il ritorno del campanaro.} In fondo compariva il nome di una locanda di Focolare Vuoto, ma non quello del destinatario.
+
+«Chi ti ha dato questo?»
+
+«Un uomo al crocevia. Mantello grigio. Puzzava di fumo.»
+
+Nim richiuse il foglio. «Un ritratto indimenticabile.»
+
+«Prendi o lasci?»
+
+Nim prese la borsa, ma contò le monete una alla volta. La sesta era sottile, quasi liscia. «Ne mancano due.»
+
+Il vetturino sospirò e aggiunse una moneta. Nim si allontanò prima che l'uomo potesse cambiare idea.
+
+Non aveva intenzione di consegnare la lettera alla cieca. Era abbastanza denaro per tre giorni di strada; troppo per un messaggio senza nome. E il riferimento al campanaro aveva il suono di qualcosa che sarebbe stato meglio capire.
+
+La terza strada partiva dietro le stalle, dove il fango conservava poche impronte. Un sentiero rapido, secondo la mappa; un sentiero abbandonato, secondo la gente del posto. Nim si mise in cammino contando i passi fino al primo bivio.
+\RPGChapter{L'albero caduto}
+Mara incontrò Nim dopo mezzogiorno, davanti a un tronco che sbarrava il sentiero.
+
+Nim stava esaminando il terreno. Aveva posato la borsa su una pietra e teneva un rametto fra i denti.
+
+«Il bosco è chiuso?» chiese Mara.
+
+«Dipende da quanto ti piacciono le scorciatoie.»
+
+«Poco.»
+
+«Allora abbiamo qualcosa in comune.»
+
+Il tronco di un faggio attraversava il passaggio, con le radici ancora infilate nel terriccio. Era caduto da poco. Le foglie erano verdi, la corteccia umida. Non c'era stato vento sufficiente ad abbatterlo.
+
+Mara si chinò a osservare una scheggia di legno. Dal taglio usciva linfa chiara.
+
+«Un'ascia», disse.
+
+«Due», rispose Nim. «Uno ha lavorato qui e un altro dall'altra parte.»
+
+Mara guardò gli intagli: paralleli, regolari, troppo bassi per chi avesse voluto ricavare legna. «Hanno tagliato soltanto per chiudere il passaggio.»
+
+«Ci sono impronte che tornano indietro. Di là, invece, nessuna.»
+
+«Sai leggere le impronte?»
+
+«So vedere dove qualcuno ha cercato di cancellarle.»
+
+Mara sorrise appena. Nim si infilò sotto il tronco, ne uscì con una manica infangata e indicò una stretta apertura fra le radici. «Si passa, ma chi porta un carro dovrà tornare indietro.»
+
+«E chi porta libri?»
+
+«Dipende da quanti.»
+
+Mara batté la mano sulla propria bisaccia. «Troppi.»
+
+Si scambiarono i nomi soltanto dopo aver superato l'ostacolo. Non era una grande prova di fiducia. Ma Mara smise di tenere una mano sulla chiusura della bisaccia ogni volta che Nim le si avvicinava.
+\RPGChapter{Quello che resta del ponte}
+Trovarono il ponte quasi un'ora dopo. O ciò che ne restava.
+
+Un torrente gonfio correva fra due sponde ripide. Della passerella erano rimaste tre travi, una corda spezzata e i pali fissati alla roccia. Un cartello avvertiva che la struttura era pericolante. Doveva essere lì da anni, e qualcuno aveva continuato a usarla fino al mattino precedente.
+
+Nim studiò la corrente. «Possiamo risalire fino al guado.»
+
+«Quanto ci vuole?»
+
+«Due ore, forse tre.»
+
+Mara alzò gli occhi. Le nuvole avevano ripreso a coprire il sole. «E quanto manca al villaggio?»
+
+«Un'altra mezza giornata.»
+
+«Allora finiremmo per arrivare di notte.»
+
+Nim guardò i pali. La corda poteva essere legata di nuovo. Non avrebbe retto due persone insieme, ma forse una alla volta. «Potrei passare e fissarla dall'altra parte.»
+
+«Potresti anche cadere.»
+
+«È una delle possibilità.»
+
+Mara estrasse dalla bisaccia uno spago robusto, usato per legare i volumi. Non era una corda da scalata, ma bastava a far arrivare il capo più spesso oltre il torrente. Nim controllò il nodo, lo sciolse e lo rifece.
+
+«Non è meglio che tu rimanga qui?» domandò Mara.
+
+«Se rimango qui, rimaniamo entrambi qui.»
+
+Nim si sfilò il mantello, lo legò alla borsa e cominciò a muoversi lungo la trave. A metà, il legno scricchiolò.
+
+Mara trattenne il fiato. Nim rimase immobile, sentì il ponte muoversi sotto il peso e spostò lentamente il piede sinistro. Una scheggia cedette e cadde nell'acqua. Non cercò di correre. Si piegò, prese il bordo della trave con entrambe le mani e raggiunse il pilone successivo.
+
+Dall'altra sponda lanciò la corda. Mara la fissò al proprio fianco e attraversò senza guardare il torrente.
+
+Quando arrivò, le tremavano le gambe. Nim prese la bisaccia che lei gli porgeva.
+
+«Due ore risparmiate», disse.
+
+«Non hai calcolato i dieci anni di vita che ho perso.»
+
+«Quelli non comparivano sulla mappa.»
+\begin{rpgexample}{Al tavolo · Attraversare e aiutare}
+\textbf{Narratore:} «La trave oscilla. Attraversarla sotto la pioggia richiede Destrezza, VR 4. Se fallisci, resterai in pericolo sul ponte.»
+
+\textbf{Giocatore di Nim:} «Sono Esperto in Destrezza: 2d6, tengo il migliore. Mara può aiutarmi con la corda?»
+
+\textbf{Giocatrice di Mara:} «Tengo la corda in tensione dalla riva, perché non perda l'equilibrio.»
+
+\textbf{Narratore:} «Mara è Non addestrata in Destrezza e non possiede un'Abilità pertinente: nella stessa prova non arriverebbe a Esperto. Il suo aiuto aggiunge un dado al tiro di Nim, ma il VR sale da 4 a 5. Lo accettate?»
+
+\textbf{Giocatore di Nim:} «Sì. Senza la corda, se scivolo, non avrò nulla a cui aggrapparmi.»
+
+\textbf{Giocatrice di Mara:} «La tendo e la tengo ferma. Non salgo sulla trave.»
+
+\textbf{Narratore:} «Nim parte da 2d6, tiene il più alto; con l'aiuto tira 3d6 e tiene il più alto. Il VR ora è 5.»
+
+\textbf{Giocatore di Nim:} «Escono 1, 4 e 5. Tengo 5.»
+
+\textbf{Narratore:} «Passi. Una scheggia cede e Mara deve tendere la corda per impedirti di perdere l'equilibrio. Dall'altra riva puoi fissarla ai pali, ma il ponte resta impraticabile ai carri.»
+
+\emph{Un aiuto incompetente concede +1d6 e aumenta il VR di 1. Con 1, 4 e 5, Nim supera il nuovo VR 5: la corda entra realmente nella fiction e non sostituisce il tiro.}
+
+\end{rpgexample}
+\RPGChapter{Due persone sulla strada}
+Camminarono fino a quando il sentiero tornò largo quanto una strada. Allora videro il carro.
+
+Aveva le ruote alte, il cassone coperto da un telo cerato e un cavallo grigio che mangiava le foglie più basse di un nocciolo. Il conducente dormiva sul sedile, con il cappello sul viso. Una donna stava chinata davanti al mozzo della ruota destra.
+
+«Possiamo aiutare?» chiese Mara.
+
+La donna si raddrizzò. Aveva le mani sporche di grasso e un coltello da lavoro appeso alla cintura. «Se avete un perno di ricambio.»
+
+Nim guardò la ruota. «Non serve cambiarlo. Il fermo si è storto.»
+
+«E tu come lo sai?»
+
+«Perché il perno è ancora al suo posto.»
+
+La donna gli porse il martello senza commentare. Nim si accovacciò, fece leva con un sasso piatto e diede tre colpi precisi. Il fermo tornò quasi diritto.
+
+«Prova adesso», disse.
+
+La donna tirò la ruota. Girava.
+
+Il conducente si svegliò al rumore. Chiese chi fossero, perché toccassero il carro e se stessero cercando di rubargli qualcosa. La donna gli rispose di tacere.
+
+«Andate a Focolare Vuoto?» domandò Mara.
+
+La donna smise di pulirsi le mani. «Ci passavamo fino a poco tempo fa.»
+
+«E ora?»
+
+«Ora preferiamo perdere un giorno.»
+
+Non volle aggiungere altro, ma diede loro un pezzo di pane e un formaggio duro avvolto in una foglia. Quando il conducente si distrasse, parlò a voce bassa.
+
+«La strada a nord è piena di uomini che chiedono pedaggi senza averne diritto. Non hanno una divisa. Uno di loro ne portava una, un tempo.»
+
+«Dove?» chiese Nim.
+
+«Al crocevia delle tre pietre. Se lo incontrate, non dite di aver aiutato me.»
+
+Mara non insistette. Prima di riprendere la strada, Nim si chinò accanto ai solchi delle ruote. Fra le impronte del cavallo ce n'erano altre, di due persone appiedate: avevano seguito il carro fin quasi al nocciolo e poi erano tornate verso nord.
+
+«Non è un avvertimento per sentito dire», disse Nim alla donna. «Li avete già incontrati.»
+
+La donna guardò le impronte e annuì. «Uno è giovane. L'altro non si mostra, se può evitarlo.»
+
+Li lasciò andare con un cenno e tornò al carro.
+\begin{rpgexample}{Al tavolo · Quando un'Abilità cambia il tiro}
+\textbf{Narratore:} «Il fermo è piegato. Nim, come provi a sistemarlo?»
+
+\textbf{Giocatore di Nim:} «Con il martello della carrettiera e una pietra come appoggio. Nim è Esperto in Destrezza, ma non ha Artigianato: tiro i suoi normali 2d6, senza bonus.»
+
+\textbf{Narratore:} «VR 4. Se fallisci, puoi spezzare il fermo.»
+
+\textbf{Giocatore:} «3 e 5: tengo 5.»
+
+\textbf{Narratore:} «La ruota torna a girare. Mentre ripartite, noti delle impronte accanto ai solchi. Vuoi esaminarle?»
+
+\textbf{Giocatore:} «Sì. Nim possiede Sopravvivenza, collegata a Destrezza.»
+
+\textbf{Narratore:} «Per riconoscere il passaggio di due persone che hanno seguito il carro è VR 4. Destrezza Esperto, più Sopravvivenza: sali a Eccezionale, 3d6, tieni il più alto.»
+
+\textbf{Giocatore:} «Escono 2, 4 e 6. Tengo 6.»
+
+\textbf{Narratore:} «Riconosci due serie di impronte: seguivano il carro, poi hanno svoltato a nord. La donna conferma di avere già incontrato i falsi esattori.»
+
+\emph{Le caratteristiche restano quelle della scheda ufficiale: Nim è Esperto in Destrezza e ha Sopravvivenza, non Artigianato. Un'Abilità pertinente aumenta il tiro di un gradino; un solo 6 non è un Critico.}
+
+\end{rpgexample}
+\RPGChapter{Il cippo delle tre pietre}
+Al crocevia c'erano tre cippi, ma soltanto due stavano in piedi. Il terzo giaceva sul fianco, mezzo coperto dall'erba. Qualcuno aveva inciso un segno recente nel muschio: un cerchio attraversato da una linea.
+
+Nim lo riconobbe come il marchio di un esattore itinerante. Lo aveva visto su ricevute vere e false, spesso più false che vere.
+
+«Il pedaggio è una truffa», disse.
+
+«Non è una sorpresa.»
+
+«Lo è la scelta del luogo. Qui non c'è niente che valga la pena proteggere.»
+
+«Una strada», rispose Mara, «è utile anche se non ha niente intorno.»
+
+Seguì un silenzio breve. Poi una voce arrivò da dietro i cespugli.
+
+«Venti monete per passare.»
+
+L'uomo che uscì allo scoperto era giovane. Portava una giubba troppo grande, una lancia con la punta arrugginita e stivali diversi l'uno dall'altro. Un secondo uomo rimase fra gli alberi, dove il sentiero tornava stretto.
+
+«Venti?» ripeté Nim. «Il re dev'essere diventato generoso con i propri esattori.»
+
+«Non ho detto che sono del re.»
+
+«Hai ragione. Il re avrebbe almeno avuto il buon senso di mandarci qualcuno con una ricevuta.»
+
+Il ragazzo abbassò la lancia verso il petto di Nim. Mara fece un passo avanti.
+
+«Aspetta», disse al ragazzo. «Chi vi ha ordinato di stare qui?»
+
+«Paga o torna indietro.»
+
+«Se ci fai passare», continuò Mara, «non avrai problemi. Se qualcuno ti ha mandato a riscuotere, ti avrà detto anche dove portare i soldi.»
+
+Il ragazzo esitò. L'uomo nascosto tossì.
+
+Nim si voltò di scatto, guardando alle loro spalle. «C'è qualcuno sulla strada.»
+
+Il giovane esattore seguì lo sguardo per un istante. Bastò. Nim gli spinse la punta della lancia verso il basso e gli passò accanto. Mara seguì senza correre.
+
+Dall'albero arrivò una bestemmia. Nessuno li inseguì.
+
+Camminarono in silenzio per cento passi, poi Mara disse: «Non c'era nessuno dietro di noi.»
+
+«Non ho detto che ci fosse.»
+
+«Hai detto che c'era qualcuno sulla strada.»
+
+«No.~Ho detto: ``C'è qualcuno sulla strada''. Noi eravamo sulla strada.»
+
+Mara scosse la testa. Non rideva, ma si vedeva che ne aveva voglia.
+\begin{rpgexample}{Al tavolo · Un tiro contrapposto}
+\textbf{Narratore:} «Il giovane con la lancia vi blocca. L'altro uomo aspetta fra gli alberi. Che fate?»
+
+\textbf{Giocatore di Nim:} «Fingo di vedere qualcuno alle loro spalle, così da distrarli.»
+
+\textbf{Narratore:} «L'uomo ti osserva con sospetto: è un tiro contrapposto di Sapienza. Nim è Non addestrato e non possiede Inganno: tira 2d6 e tiene il più basso. Il giovane è Competente: 1d6.»
+
+\textbf{Giocatore di Nim:} «Faccio 5 e 6: tengo 5.»
+
+\textbf{Narratore:} «Il ragazzo fa 2. Il tuo inganno riesce: si volta e abbassa la lancia per un momento. Potete superarlo, mentre Mara lo tiene occupato parlando.»
+
+\textbf{Giocatrice di Mara:} «Gli dico di lasciarci andare: non voglio ferirlo.»
+
+\emph{Nei tiri contrapposti vince il risultato più alto; la parità mantiene lo stallo. Il tiro apre un'opportunità, non decide automaticamente ogni azione successiva.}
+
+\end{rpgexample}
+\RPGChapter{Il fienile}
+Piovve di nuovo poco prima del tramonto. I due viaggiatori trovarono riparo in un fienile abbandonato, a duecento passi dalla strada. Una parete era crollata; il tetto, però, teneva.
+
+Nim raccolse un fascio di paglia asciutta e lo spinse contro il muro. Mara sistemò i propri libri sopra una cassa vuota. Dal fondo della stanza arrivava un odore di lana bagnata.
+
+Non erano soli.
+
+Una bambina sedeva dietro la mangiatoia, avvolta in una coperta troppo grande. Aveva i capelli incollati alla fronte e teneva stretto un sacco di farina. Accanto a lei dormiva un cane magro.
+
+«Non vogliamo il tuo sacco», disse Mara.
+
+«Non è mio.»
+
+«Di chi è?»
+
+La bambina rimase zitta. Nim si sedette sul lato opposto del fienile e cominciò a pulire il proprio coltello con un panno. Lo fece in modo da non rivolgere la lama verso di lei.
+
+«Hai un nome?» domandò Mara.
+
+«Tessa.»
+
+«Dove vai, Tessa?»
+
+«A casa.»
+
+«Dov'è casa?»
+
+«Più avanti.»
+
+Non serviva sapere altro per capire che era spaventata. Mara aprì il pacco di pane ricevuto dalla carrettiera e ne spezzò una fetta. La lasciò sulla cassa fra loro.
+
+Tessa aspettò finché Mara non tornò alla propria coperta, poi prese il pane.
+
+Più tardi, quando il cane si svegliò, la bambina raccontò di uomini arrivati di notte per prendere il grano dalla fattoria di suo zio. Aveva seguito la strada per ritrovare uno zio, ma non aveva trovato nessuno alla fattoria dove contava di dormire.
+
+«Domattina possiamo accompagnarti al prossimo bivio», disse Mara.
+
+Nim non disse niente. Il mattino dopo, però, fu il primo ad alzarsi.
+\begin{rpgexample}{Al tavolo · Il Tratto e il Fardello}
+\textbf{Narratore:} «La bambina non vuole parlare e tiene il sacco stretto. Che cosa fate?»
+
+\textbf{Giocatrice di Mara:} «Le do da mangiare e le lascio tempo. Non voglio interrogarla.»
+
+\textbf{Narratore:} «Non serve tirare: il pane non compra la sua fiducia, ma le mostra che non siete una minaccia immediata. Mara, c'è qualcosa nel tuo Tratto o nel tuo Fardello che renda questa scelta importante per lei?»
+
+\textbf{Giocatrice:} «Sì. Vorrei che questo incontro richiamasse una promessa che Mara non è riuscita a mantenere.»
+
+\textbf{Narratore:} «Allora non ti costringo a raccontarla tutta adesso. Per questa notte, resti sveglia più del necessario per assicurarti che Tessa sia al sicuro.»
+
+\textbf{Giocatore di Nim:} «Io potrei chiedere alla bambina chi l'ha inseguita, ma non lo faccio. Voglio che si fidi di noi almeno abbastanza da mangiare.»
+
+\textbf{Narratore:} «È una scelta che ha un costo: stanotte non saprete chi ha preso il grano. In cambio Tessa vi indica al mattino la via più breve per raggiungere suo zio.»
+
+\textbf{Giocatrice di Mara:} «Quindi avremmo potuto interrogarla, ma la scena sarebbe andata diversamente?»
+
+\textbf{Narratore:} «Sì. Il gioco non richiede che ogni domanda venga risolta subito. Avete preferito proteggere Tessa e ora il viaggio segue quella decisione.»
+
+\emph{Tratti e Fardelli orientano le scelte e aprono dilemmi narrativi; non assegnano automaticamente bonus numerici. Il loro effetto nasce dalla situazione e dalle decisioni dei giocatori.}
+
+\end{rpgexample}
+\RPGChapter{La gola}
+Il sentiero oltre il mulino saliva fra due pareti di roccia. A metà della salita, un masso sporgeva sul passaggio. Vi erano cresciute radici sottili, e una di esse teneva insieme una lastra pericolante.
+
+Nim lo notò perché una goccia di terra cadde vicino al suo stivale. Guardò in alto e vide il vuoto sotto la pietra.
+
+«Fermi.»
+
+Tessa si arrestò subito. Mara fece ancora mezzo passo.
+
+Da più in alto arrivò un tonfo, poi un secondo. Una capra selvatica correva sul costone. Le pietre che smuoveva non erano grandi, ma bastavano a scuotere la lastra.
+
+«Indietro», disse Nim.
+
+La bambina si spostò verso la parete. Mara le afferrò il polso e la tirò sotto una piccola rientranza. Nim rimase esposto un istante di troppo.
+
+La lastra cedette. Non cadde intera: si ruppe contro un bordo di roccia, spargendo frammenti sul sentiero. Nim schivò i pezzi più grandi e ricevette una pietra sulla spalla. Il colpo lo fece inginocchiare.
+
+Quando il rumore finì, Mara corse verso di lui.
+
+«Riesci a muovere il braccio?»
+
+Nim provò. «Sì.»
+
+«Fa male?»
+
+«Mi preoccuperebbe il contrario.»
+
+Tessa uscì dal riparo, pallida ma illesa. Nim le fece segno di precederlo.
+
+Per il resto della salita non parlò molto. A ogni curva controllava che la bambina fosse ancora davanti a lui. Mara lo osservava senza farsi notare. Quando arrivarono alla curva successiva, Mara spostò senza chiedere il peso maggiore dalla borsa di Nim alla propria.
+\begin{rpgexample}{Al tavolo · Fallire cambia la scena}
+\textbf{Narratore:} «La lastra si stacca. Nim è scoperto: Destrezza, VR 5. Se fallisci, sarai colpito dai detriti.»
+
+\textbf{Giocatore di Nim:} «Sono Esperto, tiro 2d6: 2 e 3. Tengo 3. Fallisco.»
+
+\textbf{Narratore:} «Un sasso ti prende alla spalla. Riesci ancora a camminare, ma il dolore conta come una Condizione: per le azioni in cui usi quel braccio, subisci −1 gradino finché la scena lo giustifica. Tessa è salva grazie al riparo trovato da Mara.»
+
+\textbf{Giocatore:} «Allora affido a Mara la borsa pesante.»
+
+\emph{Il fallimento produce una conseguenza descritta e circoscritta, non l'arresto della storia. Una Condizione può peggiorare di un gradino i tiri pertinenti; non è automaticamente una Ferita e non altera la regola sulla morte.}
+
+\end{rpgexample}
+\RPGChapter{Tre piatti sul tavolo}
+Raggiunsero la fattoria dello zio di Tessa poco prima di mezzogiorno. C'erano tre piatti in ceramica sul tavolo della cucina, lasciati ad asciugare vicino alla finestra. La casa era vuota, ma il fuoco nel camino era stato acceso quella mattina.
+
+Mara bussò. Nessuna risposta.
+
+Nim fece il giro dell'edificio. Dietro la stalla trovò un uomo che spaccava legna, con un ginocchio fasciato e la camicia aperta sul collo.
+
+«Se cercate da mangiare, non ho niente», disse l'uomo.
+
+«Cerchiamo lei», rispose Nim, indicando Tessa.
+
+L'uomo lasciò cadere la scure. Per un momento non si mosse. Poi attraversò il cortile così in fretta che Tessa riuscì appena a sollevare le braccia prima di essere stretta al petto.
+
+Mara si voltò verso la strada. Le sembrava giusto lasciare loro un poco di riservatezza.
+
+Lo zio offrì minestra, un posto accanto al fuoco e una notte sotto il tetto. Nim accettò la minestra e rifiutò il resto. Mara voleva raggiungere Focolare Vuoto prima che calasse il buio.
+
+Tessa gli mise in mano un bottone d'osso, l'unico che aveva conservato della giacca del padre. «Per il ponte», disse.
+
+Nim fece per restituirglielo. La bambina gli chiuse le dita attorno al bottone e corse dallo zio.
+
+«È una cattiva idea», disse l'uomo.
+
+«Lo stiamo sentendo spesso», rispose Mara.
+
+«Allora forse dovreste ascoltare.»
+
+«Che cosa succede laggiù?»
+
+Lo zio guardò Tessa, che ora mangiava seduta al tavolo. «Non ne so abbastanza per raccontarvelo. Gli ultimi che sono venuti dal villaggio non avevano voglia di parlare. E la gente che arriva da lì non si ferma più a parlare.»
+
+«Neppure un nome?»
+
+«Ho sentito nominare il vecchio Bram. Ma non so che cosa gli sia accaduto.»
+
+Mara ricordò la lettera nella borsa di Nim, che aveva intravisto la sera prima. Non ne conosceva ancora il contenuto.
+\RPGChapter{La lettera e il debito}
+Ripartirono dopo pranzo. Da quel punto la strada scendeva verso la foresta. Fu Nim a parlare per primo.
+
+«Mi hanno pagato per consegnare una lettera alla locanda di Focolare Vuoto.»
+
+Mara allungò la mano. «Posso leggerla?»
+
+\emph{Il conto è stato saldato. Nessuno deve aspettare il ritorno del campanaro.}
+
+«Non c'è un nome», disse Mara.
+
+«C'è una locanda. E un uomo al crocevia che pagava bene.»
+
+«Troppo bene.»
+
+Nim tese il foglio contro la luce. Nel margine si vedevano due fori di spillo, vicinissimi. Mara estrasse dal taccuino la moneta falsa che aveva conservato. All'inizio del viaggio le era sembrata una curiosità. Ora riconobbe il punzone sulla cera rimasta fra i due fori: due teste contrapposte, una con la corona e una senza.
+
+«La carta è passata per le mani di chi conia quelle monete.»
+
+Nim ricordò gli esattori al crocevia. «Una truffa con un messaggio in più?»
+
+«Forse. O qualcuno sta comprando il silenzio. In ogni caso, chi dovrebbe riceverla non è indicato.»
+
+Alle loro spalle si udì il rumore di un ramo spezzato.
+
+Il ragazzo della lancia era tornato. Stavolta aveva con sé l'uomo rimasto nascosto fra gli alberi: più anziano, una cicatrice sulla mandibola, una corta spada al fianco. Si fermarono sul sentiero, a una dozzina di passi.
+
+«La consegna è stata annullata», disse l'uomo più anziano. «Restituite la carta e vi tenete l'argento.»
+
+«Quale carta?» chiese Nim.
+
+L'uomo lasciò cadere una borsa ai loro piedi. Il tintinnio dell'argento fu molto chiaro. «Potete guadagnare due volte per non fare domande.»
+
+Mara guardò il ragazzo. Aveva lo sguardo fisso sui propri stivali. «Hai detto che riscuotevate pedaggi. Adesso ritirate la posta?»
+
+«Ultima offerta», rispose l'altro. Mise la mano sull'elsa.
+
+Nim fece un passo di lato. Non verso la borsa: verso un tronco che obbligava chiunque a passare in fila. Mara capì e si spostò dietro di lui. Nel fango, il ragazzo serrò le dita sull'asta della lancia senza sollevarla.
+
+Nim sentì in tasca il bottone d'osso di Tessa. La borsa nel fango avrebbe pagato una stagione di viaggi; pochi passi prima, avevano rischiato entrambi per una bambina che non possedeva niente.
+
+«Hai intenzione di combattere per quella carta?» domandò Mara, abbastanza piano da non farsi sentire dagli uomini.
+
+«No», disse Nim. «Ho intenzione di non venderla.»
+
+L'uomo con la cicatrice sguainò la spada. Nim gli gettò il mantello sul braccio armato e lo urtò con la spalla contro il tronco. La lama gli tagliò il fianco sotto il mantello. Il ragazzo si fece avanti, ma Mara lo fermò alzando la mano aperta.
+
+«Hai già una via d'uscita», gli disse. «Non usarla per colpire.»
+
+Il ragazzo esitò. Bastò perché Nim potesse svincolarsi. L'uomo più anziano inciampò sul bordo del sentiero, poi tornò in piedi con la lama pronta. Avrebbe potuto inseguirli. Guardò invece il compagno, immobile con la lancia abbassata, e sputò nel fango.
+
+«Prendetevi la carta. Il pagamento lo verrete a riscuotere dai morti.»
+
+Nim e Mara si allontanarono senza raccogliere la seconda borsa. Aspettarono di essere oltre il dosso prima di fermarsi.
+
+Mara aveva il respiro corto. «Non dovevi rischiare per una lettera.»
+
+Nim sollevò il mantello. Il taglio nel fianco sanguinava, ma riusciva ancora a camminare. «Non l'ho fatto per la lettera.»
+
+«E per cosa?»
+
+«Per non essere il tipo che si compra così facilmente.»
+
+La risposta sorprese Mara più della spada. Nim riprese il foglio, lo piegò e glielo affidò.
+
+«Tu sai riconoscere una menzogna scritta meglio di me. Tienila finché troviamo qualcuno a cui mostrarla.»
+
+Mara ripose la lettera accanto alla moneta falsa. Il loro accordo era semplice: non l'avrebbero consegnata a uno sconosciuto solo perché qualcuno li aveva pagati. Avrebbero chiesto spiegazioni alla persona responsabile del villaggio. Nim rinunciava al compenso promesso per la consegna; Mara, che aveva sempre preferito osservare prima di esporsi, aveva scelto di mettersi fra lui e una lancia.
+
+Nim ricordò il ragazzo con la lancia: era tornato, ma non aveva voluto colpire. Mara, invece, aveva rinunciato a restare in disparte. Per la prima volta si fidò di lei abbastanza da lasciarle il messaggio.
+
+La consegna era conclusa: non avrebbero cercato il destinatario senza nome, né incassato altre monete. La lettera e il punzone restavano due prove da portare alla sindaca. Chi avesse pagato gli uomini sarebbe rimasto un problema da affrontare a Focolare Vuoto.
+\begin{rpgexample}{Al tavolo · Un combattimento, una Ferita, una scelta}
+\textbf{Narratore:} «L'uomo con la spada è Vicino. Nim, che fai?»
+
+\textbf{Giocatore di Nim:} «Gli lancio il mantello sul braccio armato e cerco di spingerlo contro il tronco. Uso Destrezza per aggirarlo, non Forza per abbatterlo.»
+
+\textbf{Narratore:} «VR 4 per questa azione. Nim è Esperto in Destrezza: 2d6, tieni il più alto.»
+
+\textbf{Giocatore:} «2 e 5. Tengo 5.»
+
+\textbf{Narratore:} «Riesci a ostacolare il suo braccio e lo spingi contro il tronco. Ma è ancora armato. Mara, il ragazzo con la lancia si avvicina. Cosa fai?»
+
+\textbf{Giocatrice di Mara:} «Gli dico che può andarsene; non voglio fargli male. Mara ha Sapienza Esperto e Diplomazia.»
+
+\textbf{Narratore:} «Lui è già esitante: questa volta abbassa la lancia senza tiro. L'uomo con la spada, però, tenta ancora un colpo. Nim, puoi cercare di evitarlo: Destrezza, VR 5. Il dolore alla spalla rende difficile muovere il braccio: −1 gradino, quindi 1d6.»
+
+\textbf{Giocatore di Nim:} «Esce 3. Fallisco.»
+
+\textbf{Narratore:} «La lama ti ferisce al fianco: 2 Ferite da combattimento. Nim ha 4 Punti Vita massimi; ora ne restano 2. A questo livello i tiri pertinenti subiscono −1 gradino. L'uomo vede il ragazzo ritirarsi e non insiste nell'inseguimento.»
+
+\textbf{Giocatrice di Mara:} «Lo aiuto ad allontanarsi. Lasciamo l'argento dov'è.»
+
+\emph{Non ci sono iniziativa né turni obbligatori: il Narratore alterna le azioni secondo la scena. Qui il danno deriva da un colpo di spada; con 2 PV rimasti Nim è Malmesso. La condizione alla spalla e il livello di Ferite non impongono due penalità cumulative senza una decisione esplicita del Narratore.}
+
+\end{rpgexample}
+\RPGChapter{La locanda}
+\begingroup\setlength{\parskip}{2pt}
+Il villaggio apparve tra gli alberi quando la luce cominciava a calare. Le case erano basse, con i tetti d'ardesia; le ruote dei carri avevano scavato due solchi nella strada principale. Dai camini usciva poco fumo.
+
+Mara vide la piazza, ma da dove si trovavano non riuscì a distinguere che cosa occupasse la piattaforma al centro. Un'anziana donna attraversò la strada verso una casa e chiuse la porta. Nessuno li fermò per chiedere da dove venissero.
+
+«È qui che dovrei consegnare la lettera», disse Nim.
+
+«Non siamo più obbligati a farlo.»
+
+«Però vorrei sapere perché qualcuno ha tentato di ricomprarla.»
+
+La locanda era in fondo alla piazza, sotto un'insegna scolorita. Si distingueva ancora un boccale dipinto, ma il nome era sbiadito. La porta aveva una cerniera nuova e una vecchia; entrambe cigolavano.
+
+All'interno c'era odore di minestra, cenere e panni umidi. Tre persone sedevano vicino al camino. L'oste asciugava un boccale con un panno ormai grigio.
+
+Quando Nim entrò, tutti alzarono lo sguardo. Nessuno domandò chi fosse.
+
+«Una stanza?» chiese l'oste.
+
+«Prima qualcosa di caldo», rispose Nim.
+
+Mara restò sulla soglia un momento, poi lo raggiunse. La luce del fuoco illuminava le fibbie delle sedie e le gocce sui mantelli appesi. Nim si sedette con cautela, tenendo una mano sul fianco ferito. La strada era finita, ma il viaggio sembrava avere ancora qualcosa da chiedere.
+
+L'oste servì due scodelle. Nim pagò con una delle monete guadagnate per la consegna. Mara appoggiò il taccuino sul tavolo, tenendo la lettera sotto la copertina.
+
+«Hai deciso cosa farne?» le chiese Nim.
+
+«Sì. La mostreremo alla sindaca, insieme alla moneta. E le chiederemo chi è stato pagato per farla sparire.»
+
+La porta si aprì. Una donna entrò per prendere una brocca d'acqua e tornò fuori senza parlare. L'oste la seguì con gli occhi, poi riprese ad asciugare il boccale.
+
+L'oste posò sul bancone un altro boccale, intatto. Poi si chinò verso i due forestieri.
+
+«Se cercate lavoro», disse piano, «qui ce n'è più di quanto siamo capaci di pagare.»
+
+Nim alzò la testa. «Che genere di lavoro?»
+
+L'oste guardò la porta. «Aspettate che venga la sindaca.»
+
+Mara infilò una mano nella bisaccia per sentire se la lettera fosse ancora lì. Fuori, qualcuno attraversava la piazza. Una delle persone accanto al camino si alzò e si avviò alla porta.
+
+Nim si voltò verso Mara. Per una volta non aveva niente da vendere e nessuna battuta pronta.
+
+«Che facciamo?» chiese.
+
+\emph{Da qui può cominciare «La campana di Focolare Vuoto». Al tavolo, la risposta alla domanda di Nim spetta ai giocatori: gli avvenimenti raccontati in questo prologo non impongono loro un percorso.}
+\endgroup\SentieroBackCover
+\end{document}
