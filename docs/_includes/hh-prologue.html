@@ -1,0 +1,15 @@
+{% comment %}
+The prologue of an adventure (front matter `prologue` in docs/_adventures/<slug>-<lang>.md), shown
+above the adventure in the same frame. Parameters: adventure (the collection entry); level (heading
+tag, default h2); variant: "row" (default: art and text, like the adventure's row in the catalog)
+or "download" (the three cells of a download card: icon, text, actions).
+{% endcomment %}{% assign hp_ui = site.data.hollow_hearth[page.lang].catalog %}{% assign hp = include.adventure.prologue %}{% assign hp_level = include.level | default: 'h2' %}{% if hp %}{% assign hp_file = site.static_files | where: 'path', hp.pdf_path | first %}{% if include.variant == 'download' %}
+<div class="download-icon" aria-hidden="true">✦</div>
+<div id="{{ include.adventure.content_id }}-prologue"><{{ hp_level }}>{{ hp.title }}</{{ hp_level }}><p class="overline">{{ hp_ui.prologue_label }}</p><p>{{ hp_ui.prologue_lead }}</p></div>
+<div><a class="ink-button" href="{{ hp.page | relative_url }}">{{ hp_ui.prologue_read }}</a>{% if hp_file %}<p class="pd-download-pdf"><a class="subtle-link" href="{{ hp.pdf_path | relative_url }}" download>{{ hp_ui.prologue_pdf }}</a></p>{% endif %}</div>
+<hr class="pd-separator">{% else %}
+<div class="hh-catalog-row pd-row" id="{{ include.adventure.content_id }}-prologue">
+{% if hp.image_path %}<a class="hh-catalog-art" href="{{ hp.page | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ hp.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+<div class="hh-catalog-copy"><p class="hh-category">{{ hp_ui.prologue_label }}</p><{{ hp_level }}><a href="{{ hp.page | relative_url }}">{{ hp.title }}</a></{{ hp_level }}><p>{{ hp_ui.prologue_lead }}</p>
+<p class="hh-catalog-actions"><a class="ink-button" href="{{ hp.page | relative_url }}">{{ hp_ui.prologue_read }}</a>{% if hp_file %}<a class="subtle-link" href="{{ hp.pdf_path | relative_url }}" download>{{ hp_ui.prologue_pdf }}</a>{% endif %}</p></div>
+</div>{% endif %}{% endif %}

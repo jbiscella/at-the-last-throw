@@ -8,6 +8,11 @@ order: 1
 landing: "/es/adventures/the-bell-of-hollow-hearth/index.html"
 pdf_path: "/downloads/hollow-hearth-es.pdf"
 image_path: "/assets/hollow-hearth/front-overlay.webp"
+prologue:
+  title: "El sendero de las deudas"
+  page: "/es/adventures/the-bell-of-hollow-hearth/prologue/01.html"
+  pdf_path: "/downloads/path-of-debts-es.pdf"
+  image_path: "/assets/path-of-debts/front-overlay.webp"
 pregenerated:
   - id: aldren-varr
     name: "Aldren Varr"

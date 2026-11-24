@@ -29,7 +29,8 @@
 {% assign entries = site.adventures | where: 'lang', page.lang | sort: 'order' %}
 <div class="hh-catalog-list">{% for item in entries %}
 <article class="hh-catalog-card parchment">
-{% if item.image_path %}<a class="hh-catalog-art" href="{{ item.landing | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ item.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+{% include hh-prologue.html adventure=item level='h2' %}
+<div class="hh-catalog-row">{% if item.image_path %}<a class="hh-catalog-art" href="{{ item.landing | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ item.image_path | relative_url }}" alt="" loading="lazy"></a>{% endif %}
 <div class="hh-catalog-copy">
 {% if item.category == 'introductory' %}<p class="hh-category">{{ ui.intro_label }}</p>{% endif %}
 <h2><a href="{{ item.landing | relative_url }}">{{ item.title }}</a></h2>
@@ -37,6 +38,6 @@
 <p class="hh-catalog-actions"><a class="ink-button" href="{{ item.landing | relative_url }}">{{ c.explore }}</a>
 {% assign pdf = site.static_files | where: 'path', item.pdf_path | first %}
 {% if pdf %}<a class="subtle-link" href="{{ item.pdf_path | relative_url }}" download>{{ ui.download_pdf }}</a>{% endif %}
-{% if item.pregenerated.size > 0 %}<a class="subtle-link" href="{{ item.landing | relative_url }}#{{ item.content_id }}-pregenerated">{{ c.pregenerated_title }}</a>{% endif %}</p></div></article>{% endfor %}</div>
+{% if item.pregenerated.size > 0 %}<a class="subtle-link" href="{{ item.landing | relative_url }}#{{ item.content_id }}-pregenerated">{{ c.pregenerated_title }}</a>{% endif %}</p></div></div></article>{% endfor %}</div>
 </main><footer class="site-footer"><div class="footer-frame"><p>{{ ui.game }} · Jacopo Biscella</p><p>CC BY-SA 4.0</p><p><a href="{{ '/' | relative_url }}{{ page.lang }}/downloads.html">{{ c.materials }}</a> · <a href="{{ '/' | relative_url }}{{ page.lang }}/adventures/index.html">{{ c.adventures }}</a></p></div></footer>
 </body></html>

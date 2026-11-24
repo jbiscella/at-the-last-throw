@@ -11,9 +11,10 @@ permalink: /de/downloads.html
 {% for item in adventures %}
 {% assign pdf = site.static_files | where: 'path', item.pdf_path | first %}
 <article class="download-card" id="{% if forloop.first %}adventure-download{% else %}adventure-download-{{ item.content_id }}{% endif %}">
+{% include hh-prologue.html adventure=item level='h2' variant='download' %}
 <div class="download-icon" aria-hidden="true">✧</div>
 <div><h2>{{ item.title }}</h2>{% if item.category == 'introductory' %}<p class="overline">{{ u.intro_label }}</p>{% endif %}{% if item.summary %}<p>{{ item.summary }}</p>{% endif %}</div>
-<div><a class="ink-button" href="{{ item.landing | relative_url }}">{{ u.catalog.online }}</a>
+<div><a class="ink-button" href="{{ item.landing | relative_url }}">{{ u.catalog.explore }}</a>
 {% if pdf %}<p><a class="subtle-link" href="{{ item.pdf_path | relative_url }}" download>{{ u.download_pdf }}</a></p>{% else %}<p class="file-meta">{{ u.pdf_pending }}</p>{% endif %}</div>
 {% include hh-pregenerated.html adventure=item level='h3' %}
 </article>{% endfor %}
