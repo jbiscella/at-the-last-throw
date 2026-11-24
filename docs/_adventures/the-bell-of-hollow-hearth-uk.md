@@ -26,7 +26,7 @@ pregenerated:
     portrait: "/assets/hollow-hearth/pregens/mara-veyne.webp"
   - id: elyra-ashenveil
     name: "Еліра Ешенвейл"
-    role: "Містикиня-людина"
+    role: "Містик-людина"
     pdf_path: "/downloads/hollow-hearth-elyra-ashenveil-uk.pdf"
     portrait: "/assets/hollow-hearth/pregens/elyra-ashenveil.webp"
 ---

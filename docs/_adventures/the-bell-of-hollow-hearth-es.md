@@ -26,7 +26,7 @@ pregenerated:
     portrait: "/assets/hollow-hearth/pregens/mara-veyne.webp"
   - id: elyra-ashenveil
     name: "Elyra Ashenveil"
-    role: "Mística humana"
+    role: "Místico humano"
     pdf_path: "/downloads/hollow-hearth-elyra-ashenveil-es.pdf"
     portrait: "/assets/hollow-hearth/pregens/elyra-ashenveil.webp"
 ---
