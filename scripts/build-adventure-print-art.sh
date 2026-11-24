@@ -15,8 +15,8 @@
 # and need their transparency.
 #
 # It also makes JPEG copies of the two shared parchment cover backgrounds (assets/engraved-*-
-# background.png, quality 95, no chroma subsampling), which the adventure covers use: about
-# 1 MB each instead of 3.3 MB, with no visible difference. The rulebook still uses the PNGs.
+# background.png, quality 95, no chroma subsampling), which every cover uses (rulebooks, adventures,
+# prologue): about 1 MB each instead of 3.3 MB, with no visible difference.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 slug=${1:-hollow-hearth}
