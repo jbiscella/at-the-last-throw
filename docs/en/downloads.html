@@ -6,4 +6,15 @@ kind: download
 title: "Downloads · At the Last Throw"
 permalink: /en/downloads.html
 ---
-<main id="main"><div class="content-page"><div class="page-heading"><p class="overline">Print &amp; play</p><h1>Downloads</h1><div class="engraved-rule"><span>◆</span></div><p>Download the rulebook and the printable character sheet for your language.</p></div><div class="download-grid"><article class="download-card"><div class="download-icon" aria-hidden="true">✦</div><div><h2>Complete rulebook</h2><p>Browse the complete rules online. Chapters, tables, and illustrated examples come from the LaTeX source.</p><p class="file-meta">A4 • PDF</p></div><a class="ink-button" href="../downloads/rulebook-en.pdf" download>Download the manual ↓</a></article><article class="download-card"><div class="download-icon" aria-hidden="true">◇</div><div><h2>Character sheet</h2><p>Print &amp; play</p><p class="file-meta">A4 • PDF</p></div><a class="ink-button" href="../downloads/character-en.pdf" download>Character sheet ↓</a></article></div></div></main>
+<main id="main"><div class="content-page"><div class="page-heading"><p class="overline">Print &amp; play</p><h1>Downloads</h1><div class="engraved-rule"><span>◆</span></div><p>Download the rulebook, a blank character sheet, and available adventures.</p></div><div class="download-grid"><article class="download-card"><div class="download-icon" aria-hidden="true">✦</div><div><h2>Complete rulebook</h2><p>Browse the complete rules online. Chapters, tables, and illustrated examples come from the LaTeX source.</p><p class="file-meta">A4 • PDF</p></div><a class="ink-button" href="../downloads/rulebook-en.pdf" download>Download the manual ↓</a></article><article class="download-card"><div class="download-icon" aria-hidden="true">◇</div><div><h2>Character sheet</h2><p>Print &amp; play</p><p class="file-meta">A4 • PDF</p></div><a class="ink-button" href="../downloads/character-en.pdf" download>Character sheet ↓</a></article>{% assign u = site.data.hollow_hearth[page.lang] %}
+{% assign adventures = site.adventures | where: 'lang', page.lang | sort: 'order' %}
+{% for item in adventures %}
+{% assign pdf = site.static_files | where: 'path', item.pdf_path | first %}
+<article class="download-card" id="{% if forloop.first %}adventure-download{% else %}adventure-download-{{ item.content_id }}{% endif %}">
+<div class="download-icon" aria-hidden="true">✧</div>
+<div><h2>{{ item.title }}</h2>{% if item.category == 'introductory' %}<p class="overline">{{ u.intro_label }}</p>{% endif %}{% if item.summary %}<p>{{ item.summary }}</p>{% endif %}</div>
+<div><a class="ink-button" href="{{ item.landing | relative_url }}">{{ u.catalog.online }}</a>
+{% if pdf %}<p><a class="subtle-link" href="{{ item.pdf_path | relative_url }}" download>{{ u.download_pdf }}</a></p>{% else %}<p class="file-meta">{{ u.pdf_pending }}</p>{% endif %}</div>
+{% include hh-pregenerated.html adventure=item level='h3' %}
+</article>{% endfor %}
+</div></div></main>

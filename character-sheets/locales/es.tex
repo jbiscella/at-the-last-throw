@@ -1,4 +1,3 @@
-\def\RPGIsSpanish{1}
 \def\SheetTitleFirst{LA ÚLTIMA}
 \def\SheetTitleSecond{TIRADA}
 \def\SheetName{Nombre}
@@ -13,7 +12,16 @@
 \expandafter\def\csname SheetTier2\endcsname{Competente}
 \expandafter\def\csname SheetTier3\endcsname{Experto}
 \expandafter\def\csname SheetTier4\endcsname{Excepcional}
-\def\SheetWoundLegend{H = Herida de combate  /  F = Fatiga}
+\def\SheetWoundLegend{Escribe H o F en las casillas, de la más alta hacia abajo:\quad H = Herida de combate\quad/\quad F = Fatiga}
+% Dice of each tier (Untrained, Competent, Expert, Exceptional) and how to read them.
+\expandafter\def\csname SheetDice1\endcsname{2\SheetDie\SheetDown}
+\expandafter\def\csname SheetDice2\endcsname{1\SheetDie}
+\expandafter\def\csname SheetDice3\endcsname{2\SheetDie\SheetUp}
+\expandafter\def\csname SheetDice4\endcsname{3\SheetDie\SheetUp}
+\def\SheetDiceLegend{\SheetUp\ conserva el mayor\enspace·\enspace\SheetDown\ conserva el menor\enspace·\enspace habilidad pertinente: +1 grado\enspace·\enspace penalización: –1 grado\enspace·\enspace dos o más 6 en una tirada \SheetUp: Crítico}
+% State penalties printed under hit-point boxes 2 and 1.
+\def\SheetPenaltyOne{–1 grado}
+\def\SheetPenaltyTwo{–2 grados}
 \def\SheetHp{PUNTOS DE VIDA}
 \def\SheetAbilities{HABILIDADES}
 \def\SheetTrait{RASGO}
@@ -22,3 +30,6 @@
 \def\SheetAdvancement{AVANCES}
 \def\SheetGoal{Meta}
 \def\SheetNotes{NOTAS}
+% Pregenerated sheets only: the weapon field and the maximum Hit Points.
+\def\SheetWeapon{ARMA}
+\def\SheetHpMax#1{Máximo: #1}

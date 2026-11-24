@@ -96,6 +96,11 @@ family through fontconfig and the releases use the OTF regular and italic with t
 | `make update-baselines` | Copy `build/*.pdf` into `baseline/` (local only). |
 | `make docker-shell` | Open a shell inside the build environment. |
 | `make clean` | Remove `build/`. |
+| `make docker-adventure` | In the pinned container: the adventure's print JPEGs from its PNG originals, then its six PDFs into `docs/downloads/` (`SLUG=hollow-hearth`). |
+| `make docker-sheets` | In the pinned container: the blank and pregenerated character sheets in `character-sheets/`, with their typesetting and collision checks. |
+| `make site` | Build the website from `docs/` in the official `ruby:3.3` image with the GitHub Pages gems, into `build/site/`, then check every page and local link. |
+| `make site-serve` | Serve the website with live reload at http://localhost:4000/ (from a Chromebook's Linux container: http://penguin.linux.test:4000/). |
+| `make page-counts` | Compare the page count of every PDF in `docs/downloads/`, in every language, with `REF` (default `origin/main`); non-zero exit if any changed. |
 
 Each edition is compiled twice: the TikZ cover overlays use remembered page positions and the
 contents page needs a second pass.
